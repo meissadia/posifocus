@@ -1,0 +1,75 @@
+
+.g-form {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  background: black;
+  text-align: center;
+}
+
+.g-form label {
+  text-align: left;
+  padding: 20px 0 20px 30px;
+}
+
+.g-form input,
+.g-form textarea {
+  background: black;
+  border: 0;
+  caret-color: white;
+  color: white;
+  text-align: center;
+  font-weight: 200;
+  font-size: 1.5em;
+}
+
+.g-form input {
+  line-height: 25px;
+}
+
+
+.new-input-wrapper .controls {
+  justify-content: space-around;
+  align-items: center;
+  background: dodgerblue;
+  height: 50px;
+}
+
+.new-input-wrapper .controls a {
+  cursor: pointer;
+  color: white;
+}
+
+.new-input-wrapper li {
+  list-style: none;
+  background: dodgerblue;
+  margin: 10px 0;
+  padding: 10px;
+}
+
+.new-input-wrapper ul {
+  margin: 0;
+  padding: 10px;
+}
+
+.new-input-wrapper .title {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.new-input-wrapper .content {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
+.new-input-wrapper #submit-button {
+  height: 75px;
+  background: dodgerblue;
+  margin: 30px;
+}
+
+.new-input-wrapper #date-input {
+  text-align: center;
+  align-self: center;
+}

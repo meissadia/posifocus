@@ -1,0 +1,8 @@
+#user-header {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 10px 0;
+  background: rgba(0, 148, 255, .5);
+}

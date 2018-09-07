@@ -1,0 +1,21 @@
+
+.stat-bar {
+  display: flex;
+  flex-flow: row no-wrap;
+  justify-content: space-evenly;
+  background: rgb(30, 130, 235);
+}
+
+.stat-block-line {
+  list-style: none;
+  text-align: center;
+  color: white;
+}
+
+.stat-block-line span {
+  font-size: 1.7em;
+}
+
+.stat-block {
+  padding: 10px 0;
+}
