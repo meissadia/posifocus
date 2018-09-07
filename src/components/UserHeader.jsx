@@ -15,7 +15,7 @@ class UserHeader extends React.Component {
     event.preventDefault();
     let file = this.fileInput.current.files[0]
 
-    if(this.reasonableFileSize(file.size)) {
+    if(this.fileSizeOk(file.size)) {
       var fr = new FileReader();
       fr.onload = () => { this.props.handler('user_image', fr.result) }
       fr.readAsDataURL(file);
@@ -27,11 +27,11 @@ class UserHeader extends React.Component {
     this.props.handler(event.target.name, event.target.value);
   }
 
-  reasonableFileSize(bytes) {
+  fileSizeOk(bytes) {
     let kbs = Math.round(bytes/1024);
     if (kbs < 3000){ return true; };
 
-    alert(
+    window.alert(
       "\nMax File Size: 3000 KB" +
       "\nYour File: " + kbs + " KB" +
       "\n\nPlease select a smaller image!"
