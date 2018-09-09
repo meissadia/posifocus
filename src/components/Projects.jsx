@@ -1,32 +1,16 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import Instructions from './Instructions';
-// import '../css/Projects.css'
+import PageNavigation from './PageNavigation';
+import ListItem from './ListItem';
+import '../css/ListViews.css'
 
 let Projects = (props) => {
+  let showInstructions = props.data.length === 0;
+
   let deleteProject = (event) => {
     event.preventDefault();
-    props.handleDelete(event.target.attributes.jsvalue.value);
+    props.delete(event.target.attributes.jsvalue.value);
   }
-
-  let list = () => {
-    if(props.data.length === 0) { return <Instructions section='projects'/> }
-
-    return props.data.map((elem, index) => (
-      <li className='list-item' key={index + '_' + elem.id} >
-        <NavLink to={ props.match.url.slice(0,-1) + '/' + elem.id + '/tasks'} >
-          <div className='title'>{elem.title}</div>
-        </NavLink>
-        <a className='delete' onClick={deleteProject} >
-          <img
-            jsvalue={elem.id}
-            jstitle={elem.title}
-            src="/images/delete-icon.png"
-            alt="Delete Icon" />
-        </a>
-      </li>
-    ))
-  };
 
   let navTitle = () => {
     if(props.parent) { return props.parent.title + ' Projects' }
@@ -35,17 +19,25 @@ let Projects = (props) => {
 
   return (
     <div className='list-wrapper'>
-      <div className="flex row controls">
-        <NavLink to='/priorities'>&lt; Priorities</NavLink>
-        <a style={{cursor: 'inherit', textDecoration: 'none'}}>{navTitle()}</a>
-        <NavLink to={`${props.match.url}/new`}>Add +</NavLink>
-      </div>
+      <PageNavigation
+        back={['/priorities', 'Priorities']}
+        title={navTitle()}
+        add={[`${props.match.url}/new`, 'Add']}
+        />
+
       <ul className='item-list'>
-        {list()}
+        <Instructions section='projects' display={showInstructions} />
+        { props.data.map((item, index) => (
+          <ListItem
+            item={item}
+            delete={deleteProject}
+            link={`${props.match.url.slice(0,-1)}/${item.id}/tasks`}
+            key={`${index}_${item.id}`}
+            />
+        ))}
       </ul>
     </div>
   )
 }
-
 
 export default Projects;

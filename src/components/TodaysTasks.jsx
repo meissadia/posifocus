@@ -1,43 +1,33 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import Instructions from './Instructions';
-// import '../css/Tasks.css'
+import PageNavigation from './PageNavigation';
+import ListItem from './ListItem';
+import '../css/ListViews.css'
 
 let TodaysTasks = (props) => {
-  var deletePriority = (event) => {
+  let showInstructions = props.data.length === 0;
+
+  var deleteTask = (event) => {
     event.preventDefault();
-    props.handleDelete('tasks', event.target.attributes.jsvalue.value);
+    props.delete('tasks', event.target.attributes.jsvalue.value);
   }
-
-  var list = () => {
-    if(props.data.length === 0) { return <Instructions section='tasks'/> }
-
-    return props.data.filter((task) => (task.today))
-      .map((task, index) => (
-        <li className='list-item' key={index + '_' + task.id} >
-          <div className='title'>{task.title}</div>
-          <label htmlFor="today">Due Today</label>
-          <input type="checkbox" name="today" defaultChecked={task.today} />
-          <a className='delete' onClick={deletePriority} >
-            <img
-              jsvalue={task.id}
-              jstitle={task.title}
-              src="/images/delete-icon.png"
-              alt="Delete Icon" />
-          </a>
-        </li>
-      ));
-    }
 
   return (
     <div className='list-wrapper'>
-      <div className="flex row controls">
-        <NavLink to='/'>&lt; Dashboard</NavLink>
-        <a style={{cursor: 'inherit', textDecoration: 'none'}}>Today's Tasks</a>
-        <a style={{cursor: 'inherit', textDecoration: 'none'}}>&nbsp;</a>
-      </div>
+      <PageNavigation
+        back={['/', 'Dashboard']}
+        title="Today's Tasks"
+        />
+
       <ul className='item-list'>
-        {list()}
+        <Instructions section='contacts' display={showInstructions} />
+        { props.data.filter((task) => (task.today)).map((item, index) => (
+          <ListItem
+            item={item}
+            delete={deleteTask}
+            key={`${index}_${item.id}`}
+            />
+        ))}
       </ul>
     </div>
   )

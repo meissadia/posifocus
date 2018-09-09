@@ -1,43 +1,36 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import Instructions from './Instructions';
-
+import PageNavigation from './PageNavigation';
+import ListItem from './ListItem';
 import '../css/ListViews.css'
 
+
 let Relationships = (props) => {
-  var deletePriority = (event) => {
+  let showInstructions = props.data.length === 0;
+
+  var deleteRelationship = (event) => {
     event.preventDefault();
-    props.handleDelete('relationships', event.target.attributes.jsvalue.value);
+    props.delete('relationships', event.target.attributes.jsvalue.value);
   }
-
-  var list = () => {
-    if(props.data.length === 0) { return <Instructions section='relationships'/> }
-
-    return props.data.map((elem, index) => (
-      <li className='list-item' key={index + '_' + elem.id} >
-        <NavLink to={`/relationship/${elem.id}/contacts`}>
-          <div className='title'>{elem.title}</div>
-        </NavLink>
-        <a className='delete' onClick={deletePriority} >
-          <img
-            jsvalue={elem.id}
-            jstitle={elem.title}
-            src="/images/delete-icon.png"
-            alt="Delete Icon" />
-        </a>
-      </li>
-    ))
-  };
-
+  
   return (
     <div className='list-wrapper'>
-      <div className="flex row controls">
-        <NavLink to='/'>&lt; Dashboard</NavLink>
-        <a style={{cursor: 'inherit', textDecoration: 'none'}}>Relationships</a>
-        <NavLink to='/relationships/new'>Add +</NavLink>
-      </div>
+      <PageNavigation
+        back={['/', 'Dashboard']}
+        title='Relationships'
+        add={['/relationships/new', 'Add']}
+        />
+
       <ul className='item-list'>
-        {list()}
+        <Instructions section='relationships' display={showInstructions} />
+        { props.data.map((item, index) => (
+          <ListItem
+            item={item}
+            delete={deleteRelationship}
+            link={`/relationship/${item.id}/contacts`}
+            key={`${index}_${item.id}`}
+            />
+        ))}
       </ul>
     </div>
   )

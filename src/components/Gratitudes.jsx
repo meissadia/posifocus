@@ -1,42 +1,34 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import Instructions from './Instructions';
+import PageNavigation from './PageNavigation';
+import ListItem from './ListItem';
 import '../css/ListViews.css'
 
-let Gratitudes = (props) => {
-  var deleteGratitude = (event) => {
+function Gratitudes(props) {
+  let showInstructions = props.data.length == 0;
+
+  let deleteGratitude = (event) => {
     event.preventDefault();
-    props.handleDelete('gratitudes', event.target.attributes.jsvalue.value);
+    props.delete('gratitudes', event.target.attributes.jsvalue.value);
   }
-
-  var list = () => {
-    if(props.data.length === 0) { return <Instructions section='gratitudes'/> }
-
-    return props.data.map((elem, index) => (
-      <li className='list-item' key={index + '_' + elem.id} >
-        <div className='title'>{elem.title}</div>
-        <div className='content'>{elem.content}</div>
-        <a className='delete' onClick={deleteGratitude} >
-          <img
-            jsvalue={elem.id}
-            jstitle={elem.title}
-            src="/images/delete-icon.png"
-            alt="Delete Icon" />
-        </a>
-        <div className='date'>{elem.date.split(' ').slice(0,4).join(' ')}</div>
-      </li>
-    ))
-  };
 
   return (
     <div className='list-wrapper'>
-      <div className="flex row controls">
-        <NavLink to='/'>&lt; Dashboard</NavLink>
-        <a style={{cursor: 'inherit', textDecoration: 'none'}}>Gratitudes</a>
-        <NavLink to='/gratitudes/new'>Add +</NavLink>
-      </div>
+      <PageNavigation
+        back={['/', 'Dashboard']}
+        title='Gratitudes'
+        add={['/gratitudes/new', 'Add']}
+        />
+      
       <ul className='item-list'>
-        {list()}
+        <Instructions section='gratitudes' display={showInstructions} />
+        { props.data.map((item, index) => (
+          <ListItem
+            item={item}
+            delete={deleteGratitude}
+            key={`${index}_${item.id}`}
+            />
+        ))}
       </ul>
     </div>
   )

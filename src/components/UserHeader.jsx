@@ -6,15 +6,17 @@ import '../css/UserHeader.css'
 class UserHeader extends React.Component {
   constructor(props){
     super(props);
-    this.fileInput = React.createRef(); // Access file input values
+    this.fileInput = React.createRef();
     this.handleFileChange = this.handleFileChange.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this)
   }
 
+  /**
+  /* Validates size of, and loads, user avatar.
+  **/
   handleFileChange(event) {
     event.preventDefault();
     let file = this.fileInput.current.files[0]
-
     if(this.fileSizeOk(file.size)) {
       var fr = new FileReader();
       fr.onload = () => { this.props.handler('user_image', fr.result) }
@@ -22,14 +24,22 @@ class UserHeader extends React.Component {
     }
   }
 
+  /**
+  /* Hoist userHeader state to App component.
+  **/
   handleInputChange(event) {
     event.preventDefault();
-    this.props.handler(event.target.name, event.target.value);
+    this.props.updateUserHeader(event.target.name, event.target.value);
   }
 
-  fileSizeOk(bytes) {
+  /**
+  /* Validates file size is under a size, given in Kilobytes.
+  /* @param {Number} bytes Filesize in bytes
+  /* @param {Number} limit Max Filesize allowed in bytes
+  **/
+  fileSizeOk(bytes, limit=3000) {
     let kbs = Math.round(bytes/1024);
-    if (kbs < 3000){ return true; };
+    if (kbs < limit){ return true; };
 
     window.alert(
       "\nMax File Size: 3000 KB" +
@@ -40,20 +50,20 @@ class UserHeader extends React.Component {
   }
 
   render() {
+    let data = this.props.data;
     return (
       <section id='user-header'>
         <UserImage
-          image={this.props.data.user_image}
+          image={data.user_image}
           fileHandler={this.handleFileChange}
           fileRef={this.fileInput} />
         <UserText
-          name={this.props.data.user_name}
-          tagline={this.props.data.user_tagline}
+          name={data.user_name}
+          tagline={data.user_tagline}
           inputHandler={this.handleInputChange} />
       </section>
       )
     }
-
   }
 
   export default UserHeader;

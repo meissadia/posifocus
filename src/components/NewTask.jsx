@@ -22,6 +22,7 @@ class NewTask extends React.Component {
       project: this.params.project_id,
       title: document.gform.title.value || document.gform.title.attributes.placeholder.value,
       today: document.gform.today.checked,
+      done: false,
       date: date.toString()
     }
 

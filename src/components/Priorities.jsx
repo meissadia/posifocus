@@ -1,42 +1,35 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import Instructions from './Instructions';
-// import '../css/Priorities.css'
+import PageNavigation from './PageNavigation';
+import ListItem from './ListItem';
+import '../css/ListViews.css'
 
-let Priorities = (props) => {
-  var deletePriority = (event) => {
+function Priorities(props) {
+  let showInstructions = props.data.length == 0;
+
+  let deletePriority = (event) => {
     event.preventDefault();
-    props.handleDelete('priorities', event.target.attributes.jsvalue.value);
+    props.delete('priorities', event.target.attributes.jsvalue.value);
   }
-
-  var list = () => {
-    if(props.data.length === 0) { return <Instructions section='priorities'/> }
-
-    return props.data.map((elem, index) => (
-      <li className='list-item' key={index + '_' + elem.id} >
-        <NavLink to={'/priority/' + elem.id + '/projects'}>
-          <div className='title'>{elem.title}</div>
-        </NavLink>
-        <a className='delete' onClick={deletePriority} >
-          <img
-            jsvalue={elem.id}
-            jstitle={elem.title}
-            src="/images/delete-icon.png"
-            alt="Delete Icon" />
-        </a>
-      </li>
-    ))
-  };
 
   return (
     <div className='list-wrapper'>
-      <div className="flex row controls">
-        <NavLink to='/'>&lt; Dashboard</NavLink>
-        <a style={{cursor: 'inherit', textDecoration: 'none'}}>Priorities</a>
-        <NavLink to='/priorities/new'>Add +</NavLink>
-      </div>
+      <PageNavigation
+        back={['/', 'Dashboard']}
+        title='Priorities'
+        add={['/priorities/new', 'Add']}
+        />
+
       <ul className='item-list'>
-        {list()}
+        <Instructions section='priorities' display={showInstructions} />
+        { props.data.map((item, index) => (
+          <ListItem
+            item={item}
+            delete={deletePriority}
+            link={`/priority/${item.id}/projects`}
+            key={`${index}_${item.id}`}
+            />
+        ))}
       </ul>
     </div>
   )
