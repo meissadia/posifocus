@@ -1,6 +1,6 @@
-import React from 'react';
+import React                from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import '../css/NewGratitude.css';
+import '../css/FormView.css';
 
 
 class NewProject extends React.Component {

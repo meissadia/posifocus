@@ -1,14 +1,13 @@
-import React from 'react';
+import React                from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import '../css/NewGratitude.css';
-
+import '../css/FormView.css';
 
 class NewContact extends React.Component {
   constructor(props){
     super(props);
     this.handleAddContact = this.handleAddContact.bind(this);
   }
-  
+
   handleAddContact(event){
     event.preventDefault();
     let date = new Date();

@@ -2,7 +2,8 @@ import React from 'react';
 import '../css/StatBar.css';
 
 /**
-/* adapted from https://www.htmlgoodies.com/html5/javascript/calculating-the-difference-between-two-dates-in-javascript.html
+/* Adapted from:
+/* https://www.htmlgoodies.com/html5/javascript/calculating-the-difference-between-two-dates-in-javascript.html
 **/
 Date.daysBetween = function( date1, date2 ) {
   var one_day_ms=1000*60*60*24;
