@@ -33,6 +33,7 @@ class App extends Component {
     this.deleteProject = this.deleteProject.bind(this);
     this.addTask = this.addTask.bind(this);
     this.deleteTask = this.deleteTask.bind(this);
+    this.deletePriority = this.deletePriority.bind(this);
   }
 
   initState() {
@@ -112,11 +113,10 @@ class App extends Component {
   }
 
   deleteProject(project_id){
-    let new_projects = this.state.projects.filter(
-      (proj) => (proj.id !== project_id)
-    );
+    let projects = this.state.projects.filter((t) => (t.id !== project_id));
+    let tasks = this.state.tasks.filter((t) => (t.project !== project_id));
 
-    this.setState({ projects: new_projects });
+    this.setState({ tasks, projects });
   }
 
   addTask(project_id, task){
@@ -130,11 +130,9 @@ class App extends Component {
   }
 
   deleteTask(task_id){
-    let new_tasks = this.state.tasks.filter(
-      (task) => (task.id !== task_id)
-    );
+    let tasks = this.state.tasks.filter((task) => (task.id !== task_id));
 
-    this.setState({ tasks: new_tasks });
+    this.setState({ tasks });
   }
 
   getPriority(priority){
@@ -153,6 +151,17 @@ class App extends Component {
     return this.state.tasks.filter(
       (task) => (task.project == project)
     );
+  }
+
+  deletePriority(priority){
+    let tasks = this.state.tasks.filter((t) => (t.priority !== priority));
+    let projects = this.state.tasks.filter((t) => (t.priority !== priority));
+    let priorities = this.state.priorities.filter((t) => (t.priority !== priority));
+    this.setState({
+      tasks: tasks,
+      projects: projects,
+      priorities: priorities
+    })
   }
 
   render() {
@@ -191,7 +200,7 @@ class App extends Component {
           <Route exact path='/priorities' render={() => (
               <Priorities
                 data={this.state.priorities}
-                delete={this.deleteFromStateArray}
+                delete={this.deletePriority}
                 />
             )}
             />

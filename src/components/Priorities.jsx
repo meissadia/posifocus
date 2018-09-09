@@ -9,7 +9,7 @@ function Priorities(props) {
 
   let deletePriority = (event) => {
     event.preventDefault();
-    props.delete('priorities', event.target.attributes.jsvalue.value);
+    props.delete(event.target.attributes.jsvalue.value);
   }
 
   return (
