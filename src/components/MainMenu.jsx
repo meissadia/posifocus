@@ -1,18 +1,14 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React        from 'react';
+import { NavLink }  from 'react-router-dom';
+import MenuItemIcon from './MenuItemIcon';
 import '../css/MainMenu.css';
 
 let MenuItem = (props) => {
-  var item_icon = (
-    <img className='menu-item-icon'
-      src={props.icon}
-      alt={props.title + ' Icon'} />
-  );
   return (
     <div className='menu-item-link' >
       <NavLink to={props.link}>
         <div className='flex menu-item'>
-          { props.icon && item_icon}
+          <MenuItemIcon icon={props.icon} title={props.title} />
           <div className="menu-item-details">
             <p className='title'>{props.title || <br />}</p>
             <p className='tagline'>{props.tagline || <br />}</p>
@@ -25,7 +21,6 @@ let MenuItem = (props) => {
 }
 
 let MainMenu = (props) => {
-
   return (
     <div id='main-menu'>
       <MenuItem
@@ -38,8 +33,7 @@ let MainMenu = (props) => {
         icon='/images/priorities@2x.png'
         title='Priorities'
         tagline='The Most Important Aspects of Your Life'
-        link='/priorities'
-        >
+        link='/priorities' >
         <div className="priorities-submenu flex row" style={{background: 'rgba(0, 155, 180, 0.8)'}} >
           <div className="flex row" >
             <img className='icon' src="/images/projects@2x.png" alt="Folder Icon" />
@@ -63,12 +57,9 @@ let MainMenu = (props) => {
         tagline='Stay Focused, Make an Impact'
         link='/tasks/today'
         />
-        <a id='reset-state'
-          href='/'
-          onClick={props.reset}
-         >
-          Reset Data
-         </a>
+      <a id='reset-state' href='/' onClick={props.reset} >
+        Reset Data
+      </a>
     </div>
   )
 }

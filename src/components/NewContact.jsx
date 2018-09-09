@@ -8,14 +8,11 @@ class NewContact extends React.Component {
     super(props);
     this.handleAddContact = this.handleAddContact.bind(this);
   }
-
-
+  
   handleAddContact(event){
     event.preventDefault();
     let date = new Date();
-    let gdate = document.gform.date.value &&
-                new Date(document.gform.date.value).toString();
-    if (!gdate) { gdate = (date.toString()); };
+    let gdate = this.parseDate(document.gform.date.value);
 
     let relationship_id = this.props.relationship_id;
 
@@ -27,14 +24,13 @@ class NewContact extends React.Component {
       date: gdate
     }
 
-    console.log('Adding contact:');
-    console.log(new_contact);
-    console.log(this.props.addHandler);
-    if (this.props.addHandler('contacts', new_contact)){
-      this.props.history.push(this.cancelLink());
-    } else {
-      alert('Error adding contact!');
-    }
+    this.props.addHandler('contacts', new_contact);
+    this.props.history.push(this.cancelLink());
+  }
+
+  parseDate(date){
+    if(!date){ return (new Date()).toString() };
+    return new Date(date).toString();
   }
 
   cancelLink(){
@@ -54,11 +50,11 @@ class NewContact extends React.Component {
 
     return (
       <div className='new-input-wrapper'>
-          <div className="flex row controls">
-            <Link to={this.backLink()}>&lt; Relationships</Link>
-              <a style={{cursor: 'inherit', textDecoration: 'none'}}>New Contact</a>
-            <Link to={this.cancelLink()}>{"< Cancel >"}</Link>
-          </div>
+        <div className="flex row controls">
+          <Link to={this.backLink()}>&lt; Relationships</Link>
+          <a style={{cursor: 'inherit', textDecoration: 'none'}}>New Contact</a>
+          <Link to={this.cancelLink()}>{"< Cancel >"}</Link>
+        </div>
         <form name='gform' className='g-form' onSubmit={this.handleAddContact}>
           <label htmlFor="title">What was the Last Contact you had with this Person?</label>
           <input type="text" name="title" autoComplete="off" placeholder="Call/Text/Email/Lunch..." />
@@ -68,7 +64,7 @@ class NewContact extends React.Component {
           <input id='date-input' type="date" name="date" defaultValue={currentDateString} />
           <input id='submit-button' type="submit" name="submit" value="Save" />
         </form>
-    </div>
+      </div>
     )
   }
 }

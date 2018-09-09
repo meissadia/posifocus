@@ -1,21 +1,21 @@
-import React, { Component } from 'react';
+import React, { Component }     from 'react';
 import { Route, BrowserRouter } from 'react-router-dom';
-import AppFrame from './components/AppFrame';
-import Dashboard from './components/Dashboard';
-import Gratitudes from './components/Gratitudes';
-import Priorities from './components/Priorities';
-import Relationships from './components/Relationships';
-import TodaysTasks from './components/TodaysTasks';
-import NewGratitude from './components/NewGratitude';
+import AppFrame        from './components/AppFrame';
+import Dashboard       from './components/Dashboard';
+import Gratitudes      from './components/Gratitudes';
+import Priorities      from './components/Priorities';
+import Projects        from './components/Projects';
+import Tasks           from './components/Tasks';
+import Relationships   from './components/Relationships';
+import Contacts        from './components/Contacts';
+import TodaysTasks     from './components/TodaysTasks';
+import NewGratitude    from './components/NewGratitude';
+import NewPriority     from './components/NewPriority';
+import NewProject      from './components/NewProject';
+import NewTask         from './components/NewTask';
 import NewRelationship from './components/NewRelationship';
-import NewPriority from './components/NewPriority';
-import Projects from './components/Projects';
-import Tasks from './components/Tasks';
-import Contacts from './components/Contacts';
-import NewContact from './components/NewContact';
-import NewProject from './components/NewProject';
-import NewTask from './components/NewTask';
-import SimpleStorage from 'react-simple-storage';
+import NewContact      from './components/NewContact';
+import SimpleStorage   from 'react-simple-storage';
 
 import './css/App.css';
 
@@ -29,6 +29,7 @@ class App extends Component {
     this.addToStateArray = this.addToStateArray.bind(this);
     this.deleteProject = this.deleteProject.bind(this);
     this.deletePriority = this.deletePriority.bind(this);
+    this.deleteRelationship = this.deleteRelationship.bind(this);
   }
 
   initState() {
@@ -74,20 +75,24 @@ class App extends Component {
   }
 
   deleteProject(project_id){
-    let projects = this.state.projects.filter((t) => (t.id !== project_id));
-    let tasks = this.state.tasks.filter((t) => (t.project !== project_id));
+    let projects = this.state.projects.filter((e) => (e.id !== project_id));
+    let tasks = this.state.tasks.filter((e) => (e.project !== project_id));
     this.setState({ tasks, projects });
   }
 
   deletePriority(priority){
-    let priorities = this.state.priorities.filter((t) => (t.id !== priority));
-    let projects = this.state.tasks.filter((t) => (t.priority !== priority));
-    let tasks = this.state.tasks.filter((t) => (t.priority !== priority));
-    this.setState({
-      tasks: tasks,
-      projects: projects,
-      priorities: priorities
-    })
+    let priorities = this.state.priorities.filter((e) => (e.id !== priority));
+    let projects = this.state.tasks.filter((e) => (e.priority !== priority));
+    let tasks = this.state.tasks.filter((e) => (e.priority !== priority));
+    this.setState({ tasks, projects, priorities })
+  }
+
+  deleteRelationship(relationship){
+    this.deleteFromStateArray('relationships', relationship);
+    let contacts = this.state.contacts.filter((e) => (
+      e.relationship !== relationship
+    ));
+    this.setState({ contacts });
   }
 
   getSingle(key, id){
@@ -99,9 +104,15 @@ class App extends Component {
   }
 
   getTasks(project){
-    return this.state.tasks.filter(
-      (task) => (task.project == project)
-    );
+    return this.state.tasks.filter((e) => (e.project == project));
+  }
+
+  getContacts(relationship){
+    if(!relationship) { return [] };
+
+    return this.state.contacts.filter((e) => (
+      e.relationship === relationship.id
+    ));
   }
 
   render() {
@@ -191,7 +202,8 @@ class App extends Component {
             }}
             />
 
-          <Route path='/priority/:priority_id/project/:project_id/tasks/new' render={({match}) => {
+          <Route path='/priority/:priority_id/project/:project_id/tasks/new'
+            render={({match}) => {
               let project = this.getSingle('projects', match.params.project_id);
               return (
                 <NewTask
@@ -206,7 +218,7 @@ class App extends Component {
           <Route exact path='/relationships' render={() => (
               <Relationships
                 data={this.state.relationships}
-                delete={this.deleteFromStateArray}
+                delete={this.deleteRelationship}
                 />
             )}
             />
@@ -218,42 +230,38 @@ class App extends Component {
 
           <Route exact path='/relationship/:relationship_id/contacts'
             render={ ({match}) => {
-              let relationship = this.state.relationships.filter((r) => (
-                r.id == match.params.relationship_id
-              ))[0];
+              let relationship = this.getSingle('relationships', match.params.relationship_id);
+              let contacts = this.getContacts(relationship);
 
-              let contacts = relationship && this.state.contacts.filter((c) => (
-                c.relationship === relationship.id.toString()
-              ))
+              return <Contacts
+                parent={relationship}
+                data={contacts || []}
+                match={match}
+                delete={this.deleteFromStateArray}
+                />
+            }}
+            />
 
-            return <Contacts
-              parent={relationship}
-              data={contacts || []}
-              match={match}
-              delete={this.deleteFromStateArray}
-              />
-          }}
-          />
+          <Route path='/relationship/:relationship_id/contacts/new'
+            render={({match}) => (
+              <NewContact
+                relationship_id={match.params.relationship_id}
+                addHandler={this.addToStateArray}
+                />
+            )}
+            />
 
-        <Route path='/relationship/:relationship_id/contacts/new' render={({match}) => (
-            <NewContact
-              relationship_id={match.params.relationship_id}
-              addHandler={this.addToStateArray}
-              />
-          )}
-          />
-
-        <Route path='/tasks/today' render={() => (
-            <TodaysTasks
-              data={this.state.tasks}
-              delete={this.deleteFromStateArray}
-              />
-          )}
-          />
-      </AppFrame>
-    </BrowserRouter>
-  );
-}
+          <Route path='/tasks/today' render={() => (
+              <TodaysTasks
+                data={this.state.tasks}
+                delete={this.deleteFromStateArray}
+                />
+            )}
+            />
+        </AppFrame>
+      </BrowserRouter>
+    );
+  }
 }
 
 export default App;

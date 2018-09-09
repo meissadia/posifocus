@@ -1,6 +1,6 @@
-import React from 'react';
-import DeleteIcon from './DeleteIcon';
+import React       from 'react';
 import { NavLink } from 'react-router-dom';
+import DeleteIcon  from './DeleteIcon';
 
 function ListItem(props) {
   let item = props.item;

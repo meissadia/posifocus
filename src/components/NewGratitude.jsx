@@ -8,15 +8,13 @@ class NewGratitude extends React.Component {
     this.handleNewGratitude = this.handleNewGratitude.bind(this);
   }
 
-
   handleNewGratitude(event){
     event.preventDefault();
-    var gdate = document.gform.date.value &&
-                new Date(document.gform.date.value).toString();
-    if (!gdate) { gdate = (new Date().toString()); };
+    var date = new Date();
+    var gdate = this.parseDate(document.gform.date.value);
 
     var new_gratitude = {
-      id: (new Date()).getTime().toString(),
+      id: date.getTime().toString(),
       title: document.gform.title.value || document.gform.title.attributes.placeholder.value,
       content: document.gform.content.value || document.gform.content.attributes.placeholder.value,
       date: gdate
@@ -24,6 +22,11 @@ class NewGratitude extends React.Component {
 
     this.props.addHandler('gratitudes', new_gratitude);
     this.props.history.push('/gratitudes');
+  }
+
+  parseDate(date){
+    if(!date){ return (new Date()).toString() };
+    return new Date(date).toString();
   }
 
   render(){

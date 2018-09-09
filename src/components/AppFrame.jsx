@@ -1,13 +1,16 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const AppFrame = (props) => {
   return (
     <div className='App'>
       <header>
-        <img className='app-logo'
-          src={props.logo}
-          alt={props.altText}
-          />
+        <NavLink to='/'>
+          <img className='app-logo'
+            src={props.logo}
+            alt={props.altText}
+            />
+        </NavLink>
       </header>
       { props.children }
     </div>

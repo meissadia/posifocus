@@ -1,8 +1,8 @@
-import React from 'react';
-import {NavLink} from 'react-router-dom';
+import React       from 'react';
+import { NavLink } from 'react-router-dom';
 
-let Placeholder = (props) => (
-  <a className='plain-link'>
+let NonLink = (props) => (
+  <a className='non-link'>
     {props.text}
   </a>
 )
@@ -13,13 +13,13 @@ let PageNavigation = (props) => {
       {
         props.back ?
         <NavLink to={props.back[0]}>&lt; {props.back[1]}</NavLink> :
-        <Placeholder />
+        <NonLink />
       }
-      <Placeholder text={props.title} />
+      <NonLink text={props.title} />
       {
         props.add ?
         <NavLink to={props.add[0]}>{props.add[1]} +</NavLink> :
-        <Placeholder />
+        <NonLink />
       }
     </div>
   )

@@ -9,7 +9,6 @@ class NewProject extends React.Component {
     this.handleAddProject = this.handleAddProject.bind(this);
   }
 
-
   handleAddProject(event){
     event.preventDefault();
     let date = new Date();
@@ -23,10 +22,14 @@ class NewProject extends React.Component {
     }
 
     if (this.props.addHandler('projects', new_project)){
-      this.props.history.push(`/priority/${priority_id}/projects`);
+      this.props.history.push(this.cancelLink());
     } else {
       alert('Error adding contact!');
     }
+  }
+
+  cancelLink(){
+    return this.props.match.url.slice(0, -4);
   }
 
   render(){
@@ -39,19 +42,18 @@ class NewProject extends React.Component {
 
 
     return (
-
       <div className='new-input-wrapper'>
-          <div className="flex row controls">
-            <Link to='/priorities'>&lt; Priorities</Link>
-              <a style={{cursor: 'inherit', textDecoration: 'none'}}>New Project</a>
-            <Link to={match.url.slice(0, -4)}>{"< Cancel >"}</Link>
-          </div>
+        <div className="flex row controls">
+          <Link to='/priorities'>&lt; Priorities</Link>
+          <a style={{cursor: 'inherit', textDecoration: 'none'}}>New Project</a>
+          <Link to={this.cancelLink()}>{"< Cancel >"}</Link>
+        </div>
         <form name='gform' className='g-form' onSubmit={this.handleAddProject}>
           <label htmlFor="title">What Project Will Contribute Most to this Priority?</label>
           <input type="text" name="title" autoComplete="off" placeholder="Backyard BBQ/New Diet/Vacation..." />
           <input id='submit-button' type="submit" name="submit" value="Save" />
         </form>
-    </div>
+      </div>
     )
   }
 }

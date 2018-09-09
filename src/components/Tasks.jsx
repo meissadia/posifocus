@@ -1,7 +1,7 @@
-import React from 'react';
-import Instructions from './Instructions';
+import React          from 'react';
+import Instructions   from './Instructions';
 import PageNavigation from './PageNavigation';
-import ListItem from './ListItem';
+import ListItem       from './ListItem';
 import '../css/ListViews.css'
 
 let Tasks = (props) => {

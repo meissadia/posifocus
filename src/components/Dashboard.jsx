@@ -1,9 +1,9 @@
-import React from 'react';
+import React      from 'react';
 import UserHeader from './UserHeader';
 import StatBar    from './StatBar';
 import MainMenu   from './MainMenu';
 
-export default (props) => {
+export default function Dashboard(props){
   return (
     <div>
       <UserHeader

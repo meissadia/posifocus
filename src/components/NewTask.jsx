@@ -26,11 +26,8 @@ class NewTask extends React.Component {
       date: date.toString()
     }
 
-    if (this.props.addHandler('tasks', new_project)){
-      this.props.history.push(this.cancelLink());
-    } else {
-      alert('Error adding contact!');
-    }
+    this.props.addHandler('tasks', new_project);
+    this.props.history.push(this.cancelLink());
   }
 
   cancelLink(){
@@ -50,13 +47,12 @@ class NewTask extends React.Component {
 
 
     return (
-
       <div className='new-input-wrapper'>
-          <div className="flex row controls">
-            <Link to={this.backLink()}>&lt; Projects</Link>
-              <a style={{cursor: 'inherit', textDecoration: 'none'}}>New Task</a>
-            <Link to={this.cancelLink()}>{"< Cancel >"}</Link>
-          </div>
+        <div className="flex row controls">
+          <Link to={this.backLink()}>&lt; Projects</Link>
+          <a style={{cursor: 'inherit', textDecoration: 'none'}}>New Task</a>
+          <Link to={this.cancelLink()}>{"< Cancel >"}</Link>
+        </div>
         <form name='gform' className='g-form' onSubmit={this.handleAddTask}>
           <label htmlFor="title">What Task Must Be Done to Complete this Project?</label>
           <input type="text" name="title" autoComplete="off" placeholder="Send Party Invite..." />
@@ -64,7 +60,7 @@ class NewTask extends React.Component {
           <input type="checkbox" name="today" value="" />
           <input id='submit-button' type="submit" name="submit" value="Save" />
         </form>
-    </div>
+      </div>
     )
   }
 }

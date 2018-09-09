@@ -1,12 +1,10 @@
-import React from 'react';
-import Instructions from './Instructions';
+import React          from 'react';
+import Instructions   from './Instructions';
 import PageNavigation from './PageNavigation';
-import ListItem from './ListItem';
+import ListItem       from './ListItem';
 import '../css/ListViews.css'
 
 function Gratitudes(props) {
-  let showInstructions = props.data.length == 0;
-
   let deleteGratitude = (event) => {
     event.preventDefault();
     props.delete('gratitudes', event.target.attributes.jsvalue.value);
@@ -19,9 +17,9 @@ function Gratitudes(props) {
         title='Gratitudes'
         add={['/gratitudes/new', 'Add']}
         />
-      
+
       <ul className='item-list'>
-        <Instructions section='gratitudes' display={showInstructions} />
+        <Instructions section='gratitudes' display={props.data.length == 0} />
         { props.data.map((item, index) => (
           <ListItem
             item={item}
