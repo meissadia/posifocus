@@ -13,21 +13,22 @@ let Contacts = (props) => {
 
   let deleteContact = (event) => {
     event.preventDefault();
-    // props.handleDelete('contacts', event.target.attributes.jsvalue.value);
+    props.handleDelete('contacts', event.target.attributes.jsvalue.value);
   }
 
   let list = () => {
 
-    if(!valid(props.parent)){ return <Instructions section='contacts'/>; }
+    // if(!valid(props.parent)){ return <Instructions section='contacts'/>; }
+    if(props.contacts.length == 0){ return <Instructions section='contacts'/>; }
 
-    return props.parent.contacts.map((contact, index) => (
+    return props.contacts.map((contact, index) => (
       <li className='list-item' key={index + '_' + contact.id} >
         <div className='title'>{contact.title}</div>
         <div className='content'>{contact.content}</div>
         <a className='delete' onClick={deleteContact} >
           <img
             jsvalue={contact.id}
-            jstitle={contact.title}
+            jsrelationship={contact.relationship}
             src="/images/delete-icon.png"
             alt="Delete Icon" />
         </a>
@@ -40,12 +41,16 @@ let Contacts = (props) => {
     return 'Contacts'
   }
 
+  let addLink = () => {
+    return props.match.url + '/new'
+  }
+
   return (
     <div className='list-wrapper'>
       <div className="flex row controls">
         <NavLink to='/relationships'>&lt; Relationships</NavLink>
           <a style={{cursor: 'inherit', textDecoration: 'none'}}>{navTitle()}</a>
-        <NavLink to='/new_task'>Add +</NavLink>
+        <NavLink to={addLink()}>Add +</NavLink>
       </div>
       <ul className='item-list'>
         {list()}

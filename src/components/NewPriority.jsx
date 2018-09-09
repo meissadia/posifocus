@@ -15,7 +15,7 @@ class NewPriority extends React.Component {
     var date = new Date();
 
     var new_relationship = {
-      id: date.getTime(),
+      id: date.getTime().toString(),
       title: document.gform.title.value || document.gform.title.attributes.placeholder.value,
       date: date.toString()
     }

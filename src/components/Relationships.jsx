@@ -11,11 +11,11 @@ let Relationships = (props) => {
   }
 
   var list = () => {
-if(props.data.length === 0) { return <Instructions section='relationships'/> }
+    if(props.data.length === 0) { return <Instructions section='relationships'/> }
 
     return props.data.map((elem, index) => (
       <li className='list-item' key={index + '_' + elem.id} >
-        <NavLink to={`/contacts/${elem.id}`}>
+        <NavLink to={`/relationship/${elem.id}/contacts`}>
           <div className='title'>{elem.title}</div>
         </NavLink>
         <a className='delete' onClick={deletePriority} >
@@ -32,9 +32,9 @@ if(props.data.length === 0) { return <Instructions section='relationships'/> }
   return (
     <div className='list-wrapper'>
       <div className="flex row controls">
-        <NavLink to='/#menu'>&lt; Dashboard</NavLink>
+        <NavLink to='/'>&lt; Dashboard</NavLink>
         <a style={{cursor: 'inherit', textDecoration: 'none'}}>Relationships</a>
-        <NavLink to='/new_relationship'>Add +</NavLink>
+        <NavLink to='/relationships/new'>Add +</NavLink>
       </div>
       <ul className='item-list'>
         {list()}

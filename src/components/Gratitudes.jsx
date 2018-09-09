@@ -31,9 +31,9 @@ let Gratitudes = (props) => {
   return (
     <div className='list-wrapper'>
       <div className="flex row controls">
-        <NavLink to='/#menu'>&lt; Dashboard</NavLink>
+        <NavLink to='/'>&lt; Dashboard</NavLink>
         <a style={{cursor: 'inherit', textDecoration: 'none'}}>Gratitudes</a>
-        <NavLink to='/new_gratitude'>Add +</NavLink>
+        <NavLink to='/gratitudes/new'>Add +</NavLink>
       </div>
       <ul className='item-list'>
         {list()}

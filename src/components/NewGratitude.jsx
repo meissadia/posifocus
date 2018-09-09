@@ -16,7 +16,7 @@ class NewGratitude extends React.Component {
     if (!gdate) { gdate = (new Date().toString()); };
 
     var new_gratitude = {
-      id: (new Date()).getTime(),
+      id: (new Date()).getTime().toString(),
       title: document.gform.title.value || document.gform.title.attributes.placeholder.value,
       content: document.gform.content.value || document.gform.content.attributes.placeholder.value,
       date: gdate

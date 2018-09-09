@@ -14,7 +14,7 @@ let Priorities = (props) => {
 
     return props.data.map((elem, index) => (
       <li className='list-item' key={index + '_' + elem.id} >
-        <NavLink to={'/projects/' + elem.id}>
+        <NavLink to={'/priority/' + elem.id + '/projects'}>
           <div className='title'>{elem.title}</div>
         </NavLink>
         <a className='delete' onClick={deletePriority} >
@@ -31,9 +31,9 @@ let Priorities = (props) => {
   return (
     <div className='list-wrapper'>
       <div className="flex row controls">
-        <NavLink to='/#menu'>&lt; Dashboard</NavLink>
+        <NavLink to='/'>&lt; Dashboard</NavLink>
         <a style={{cursor: 'inherit', textDecoration: 'none'}}>Priorities</a>
-        <NavLink to='/new_priority'>Add +</NavLink>
+        <NavLink to='/priorities/new'>Add +</NavLink>
       </div>
       <ul className='item-list'>
         {list()}

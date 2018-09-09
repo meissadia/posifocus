@@ -5,10 +5,10 @@ import { NavLink } from 'react-router-dom';
 let Tasks = (props) => {
   var deleteTask = (event) => {
     event.preventDefault();
-    window.alert('Task deletion not yet implemented!');
-    // props.handleDelete('projects', event.target.attributes.jsvalue.value);
+    // window.alert('Task deletion not yet implemented!');
+    props.handleDelete(event.target.attributes.jsvalue.value);
   }
-  let params = props.params;
+  let params = props.match.params;
   let list = () => {
     if(props.data.length === 0) {
       return (
@@ -38,13 +38,18 @@ let Tasks = (props) => {
   };
 
   let navTitle = () => {
-    if(props.project) { return props.project.title }
-    return 'Tasks';
+    let val = 'Tasks';
+    if(props.project) { return props.project.title + ' Tasks' }
+    return val;
   }
 
-  let navBack = () => {
+  let navBackText = () => {
     if(props.priority) { return props.priority.title }
     return 'Projects'
+  }
+
+  let navBackLink = () => {
+    return props.match.url.split('/').slice(0,-2).join('/') + 's'
   }
 
 
@@ -52,9 +57,9 @@ let Tasks = (props) => {
   return (
     <div className='list-wrapper'>
       <div className="flex row controls">
-        <NavLink to={'/projects/' + params.priority_id }>&lt; {navBack()}</NavLink>
+        <NavLink to={navBackLink()}>&lt; {navBackText()}</NavLink>
         <a style={{cursor: 'inherit', textDecoration: 'none'}}>{navTitle()}</a>
-        <NavLink to='/new_task'>Add +</NavLink>
+        <NavLink to={`${props.match.url}/new`}>Add +</NavLink>
       </div>
       <ul className='item-list'>
         {list()}
