@@ -275,12 +275,12 @@ class App extends Component {
 
               let contacts = relationship && this.state.contacts.filter((c) => (
                 c.relationship === relationship.id.toString()
-              )
+              );
             );
 
             return <Contacts
               parent={relationship}
-              data={contacts}
+              data={contacts || []}
               match={match}
               delete={this.deleteFromStateArray}
               />
