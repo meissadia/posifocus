@@ -27,7 +27,10 @@ class NewContact extends React.Component {
       date: gdate
     }
 
-    if (this.props.addHandler(relationship_id, new_contact)){
+    console.log('Adding contact:');
+    console.log(new_contact);
+    console.log(this.props.addHandler);
+    if (this.props.addHandler('contacts', new_contact)){
       this.props.history.push(this.cancelLink());
     } else {
       alert('Error adding contact!');

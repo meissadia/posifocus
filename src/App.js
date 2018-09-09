@@ -27,12 +27,7 @@ class App extends Component {
     this.resetState = this.resetState.bind(this);
     this.deleteFromStateArray = this.deleteFromStateArray.bind(this);
     this.addToStateArray = this.addToStateArray.bind(this);
-    this.addContact = this.addContact.bind(this);
-    this.deleteContact = this.deleteContact.bind(this);
-    this.addProject = this.addProject.bind(this);
     this.deleteProject = this.deleteProject.bind(this);
-    this.addTask = this.addTask.bind(this);
-    this.deleteTask = this.deleteTask.bind(this);
     this.deletePriority = this.deletePriority.bind(this);
   }
 
@@ -66,77 +61,33 @@ class App extends Component {
   }
 
   deleteFromStateArray(stateKey, targetId){
-    var new_state = this.state[stateKey] &&
-    this.state[stateKey].filter((element) => {
-      if(element.id == targetId) { return false };
-      return true;
-    });
-    if(new_state){
-      this.setState({ [stateKey]: new_state });
-    }
+    let state = this.state[stateKey] || [];
+    let update = state.filter((e) => (e.id !== targetId));
+    this.setState({ [stateKey]: update });
   }
 
   addToStateArray(stateKey, value){
-    var new_state = this.state[stateKey];
-    new_state.unshift(value);
-    if(new_state){
-      this.setState({ [stateKey]: new_state });
-    }
-  }
-
-  addContact(relationship_id, contact){
-    if (this.state.contacts){
-      this.setState({ contacts: [contact].concat(this.state.contacts) });
-      return true;
-    }
-
-    this.setState({ contacts: [contact] });
-    return true;
-  }
-
-  deleteContact(contact){
-    let new_contacts = this.state.contacts.filter(
-      (con) => (con.id == contact.id)
-    );
-
-    this.setState({ contacts: new_contacts });
-  }
-
-  addProject(priority_id, project){
-    if (this.state.projects){
-      this.setState({ projects: [project].concat(this.state.projects) });
-      return true;
-    }
-
-    this.setState({ projects: [project] });
+    var state = this.state[stateKey] || [];
+    state.unshift(value);
+    this.setState({ [stateKey]: state });
     return true;
   }
 
   deleteProject(project_id){
     let projects = this.state.projects.filter((t) => (t.id !== project_id));
     let tasks = this.state.tasks.filter((t) => (t.project !== project_id));
-
     this.setState({ tasks, projects });
   }
 
-  addTask(project_id, task){
-    if (this.state.tasks){
-      this.setState({ tasks: [task].concat(this.state.tasks) });
-      return true;
-    }
-
-    this.setState({ tasks: [task] });
-    return true;
-  }
-
-  deleteTask(task_id){
-    let tasks = this.state.tasks.filter((task) => (task.id !== task_id));
-
-    this.setState({ tasks });
-  }
-
-  getPriority(priority){
-    return this.state.priorities.filter((e) => (e.id == priority))[0];
+  deletePriority(priority){
+    let priorities = this.state.priorities.filter((t) => (t.id !== priority));
+    let projects = this.state.tasks.filter((t) => (t.priority !== priority));
+    let tasks = this.state.tasks.filter((t) => (t.priority !== priority));
+    this.setState({
+      tasks: tasks,
+      projects: projects,
+      priorities: priorities
+    })
   }
 
   getSingle(key, id){
@@ -151,17 +102,6 @@ class App extends Component {
     return this.state.tasks.filter(
       (task) => (task.project == project)
     );
-  }
-
-  deletePriority(priority){
-    let tasks = this.state.tasks.filter((t) => (t.priority !== priority));
-    let projects = this.state.tasks.filter((t) => (t.priority !== priority));
-    let priorities = this.state.priorities.filter((t) => (t.priority !== priority));
-    this.setState({
-      tasks: tasks,
-      projects: projects,
-      priorities: priorities
-    })
   }
 
   render() {
@@ -227,7 +167,7 @@ class App extends Component {
             render={ ({match}) => (
               <NewProject
                 priority_id={match.params.priority_id}
-                addHandler={this.addProject}
+                addHandler={this.addToStateArray}
                 match={match}
                 />
             )}
@@ -245,7 +185,7 @@ class App extends Component {
                   match={match}
                   project={project}
                   priority={priority}
-                  delete={this.deleteTask}
+                  delete={this.deleteFromStateArray}
                   />
               )
             }}
@@ -256,7 +196,7 @@ class App extends Component {
               return (
                 <NewTask
                   project={match.params.project_id}
-                  addHandler={this.addTask}
+                  addHandler={this.addToStateArray}
                   match={match}
                   />
               )
@@ -298,7 +238,7 @@ class App extends Component {
         <Route path='/relationship/:relationship_id/contacts/new' render={({match}) => (
             <NewContact
               relationship_id={match.params.relationship_id}
-              addHandler={this.addContact}
+              addHandler={this.addToStateArray}
               />
           )}
           />

@@ -22,7 +22,7 @@ class NewProject extends React.Component {
       date: date.toString()
     }
 
-    if (this.props.addHandler(priority_id, new_project)){
+    if (this.props.addHandler('projects', new_project)){
       this.props.history.push(`/priority/${priority_id}/projects`);
     } else {
       alert('Error adding contact!');

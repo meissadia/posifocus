@@ -26,7 +26,7 @@ class NewTask extends React.Component {
       date: date.toString()
     }
 
-    if (this.props.addHandler(priority_id, new_project)){
+    if (this.props.addHandler('tasks', new_project)){
       this.props.history.push(this.cancelLink());
     } else {
       alert('Error adding contact!');

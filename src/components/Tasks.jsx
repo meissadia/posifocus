@@ -9,7 +9,7 @@ let Tasks = (props) => {
 
   var deleteTask = (event) => {
     event.preventDefault();
-    props.delete(event.target.attributes.jsvalue.value);
+    props.delete('tasks', event.target.attributes.jsvalue.value);
   }
 
   let navTitle = () => {
