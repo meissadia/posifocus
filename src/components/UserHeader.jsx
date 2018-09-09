@@ -19,7 +19,7 @@ class UserHeader extends React.Component {
     let file = this.fileInput.current.files[0]
     if(this.fileSizeOk(file.size)) {
       var fr = new FileReader();
-      fr.onload = () => { this.props.handler('user_image', fr.result) }
+      fr.onload = () => { this.props.updateUserHeader('user_image', fr.result) }
       fr.readAsDataURL(file);
     }
   }
