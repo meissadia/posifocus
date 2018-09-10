@@ -1,6 +1,8 @@
 #main-menu {
-  background: linear-gradient(rgba(0, 148, 255, 0.8), rgba(62, 187, 154, 0.8));
+  background: linear-gradient(rgba(0, 150, 255, 0.8), rgba(62, 187, 154, 0.8));
+  margin-top: 10px;
 }
+
 .menu-item-link:hover {
   transition: background .5s;
   background: rgba(0, 0, 0, 0.2);
@@ -36,14 +38,20 @@
 .menu-item-details a {
   color: white;
 }
-.menu-item-details p {
+
+.menu-item-details .tagline,
+.menu-item-details .title {
   margin: 0;
-  padding: 5px 0;
+  font-weight: 300;
 }
 
-.title {
-  font-weight: bold;
-  font-size: 1.5em;
+.menu-item-details .title {
+  /* font-weight: bold; */
+  font-size: 24px;
+}
+
+.menu-item-details .tagline {
+  padding-left: 5px;
 }
 
 .tagline {

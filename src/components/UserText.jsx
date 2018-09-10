@@ -1,5 +1,4 @@
 import React from 'react';
-import '../css/UserText.css';
 
 const UserText = (props) => {
   var defaultTagline = 'Catchphrase, Slogan, or Inspirational Quote';

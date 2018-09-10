@@ -5,7 +5,8 @@ import ListItem       from './ListItem';
 import '../css/ListViews.css'
 
 let TodaysTasks = (props) => {
-  let showInstructions = props.data.length === 0;
+  let tasks = props.data.filter((task) => (task.today));
+  let showInstructions = tasks.length === 0;
 
   var deleteTask = (event) => {
     event.preventDefault();
@@ -20,8 +21,8 @@ let TodaysTasks = (props) => {
         />
 
       <ul className='item-list'>
-        <Instructions section='contacts' display={showInstructions} />
-        { props.data.filter((task) => (task.today)).map((item, index) => (
+        <Instructions section='tasks' display={showInstructions} />
+        { tasks.map((item, index) => (
           <ListItem
             item={item}
             delete={deleteTask}

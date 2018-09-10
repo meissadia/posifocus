@@ -1,5 +1,4 @@
 import React from 'react';
-import '../css/UserImage.css';
 
 const UserImage = (props) => {
   return (

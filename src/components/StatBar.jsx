@@ -45,16 +45,16 @@ let StatBar = (props) => {
     <section className='stat-bar'>
       <StatBlock
         count={props.gratitudeCount}
-        line1='Gratitudes'
-        line2='Listed' />
+        line1='GRATITUDES'
+        line2='LISTED' />
       <StatBlock
         count={doneTaskCount(props.tasks)}
-        line1='Tasks'
-        line2='Completed' />
+        line1='TASKS'
+        line2='COMPLETED' />
       <StatBlock
         count={daysSinceContact(props.contacts)}
-        line1='Days Since'
-        line2='Last Contact' />
+        line1='DAYS SINCE'
+        line2='LAST CONTACT' />
 
     </section>
   )

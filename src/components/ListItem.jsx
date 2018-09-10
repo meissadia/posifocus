@@ -23,6 +23,8 @@ function ItemField(props){
     value = value ? 'True' : 'False';
     value = `${props.target} ${value}`;
   }
+  if(props.link) {
+    value = value.toString() + " >" }
 
   let item = <div className={props.target}>{value}</div>
 

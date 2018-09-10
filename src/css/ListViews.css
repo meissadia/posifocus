@@ -5,7 +5,7 @@
 .controls {
   justify-content: space-evenly;
   align-items: center;
-  background: dodgerblue;
+  background: rgba(0, 150, 255, 1);
   height: 50px;
 }
 
@@ -24,7 +24,7 @@
 
 .list-wrapper{
   padding-bottom: 10px;
-  background: rgba(0, 148, 255, .7);
+  background: rgba(3, 116, 214, .7);
 }
 
 .item-list {
@@ -37,11 +37,10 @@
   display: flex;
   flex-flow: column nowrap;
   list-style: none;
-  margin: 4px 10px;
+  margin: 10px;
   padding: 10px;
+  background: rgba(0, 148, 255, 1);
   border-top: 1px solid rgba(0, 0, 0, 0.2);
-  background: rgba(0, 148, 255);
-
 }
 
 .list-item a {
@@ -49,13 +48,15 @@
 }
 
 .list-item a .title {
-  text-decoration: underline;
+  /* text-decoration: underline; */
+  border-bottom: 1px solid rgba(255,255,255,0.5);
 }
 
 .title {
-  font-size: 19px;
+  font-size: 20px;
   margin-bottom: 10px;
   width: 100%;
+  font-weight: 300;
 }
 
 .content {
@@ -63,6 +64,7 @@
   margin-bottom: 10px;
   font-style: italic;
   width: 100%;
+  padding-left: 5px;
 }
 
 .date, .delete {
