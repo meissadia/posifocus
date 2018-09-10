@@ -57,9 +57,9 @@ class App extends Component {
   }
 
   resetState(event){
-    event.preventDefault();
-    if(window.confirm('Erase all data?'))
-    this.setState(this.initState());
+    if(window.confirm('Erase all data?')) {
+      this.setState(this.initState());
+    };
   }
 
   deleteFromStateArray(stateKey, targetId){
