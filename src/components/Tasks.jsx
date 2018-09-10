@@ -41,6 +41,7 @@ let Tasks = (props) => {
           <ListItem
             item={item}
             delete={deleteTask}
+            toggle={props.toggle}
             key={`${index}_${item.id}`}
             />
         ))}

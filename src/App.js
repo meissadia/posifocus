@@ -30,6 +30,7 @@ class App extends Component {
     this.deleteProject = this.deleteProject.bind(this);
     this.deletePriority = this.deletePriority.bind(this);
     this.deleteRelationship = this.deleteRelationship.bind(this);
+    this.taskToggle = this.taskToggle.bind(this);
   }
 
   initState() {
@@ -95,16 +96,32 @@ class App extends Component {
     this.setState({ contacts });
   }
 
+  taskToggle(event){
+    let task_id = event.target.attributes.name.value;
+    let task = this.getSingle('tasks', task_id);
+
+    let attr = event.target.id;
+    task[attr] = event.target.checked;
+
+    let index = this.state.tasks.findIndex((e, idx) => (e.id === task_id));
+    if(index > -1) {
+      console.log('Updating!');
+      let tasks = this.state.tasks;
+      tasks[index] = task;
+      this.setState({ tasks });
+    }
+  }
+
   getSingle(key, id){
-    return this.state[key].filter((e) => (e.id == id))[0];
+    return this.state[key].filter((e) => (e.id === id))[0];
   }
 
   getProjects(priority){
-    return this.state.projects.filter((e) => (e.priority == priority))
+    return this.state.projects.filter((e) => (e.priority === priority))
   }
 
   getTasks(project){
-    return this.state.tasks.filter((e) => (e.project == project));
+    return this.state.tasks.filter((e) => (e.project === project));
   }
 
   getContacts(relationship){
@@ -197,6 +214,7 @@ class App extends Component {
                   project={project}
                   priority={priority}
                   delete={this.deleteFromStateArray}
+                  toggle={this.taskToggle}
                   />
               )
             }}
@@ -204,7 +222,6 @@ class App extends Component {
 
           <Route path='/priority/:priority_id/project/:project_id/tasks/new'
             render={({match}) => {
-              let project = this.getSingle('projects', match.params.project_id);
               return (
                 <NewTask
                   project={match.params.project_id}
@@ -253,8 +270,9 @@ class App extends Component {
 
           <Route path='/tasks/today' render={() => (
               <TodaysTasks
-                data={this.state.tasks}
+                data={this.state.tasks.filter((task) => (task.today))}
                 delete={this.deleteFromStateArray}
+                toggle={this.taskToggle}
                 />
             )}
             />

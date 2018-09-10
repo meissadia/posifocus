@@ -33,14 +33,6 @@ class NewProject extends React.Component {
   }
 
   render(){
-    let match = this.props.match;
-    let date = new Date();
-    let currentDateString = [date.getFullYear(), date.getMonth() + 1, date.getDate()].map((elem) => {
-      if (elem < 10) return ('0' + elem);
-      return elem;
-    }).join('-');
-
-
     return (
       <div className='new-input-wrapper'>
         <div className="flex row controls">

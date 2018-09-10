@@ -19,7 +19,7 @@ function Gratitudes(props) {
         />
 
       <ul className='item-list'>
-        <Instructions section='gratitudes' display={props.data.length == 0} />
+        <Instructions section='gratitudes' display={props.data.length === 0} />
         { props.data.map((item, index) => (
           <ListItem
             item={item}

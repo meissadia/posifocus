@@ -1,6 +1,8 @@
 import React                from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import Toggle               from 'react-toggle';
 import '../css/FormView.css';
+import '../css/ReactToggle.css';
 
 
 class NewTask extends React.Component {
@@ -39,13 +41,6 @@ class NewTask extends React.Component {
   }
 
   render(){
-    let date = new Date();
-    let currentDateString = [date.getFullYear(), date.getMonth() + 1, date.getDate()].map((elem) => {
-      if (elem < 10) return ('0' + elem);
-      return elem;
-    }).join('-');
-
-
     return (
       <div className='new-input-wrapper'>
         <div className="flex row controls">
@@ -56,8 +51,12 @@ class NewTask extends React.Component {
         <form name='gform' className='g-form' onSubmit={this.handleAddTask}>
           <label htmlFor="title">What Task Must Be Done to Complete this Project?</label>
           <input type="text" name="title" autoComplete="off" placeholder="Send Party Invite..." />
-          <label htmlFor="today">On Today's Task List?</label>
-          <input type="checkbox" name="today" value="" />
+          <label className='flex row form-toggle' htmlFor="today">
+            <span>On Today's Task List?</span>
+            <Toggle
+              id='today'
+              defaultChecked={false} />
+          </label>
           <input id='submit-button' type="submit" name="submit" value="Save" />
         </form>
       </div>

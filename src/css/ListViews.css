@@ -15,6 +15,9 @@
   color: white;
   width: 30%;
   text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .controls .non-link {
@@ -41,6 +44,7 @@
   padding: 10px;
   background: rgba(0, 148, 255, 1);
   border-top: 1px solid rgba(0, 0, 0, 0.2);
+  transition: background 1s;
 }
 
 .list-item a {
@@ -48,8 +52,15 @@
 }
 
 .list-item a .title {
-  /* text-decoration: underline; */
   border-bottom: 1px solid rgba(255,255,255,0.5);
+}
+
+.list-item.done {
+  background: grey;
+}
+
+.list-item.done .title {
+  text-decoration: line-through;
 }
 
 .title {
@@ -75,4 +86,15 @@
   height: 30px;
   width: 30px;
   cursor: pointer;
+}
+
+.toggle-item{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggle-item label {
+  margin-right: 20px;
+  min-width: 100px;
 }

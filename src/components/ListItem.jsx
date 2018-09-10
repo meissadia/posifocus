@@ -1,35 +1,66 @@
 import React       from 'react';
 import { NavLink } from 'react-router-dom';
 import DeleteIcon  from './DeleteIcon';
+import Toggle      from 'react-toggle';
+import '../css/ReactToggle.css';
 
 function ListItem(props) {
   let item = props.item;
+  let cname = 'list-item';
+  if(props.item.done) { cname += ' done'};
   return (
-    <li className='list-item' >
+    <li className={cname} >
       <ItemField target={'title'} item={item} link={props.link}/>
       <ItemField target={'content'} item={item} />
-      <ItemField target={'today'} item={item} boolean={true}/>
-      <ItemField target={'done'} item={item} boolean={true}/>
+      <ToggleItem
+        target={'today'}
+        item={item}
+        label='Due Today?'
+        toggle={props.toggle}
+        />
+      <ToggleItem
+        target={'done'}
+        item={item}
+        label='Complete?'
+        toggle={props.toggle}
+
+        />
       <DeleteIcon delete={props.delete} id={item.id} />
       <DateField date={item.date} />
     </li>
   )
 }
 
-function ItemField(props){
+function ToggleItem(props) {
+  let value = props.item[props.target];
+  if(value == null) { return null };
+  return(
+    <div className='toggle-item'>
+      <label htmlFor={props.target}>
+        {props.label}
+      </label>
+      <Toggle
+        id={props.target}
+        name={props.item.id}
+        defaultChecked={value}
+        onChange={props.toggle} />
+    </div>
+  )
+}
+
+function ItemField(props) {
   let value = props.item[props.target];
   if(value == null) { return null };
   if(props.boolean){
     value = value ? 'True' : 'False';
     value = `${props.target} ${value}`;
   }
-  if(props.link) {
-    value = value.toString() + " >" }
+
+  if(props.link) { value = value.toString() + " >" };
 
   let item = <div className={props.target}>{value}</div>
 
-  if(props.link){
-    /* Generate NavLink if a URL is given */
+  if(props.link) {
     return <NavLink to={props.link}>{item}</NavLink>
   }
   return item;

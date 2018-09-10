@@ -67,9 +67,19 @@
   height: 75px;
   background: rgba(0, 150, 255, 1);
   margin: 30px;
+  cursor: pointer;
 }
 
 .new-input-wrapper #date-input {
   text-align: center;
   align-self: center;
+}
+
+.form-toggle {
+  justify-content: center;
+  align-items: center;
+}
+.form-toggle span {
+  width: 150px;
+  margin-right: 10px;
 }

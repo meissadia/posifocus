@@ -5,8 +5,6 @@ import ListItem       from './ListItem';
 import '../css/ListViews.css'
 
 function Priorities(props) {
-  let showInstructions = props.data.length == 0;
-
   let deletePriority = (event) => {
     event.preventDefault();
     props.delete(event.target.attributes.jsvalue.value);
@@ -21,7 +19,7 @@ function Priorities(props) {
         />
 
       <ul className='item-list'>
-        <Instructions section='priorities' display={showInstructions} />
+        <Instructions section='priorities' display={props.data.length === 0} />
         { props.data.map((item, index) => (
           <ListItem
             item={item}

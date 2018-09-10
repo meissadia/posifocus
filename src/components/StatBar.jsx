@@ -24,7 +24,7 @@ let daysSinceContact = (contacts) => {
       date = c_date;
     }
   })
-  if(date.getTime() == originalTime) { return '∞' };
+  if(date.getTime() === originalTime) { return '∞' };
   let now = new Date();
   let diff = Date.daysBetween(date, now);
   return diff;
