@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   padding: 30px 0 10px 0;
-  background: linear-gradient(rgba(0, 150, 255, 1), rgba(0, 148, 255, .1))
+  background: linear-gradient(rgba(0, 150, 255, 1), rgba(0, 148, 255, .6))
 }
 
 input, textarea {
@@ -14,6 +14,7 @@ input, textarea {
   padding: 0;
   margin: 0;
   overflow: hidden;
+  font-size: 16px;
 }
 
 .user-image {
@@ -44,12 +45,11 @@ input, textarea {
 .user-name {
   font-size: 18px;
   width: 100%;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .user-tagline {
-  font-size: 16px;
   height: 50px;
   width: 200px;
-  font-weight: lighter;
+  font-weight: 400;
 }

@@ -22,7 +22,7 @@ let Projects = (props) => {
       <PageNavigation
         back={['/priorities', 'Priorities']}
         title={navTitle()}
-        add={[`${props.match.url}/new`, 'Add']}
+        add={[`${props.match.url}/new`, 'New']}
         />
 
       <ul className='item-list'>

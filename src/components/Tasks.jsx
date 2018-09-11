@@ -32,7 +32,7 @@ let Tasks = (props) => {
       <PageNavigation
         back={[navBackLink(), navBackText()]}
         title={navTitle()}
-        add={[`${props.match.url}/new`, 'Add']}
+        add={[`${props.match.url}/new`, 'New']}
         />
 
       <ul className='item-list'>

@@ -26,7 +26,7 @@ let Contacts = (props) => {
       <PageNavigation
         back={['/relationships', 'Relationships']}
         title={navTitle()}
-        add={[addLink(), 'Add']}
+        add={[addLink(), 'New']}
         />
 
       <ul className='item-list'>
