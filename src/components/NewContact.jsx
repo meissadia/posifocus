@@ -1,5 +1,7 @@
 import React                from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import PageNavigation       from './PageNavigation';
+
 import '../css/FormView.css';
 
 class NewContact extends React.Component {
@@ -49,11 +51,12 @@ class NewContact extends React.Component {
 
     return (
       <div className='new-input-wrapper'>
-        <div className="flex row controls">
-          <Link to={this.backLink()}>&lt; Relationships</Link>
-          <a style={{cursor: 'inherit', textDecoration: 'none'}}>New Contact</a>
-          <Link to={this.cancelLink()}>{"< Cancel >"}</Link>
-        </div>
+        <PageNavigation
+          back={[this.backLink(), 'Relationships']}
+          title='New Contact'
+          add={[this.cancelLink(), '< Cancel >']}
+          />
+
         <form name='gform' className='g-form' onSubmit={this.handleAddContact}>
           <label htmlFor="title">What was the Last Contact you had with this Person?</label>
           <input type="text" name="title" autoComplete="off" placeholder="Call/Text/Email/Lunch..." />

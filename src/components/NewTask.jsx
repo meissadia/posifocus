@@ -1,6 +1,7 @@
 import React                from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import Toggle               from 'react-toggle';
+import PageNavigation       from './PageNavigation';
 import '../css/FormView.css';
 import '../css/ReactToggle.css';
 
@@ -43,11 +44,11 @@ class NewTask extends React.Component {
   render(){
     return (
       <div className='new-input-wrapper'>
-        <div className="flex row controls">
-          <Link to={this.backLink()}>&lt; Projects</Link>
-          <a style={{cursor: 'inherit', textDecoration: 'none'}}>New Task</a>
-          <Link to={this.cancelLink()}>{"< Cancel >"}</Link>
-        </div>
+        <PageNavigation
+          back={[this.backLink(), 'Projects']}
+          title='New Task'
+          add={[this.cancelLink(), '< Cancel >']}
+          />
         <form name='gform' className='g-form' onSubmit={this.handleAddTask}>
           <label htmlFor="title">What Task Must Be Done to Complete this Project?</label>
           <input type="text" name="title" autoComplete="off" placeholder="Send Party Invite..." />

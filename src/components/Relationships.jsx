@@ -17,7 +17,7 @@ let Relationships = (props) => {
       <PageNavigation
         back={['/', 'Dashboard']}
         title='Relationships'
-        add={['/relationships/new', 'New']}
+        add={['/relationships/new']}
         />
 
       <ul className='item-list'>

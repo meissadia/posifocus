@@ -15,7 +15,7 @@ function Priorities(props) {
       <PageNavigation
         back={['/', 'Dashboard']}
         title='Priorities'
-        add={['/priorities/new', 'New']}
+        add={['/priorities/new']}
         />
 
       <ul className='item-list'>

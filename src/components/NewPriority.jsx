@@ -1,5 +1,6 @@
 import React                from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import PageNavigation       from './PageNavigation';
 import '../css/FormView.css';
 
 
@@ -30,11 +31,12 @@ class NewPriority extends React.Component {
   render(){
     return (
       <div className='new-input-wrapper'>
-        <div className="flex row controls">
-          <Link to='/'>&lt; Dashboard</Link>
-          <a style={{cursor: 'inherit', textDecoration: 'none'}}>New Priority</a>
-          <Link to={this.cancelLink()}>{"< Cancel >"}</Link>
-        </div>
+        <PageNavigation
+          back={['/', 'Dashboard']}
+          title='New Priority'
+          add={[this.cancelLink(), '< Cancel >']}
+          />
+
         <form name='gform' className='g-form' onSubmit={this.handleAddPriority}>
           <label htmlFor="title">What's Most Important to You?</label>
           <input type="text" name="title" autoComplete="off" placeholder="ex. Family, Friends, Faith" />

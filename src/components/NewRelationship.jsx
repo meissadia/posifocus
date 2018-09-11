@@ -1,5 +1,6 @@
 import React                from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import PageNavigation       from './PageNavigation';
 import '../css/FormView.css';
 
 
@@ -21,17 +22,22 @@ class NewRelationship extends React.Component {
     }
 
     this.props.addHandler('relationships', new_relationship);
-    this.props.history.push('/relationships');
+    this.props.history.push(this.cancelLink());
+  }
+
+  cancelLink(){
+    return '/relationships';
   }
 
   render(){
     return (
       <div className='new-input-wrapper'>
-          <div className="flex row controls">
-            <Link to='/'>&lt; Dashboard</Link>
-              <a style={{cursor: 'inherit', textDecoration: 'none'}}>New Relationship</a>
-            <Link to='/relationships'>{"< Cancel >"}</Link>
-          </div>
+        <PageNavigation
+          back={['/', 'Dashboard']}
+          title='New Relationship'
+          add={[this.cancelLink(), '< Cancel >']}
+          />
+
         <form name='gform' className='g-form' onSubmit={this.handleAddRelationship}>
           <label htmlFor="title">Who Do You Want To Build A Better Relationship With?</label>
           <input type="text" name="title" autoComplete="off" placeholder="ex. My Brother" />

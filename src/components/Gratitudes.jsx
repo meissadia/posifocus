@@ -15,7 +15,7 @@ function Gratitudes(props) {
       <PageNavigation
         back={['/', 'Dashboard']}
         title='Gratitudes'
-        add={['/gratitudes/new', 'New']}
+        add={['/gratitudes/new']}
         />
 
       <ul className='item-list'>

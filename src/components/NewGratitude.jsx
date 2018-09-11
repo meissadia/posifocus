@@ -1,5 +1,6 @@
 import React                from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import PageNavigation       from './PageNavigation';
 import '../css/FormView.css';
 
 class NewGratitude extends React.Component {
@@ -21,12 +22,16 @@ class NewGratitude extends React.Component {
     }
 
     this.props.addHandler('gratitudes', new_gratitude);
-    this.props.history.push('/gratitudes');
+    this.props.history.push(this.cancelLink());
   }
 
   parseDate(date){
     if(!date){ return (new Date()).toString() };
     return new Date(date).toString();
+  }
+
+  cancelLink(){
+    return '/gratitudes'
   }
 
   render(){
@@ -38,11 +43,11 @@ class NewGratitude extends React.Component {
 
     return (
       <div className='new-input-wrapper'>
-        <div className="flex row controls">
-          <Link to='/'>&lt; Dashboard</Link>
-          <a style={{cursor: 'inherit', textDecoration: 'none'}}>New Gratitude</a>
-          <Link to='/gratitudes'>{"< Cancel >"}</Link>
-        </div>
+        <PageNavigation
+          back={['/', 'Dashboard']}
+          title='New Gratitude'
+          add={[this.cancelLink(), '< Cancel >']}
+          />
         <form name='gform' className='g-form' onSubmit={this.handleNewGratitude}>
           <label htmlFor="title">What Are You Grateful For Today?</label>
           <input type="text" name="title" autoComplete="off" placeholder="ex. Family / Clean Water / etc..." />

@@ -1,5 +1,6 @@
 import React                from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import PageNavigation       from './PageNavigation';
 import '../css/FormView.css';
 
 
@@ -35,11 +36,12 @@ class NewProject extends React.Component {
   render(){
     return (
       <div className='new-input-wrapper'>
-        <div className="flex row controls">
-          <Link to='/priorities'>&lt; Priorities</Link>
-          <a style={{cursor: 'inherit', textDecoration: 'none'}}>New Project</a>
-          <Link to={this.cancelLink()}>{"< Cancel >"}</Link>
-        </div>
+        <PageNavigation
+          back={['/priorities', 'Priorities']}
+          title='New Contact'
+          add={[this.cancelLink(), '< Cancel >']}
+          />
+
         <form name='gform' className='g-form' onSubmit={this.handleAddProject}>
           <label htmlFor="title">What Project Will Contribute Most to this Priority?</label>
           <input type="text" name="title" autoComplete="off" placeholder="Backyard BBQ/New Diet/Vacation..." />
