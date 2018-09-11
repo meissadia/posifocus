@@ -1,8 +1,7 @@
 import React       from 'react';
 import { NavLink } from 'react-router-dom';
-import DeleteIcon  from './DeleteIcon';
-import Toggle      from 'react-toggle';
-import '../css/ReactToggle.css';
+import ListIcon    from './ListIcon';
+import ToggleItem  from './ToggleItem';
 
 function ListItem(props) {
   let item = props.item;
@@ -23,28 +22,13 @@ function ListItem(props) {
         item={item}
         label='Done?'
         toggle={props.toggle}
-
         />
-      <DeleteIcon delete={props.delete} id={item.id} />
+      <div className='list-item-actions'>
+        <ListIcon name='edit' href='#' id={item.id} alt='Pencil' />
+        <ListIcon name='delete' onclick={props.delete} id={item.id} alt='Trashcan' />
+      </div>
       <DateField date={item.date} />
     </li>
-  )
-}
-
-function ToggleItem(props) {
-  let value = props.item[props.target];
-  if(value == null) { return null };
-  return(
-    <div className='toggle-item'>
-      <Toggle
-        id={props.target}
-        name={props.item.id}
-        defaultChecked={value}
-        onChange={props.toggle} />
-      <label htmlFor={props.target}>
-        {props.label}
-      </label>
-    </div>
   )
 }
 

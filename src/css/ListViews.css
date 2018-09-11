@@ -55,14 +55,20 @@
   padding-left: 5px;
 }
 
-.date, .delete {
+.date, .list-icon {
   align-self: flex-end;
 }
 
-.delete img{
+.list-icon img {
   height: 30px;
   width: 30px;
   cursor: pointer;
+}
+
+.list-item-actions {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
 }
 
 .toggle-item{
