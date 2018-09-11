@@ -48,12 +48,19 @@ p {
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: white;
     opacity: 1; /* Firefox */
+    transition: color .5s;
 }
 
 :-ms-input-placeholder { /* Internet Explorer 10-11 */
     color: white;
+    transition: color .5s;
 }
 
 ::-ms-input-placeholder { /* Microsoft Edge */
     color: white;
+    transition: color .5s;
 }
+
+:focus::-webkit-input-placeholder { color:transparent; }
+:focus:-moz-placeholder { color:transparent; }
+:focus::placeholder { color:transparent; }
