@@ -56,14 +56,28 @@ class NewContact extends React.Component {
           title='New Contact'
           add={[this.cancelLink(), '< Cancel >']}
           />
-
         <form name='gform' className='g-form' onSubmit={this.handleAddContact}>
-          <label htmlFor="title">What was the Last Contact you had with this Person?</label>
-          <input type="text" name="title" autoComplete="off" placeholder="Call/Text/Email/Lunch..." />
+          <label htmlFor="title">
+            What was the Last Contact you had with this Person?
+          </label>
+          <input
+            type="text"
+            name="title"
+            autoComplete="off"
+            placeholder="Call/Text/Email/Lunch..."
+            />
           <label htmlFor='content'>Notes:</label>
-          <textarea name="content" placeholder="Making plans to meet up this weekend.."/>
+          <textarea
+            name="content"
+            placeholder="Making plans to meet up this weekend.."
+            />
           <label htmlFor='date-input'>Date:</label>
-          <input id='date-input' type="date" name="date" defaultValue={currentDateString} />
+          <input
+            id='date-input'
+            type="date"
+            name="date"
+            defaultValue={currentDateString}
+            />
           <input id='submit-button' type="submit" name="submit" value="Save" />
         </form>
       </div>

@@ -41,10 +41,16 @@ class NewProject extends React.Component {
           title='New Contact'
           add={[this.cancelLink(), '< Cancel >']}
           />
-
         <form name='gform' className='g-form' onSubmit={this.handleAddProject}>
-          <label htmlFor="title">What Project Will Contribute Most to this Priority?</label>
-          <input type="text" name="title" autoComplete="off" placeholder="Backyard BBQ/New Diet/Vacation..." />
+          <label htmlFor="title">
+            What Project Will Contribute Most to this Priority?
+          </label>
+          <input
+            type="text"
+            name="title"
+            autoComplete="off"
+            placeholder="Backyard BBQ/New Diet/Vacation..."
+            />
           <input id='submit-button' type="submit" name="submit" value="Save" />
         </form>
       </div>

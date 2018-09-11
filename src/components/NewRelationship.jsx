@@ -10,7 +10,6 @@ class NewRelationship extends React.Component {
     this.handleAddRelationship = this.handleAddRelationship.bind(this);
   }
 
-
   handleAddRelationship(event){
     event.preventDefault();
     var date = new Date();
@@ -37,10 +36,16 @@ class NewRelationship extends React.Component {
           title='New Relationship'
           add={[this.cancelLink(), '< Cancel >']}
           />
-
         <form name='gform' className='g-form' onSubmit={this.handleAddRelationship}>
-          <label htmlFor="title">Who Do You Want To Build A Better Relationship With?</label>
-          <input type="text" name="title" autoComplete="off" placeholder="ex. My Brother" />
+          <label htmlFor="title">
+            Who Do You Want To Build A Better Relationship With?
+          </label>
+          <input
+            type="text"
+            name="title"
+            autoComplete="off"
+            placeholder="My Brother"
+            />
           <input id='submit-button' type="submit" name="submit" value="Save" />
         </form>
     </div>

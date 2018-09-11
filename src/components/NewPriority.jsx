@@ -36,10 +36,16 @@ class NewPriority extends React.Component {
           title='New Priority'
           add={[this.cancelLink(), '< Cancel >']}
           />
-
         <form name='gform' className='g-form' onSubmit={this.handleAddPriority}>
-          <label htmlFor="title">What's Most Important to You?</label>
-          <input type="text" name="title" autoComplete="off" placeholder="ex. Family, Friends, Faith" />
+          <label htmlFor="title">
+            What's Most Important to You?
+          </label>
+          <input
+            type="text"
+            name="title"
+            autoComplete="off"
+            placeholder="Family, Friends, Faith"
+            />
           <input id='submit-button' type="submit" name="submit" value="Save" />
         </form>
       </div>

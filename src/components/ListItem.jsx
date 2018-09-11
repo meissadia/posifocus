@@ -21,7 +21,7 @@ function ListItem(props) {
       <ToggleItem
         target={'done'}
         item={item}
-        label='Complete?'
+        label='Done?'
         toggle={props.toggle}
 
         />
@@ -36,14 +36,14 @@ function ToggleItem(props) {
   if(value == null) { return null };
   return(
     <div className='toggle-item'>
-      <label htmlFor={props.target}>
-        {props.label}
-      </label>
       <Toggle
         id={props.target}
         name={props.item.id}
         defaultChecked={value}
         onChange={props.toggle} />
+      <label htmlFor={props.target}>
+        {props.label}
+      </label>
     </div>
   )
 }

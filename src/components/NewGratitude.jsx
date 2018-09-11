@@ -49,12 +49,27 @@ class NewGratitude extends React.Component {
           add={[this.cancelLink(), '< Cancel >']}
           />
         <form name='gform' className='g-form' onSubmit={this.handleNewGratitude}>
-          <label htmlFor="title">What Are You Grateful For Today?</label>
-          <input type="text" name="title" autoComplete="off" placeholder="ex. Family / Clean Water / etc..." />
+          <label htmlFor="title">
+            What Are You Grateful For Today?
+          </label>
+          <input
+            type="text"
+            name="title"
+            autoComplete="off"
+            placeholder="Family / Clean Water / etc..."
+            />
           <label htmlFor='content'>Notes:</label>
-          <textarea name="content" placeholder="ex. My kids surprised me today by..."/>
+          <textarea
+            name="content"
+            placeholder="My kids surprised me today by..."
+            />
           <label htmlFor='date-input'>Date:</label>
-          <input id='date-input' type="date" name="date" defaultValue={currentDateString} />
+          <input
+            id='date-input'
+            type="date"
+            name="date"
+            defaultValue={currentDateString}
+            />
           <input id='submit-button' type="submit" name="submit" value="Save" />
         </form>
 

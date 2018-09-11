@@ -50,13 +50,20 @@ class NewTask extends React.Component {
           add={[this.cancelLink(), '< Cancel >']}
           />
         <form name='gform' className='g-form' onSubmit={this.handleAddTask}>
-          <label htmlFor="title">What Task Must Be Done to Complete this Project?</label>
-          <input type="text" name="title" autoComplete="off" placeholder="Send Party Invite..." />
+          <label htmlFor="title">
+            What Task Must Be Done to Complete this Project?
+          </label>
+          <input
+            type="text"
+            name="title"
+            autoComplete="off"
+            placeholder="Send Party Invite..."
+            />
           <label className='flex row form-toggle' htmlFor="today">
-            <span>On Today's Task List?</span>
             <Toggle
               id='today'
               defaultChecked={false} />
+            <span>On Today's Task List?</span>
           </label>
           <input id='submit-button' type="submit" name="submit" value="Save" />
         </form>

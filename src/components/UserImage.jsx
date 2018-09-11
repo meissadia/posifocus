@@ -16,6 +16,7 @@ const UserImage = (props) => {
         name="fileInput"
         ref={props.fileRef}
         onChange={props.fileHandler}
+        accept='image/*'
         hidden />
     </div>
   )

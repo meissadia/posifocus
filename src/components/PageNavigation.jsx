@@ -1,5 +1,6 @@
 import React       from 'react';
 import { NavLink } from 'react-router-dom';
+import '../css/PageNavigation.css';
 
 let NonLink = (props) => (
   <a className='non-link'>

@@ -15,6 +15,7 @@ input, textarea {
   margin: 0;
   overflow: hidden;
   font-size: 16px;
+  caret-color: white;
 }
 
 .user-image {
@@ -31,7 +32,7 @@ input, textarea {
 
 .user-image:focus{
   outline: 1px dotted #000;
-  outline: -webkit-focus-ring-color auto 5px;
+  /* outline: -webkit-focus-ring-color auto 5px; */
 }
 
 .user-image-wrapper {
