@@ -5,7 +5,7 @@ const AppFrame = (props) => {
   return (
     <div className='App'>
       <header>
-        <NavLink to='/'>
+        <NavLink to='/' prefetch='true'>
           <img className='app-logo'
             src={props.logo}
             alt={props.altText}

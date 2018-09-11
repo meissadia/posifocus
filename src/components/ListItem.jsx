@@ -45,7 +45,7 @@ function ItemField(props) {
   let item = <div className={props.target}>{value}</div>
 
   if(props.link) {
-    return <NavLink to={props.link}>{item}</NavLink>
+    return <NavLink to={props.link} prefetch='true'>{item}</NavLink>
   }
   return item;
 }

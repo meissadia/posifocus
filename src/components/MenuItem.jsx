@@ -6,7 +6,7 @@ import '../css/MainMenu.css';
 let MenuItem = (props) => {
   return (
     <div className='menu-item-link' >
-      <NavLink to={props.link}>
+      <NavLink to={props.link} prefetch='true'>
         <div className='flex menu-item'>
           <MenuItemIcon icon={props.icon} title={props.title} />
           <div className="menu-item-details">
