@@ -143,9 +143,10 @@ class App extends Component {
               <Dashboard
                 userHeader={this.state.userHeader}
                 updateUserHeader={this.updateUserHeader}
-                gratitudes={this.state.gratitudes}
-                projects={this.state.projects}
-                tasks={this.state.tasks}
+                gratitudeCount={this.state.gratitudes.length}
+                projectCount={this.state.projects.length}
+                taskCount={this.state.tasks.length}
+                doneTaskCount={this.state.tasks.filter((t) => (t.done)).length}
                 contacts={this.state.contacts}
                 resetState={this.resetState}
                 />

@@ -19,8 +19,8 @@ let MainMenu = (props) => {
         link='/priorities'
         >
         <Submenu
-          projCount={props.projects.length}
-          taskCount={props.tasks.length}
+          projCount={props.projectCount}
+          taskCount={props.taskCount}
           />
       </MenuItem>
       <MenuItem

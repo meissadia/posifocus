@@ -11,14 +11,14 @@ export default function Dashboard(props){
         updateUserHeader={props.updateUserHeader}
         />
       <StatBar
-        gratitudeCount={props.gratitudes.length}
+        gratitudeCount={props.gratitudeCount}
         contacts={props.contacts}
-        tasks={props.tasks}
+        doneTaskCount={props.doneTaskCount}
         />
       <MainMenu
         reset={props.resetState}
-        projects={props.projects}
-        tasks={props.tasks}
+        projectCount={props.projectCount}
+        taskCount={props.taskCount}
         />
     </div>
   )
