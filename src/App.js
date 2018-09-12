@@ -132,6 +132,26 @@ class App extends Component {
     ));
   }
 
+  /* We need to save directly to localStorage for mobile apps */
+  componentDidUpdate(){
+    this.saveStateToStorage();
+  }
+
+  saveStateToStorage(allowNewKey = true) {
+    let prefix = "";
+    let parent = this;
+    let blacklist = [];
+
+    // loop through all of the parent's state
+    for (let key in this.state) {
+      // save item to storage if not on the blacklist
+      let prefixWithKey = `${prefix}_${key}`;
+      if (blacklist.indexOf(key) < 0 && allowNewKey) {
+        localStorage.setItem(prefixWithKey, JSON.stringify(parent.state[key]));
+      }
+    }
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -139,18 +159,20 @@ class App extends Component {
           {/* Sync State with localStorage */}
           <SimpleStorage parent={this} />
 
-          <Route exact path='/' render={ () => (
-              <Dashboard
-                userHeader={this.state.userHeader}
-                updateUserHeader={this.updateUserHeader}
-                gratitudeCount={this.state.gratitudes.length}
-                projectCount={this.state.projects.length}
-                taskCount={this.state.tasks.length}
-                doneTaskCount={this.state.tasks.filter((t) => (t.done)).length}
-                contacts={this.state.contacts}
-                resetState={this.resetState}
-                />
-            )}
+          <Route exact path='/(index.html)?' render={ ({match}) => {
+              console.log(match);
+              return (
+                <Dashboard
+                  userHeader={this.state.userHeader}
+                  updateUserHeader={this.updateUserHeader}
+                  gratitudeCount={this.state.gratitudes.length}
+                  projectCount={this.state.projects.length}
+                  taskCount={this.state.tasks.length}
+                  doneTaskCount={this.state.tasks.filter((t) => (t.done)).length}
+                  contacts={this.state.contacts}
+                  resetState={this.resetState}
+                  />
+              )}}
             />
 
           <Route exact path='/gratitudes' render={() => (
