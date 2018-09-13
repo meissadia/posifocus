@@ -1,14 +1,12 @@
 import React          from 'react';
 import { Route }      from 'react-router-dom';
 import PageNavigation from './PageNavigation';
-
 import List           from './List';
-
 import bgimage from '../images/projects-instructions-tableview.png';
 import '../css/ListViews.css'
 
 let Projects = (props) => {
-  
+
   let deleteProject = (event) => {
     event.preventDefault();
     props.delete(event.target.attributes.jsvalue.value);
