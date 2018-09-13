@@ -62,7 +62,6 @@ export function deleteRelationship(relationship){
 }
 
 export function taskToggle(event){
-  console.log('TOGGLE');
   let task_id = event.target.attributes.name.value;
   let task = this.getSingle('tasks', task_id);
 
@@ -71,7 +70,6 @@ export function taskToggle(event){
 
   let index = this.state.tasks.findIndex((e, idx) => (e.id === task_id));
   if(index > -1) {
-    console.log('Updating!');
     let tasks = this.state.tasks;
     tasks[index] = task;
     this.setState({ tasks });
@@ -97,8 +95,6 @@ export function getContacts(relationship){
     e.relationship === relationship.id
   ));
 }
-
-
 
 export function saveStateToStorage(allowNewKey = true) {
   let prefix = "";

@@ -1,9 +1,9 @@
 import React          from 'react';
 import { Route }      from 'react-router-dom';
 import PageNavigation from './PageNavigation';
-import Instructions   from './Instructions';
+
 import List           from './List';
-import ListItem       from './ListItem';
+
 import bgimage from '../images/projects-instructions-tableview.png';
 import '../css/ListViews.css'
 
