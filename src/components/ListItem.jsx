@@ -2,16 +2,18 @@ import React       from 'react';
 import { NavLink } from 'react-router-dom';
 import ListIcon    from './ListIcon';
 import ToggleItem  from './ToggleItem';
-import editIcon from '../images/edit-icon.png';
-import deleteIcon from '../images/delete-icon.png';
+import editIcon    from '../images/edit-icon.png';
+import deleteIcon  from '../images/delete-icon.png';
 
 function ListItem(props) {
   let item = props.item;
+  let match = props.match
   let cname = 'list-item';
   if(props.item.done) { cname += ' done'};
+  let item_link = props.link || (props.makeLink && props.makeLink(item, match));
   return (
     <li className={cname} >
-      <ItemField target={'title'} item={item} link={props.link}/>
+      <ItemField target={'title'} item={item} link={item_link}/>
       <ItemField target={'content'} item={item} />
       <ToggleItem
         target={'today'}

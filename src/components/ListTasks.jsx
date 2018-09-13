@@ -1,10 +1,10 @@
 import React          from 'react';
-import Instructions   from './Instructions';
+import { Route }      from 'react-router-dom';
 import PageNavigation from './PageNavigation';
+import Instructions   from './Instructions';
+import List           from './List';
 import ListItem       from './ListItem';
-import { Route }  from 'react-router-dom';
-import inst_icon from '../images/tasks-instructions-tableview.png';
-
+import bgimage        from '../images/tasks-instructions-tableview.png';
 import '../css/ListViews.css'
 
 let Tasks = (props) => {
@@ -37,31 +37,23 @@ let Tasks = (props) => {
         let tasks = props.getTasks(match.params.project_id);
         let showInstructions = tasks.length === 0;
 
-
         return (
-
-          <div className='list-wrapper'>
+          <List section='tasks'
+            data={tasks}
+            instructions={{display: showInstructions, icon: bgimage}}
+            delete={deleteTask}
+            toggle={props.toggle}
+            match={match}
+            >
             <PageNavigation
               back={[navBackLink(match), navBackText(priority)]}
               title={navTitle(project)}
               add={[`${match.url}/new`]}
               />
-
-            <ul className='item-list'>
-              <Instructions section='tasks' src={inst_icon} display={showInstructions} />
-              { tasks.map((item, index) => (
-                <ListItem
-                  item={item}
-                  delete={deleteTask}
-                  toggle={props.toggle}
-                  key={`${index}_${item.id}`}
-                  />
-              ))}
-            </ul>
-          </div>
+          </List>
         )
-  }} />)
-}
+      }} />
+    )
+  }
 
-
-export default Tasks;
+  export default Tasks;

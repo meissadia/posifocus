@@ -62,6 +62,7 @@ export function deleteRelationship(relationship){
 }
 
 export function taskToggle(event){
+  console.log('TOGGLE');
   let task_id = event.target.attributes.name.value;
   let task = this.getSingle('tasks', task_id);
 

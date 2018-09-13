@@ -40,7 +40,7 @@ class NewProject extends React.Component {
           <div className='new-input-wrapper'>
             <PageNavigation
               back={['/priorities', 'Priorities']}
-              title='New Contact'
+              title='New Project'
               add={[this.cancelLink(match.url), '< Cancel >']}
               />
             <form name='gform' className='g-form' onSubmit={this.handleAddProject}>

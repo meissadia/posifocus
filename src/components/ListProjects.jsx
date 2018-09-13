@@ -1,14 +1,14 @@
 import React          from 'react';
-import Instructions   from './Instructions';
+import { Route }      from 'react-router-dom';
 import PageNavigation from './PageNavigation';
+import Instructions   from './Instructions';
+import List           from './List';
 import ListItem       from './ListItem';
-import { Route }  from 'react-router-dom';
-import inst_icon from '../images/projects-instructions-tableview.png';
-
+import bgimage from '../images/projects-instructions-tableview.png';
 import '../css/ListViews.css'
 
 let Projects = (props) => {
-
+  
   let deleteProject = (event) => {
     event.preventDefault();
     props.delete(event.target.attributes.jsvalue.value);
@@ -26,24 +26,19 @@ let Projects = (props) => {
         let showInstructions = data.length === 0;
 
         return (
-          <div className='list-wrapper'>
+          <List section='projects'
+            instructions={{display: showInstructions, icon: bgimage}}
+            data={data}
+            delete={deleteProject}
+            makeLink={(item, match) => (`${match.url.slice(0,-1)}/${item.id}/tasks`)}
+            match={match}
+            >
             <PageNavigation
               back={['/priorities', 'Priorities']}
               title={navTitle(parent)}
               add={[`${match.url}/new`]}
               />
-            <ul className='item-list'>
-              <Instructions section='projects' src={inst_icon} display={showInstructions} />
-              { data.map((item, index) => (
-                <ListItem
-                  item={item}
-                  delete={deleteProject}
-                  link={`${match.url.slice(0,-1)}/${item.id}/tasks`}
-                  key={`${index}_${item.id}`}
-                  />
-              ))}
-            </ul>
-          </div>
+          </List>
         )
       }} />
     )

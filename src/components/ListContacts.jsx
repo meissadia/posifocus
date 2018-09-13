@@ -1,10 +1,10 @@
 import React          from 'react';
-import Instructions   from './Instructions';
+import { Route }      from 'react-router-dom';
 import PageNavigation from './PageNavigation';
+import Instructions   from './Instructions';
+import List           from './List';
 import ListItem       from './ListItem';
-import { Route }  from 'react-router-dom';
-import inst_icon from '../images/contacts-instructions-tableview.png';
-
+import bgimage    from '../images/contacts-instructions-tableview.png';
 import '../css/ListViews.css'
 
 let Contacts = (props) => {
@@ -14,7 +14,7 @@ let Contacts = (props) => {
   }
 
   let navTitle = (parent) => {
-    if(parent) { return parent.title }
+    if(parent) { return parent.title + ' Contacts' }
     return 'Contacts'
   }
 
@@ -30,27 +30,22 @@ let Contacts = (props) => {
         let showInstructions = contacts.length === 0;
 
         return (
-          <div className='list-wrapper'>
+          <List section='contacts'
+            instructions={{ display: showInstructions, icon: bgimage }}
+            data={contacts}
+            delete={deleteContact}
+            toggle={props.toggle}
+            match={match}
+            >
             <PageNavigation
               back={['/relationships', 'Relationships']}
               title={navTitle(relationship)}
               add={[addLink(match)]}
               />
-            <ul className='item-list'>
-              <Instructions section='contacts' src={inst_icon} display={showInstructions} />
-              { contacts.map((item, index) => (
-                <ListItem
-                  item={item}
-                  delete={deleteContact}
-                  key={`${index}_${item.id}`}
-                  />
-              ))}
-            </ul>
-          </div>
+          </List>
         )
       }} />
     )
   }
-
 
   export default Contacts;
