@@ -2,6 +2,8 @@ import React from 'react';
 import Instructions from './Instructions';
 import PageNavigation from './PageNavigation';
 import ListItem from './ListItem';
+import { Route }  from 'react-router-dom';
+
 import '../css/ListViews.css'
 
 let Relationships = (props) => {
@@ -13,27 +15,28 @@ let Relationships = (props) => {
   }
 
   return (
-    <div className='list-wrapper'>
-      <PageNavigation
-        back={['/', 'Dashboard']}
-        title='Relationships'
-        add={['/relationships/new']}
-        />
-
-      <ul className='item-list'>
-        <Instructions section='relationships' display={showInstructions} />
-        { props.data.map((item, index) => (
-          <ListItem
-            item={item}
-            delete={deleteRelationship}
-            link={`/relationship/${item.id}/contacts`}
-            key={`${index}_${item.id}`}
+    <Route exact path='/relationships' render={() => (
+        <div className='list-wrapper'>
+          <PageNavigation
+            back={['/', 'Dashboard']}
+            title='Relationships'
+            add={['/relationships/new']}
             />
-        ))}
-      </ul>
-    </div>
-  )
-}
+          <ul className='item-list'>
+            <Instructions section='relationships' display={showInstructions} />
+            { props.data.map((item, index) => (
+              <ListItem
+                item={item}
+                delete={deleteRelationship}
+                link={`/relationship/${item.id}/contacts`}
+                key={`${index}_${item.id}`}
+                />
+            ))}
+          </ul>
+        </div>
+      )} />
+    )
+  }
 
 
-export default Relationships;
+  export default Relationships;

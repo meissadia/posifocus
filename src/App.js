@@ -1,5 +1,4 @@
 import React, { Component }     from 'react';
-import { Route }       from 'react-router-dom';
 import * as State      from './lib/AppState';
 import AppFrame        from './components/AppFrame';
 import Dashboard       from './components/Dashboard';
@@ -47,149 +46,66 @@ class App extends Component {
   render() {
     return (
       <AppFrame logo="/images/posifocus-logo.png" altText="Posifocus Logo">
-        {/* Sync State with localStorage */}
-        <SimpleStorage parent={this} />
+        <SimpleStorage parent={this} /> {/* Sync State with localStorage */}
 
-        <Route exact path='/' render={ ({match}) => {
-            console.log(match);
-            return (
-              <Dashboard
-                userHeader={this.state.userHeader}
-                updateUserHeader={this.updateUserHeader}
-                gratitudeCount={this.state.gratitudes.length}
-                projectCount={this.state.projects.length}
-                taskCount={this.state.tasks.length}
-                doneTaskCount={this.state.tasks.filter((t) => (t.done)).length}
-                contacts={this.state.contacts}
-                resetState={this.resetState}
-                />
-            )}}
+          <Dashboard
+            userHeader={this.state.userHeader}
+            updateUserHeader={this.updateUserHeader}
+            gratitudeCount={this.state.gratitudes.length}
+            projectCount={this.state.projects.length}
+            taskCount={this.state.tasks.length}
+            doneTaskCount={this.state.tasks.filter((t) => (t.done)).length}
+            contacts={this.state.contacts}
+            resetState={this.resetState}
             />
 
-          <Route exact path='/gratitudes' render={() => (
-              <Gratitudes
-                data={this.state.gratitudes}
-                delete={this.deleteFromStateArray}
-                />
-            )}
+          <Gratitudes
+            data={this.state.gratitudes}
+            delete={this.deleteFromStateArray}
             />
 
-          <Route path='/gratitudes/new' render={() => (
-              <NewGratitude addHandler={this.addToStateArray} />
-            )}
+          <Priorities
+            data={this.state.priorities}
+            delete={this.deletePriority}
             />
 
-          <Route exact path='/priorities' render={() => (
-              <Priorities
-                data={this.state.priorities}
-                delete={this.deletePriority}
-                />
-            )}
+          <Relationships
+            data={this.state.relationships}
+            delete={this.deleteRelationship}
             />
 
-          <Route path='/priorities/new' render={() => (
-              <NewPriority addHandler={this.addToStateArray} />
-            )}
+          <Projects
+            getProjects={this.getProjects}
+            getSingle={this.getSingle}
+            delete={this.deleteProject}
             />
 
-          <Route exact path='/priority/:priority_id/projects'
-            render={({match}) => {
-              let priority = this.getSingle('priorities', match.params.priority_id);
-              let projects = this.getProjects(match.params.priority_id);
-              return <Projects
-                data={projects}
-                parent={priority}
-                match={match}
-                delete={this.deleteProject}
-                />
-            }}
+          <Tasks
+            getSingle={this.getSingle}
+            getTasks={this.getTasks}
+            delete={this.deleteFromStateArray}
+            toggle={this.taskToggle}
             />
 
-          <Route path='/priority/:priority_id/projects/new'
-            render={ ({match}) => (
-              <NewProject
-                priority_id={match.params.priority_id}
-                addHandler={this.addToStateArray}
-                match={match}
-                />
-            )}
+          <Contacts
+            getSingle={this.getSingle}
+            getContacts={this.getContacts}
+            delete={this.deleteFromStateArray}
             />
 
-          <Route exact path='/priority/:priority_id/project/:project_id/tasks'
-            render={({match}) => {
-              let project = this.getSingle('projects', match.params.project_id);
-              let priority = project && this.getSingle('priorities', project.priority)
-              let tasks = this.getTasks(match.params.project_id);
-
-              return (
-                <Tasks
-                  data={tasks}
-                  match={match}
-                  project={project}
-                  priority={priority}
-                  delete={this.deleteFromStateArray}
-                  toggle={this.taskToggle}
-                  />
-              )
-            }}
+          <TodaysTasks
+            data={this.state.tasks.filter((task) => (task.today))}
+            delete={this.deleteFromStateArray}
+            toggle={this.taskToggle}
             />
 
-          <Route path='/priority/:priority_id/project/:project_id/tasks/new'
-            render={({match}) => {
-              return (
-                <NewTask
-                  project={match.params.project_id}
-                  addHandler={this.addToStateArray}
-                  match={match}
-                  />
-              )
-            }}
-            />
+          <NewTask         addHandler={this.addToStateArray} />
+          <NewContact      addHandler={this.addToStateArray} />
+          <NewProject      addHandler={this.addToStateArray} />
+          <NewPriority     addHandler={this.addToStateArray} />
+          <NewGratitude    addHandler={this.addToStateArray} />
+          <NewRelationship addHandler={this.addToStateArray} />
 
-          <Route exact path='/relationships' render={() => (
-              <Relationships
-                data={this.state.relationships}
-                delete={this.deleteRelationship}
-                />
-            )}
-            />
-
-          <Route exact path='/relationships/new' render={() => (
-              <NewRelationship addHandler={this.addToStateArray} />
-            )}
-            />
-
-          <Route exact path='/relationship/:relationship_id/contacts'
-            render={ ({match}) => {
-              let relationship = this.getSingle('relationships', match.params.relationship_id);
-              let contacts = this.getContacts(relationship);
-
-              return <Contacts
-                parent={relationship}
-                data={contacts || []}
-                match={match}
-                delete={this.deleteFromStateArray}
-                />
-            }}
-            />
-
-          <Route path='/relationship/:relationship_id/contacts/new'
-            render={({match}) => (
-              <NewContact
-                relationship_id={match.params.relationship_id}
-                addHandler={this.addToStateArray}
-                />
-            )}
-            />
-
-          <Route path='/tasks/today' render={() => (
-              <TodaysTasks
-                data={this.state.tasks.filter((task) => (task.today))}
-                delete={this.deleteFromStateArray}
-                toggle={this.taskToggle}
-                />
-            )}
-            />
         </AppFrame>
       );
     }

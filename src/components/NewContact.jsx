@@ -1,7 +1,7 @@
 import React                from 'react';
 import { withRouter } from 'react-router-dom';
 import PageNavigation       from './PageNavigation';
-
+import { Route }  from 'react-router-dom';
 import '../css/FormView.css';
 
 class NewContact extends React.Component {
@@ -15,18 +15,16 @@ class NewContact extends React.Component {
     let date = new Date();
     let gdate = this.parseDate(document.gform.date.value);
 
-    let relationship_id = this.props.relationship_id;
-
     let new_contact = {
       id: date.getTime().toString(),
-      relationship: relationship_id,
+      relationship: document.gform.relationship.value,
       title: document.gform.title.value || document.gform.title.attributes.placeholder.value,
       content: document.gform.content.value || document.gform.content.attributes.placeholder.value,
       date: gdate
     }
 
     this.props.addHandler('contacts', new_contact);
-    this.props.history.push(this.cancelLink());
+    this.props.history.push(this.cancelLink(document.gform.url.value));
   }
 
   parseDate(date){
@@ -34,12 +32,12 @@ class NewContact extends React.Component {
     return new Date(date).toString();
   }
 
-  cancelLink(){
-    return this.props.match.url.split('/').slice(0,-1).join('/');
+  cancelLink(url){
+    return url.split('/').slice(0,-1).join('/');
   }
 
-  backLink(){
-    return this.props.match.url.split('/').slice(0,-3).join('/') + 's';
+  backLink(url){
+    return url.split('/').slice(0,-3).join('/') + 's';
   }
 
   render(){
@@ -50,39 +48,44 @@ class NewContact extends React.Component {
     }).join('-');
 
     return (
-      <div className='new-input-wrapper'>
-        <PageNavigation
-          back={[this.backLink(), 'Relationships']}
-          title='New Contact'
-          add={[this.cancelLink(), '< Cancel >']}
-          />
-        <form name='gform' className='g-form' onSubmit={this.handleAddContact}>
-          <label htmlFor="title">
-            What was the Last Contact you had with this Person?
-          </label>
-          <input
-            type="text"
-            name="title"
-            autoComplete="off"
-            placeholder="Call/Text/Email/Lunch..."
-            />
-          <label htmlFor='content'>Notes:</label>
-          <textarea
-            name="content"
-            placeholder="Making plans to meet up this weekend.."
-            />
-          <label htmlFor='date-input'>Date:</label>
-          <input
-            id='date-input'
-            type="date"
-            name="date"
-            defaultValue={currentDateString}
-            />
-          <input id='submit-button' type="submit" name="submit" value="Save" />
-        </form>
-      </div>
-    )
+      <Route path='/relationship/:relationship_id/contacts/new'
+        render={({match}) => (
+          <div className='new-input-wrapper'>
+            <PageNavigation
+              back={[this.backLink(match.url), 'Relationships']}
+              title='New Contact'
+              add={[this.cancelLink(match.url), '< Cancel >']}
+              />
+            <form name='gform' className='g-form' onSubmit={this.handleAddContact}>
+              <label htmlFor="title">
+                What was the Last Contact you had with this Person?
+              </label>
+              <input
+                type="text"
+                name="title"
+                autoComplete="off"
+                placeholder="Call/Text/Email/Lunch..."
+                />
+              <label htmlFor='content'>Notes:</label>
+              <textarea
+                name="content"
+                placeholder="Making plans to meet up this weekend.."
+                />
+              <label htmlFor='date-input'>Date:</label>
+              <input
+                id='date-input'
+                type="date"
+                name="date"
+                defaultValue={currentDateString}
+                />
+              <input name="relationship" value={match.params.relationship_id} hidden readOnly/>
+              <input name="url" value={match.url} hidden readOnly/>
+              <input id='submit-button' type="submit" name="submit" value="Save" />
+            </form>
+          </div>
+        )} />
+      )
+    }
   }
-}
 
-export default withRouter(NewContact);
+  export default withRouter(NewContact);

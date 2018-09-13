@@ -2,6 +2,8 @@ import React          from 'react';
 import Instructions   from './Instructions';
 import PageNavigation from './PageNavigation';
 import ListItem       from './ListItem';
+import { Route }      from 'react-router-dom';
+
 import '../css/ListViews.css'
 
 function Gratitudes(props) {
@@ -11,24 +13,27 @@ function Gratitudes(props) {
   }
 
   return (
-    <div className='list-wrapper'>
-      <PageNavigation
-        back={['/', 'Dashboard']}
-        title='Gratitudes'
-        add={['/gratitudes/new']}
-        />
-
-      <ul className='item-list'>
-        <Instructions section='gratitudes' display={props.data.length === 0} />
-        { props.data.map((item, index) => (
-          <ListItem
-            item={item}
-            delete={deleteGratitude}
-            key={`${index}_${item.id}`}
+    <Route exact path='/gratitudes' render={ () => (
+        <div className='list-wrapper'>
+          <PageNavigation
+            back={['/', 'Dashboard']}
+            title='Gratitudes'
+            add={['/gratitudes/new']}
             />
-        ))}
-      </ul>
-    </div>
+          <ul className='item-list'>
+            <Instructions section='gratitudes' display={props.data.length === 0} />
+            { props.data.map((item, index) => (
+              <ListItem
+                item={item}
+                delete={deleteGratitude}
+                key={`${index}_${item.id}`}
+                />
+            ))}
+          </ul>
+        </div>
+      )
+    }
+    />
   )
 }
 

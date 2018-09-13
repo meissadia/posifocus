@@ -1,6 +1,8 @@
 import React                from 'react';
 import { withRouter } from 'react-router-dom';
 import PageNavigation       from './PageNavigation';
+import { Route }  from 'react-router-dom';
+
 import '../css/FormView.css';
 
 
@@ -30,27 +32,29 @@ class NewRelationship extends React.Component {
 
   render(){
     return (
-      <div className='new-input-wrapper'>
-        <PageNavigation
-          back={['/', 'Dashboard']}
-          title='New Relationship'
-          add={[this.cancelLink(), '< Cancel >']}
-          />
-        <form name='gform' className='g-form' onSubmit={this.handleAddRelationship}>
-          <label htmlFor="title">
-            Who Do You Want To Build A Better Relationship With?
-          </label>
-          <input
-            type="text"
-            name="title"
-            autoComplete="off"
-            placeholder="My Brother"
-            />
-          <input id='submit-button' type="submit" name="submit" value="Save" />
-        </form>
-    </div>
-    )
+      <Route exact path='/relationships/new' render={() => (
+          <div className='new-input-wrapper'>
+            <PageNavigation
+              back={['/', 'Dashboard']}
+              title='New Relationship'
+              add={[this.cancelLink(), '< Cancel >']}
+              />
+            <form name='gform' className='g-form' onSubmit={this.handleAddRelationship}>
+              <label htmlFor="title">
+                Who Do You Want To Build A Better Relationship With?
+              </label>
+              <input
+                type="text"
+                name="title"
+                autoComplete="off"
+                placeholder="My Brother"
+                />
+              <input id='submit-button' type="submit" name="submit" value="Save" />
+            </form>
+          </div>
+        )} />
+      )
+    }
   }
-}
 
-export default withRouter(NewRelationship);
+  export default withRouter(NewRelationship);
