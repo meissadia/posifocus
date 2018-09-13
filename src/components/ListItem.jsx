@@ -2,6 +2,8 @@ import React       from 'react';
 import { NavLink } from 'react-router-dom';
 import ListIcon    from './ListIcon';
 import ToggleItem  from './ToggleItem';
+import editIcon from '../images/edit-icon.png';
+import deleteIcon from '../images/delete-icon.png';
 
 function ListItem(props) {
   let item = props.item;
@@ -24,8 +26,8 @@ function ListItem(props) {
         toggle={props.toggle}
         />
       <div className='list-item-actions'>
-        <ListIcon name='edit' href='#' id={item.id} alt='Pencil' />
-        <ListIcon name='delete' onclick={props.delete} id={item.id} alt='Trashcan' />
+        <ListIcon name='edit' href='#' id={item.id} alt='Pencil' src={editIcon}/>
+        <ListIcon name='delete' onclick={props.delete} id={item.id} alt='Trashcan' src={deleteIcon}/>
       </div>
       <DateField date={item.date} />
     </li>

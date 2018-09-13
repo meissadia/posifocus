@@ -3,6 +3,8 @@ import Instructions   from './Instructions';
 import PageNavigation from './PageNavigation';
 import ListItem       from './ListItem';
 import { Route }  from 'react-router-dom';
+import inst_icon from '../images/priorities-instructions-tableview.png';
+
 import '../css/ListViews.css'
 
 function Priorities(props) {
@@ -20,7 +22,7 @@ function Priorities(props) {
             add={['/priorities/new']}
             />
           <ul className='item-list'>
-            <Instructions section='priorities' display={props.data.length === 0} />
+            <Instructions section='priorities' src={inst_icon} display={props.data.length === 0} />
             { props.data.map((item, index) => (
               <ListItem
                 item={item}

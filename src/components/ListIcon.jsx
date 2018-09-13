@@ -9,7 +9,7 @@ export default function ListIcon(props){
       >
       <img
         jsvalue={props.id}
-        src={`/images/${props.name}-icon.png`}
+        src={props.src || `/images/${props.name}-icon.png`}
         alt={props.alt}
         />
     </a>

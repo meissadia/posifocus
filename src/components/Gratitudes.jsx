@@ -3,6 +3,8 @@ import Instructions   from './Instructions';
 import PageNavigation from './PageNavigation';
 import ListItem       from './ListItem';
 import { Route }      from 'react-router-dom';
+import instructions   from '../images/gratitudes-instructions-tableview.png';
+
 
 import '../css/ListViews.css'
 
@@ -21,7 +23,7 @@ function Gratitudes(props) {
             add={['/gratitudes/new']}
             />
           <ul className='item-list'>
-            <Instructions section='gratitudes' display={props.data.length === 0} />
+            <Instructions section='gratitudes' src={instructions} display={props.data.length === 0} />
             { props.data.map((item, index) => (
               <ListItem
                 item={item}

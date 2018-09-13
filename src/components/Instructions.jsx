@@ -6,7 +6,7 @@ let Instructions = (props) => {
     <li>
       <img
         className='instructions'
-        src={`/images/${props.section}-instructions-tableview.png`}
+        src={props.src}
         alt={`${props.section} instructions`}
         />
     </li>

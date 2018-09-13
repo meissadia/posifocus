@@ -3,6 +3,8 @@ import Instructions   from './Instructions';
 import PageNavigation from './PageNavigation';
 import ListItem       from './ListItem';
 import { Route }  from 'react-router-dom';
+import inst_icon from '../images/contacts-instructions-tableview.png';
+
 import '../css/ListViews.css'
 
 let Contacts = (props) => {
@@ -35,7 +37,7 @@ let Contacts = (props) => {
               add={[addLink(match)]}
               />
             <ul className='item-list'>
-              <Instructions section='contacts' display={showInstructions} />
+              <Instructions section='contacts' src={inst_icon} display={showInstructions} />
               { contacts.map((item, index) => (
                 <ListItem
                   item={item}

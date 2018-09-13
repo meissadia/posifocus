@@ -3,6 +3,7 @@ import Instructions   from './Instructions';
 import PageNavigation from './PageNavigation';
 import ListItem       from './ListItem';
 import { Route }  from 'react-router-dom';
+import inst_icon from '../images/tasks-instructions-tableview.png';
 
 import '../css/ListViews.css'
 
@@ -47,7 +48,7 @@ let Tasks = (props) => {
               />
 
             <ul className='item-list'>
-              <Instructions section='priorities' display={showInstructions} />
+              <Instructions section='tasks' src={inst_icon} display={showInstructions} />
               { tasks.map((item, index) => (
                 <ListItem
                   item={item}

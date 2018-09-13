@@ -45,7 +45,7 @@ class App extends Component {
 
   render() {
     return (
-      <AppFrame logo="/images/posifocus-logo.png" altText="Posifocus Logo">
+      <AppFrame>
         <SimpleStorage parent={this} /> {/* Sync State with localStorage */}
 
           <Dashboard

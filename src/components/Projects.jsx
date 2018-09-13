@@ -3,6 +3,8 @@ import Instructions   from './Instructions';
 import PageNavigation from './PageNavigation';
 import ListItem       from './ListItem';
 import { Route }  from 'react-router-dom';
+import inst_icon from '../images/projects-instructions-tableview.png';
+
 import '../css/ListViews.css'
 
 let Projects = (props) => {
@@ -31,7 +33,7 @@ let Projects = (props) => {
               add={[`${match.url}/new`]}
               />
             <ul className='item-list'>
-              <Instructions section='projects' display={showInstructions} />
+              <Instructions section='projects' src={inst_icon} display={showInstructions} />
               { data.map((item, index) => (
                 <ListItem
                   item={item}
