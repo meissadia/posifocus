@@ -50,7 +50,7 @@ class App extends Component {
         {/* Sync State with localStorage */}
         <SimpleStorage parent={this} />
 
-        <Route exact path='/(index.html)?' render={ ({match}) => {
+        <Route exact path='/' render={ ({match}) => {
             console.log(match);
             return (
               <Dashboard
