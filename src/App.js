@@ -1,5 +1,5 @@
 import React, { Component }     from 'react';
-import { Route, BrowserRouter } from 'react-router-dom';
+import { Route }       from 'react-router-dom';
 import * as State      from './lib/AppState';
 import AppFrame        from './components/AppFrame';
 import Dashboard       from './components/Dashboard';
@@ -46,25 +46,24 @@ class App extends Component {
 
   render() {
     return (
-      <BrowserRouter>
-        <AppFrame logo="/images/posifocus-logo.png" altText="Posifocus Logo">
-          {/* Sync State with localStorage */}
-          <SimpleStorage parent={this} />
+      <AppFrame logo="/images/posifocus-logo.png" altText="Posifocus Logo">
+        {/* Sync State with localStorage */}
+        <SimpleStorage parent={this} />
 
-          <Route exact path='/(index.html)?' render={ ({match}) => {
-              console.log(match);
-              return (
-                <Dashboard
-                  userHeader={this.state.userHeader}
-                  updateUserHeader={this.updateUserHeader}
-                  gratitudeCount={this.state.gratitudes.length}
-                  projectCount={this.state.projects.length}
-                  taskCount={this.state.tasks.length}
-                  doneTaskCount={this.state.tasks.filter((t) => (t.done)).length}
-                  contacts={this.state.contacts}
-                  resetState={this.resetState}
-                  />
-              )}}
+        <Route exact path='/(index.html)?' render={ ({match}) => {
+            console.log(match);
+            return (
+              <Dashboard
+                userHeader={this.state.userHeader}
+                updateUserHeader={this.updateUserHeader}
+                gratitudeCount={this.state.gratitudes.length}
+                projectCount={this.state.projects.length}
+                taskCount={this.state.tasks.length}
+                doneTaskCount={this.state.tasks.filter((t) => (t.done)).length}
+                contacts={this.state.contacts}
+                resetState={this.resetState}
+                />
+            )}}
             />
 
           <Route exact path='/gratitudes' render={() => (
@@ -192,9 +191,8 @@ class App extends Component {
             )}
             />
         </AppFrame>
-      </BrowserRouter>
-    );
+      );
+    }
   }
-}
 
-export default App;
+  export default App;
