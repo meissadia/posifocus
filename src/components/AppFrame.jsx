@@ -1,6 +1,5 @@
 import React       from 'react';
 import { NavLink } from 'react-router-dom';
-import logo        from '../images/posifocus-logo.png';
 
 const AppFrame = (props) => {
   return (
@@ -8,7 +7,7 @@ const AppFrame = (props) => {
       <header>
         <NavLink to='/' prefetch='true'>
           <img className='app-logo'
-            src={logo}
+            src={'images/posifocus-logo.png'}
             alt='Posifocus Target'
             />
         </NavLink>

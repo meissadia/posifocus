@@ -2,7 +2,6 @@ import React          from 'react';
 import { Route }      from 'react-router-dom';
 import PageNavigation from './PageNavigation';
 import List           from './List';
-import bgimage        from '../images/relationships-instructions-tableview.png';
 import '../css/ListViews.css'
 
 let Relationships = (props) => {
@@ -16,7 +15,9 @@ let Relationships = (props) => {
   return (
     <Route exact path='/relationships' render={() => (
         <List section='relationships'
-          instructions={{display: showInstructions, icon: bgimage}}
+          instructions={{
+            display: showInstructions,
+            icon: '/images/relationships-instructions-tableview.png' }}
           data={props.data}
           delete={deleteRelationship}
           makeLink={(item) => (`/relationship/${item.id}/contacts`)}

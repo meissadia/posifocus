@@ -10,7 +10,8 @@ export function initState() {
     projects: [],
     tasks: [],
     relationships: [],
-    contacts: []
+    contacts: [],
+    online: true
   })
 }
 

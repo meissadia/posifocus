@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" manifest='cache.manifest'>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -30,6 +30,13 @@
       You need to enable JavaScript to run this app.
     </noscript>
     <div id="root"></div>
+    <script>
+    if('serviceWorker' in navigator) {
+      navigator.serviceWorker
+               .register('/service_worker.js')
+               .then(function() { console.log("Service Worker Registered"); });
+    }
+    </script>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -41,4 +48,11 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   </body>
+  <style media="screen">
+    html {
+      background-image: url('images/bdlp-paradise-wallpaper.jpg');
+      background-position: center;
+      background-size: cover;
+    }
+  </style>
 </html>

@@ -4,10 +4,9 @@ import StatBar    from './StatBar';
 import MainMenu   from './MainMenu';
 import { Route }  from 'react-router-dom';
 
-
 export default function Dashboard(props){
   return (
-    <Route exact path='/' render={ () => (
+    <Route exact path='/(index.html)?' render={ () => (
         <div>
           <UserHeader
             data={props.userHeader}

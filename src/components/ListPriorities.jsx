@@ -2,7 +2,6 @@ import React          from 'react';
 import { Route }      from 'react-router-dom';
 import PageNavigation from './PageNavigation';
 import List           from './List';
-import bgimage from '../images/priorities-instructions-tableview.png';
 import '../css/ListViews.css'
 
 function Priorities(props) {
@@ -16,7 +15,9 @@ function Priorities(props) {
   return (
     <Route exact path='/priorities' render={() => (
       <List section='relationships'
-        instructions={{display: showInstructions, icon: bgimage}}
+        instructions={{
+          display: showInstructions,
+          icon: '/images/priorities-instructions-tableview.png' }}
         data={props.data}
         delete={deletePriority}
         makeLink={(item, match) => (`/priority/${item.id}/projects`)}

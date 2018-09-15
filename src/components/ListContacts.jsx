@@ -2,7 +2,6 @@ import React          from 'react';
 import { Route }      from 'react-router-dom';
 import PageNavigation from './PageNavigation';
 import List           from './List';
-import bgimage    from '../images/contacts-instructions-tableview.png';
 import '../css/ListViews.css'
 
 let Contacts = (props) => {
@@ -30,7 +29,9 @@ let Contacts = (props) => {
 
         return (
           <List section='contacts'
-            instructions={{ display: showInstructions, icon: bgimage }}
+            instructions={{
+              display: showInstructions,
+              icon: '/images/contacts-instructions-tableview.png' }}
             data={contacts}
             delete={deleteContact}
             toggle={props.toggle}
