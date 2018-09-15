@@ -1,4 +1,4 @@
-const version = "0.0.2";
+const version = "0.0.1";
 const cacheName = `posifocus-web-${version}`;
 
 self.addEventListener('install', e => {
@@ -54,12 +54,12 @@ self.addEventListener('fetch', event => {
       .then(cache => cache.match(event.request, {ignoreSearch: true}))
       .then(response => {
         if(response){
-          // console.log('Cached response: ');
-          // console.log(event.request);
+          console.log('Cached response: ');
+          console.log(event.request.url);
           return response
         } else {
-          // console.log('Going to network:');
-          // console.log(event.request);
+          console.log('Going to network:');
+          console.log(event.request.url);
           return fetch(event.request);
         }
     })
