@@ -1,6 +1,6 @@
 {
-  "short_name": "Posifocus Web",
-  "name": "Posifocus Web Application",
+  "short_name": "Posifocus",
+  "name": "Posifocus Progressive Web Application",
   "icons": [
     {
       "src": "favicon.png",
