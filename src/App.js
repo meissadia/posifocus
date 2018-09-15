@@ -24,6 +24,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = State.initState();
+    this.initState = State.initState.bind(this);
     this.updateUserHeader = State.updateUserHeader.bind(this);
     this.resetState = State.resetState.bind(this);
     this.deleteFromStateArray = State.deleteFromStateArray.bind(this);
