@@ -81,3 +81,34 @@
   margin-left: 20px;
   min-width: 100px;
 }
+
+/* Animate List Items */
+
+.list-item {
+  transition: 500ms;
+  position: relative;
+
+}
+
+.list-item-enter {
+  position: relative;
+  left: -100vh;
+}
+
+.list-item-enter.list-item-enter-active {
+  left: 0;
+}
+
+.list-item-exit {
+  position: relative;
+  left: 0;
+  opacity: 1;
+  height: 100px;
+  background: orange;
+}
+
+.list-item-exit.list-item-exit-active {
+  left: -100vw;
+  opacity: 0;
+  height: 0;
+}

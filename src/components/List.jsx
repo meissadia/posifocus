@@ -1,26 +1,41 @@
 import React from 'react';
 import Instructions   from './Instructions';
 import ListItem       from './ListItem';
+import {TransitionGroup, CSSTransition} from 'react-transition-group';
 
 const List = (props) => (
   <div className='list-wrapper'>
     {props.children} {/* Page Navigation */}
     <ul className='item-list'>
-      <Instructions
-        section={props.section}
-        src={props.instructions.icon}
-        display={props.instructions.display} />
-      { props.data.map((item, index) => (
-        <ListItem
-          item={item}
-          delete={props.delete}
-          toggle={props.toggle}
-          key={`${index}_${item.id}`}
-          link={props.link}
-          makeLink={props.makeLink}
-          match={props.match}
-          />
-      ))}
+      <TransitionGroup>
+        { props.data.map((item, index) => (
+          <CSSTransition
+            timeout={500}
+            classNames='list-item'
+            key={`${item.id}`}
+            >
+            <ListItem
+              item={item}
+              delete={props.delete}
+              toggle={props.toggle}
+              link={props.link}
+              makeLink={props.makeLink}
+              match={props.match}
+              />
+          </CSSTransition>
+        ))}
+        <CSSTransition
+          timeout={1000}
+          classNames='list-item'
+          key='instructions'
+          >
+          <Instructions
+            section={props.section}
+            src={props.instructions.icon}
+            display={props.instructions.display}
+            />
+        </CSSTransition>
+      </TransitionGroup>
     </ul>
   </div>
 )

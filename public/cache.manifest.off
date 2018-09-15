@@ -1,10 +1,10 @@
 CACHE MANIFEST
-#v0.0.1b
+#v0.0.1c
 manifest.json
 /static/js/bundle.js
 /static/js/bundle.js.map
 images/posifocus-logo.png
-images/bdlp-paradise-wallpaper.jpg
+images/bgimage_small.jpg
 images/blank-user.png
 images/contacts-instructions-tableview.png
 images/delete-icon.png

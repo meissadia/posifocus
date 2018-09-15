@@ -7,7 +7,7 @@ const AppFrame = (props) => {
       <header>
         <NavLink to='/' prefetch='true'>
           <img className='app-logo'
-            src={'images/posifocus-logo.png'}
+            src='/images/posifocus-logo.png'
             alt='Posifocus Target'
             />
         </NavLink>

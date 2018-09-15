@@ -14,20 +14,21 @@ let TodaysTasks = (props) => {
 
   return (
     <Route path='/tasks/today' render={() => (
-      <List section='tasks'
-        instructions={{
-          display: showInstructions,
-          icon: '/images/tasks-instructions-tableview.png' }}
-        data={props.data}
-        delete={deleteTask}
-        toggle={props.toggle}
-        >
-        <PageNavigation
-          back={['/', 'Dashboard']}
-          title="Today's Tasks"
-          />
-      </List>
-      )} />
+        <List section='tasks'
+          instructions={{
+            display: showInstructions,
+            icon: '/images/tasks-instructions-tableview.png' }}
+            data={props.data}
+            delete={deleteTask}
+            toggle={props.toggle}
+            >
+            <PageNavigation
+              back={['/', 'Dashboard']}
+              title="Today's Tasks"
+              />
+          </List>
+        )
+      } />
     )
   }
 

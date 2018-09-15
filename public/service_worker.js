@@ -1,4 +1,4 @@
-const version = "0.0.1b";
+const version = "0.0.1c";
 const cacheName = `posifocus-web-${version}`;
 
 self.addEventListener('install', e => {
@@ -10,7 +10,7 @@ self.addEventListener('install', e => {
         `/static/js/bundle.js.map`,
         `index.html`,
         `images/posifocus-logo.png`,
-        `images/bdlp-paradise-wallpaper.jpg`,
+        `images/bgimage_small.jpg`,
         `images/blank-user.png`,
         `images/contacts-instructions-tableview.png`,
         `images/delete-icon.png`,

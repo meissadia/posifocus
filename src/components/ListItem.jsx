@@ -26,8 +26,8 @@ function ListItem(props) {
         toggle={props.toggle}
         />
       <div className='list-item-actions'>
-        <ListIcon name='edit' href='#' id={item.id} alt='Pencil' src='images/edit-icon.png'/>
-        <ListIcon name='delete' onclick={props.delete} id={item.id} alt='Trashcan' src='images/delete-icon.png'/>
+        <ListIcon name='edit' href='#' id={item.id} alt='Pencil' src='/images/edit-icon.png'/>
+        <ListIcon name='delete' onclick={props.delete} id={item.id} alt='Trashcan' src='/images/delete-icon.png'/>
       </div>
       <DateField date={item.date} />
     </li>
