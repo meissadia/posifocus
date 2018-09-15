@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" manifest='cache.manifest'>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -25,18 +25,24 @@
     <meta name="application-name" content="Posifocus Web">
     <title>Posifocus Web</title>
   </head>
-  <body>
+  <body style='padding:0; margin:0'>
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
-    <div id="root">< < < Loading > > ></div>
-    <!-- <script>
+    <div id="root">
+      <div style='text-align: center; background: black; color: white; width: 100%; height: 100vh; display: flex; flex-flow: column nowrap; justify-content: center; align-items: flex-start; font-size: 50px'>
+        <img style='max-width: 400px; margin: 0 auto;' src="/images/posifocus-logo.png" alt="Posifocus Text With Target">
+        <p style='width: 100%; color:white;'>< < < LOADING > > ></p>
+      </div>
+    </div>
+    <script>
     if('serviceWorker' in navigator) {
       navigator.serviceWorker
                .register('/service_worker.js')
-               .then(function() { console.log("Service Worker Registered"); });
+               .then(function() {
+                  console.log("Posifocus Service Worker Registered"); });
     }
-    </script> -->
+    </script>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
