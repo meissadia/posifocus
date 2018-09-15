@@ -16,6 +16,7 @@ import NewTask         from './components/NewTask';
 import NewRelationship from './components/NewRelationship';
 import NewContact      from './components/NewContact';
 import NetworkIndicator from './components/NetworkIndicator';
+import UpdateAvailable from './components/UpdateAvailable';
 import SimpleStorage   from 'react-simple-storage';
 
 import './css/App.css';
@@ -46,22 +47,23 @@ class App extends Component {
   }
 
   componentDidMount() {
-     window.addEventListener('online', () => this.setOnlineStatus(true));
-     window.addEventListener('offline', () => this.setOnlineStatus(false));
-   }
+    window.addEventListener('online', () => this.setOnlineStatus(true));
+    window.addEventListener('offline', () => this.setOnlineStatus(false));
+  }
 
-   componentWillUnmount() {
-     window.removeEventListener('online');
-     window.removeEventListener('offline');
-   }
+  componentWillUnmount() {
+    window.removeEventListener('online');
+    window.removeEventListener('offline');
+  }
 
-   setOnlineStatus = isOnline => this.setState({ online: isOnline })
+  setOnlineStatus = isOnline => this.setState({ online: isOnline });
 
   render() {
     return (
       <AppFrame>
         <SimpleStorage parent={this} /> {/* Sync State with localStorage */}
           <NetworkIndicator online={this.state.online} />
+          <UpdateAvailable  online={this.state.online} />
           <Dashboard
             userHeader={this.state.userHeader}
             updateUserHeader={this.updateUserHeader}

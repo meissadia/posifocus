@@ -4,5 +4,10 @@
   "https_only": true,
   "routes": {
     "/**": "index.html"
+  },
+  "headers": {
+    "/service_worker.js": {
+      "Cache-Control": "no-store, no-cache"
+    }
   }
 }
