@@ -19,7 +19,7 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" />
+    <!-- <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" /> -->
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/images/iTunesArtwork@1x.png" />
     <meta name="apple-mobile-web-app-title" content="Posifocus Web">
     <meta name="application-name" content="Posifocus Web">
@@ -38,8 +38,8 @@
     <script>
     window.isUpdateAvailable = new Promise(function(resolve, reject) {
       // lazy way of disabling service workers while developing
-      // if ('serviceWorker' in navigator && ['localhost', '127'].indexOf(location.hostname) === -1) {
-      if ('serviceWorker' in navigator) {
+      if ('serviceWorker' in navigator && ['localhost', '127'].indexOf(location.hostname) === -1) {
+      // if ('serviceWorker' in navigator) {
         // register service worker file
         navigator.serviceWorker.register('service_worker.js')
         .then(reg => {

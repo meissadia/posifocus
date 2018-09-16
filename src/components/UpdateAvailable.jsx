@@ -26,12 +26,13 @@ class UpdateAvailable extends React.Component {
         {
           display: 'block',
           visibility: 'visible',
-          backgroundColor: 'rgba(62, 187, 154, 0.8)',
+          color: 'white',
+          backgroundColor: 'rgb(47, 115, 51)',
           height: '25px',
           lineHeight: '25px',
           padding: '5px 0',
           opacity: '1',
-          boxShadow: '0'
+          boxShadow: '0px -125px 125px 50px black'
         }
       )
     }

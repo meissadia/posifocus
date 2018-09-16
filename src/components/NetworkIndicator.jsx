@@ -6,12 +6,13 @@ const NetworkIndicator = (props) => {
     style = {
       display: 'block',
       visibility: 'visible',
+      color: 'white',
       backgroundColor: 'rgba(60, 26, 4, 0.7)',
       height: '25px',
       lineHeight: '25px',
       padding: '5px 0',
       opacity: '1',
-      boxShadow: '0px -125px 125px 50px grey'
+      boxShadow: '0px -125px 125px 50px black'
     }
   }
 

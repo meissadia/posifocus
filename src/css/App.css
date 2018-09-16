@@ -1,4 +1,9 @@
 
+@font-face {
+  font-family: "Raleway";
+  src: url("/fonts/Raleway-Medium.ttf");
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -62,7 +67,9 @@ p {
 .online-status {
   transition: .5s;
   background: rgba(0, 150, 255, 0.8);
-  background: white;
+  color: rgba(0, 150, 255, 0.8);
+  /* background: black;
+  color: black; */
   text-align: center;
   height: 0;
   opacity: 0;
