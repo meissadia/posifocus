@@ -49,6 +49,18 @@ class App extends Component {
   componentDidMount() {
     window.addEventListener('online', () => this.setOnlineStatus(true));
     window.addEventListener('offline', () => this.setOnlineStatus(false));
+    window.applicationCache.onupdateready = (event) => {
+      console.log('Manifest Update!');
+      this.setState({ update: true });
+    }
+    window.applicationCache.onnoupdate = (event) => {
+      console.log('No Manifest Update!');
+      this.setState({ update: false });
+    }
+    window['isUpdateAvailable'].then(isAvailable => {
+      console.log('ServiceWorker Update: ' + isAvailable);
+      this.setState({ update: isAvailable });
+    });
   }
 
   componentWillUnmount() {
@@ -62,9 +74,9 @@ class App extends Component {
     return (
       <AppFrame>
         {/* Sync State with localStorage */}
-        <SimpleStorage parent={this} />
+        <SimpleStorage parent={this}  blacklist={['update']} />
         <NetworkIndicator online={this.state.online} />
-        <UpdateAvailable  online={this.state.online} />
+        <UpdateAvailable  online={this.state.online} update={this.state.update} />
         <Dashboard
           userHeader={this.state.userHeader}
           updateUserHeader={this.updateUserHeader}

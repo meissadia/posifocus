@@ -11,8 +11,7 @@ const NetworkIndicator = (props) => {
       height: '25px',
       lineHeight: '25px',
       padding: '5px 0',
-      opacity: '1',
-      boxShadow: '0px -125px 125px 50px black'
+      opacity: '1'
     }
   }
 

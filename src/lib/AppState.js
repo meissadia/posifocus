@@ -11,7 +11,8 @@ export function initState() {
     tasks: [],
     relationships: [],
     contacts: [],
-    online: true
+    online: true,
+    update: false
   })
 }
 
@@ -100,7 +101,7 @@ export function getContacts(relationship){
 export function saveStateToStorage(allowNewKey = true) {
   let prefix = "";
   let parent = this;
-  let blacklist = [];
+  let blacklist = ['update'];
 
   // loop through all of the parent's state
   for (let key in this.state) {

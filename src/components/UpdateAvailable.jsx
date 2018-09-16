@@ -1,27 +1,8 @@
 import React from 'react';
 
-class UpdateAvailable extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = { update: false }
-  }
-
-  componentDidMount(){
-    this.check();
-  }
-
-  message(){
-    return (this.state.update && this.props.online) ? 'Update Available!' : '';
-  }
-
-  check(){
-    window['isUpdateAvailable'].then(isAvailable => {
-      this.setState({ update: isAvailable });
-    });
-  }
-
-  styles(){
-    if(this.state.update && this.props.online) {
+let UpdateAvailable = (props) => {
+  let styles = () => {
+    if(props.update && props.online) {
       return (
         {
           display: 'block',
@@ -31,21 +12,18 @@ class UpdateAvailable extends React.Component {
           height: '25px',
           lineHeight: '25px',
           padding: '5px 0',
-          opacity: '1',
-          boxShadow: '0px -125px 125px 50px black'
+          opacity: '1'
         }
-      )
+      );
     }
     return {};
   }
 
-  render(){
-    return (
-      <p className='online-status' style={this.styles()}>
-        Update Available: Restart the app to install!
-      </p>
-    )
-  }
+  return (
+    <p className='online-status' style={styles()}>
+      Update Available: Restart the app to install!
+    </p>
+  )
 }
 
 export default UpdateAvailable;
