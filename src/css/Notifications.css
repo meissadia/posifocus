@@ -1,0 +1,28 @@
+.notification {
+  transition: .5s;
+  background: rgba(0, 150, 255, 0.8);
+  color: rgba(0, 150, 255, 0.8);
+  text-align: center;
+  height: 0;
+  opacity: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.notification.show {
+  display: block;
+  visibility: visible;
+  color: white;
+  height: 25px;
+  line-height: 25px;
+  padding: 5px 0;
+  opacity: 1;
+}
+
+.update {
+  background-color: rgb(47, 115, 51);
+}
+
+.offline{
+  background-color: rgba(60, 26, 4, 0.7);
+}

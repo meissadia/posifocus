@@ -63,17 +63,3 @@ p {
 :focus::-webkit-input-placeholder { color:transparent; }
 :focus:-moz-placeholder { color:transparent; }
 :focus::placeholder { color:transparent; }
-
-.online-status {
-  transition: .5s;
-  background: rgba(0, 150, 255, 0.8);
-  color: rgba(0, 150, 255, 0.8);
-  /* background: black;
-  color: black; */
-  text-align: center;
-  height: 0;
-  opacity: 0;
-  padding: 0;
-  margin: 0;
-  box-shadow: 0px -235px 125px 45px grey
-}
