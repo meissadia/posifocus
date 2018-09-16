@@ -24,15 +24,41 @@
     <meta name="apple-mobile-web-app-title" content="Posifocus Web">
     <meta name="application-name" content="Posifocus Web">
     <title>Posifocus Web</title>
+    <style media="screen">
+      .splash {
+        text-align: center;
+        background-image: linear-gradient(rgba(0, 150, 255, 0.8), rgba(62, 187, 154, 0.8));
+        color: white;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: flex-start;
+        font-size: 3em;
+      }
+
+      .splash img {
+        max-width: 400px;
+        margin: 0 auto;
+      }
+
+      .splash p {
+        width: 100%;
+        color: white;
+
+      }
+    </style>
   </head>
   <body style='padding:0; margin:0'>
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
     <div id="root">
-      <div style='text-align: center; background: black; color: white; width: 100%; height: 100vh; display: flex; flex-flow: column nowrap; justify-content: center; align-items: flex-start; font-size: 50px'>
-        <img style='max-width: 400px; margin: 0 auto;' src="%PUBLIC_URL%/images/posifocus-logo.png" alt="Posifocus Text With Target">
-        <p style='width: 100%; color:white;'>&lt; &lt; &lt; LOADING &gt; &gt; &gt;</p>
+      <div class='splash'>
+        <!-- <img src="./images/posifocus-logo.png" alt="Posifocus Text With Target"> -->
+        <img src="%PUBLIC_URL%/images/posifocus-logo.png" alt="Posifocus Text With Target">
+        <p>Live With Purpose</p>
       </div>
     </div>
     <script>
