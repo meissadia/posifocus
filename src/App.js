@@ -1,4 +1,4 @@
-import React, { Component }     from 'react';
+import React, { Component }  from 'react';
 import * as State      from './lib/AppState';
 import AppFrame        from './components/AppFrame';
 import Dashboard       from './components/Dashboard';
@@ -16,8 +16,8 @@ import NewTask         from './components/NewTask';
 import NewRelationship from './components/NewRelationship';
 import NewContact      from './components/NewContact';
 import NetworkIndicator from './components/NetworkIndicator';
-import UpdateAvailable from './components/UpdateAvailable';
-import SimpleStorage   from 'react-simple-storage';
+import UpdateAvailable  from './components/UpdateAvailable';
+import SimpleStorage    from 'react-simple-storage';
 
 import './css/App.css';
 
@@ -61,70 +61,71 @@ class App extends Component {
   render() {
     return (
       <AppFrame>
-        <SimpleStorage parent={this} /> {/* Sync State with localStorage */}
-          <NetworkIndicator online={this.state.online} />
-          <UpdateAvailable  online={this.state.online} />
-          <Dashboard
-            userHeader={this.state.userHeader}
-            updateUserHeader={this.updateUserHeader}
-            gratitudeCount={this.state.gratitudes.length}
-            projectCount={this.state.projects.length}
-            taskCount={this.state.tasks.length}
-            doneTaskCount={this.state.tasks.filter((t) => (t.done)).length}
-            contacts={this.state.contacts}
-            resetState={this.resetState}
-            />
+        {/* Sync State with localStorage */}
+        <SimpleStorage parent={this} />
+        <NetworkIndicator online={this.state.online} />
+        <UpdateAvailable  online={this.state.online} />
+        <Dashboard
+          userHeader={this.state.userHeader}
+          updateUserHeader={this.updateUserHeader}
+          gratitudeCount={this.state.gratitudes.length}
+          projectCount={this.state.projects.length}
+          taskCount={this.state.tasks.length}
+          doneTaskCount={this.state.tasks.filter((t) => (t.done)).length}
+          contacts={this.state.contacts}
+          resetState={this.resetState}
+          />
 
-          <Gratitudes
-            data={this.state.gratitudes}
-            delete={this.deleteFromStateArray}
-            />
+        <Gratitudes
+          data={this.state.gratitudes}
+          delete={this.deleteFromStateArray}
+          />
 
-          <Priorities
-            data={this.state.priorities}
-            delete={this.deletePriority}
-            />
+        <Priorities
+          data={this.state.priorities}
+          delete={this.deletePriority}
+          />
 
-          <Relationships
-            data={this.state.relationships}
-            delete={this.deleteRelationship}
-            />
+        <Relationships
+          data={this.state.relationships}
+          delete={this.deleteRelationship}
+          />
 
-          <Projects
-            getProjects={this.getProjects}
-            getSingle={this.getSingle}
-            delete={this.deleteProject}
-            />
+        <Projects
+          getProjects={this.getProjects}
+          getSingle={this.getSingle}
+          delete={this.deleteProject}
+          />
 
-          <Tasks
-            getSingle={this.getSingle}
-            getTasks={this.getTasks}
-            delete={this.deleteFromStateArray}
-            toggle={this.taskToggle}
-            />
+        <Tasks
+          getSingle={this.getSingle}
+          getTasks={this.getTasks}
+          delete={this.deleteFromStateArray}
+          toggle={this.taskToggle}
+          />
 
-          <Contacts
-            getSingle={this.getSingle}
-            getContacts={this.getContacts}
-            delete={this.deleteFromStateArray}
-            />
+        <Contacts
+          getSingle={this.getSingle}
+          getContacts={this.getContacts}
+          delete={this.deleteFromStateArray}
+          />
 
-          <TodaysTasks
-            data={this.state.tasks.filter((task) => (task.today))}
-            delete={this.deleteFromStateArray}
-            toggle={this.taskToggle}
-            />
+        <TodaysTasks
+          data={this.state.tasks.filter((task) => (task.today))}
+          delete={this.deleteFromStateArray}
+          toggle={this.taskToggle}
+          />
 
-          <NewTask         addHandler={this.addToStateArray} />
-          <NewContact      addHandler={this.addToStateArray} />
-          <NewProject      addHandler={this.addToStateArray} />
-          <NewPriority     addHandler={this.addToStateArray} />
-          <NewGratitude    addHandler={this.addToStateArray} />
-          <NewRelationship addHandler={this.addToStateArray} />
+        <NewTask         addHandler={this.addToStateArray} />
+        <NewContact      addHandler={this.addToStateArray} />
+        <NewProject      addHandler={this.addToStateArray} />
+        <NewPriority     addHandler={this.addToStateArray} />
+        <NewGratitude    addHandler={this.addToStateArray} />
+        <NewRelationship addHandler={this.addToStateArray} />
 
-        </AppFrame>
-      );
-    }
+      </AppFrame>
+    );
   }
+}
 
-  export default App;
+export default App;
