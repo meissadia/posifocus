@@ -30,7 +30,7 @@ class NewRelationship extends React.Component {
 
   render(){
     return (
-      <div className='new-input-wrapper route-transition enter-right exit-right'>
+      <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
         <PageNavigation
           back={['/', 'Dashboard']}
           title='New Relationship'

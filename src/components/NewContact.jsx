@@ -49,7 +49,7 @@ class NewContact extends React.Component {
     }).join('-');
 
     return (
-      <div className='new-input-wrapper route-transition enter-right exit-right'>
+      <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
         <PageNavigation
           back={[this.backLink(this.url), 'Relationships']}
           title='New Contact'

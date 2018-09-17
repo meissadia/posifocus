@@ -2,7 +2,7 @@
   position: absolute;
   top: 30;
   width: 100vw;
-  transition: .5s ease-in;
+  transition: .25s ease-in-out;
 }
 
 .enter-left.route-transition-enter {
@@ -16,12 +16,12 @@
 }
 
 .exit-left.route-transition-exit {
-  left: 0;
+  /* left: 0; */
   opacity: 1;
 }
 
 .exit-left.route-transition-exit-active {
-  left: -100vw;
+  /* left: -100vw; */
   opacity: 0;
 }
 
@@ -36,14 +36,36 @@
 }
 
 .exit-right.route-transition-exit {
-  right: 0;
+  /* right: 0; */
   opacity: 1;
 }
 
 .exit-right.route-transition-exit-active {
-  right: -100vw;
+  /* right: -100vw; */
   opacity: 0;
 }
+
+.enter-bottom.route-transition-enter {
+  top: 100vw;
+  opacity: 0;
+}
+
+.enter-bottom.route-transition-enter-active {
+  top: 75px;
+  opacity: 1;
+}
+
+.exit-bottom.route-transition-exit {
+  top: 75px;
+  opacity: 1;
+}
+
+.exit-bottom.route-transition-exit-active {
+  top: 100vw;
+  opacity: 0;
+}
+
+
 
 .test-animation {
   height: 300px;

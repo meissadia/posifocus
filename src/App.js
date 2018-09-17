@@ -98,7 +98,7 @@ class App extends Component {
                 <CSSTransition
                   key={location.key}
                   classNames='route-transition'
-                  timeout={500}
+                  timeout={250}
                   >
                   <Switch location={location}>
                     <Route exact path='/(index.html)?' render={() => (

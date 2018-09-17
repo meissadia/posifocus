@@ -42,7 +42,7 @@ class NewGratitude extends React.Component {
     }).join('-');
 
     return (
-      <div className='new-input-wrapper route-transition enter-right exit-right'>
+      <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
         <PageNavigation
           back={['/', 'Dashboard']}
           title='New Gratitude'

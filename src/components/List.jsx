@@ -10,7 +10,7 @@ const List = (props) => (
       <TransitionGroup>
         { props.data.map((item, index) => (
           <CSSTransition
-            timeout={500}
+            timeout={250}
             classNames='list-item'
             key={`${item.id}`}
             >
@@ -25,7 +25,7 @@ const List = (props) => (
           </CSSTransition>
         ))}
         <CSSTransition
-          timeout={500}
+          timeout={250}
           classNames='list-item'
           key='instructions'
           >

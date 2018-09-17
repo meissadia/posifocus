@@ -2,6 +2,7 @@ import React        from 'react';
 import UserHeader   from './UserHeader';
 import StatBar      from './StatBar';
 import MainMenu     from './MainMenu';
+import Version      from './Version'
 
 export default function Dashboard(props){
   return (
@@ -20,7 +21,7 @@ export default function Dashboard(props){
         projectCount={props.projectCount}
         taskCount={props.taskCount}
         />
-      <div id='app-version'>Version 0.0.1</div>
+      <Version />
     </div>
   )
 }

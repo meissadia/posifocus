@@ -85,7 +85,7 @@
 /* Animate List Items */
 
 .list-item {
-  transition: 500ms ease-in;
+  transition: 250ms ease-in;
   position: relative;
 }
 
