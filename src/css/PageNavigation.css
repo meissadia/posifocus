@@ -1,7 +1,7 @@
 .controls {
   justify-content: space-evenly;
   align-items: center;
-  background: rgba(0, 150, 255, 1);
+  background: linear-gradient(rgba(0, 150, 255, 1), transparent);
   height: 50px;
 }
 

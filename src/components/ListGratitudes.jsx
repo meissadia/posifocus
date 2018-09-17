@@ -20,6 +20,7 @@ function Gratitudes(props) {
         data={props.data}
         delete={deleteGratitude}
         location={props.location}
+        bgList='rgba(0, 150, 255, 0.8)'
         >
         <PageNavigation
           back={['/', 'Dashboard']}

@@ -44,6 +44,7 @@ let Tasks = (props) => {
         toggle={props.toggle}
         match={match}
         location={props.location}
+        bgList='rgba(13,104,154,1)'
         >
         <PageNavigation
           back={[navBackLink(match), navBackText(priority)]}

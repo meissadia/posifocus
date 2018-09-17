@@ -21,6 +21,7 @@ let Relationships = (props) => {
         delete={deleteRelationship}
         makeLink={(item) => (`/relationship/${item.id}/contacts`)}
         location={props.location}
+        bgList='rgba(31,164,200,.8)'
         >
         <PageNavigation
           back={['/', 'Dashboard']}

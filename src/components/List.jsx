@@ -10,8 +10,17 @@ let enterDirection = (props) => {
   return props.className + ' ' + direction;
 }
 
+let style = (props) => {
+  return {
+    background: props.bgList
+  }
+}
+
 const List = (props) => (
-  <div className={'list-wrapper ' + enterDirection(props) }>
+  <div
+    className={'list-wrapper ' + enterDirection(props)}
+    style={style(props)}
+    >
     {props.children} {/* Page Navigation */}
     <ul className='item-list'>
       <TransitionGroup>
@@ -23,11 +32,13 @@ const List = (props) => (
             >
             <ListItem
               item={item}
+              index={index}
               delete={props.delete}
               toggle={props.toggle}
               link={props.link}
               makeLink={props.makeLink}
               match={props.match}
+              bgColor={props.bgItem}
               />
           </CSSTransition>
         ))}

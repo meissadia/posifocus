@@ -67,7 +67,7 @@ export function taskToggle(event){
   let task_id = event.target.attributes.name.value;
   let task = this.getSingle('tasks', task_id);
 
-  let attr = event.target.id;
+  let attr = event.target.id.split('_')[0];
   task[attr] = event.target.checked;
 
   let index = this.state.tasks.findIndex((e, idx) => (e.id === task_id));

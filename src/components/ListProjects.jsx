@@ -31,6 +31,7 @@ let Projects = (props) => {
         makeLink={(item, match) => (`${match.url.slice(0,-1)}/${item.id}/tasks`)}
         match={match}
         location={props.location}
+        bgList='rgba(13,125,183,1)'
         >
         <PageNavigation
           back={['/priorities', 'Priorities']}

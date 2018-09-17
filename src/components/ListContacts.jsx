@@ -34,6 +34,7 @@ let Contacts = (props) => {
         toggle={props.toggle}
         match={props.match}
         location={props.location}
+        bgList='rgba(24,129,165,.8)'
         >
         <PageNavigation
           back={['/relationships', 'Relationships']}

@@ -21,6 +21,7 @@ let TodaysTasks = (props) => {
         delete={deleteTask}
         toggle={props.toggle}
         location={props.location}
+        bgList='rgba(43, 170, 177, 0.8)'
         >
         <PageNavigation
           back={['/', 'Dashboard']}

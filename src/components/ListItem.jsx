@@ -10,7 +10,7 @@ function ListItem(props) {
   if(props.item.done) { cname += ' done'};
   let item_link = props.link || (props.makeLink && props.makeLink(item, match));
   return (
-    <li className={cname} >
+    <li className={cname} style={style(props)}>
       <ItemField target={'title'} item={item} link={item_link}/>
       <ItemField target={'content'} item={item} />
       <ToggleItem
@@ -26,7 +26,7 @@ function ListItem(props) {
         toggle={props.toggle}
         />
       <div className='list-item-actions'>
-        <ListIcon name='edit' href='#' id={item.id} alt='Pencil' src='/images/edit-icon.png'/>
+        <ListIcon name='edit' href='#' id={item.id} alt='Pencil' src='/images/edit-icon.png' onclick={(event) => {event.preventDefault()}}/>
         <ListIcon name='delete' onclick={props.delete} id={item.id} alt='Trashcan' src='/images/delete-icon.png'/>
       </div>
       <DateField date={item.date} />
@@ -61,6 +61,13 @@ function DateField(props) {
       {formatDate(props.date)}
     </div>
   )
+}
+
+function style(props){
+  return {
+    background: props.bgColor,
+    // opacity: (1 - (1 - props.index))/10
+  }
 }
 
 export default ListItem;

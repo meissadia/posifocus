@@ -21,6 +21,7 @@ function Priorities(props) {
         delete={deletePriority}
         makeLink={(item, match) => (`/priority/${item.id}/projects`)}
         location={props.location}
+        bgList='rgba(16,156,227.8)'
         >
         <PageNavigation
           back={['/', 'Dashboard']}

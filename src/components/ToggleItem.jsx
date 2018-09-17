@@ -5,15 +5,16 @@ import '../css/ReactToggle.css';
 export default function ToggleItem(props) {
   let value = props.item[props.target];
   if(value == null) { return null };
+  let key = props.target + '_' + props.item.id;
   return(
     <div className='toggle-item'>
       <Toggle
-        id={props.target}
+        id={key}
         name={props.item.id}
         defaultChecked={value}
         onChange={props.toggle}
         />
-      <label htmlFor={props.target}>
+      <label htmlFor={key}>
         {props.label}
       </label>
     </div>
