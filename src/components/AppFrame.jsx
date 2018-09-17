@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 const AppFrame = (props) => {
   return (
     <div className='App'>
-      <header>
+      <header id='header'>
         <NavLink to='/' prefetch='true'>
           <img className='app-logo'
             src='/images/posifocus-logo.png'

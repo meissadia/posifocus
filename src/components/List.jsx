@@ -16,10 +16,18 @@ let style = (props) => {
   }
 }
 
+let setHeader = (props) => {
+  console.log('SET HEADER');
+  console.log(style(props).background);
+  let header = document.getElementById('header');
+  header.style.background = style(props).background || 'white';
+}
+
 const List = (props) => (
   <div
     className={'list-wrapper ' + enterDirection(props)}
     style={style(props)}
+    onLoad={setHeader.bind(this, props)}
     >
     {props.children} {/* Page Navigation */}
     <ul className='item-list'>

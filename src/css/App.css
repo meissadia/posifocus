@@ -14,6 +14,7 @@ header {
   width: 100%;
   padding-top: 25px;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
+  transition: .5s;
 }
 
 a { text-decoration: none; }
@@ -43,15 +44,15 @@ a { text-decoration: none; }
 }
 
 ::-webkit-input-placeholder { /* Chrome */
-  color: black;
+  color: white;
 }
 
 ::-moz-placeholder { /* Firefox 19+ */
-  color: black;
+  color: white;
   opacity: 1;
 }
 :-moz-placeholder { /* Firefox 4 - 18 */
-  color: black;
+  color: white;
   opacity: 1;
 }
 

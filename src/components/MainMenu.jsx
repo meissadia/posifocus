@@ -3,9 +3,14 @@ import MenuItem     from './MenuItem'
 import Submenu      from './MenuSubmenu'
 import '../css/MainMenu.css';
 
+let resetHeader = (color) => {
+  let header = document.getElementById('header');
+  header.style.background = 'rgba(0, 150, 255, 1)';
+}
+
 let MainMenu = (props) => {
   return (
-    <div id='main-menu'>
+    <div id='main-menu' onLoad={resetHeader}>
       <MenuItem
         icon='images/gratitudes@2x.png'
         title='Gratitudes'

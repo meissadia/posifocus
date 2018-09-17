@@ -49,3 +49,7 @@
   width: 150px;
   margin-left: 10px;
 }
+
+.new-input-wrapper .controls {
+  background: rgba(0, 150, 255, 1);
+}

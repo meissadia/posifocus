@@ -4,7 +4,7 @@
 
 .list-wrapper{
   padding-bottom: 10px;
-  /* background: rgba(3, 116, 214, .7); */
+  min-height: calc(100vh - 85px);
 }
 
 .item-list {

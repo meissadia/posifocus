@@ -12,6 +12,11 @@ class NewProject extends React.Component {
     this.url = this.props.match.url;
   }
 
+  componentDidMount(){
+    let header = document.getElementById('header');
+    header.style.background = 'rgba(0, 150, 255, 1)';
+  }
+
   handleAddProject(event){
     event.preventDefault();
     let date = new Date();
