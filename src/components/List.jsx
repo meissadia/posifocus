@@ -4,7 +4,7 @@ import ListItem       from './ListItem';
 import {TransitionGroup, CSSTransition} from 'react-transition-group';
 
 const List = (props) => (
-  <div className='list-wrapper'>
+  <div className={'list-wrapper ' + props.className}>
     {props.children} {/* Page Navigation */}
     <ul className='item-list'>
       <TransitionGroup>
@@ -25,7 +25,7 @@ const List = (props) => (
           </CSSTransition>
         ))}
         <CSSTransition
-          timeout={1000}
+          timeout={500}
           classNames='list-item'
           key='instructions'
           >

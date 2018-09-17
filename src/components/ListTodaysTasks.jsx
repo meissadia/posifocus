@@ -1,5 +1,4 @@
 import React          from 'react';
-import { Route }      from 'react-router-dom';
 import PageNavigation from './PageNavigation';
 import List           from './List';
 import '../css/ListViews.css'
@@ -13,22 +12,20 @@ let TodaysTasks = (props) => {
   }
 
   return (
-    <Route path='/tasks/today' render={() => (
-        <List section='tasks'
-          instructions={{
-            display: showInstructions,
-            icon: '/images/tasks-instructions-tableview.png' }}
-            data={props.data}
-            delete={deleteTask}
-            toggle={props.toggle}
-            >
-            <PageNavigation
-              back={['/', 'Dashboard']}
-              title="Today's Tasks"
-              />
-          </List>
-        )
-      } />
+    <List section='tasks'
+      className='route-transition enter-right exit-right'
+      instructions={{
+        display: showInstructions,
+        icon: '/images/tasks-instructions-tableview.png' }}
+        data={props.data}
+        delete={deleteTask}
+        toggle={props.toggle}
+        >
+        <PageNavigation
+          back={['/', 'Dashboard']}
+          title="Today's Tasks"
+          />
+      </List>
     )
   }
 

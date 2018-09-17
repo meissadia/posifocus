@@ -1,5 +1,4 @@
 import React          from 'react';
-import { Route }      from 'react-router-dom';
 import PageNavigation from './PageNavigation';
 import List           from './List';
 import '../css/ListViews.css'
@@ -13,24 +12,21 @@ function Gratitudes(props) {
   }
 
   return (
-    <Route exact path='/gratitudes' render={ () => (
-        <List section='gratitudes'
-          instructions={{
-            display: showInstructions,
-            icon: '/images/gratitudes-instructions-tableview.png' }}
-          data={props.data}
-          delete={deleteGratitude}
-          >
-          <PageNavigation
-            back={['/', 'Dashboard']}
-            title='Gratitudes'
-            add={['/gratitudes/new']}
-            />
-        </List>
-      )
-    }
-    />
-  )
-}
+    <List section='gratitudes'
+      className='route-transition enter-right exit-right'
+      instructions={{
+        display: showInstructions,
+        icon: '/images/gratitudes-instructions-tableview.png' }}
+        data={props.data}
+        delete={deleteGratitude}
+        >
+        <PageNavigation
+          back={['/', 'Dashboard']}
+          title='Gratitudes'
+          add={['/gratitudes/new']}
+          />
+      </List>
+    )
+  }
 
-export default Gratitudes;
+  export default Gratitudes;

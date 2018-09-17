@@ -1,5 +1,4 @@
 import React          from 'react';
-import { Route }      from 'react-router-dom';
 import PageNavigation from './PageNavigation';
 import List           from './List';
 import '../css/ListViews.css'
@@ -26,32 +25,31 @@ let Tasks = (props) => {
     return match.url.split('/').slice(0,-2).join('/') + 's'
   }
 
-  return (
-    <Route exact path='/priority/:priority_id/project/:project_id/tasks'
-      render={({match}) => {
-        let project = props.getSingle('projects', match.params.project_id);
-        let priority = project && props.getSingle('priorities', project.priority)
-        let tasks = props.getTasks(match.params.project_id);
-        let showInstructions = tasks.length === 0;
+  let match = props.match;
+  let url = match.url;
+  let params = match.params;
+  let project = props.getSingle('projects', params.project_id);
+  let priority = project && props.getSingle('priorities', project.priority)
+  let tasks = props.getTasks(params.project_id);
+  let showInstructions = tasks.length === 0;
 
-        return (
-          <List section='tasks'
-            data={tasks}
-            instructions={{
-              display: showInstructions,
-              icon: '/images/tasks-instructions-tableview.png' }}
-            delete={deleteTask}
-            toggle={props.toggle}
-            match={match}
-            >
-            <PageNavigation
-              back={[navBackLink(match), navBackText(priority)]}
-              title={navTitle(project)}
-              add={[`${match.url}/new`]}
-              />
-          </List>
-        )
-      }} />
+  return (
+    <List section='tasks'
+      className='route-transition enter-right exit-right'
+      data={tasks}
+      instructions={{
+        display: showInstructions,
+        icon: '/images/tasks-instructions-tableview.png' }}
+        delete={deleteTask}
+        toggle={props.toggle}
+        match={match}
+        >
+        <PageNavigation
+          back={[navBackLink(match), navBackText(priority)]}
+          title={navTitle(project)}
+          add={[`${url}/new`]}
+          />
+      </List>
     )
   }
 

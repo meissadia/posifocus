@@ -44,6 +44,16 @@ p {
   width: 150px;
 }
 
+#app-version {
+  color: white;
+  font-size: 14px;
+  width: 100%;
+  font-family: Times;
+  font-weight: lighter;
+  text-align: center;
+  padding: 10px 0;
+}
+
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: white;
     opacity: 1; /* Firefox */

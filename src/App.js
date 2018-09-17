@@ -1,4 +1,9 @@
 import React, { Component }  from 'react';
+import {
+  TransitionGroup,
+  CSSTransition
+} from 'react-transition-group';
+import { Route, Switch }       from 'react-router-dom';
 import * as State      from './lib/AppState';
 import AppFrame        from './components/AppFrame';
 import Dashboard       from './components/Dashboard';
@@ -19,6 +24,7 @@ import NotificationBar from './components/notifications/NotificationBar';
 import SimpleStorage    from 'react-simple-storage';
 
 import './css/App.css';
+import './css/RouteTransitions.css';
 
 class App extends Component {
   constructor(props) {
@@ -54,7 +60,7 @@ class App extends Component {
 
   onManifestUpdateReady(){
     window.applicationCache.onupdateready = (event) => {
-      console.log('Manifest Update!');
+      console.log('Cache Manifest Update!');
       this.setState({ update: true });
     }
   }
@@ -76,6 +82,7 @@ class App extends Component {
   render() {
     return (
       <AppFrame>
+
         {/* Sync State with localStorage */}
         <SimpleStorage parent={this}  blacklist={['update']} />
 
@@ -84,67 +91,145 @@ class App extends Component {
           update={this.state.update}
           />
 
-        <Dashboard
-          userHeader={this.state.userHeader}
-          updateUserHeader={this.updateUserHeader}
-          gratitudeCount={this.state.gratitudes.length}
-          projectCount={this.state.projects.length}
-          taskCount={this.state.tasks.length}
-          doneTaskCount={this.state.tasks.filter((t) => (t.done)).length}
-          contacts={this.state.contacts}
-          resetState={this.resetState}
-          />
-
-        <Gratitudes
-          data={this.state.gratitudes}
-          delete={this.deleteFromStateArray}
-          />
-
-        <Priorities
-          data={this.state.priorities}
-          delete={this.deletePriority}
-          />
-
-        <Relationships
-          data={this.state.relationships}
-          delete={this.deleteRelationship}
-          />
-
-        <Projects
-          getProjects={this.getProjects}
-          getSingle={this.getSingle}
-          delete={this.deleteProject}
-          />
-
-        <Tasks
-          getSingle={this.getSingle}
-          getTasks={this.getTasks}
-          delete={this.deleteFromStateArray}
-          toggle={this.taskToggle}
-          />
-
-        <Contacts
-          getSingle={this.getSingle}
-          getContacts={this.getContacts}
-          delete={this.deleteFromStateArray}
-          />
-
-        <TodaysTasks
-          data={this.state.tasks.filter((task) => (task.today))}
-          delete={this.deleteFromStateArray}
-          toggle={this.taskToggle}
-          />
-
-        <NewTask         addHandler={this.addToStateArray} />
-        <NewContact      addHandler={this.addToStateArray} />
-        <NewProject      addHandler={this.addToStateArray} />
-        <NewPriority     addHandler={this.addToStateArray} />
-        <NewGratitude    addHandler={this.addToStateArray} />
-        <NewRelationship addHandler={this.addToStateArray} />
-
-      </AppFrame>
-    );
-  }
+        {/* Wrapper for Route Transition Animations */}
+        <Route render={({ location }) => {
+            return (
+              <TransitionGroup>
+                <CSSTransition
+                  key={location.key}
+                  classNames='route-transition'
+                  timeout={500}
+                  >
+                  <Switch location={location}>
+                    <Route exact path='/(index.html)?' render={() => (
+                        <Dashboard
+                          userHeader={this.state.userHeader}
+                          updateUserHeader={this.updateUserHeader}
+                          gratitudeCount={this.state.gratitudes.length}
+                          projectCount={this.state.projects.length}
+                          taskCount={this.state.tasks.length}
+                          doneTaskCount={this.state.tasks.filter((t) => (t.done)).length}
+                          contacts={this.state.contacts}
+                          resetState={this.resetState}
+                          />
+                      )}
+                      />
+                    <Route exact path='/gratitudes' render={ () => (
+                        <Gratitudes
+                          data={this.state.gratitudes}
+                          delete={this.deleteFromStateArray}
+                          />
+                      )}
+                      />
+                    <Route exact path='/priorities' render={() => (
+                        <Priorities
+                          data={this.state.priorities}
+                          delete={this.deletePriority}
+                          />
+                      )}
+                      />
+                    <Route exact path='/relationships' render={() => (
+                        <Relationships
+                          data={this.state.relationships}
+                          delete={this.deleteRelationship}
+                          />
+                      )}
+                      />
+                    <Route exact path='/tasks/today' render={() => (
+                        <TodaysTasks
+                          data={this.state.tasks.filter((task) => (task.today))}
+                          delete={this.deleteFromStateArray}
+                          toggle={this.taskToggle}
+                          />
+                      )}
+                      />
+                    <Route exact path='/priority/:priority_id/projects'
+                      render={({match}) => (
+                        <Projects
+                          getProjects={this.getProjects}
+                          getSingle={this.getSingle}
+                          delete={this.deleteProject}
+                          match={match}
+                          />
+                      )}
+                      />
+                    <Route exact path='/relationship/:relationship_id/contacts'
+                      render={ ({match}) => (
+                        <Contacts
+                          getSingle={this.getSingle}
+                          getContacts={this.getContacts}
+                          delete={this.deleteFromStateArray}
+                          match={match}
+                          />
+                      )}
+                      />
+                    <Route exact path='/priority/:priority_id/project/:project_id/tasks/new'
+                      render={({ match }) => (
+                        <NewTask
+                          addHandler={this.addToStateArray}
+                          match={match}
+                          />
+                      )}
+                      />
+                    <Route exact path='/relationship/:relationship_id/contacts/new'
+                      render={({ match }) => (
+                        <NewContact
+                          addHandler={this.addToStateArray}
+                          match={match}
+                          />
+                      )}
+                      />
+                    <Route exact path='/priority/:priority_id/projects/new'
+                      render={({ match }) => (
+                        <NewProject
+                          addHandler={this.addToStateArray}
+                          match={match}
+                          />
+                      )}
+                      />
+                    <Route exact path='/priority/:priority_id/project/:project_id/tasks'
+                      render={({match}) => (
+                        <Tasks
+                          getSingle={this.getSingle}
+                          getTasks={this.getTasks}
+                          delete={this.deleteFromStateArray}
+                          toggle={this.taskToggle}
+                          match={match}
+                          />
+                      )}
+                      />
+                    <Route exact path='/priorities/new'
+                      render={({ match }) => (
+                        <NewPriority
+                          addHandler={this.addToStateArray}
+                          />
+                      )}
+                      />
+                    <Route exact path='/gratitudes/new'
+                      render={({ match }) => (
+                        <NewGratitude
+                          addHandler={this.addToStateArray}
+                          />
+                      )}
+                      />
+                    <Route exact path='/relationships/new'
+                      render={({ match }) => (
+                        <NewRelationship
+                          addHandler={this.addToStateArray}
+                          />
+                      )}
+                      />
+                  </Switch>
+                </CSSTransition>
+              </TransitionGroup>
+            )
+          }
+        }
+        />
+    </AppFrame>
+  );
 }
+}
+
 
 export default App;

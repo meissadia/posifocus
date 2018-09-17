@@ -2,8 +2,6 @@ import React                from 'react';
 import { withRouter } from 'react-router-dom';
 import Toggle               from 'react-toggle';
 import PageNavigation       from './PageNavigation';
-import { Route }  from 'react-router-dom';
-
 import '../css/FormView.css';
 import '../css/ReactToggle.css';
 
@@ -13,6 +11,7 @@ class NewTask extends React.Component {
     super(props);
     this.handleAddTask = this.handleAddTask.bind(this);
     this.params = this.props.match.params;
+    this.url = this.props.match.url;
   }
 
   handleAddTask(event){
@@ -43,41 +42,36 @@ class NewTask extends React.Component {
 
   render(){
     return (
-      <Route path='/priority/:priority_id/project/:project_id/tasks/new'
-        render={({match}) => {
-          return (
-            <div className='new-input-wrapper'>
-              <PageNavigation
-                back={[this.backLink(match.url), 'Projects']}
-                title='New Task'
-                add={[this.cancelLink(match.url), '< Cancel >']}
-                />
-              <form name='gform' className='g-form' onSubmit={this.handleAddTask}>
-                <label htmlFor="title">
-                  What Task Must Be Done to Complete this Project?
-                </label>
-                <input
-                  type="text"
-                  name="title"
-                  autoComplete="off"
-                  placeholder="Send Party Invite..."
-                  />
-                <label className='flex row form-toggle' htmlFor="today">
-                  <Toggle
-                    id='today'
-                    defaultChecked={false} />
-                  <span>On Today's Task List?</span>
-                </label>
-                <input name="priority" value={match.params.priority_id} hidden readOnly/>
-                <input name="project" value={match.params.project_id} hidden readOnly/>
-                <input name="url" value={match.url} hidden readOnly/>
-                <input id='submit-button' type="submit" name="submit" value="Save" />
-              </form>
-            </div>
-          )
-        }} />
-      )
-    }
+      <div className='new-input-wrapper route-transition enter-right exit-right'>
+        <PageNavigation
+          back={[this.backLink(this.url), 'Projects']}
+          title='New Task'
+          add={[this.cancelLink(this.url), '< Cancel >']}
+          />
+        <form name='gform' className='g-form' onSubmit={this.handleAddTask}>
+          <label htmlFor="title">
+            What Task Must Be Done to Complete this Project?
+          </label>
+          <input
+            type="text"
+            name="title"
+            autoComplete="off"
+            placeholder="Send Party Invite..."
+            />
+          <label className='flex row form-toggle' htmlFor="today">
+            <Toggle
+              id='today'
+              defaultChecked={false} />
+            <span>On Today's Task List?</span>
+          </label>
+          <input name="priority" value={this.params.priority_id} hidden readOnly/>
+          <input name="project" value={this.params.project_id} hidden readOnly/>
+          <input name="url" value={this.url} hidden readOnly/>
+          <input id='submit-button' type="submit" name="submit" value="Save" />
+        </form>
+      </div>
+    )
   }
+}
 
   export default withRouter(NewTask);

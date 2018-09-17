@@ -1,5 +1,4 @@
 import React          from 'react';
-import { Route }      from 'react-router-dom';
 import PageNavigation from './PageNavigation';
 import List           from './List';
 import '../css/ListViews.css'
@@ -13,22 +12,21 @@ let Relationships = (props) => {
   }
 
   return (
-    <Route exact path='/relationships' render={() => (
-        <List section='relationships'
-          instructions={{
-            display: showInstructions,
-            icon: '/images/relationships-instructions-tableview.png' }}
-          data={props.data}
-          delete={deleteRelationship}
-          makeLink={(item) => (`/relationship/${item.id}/contacts`)}
-          >
-          <PageNavigation
-            back={['/', 'Dashboard']}
-            title='Relationships'
-            add={['/relationships/new']}
-            />
-        </List>
-      )} />
+    <List section='relationships'
+      className='route-transition enter-right exit-right'
+      instructions={{
+        display: showInstructions,
+        icon: '/images/relationships-instructions-tableview.png' }}
+        data={props.data}
+        delete={deleteRelationship}
+        makeLink={(item) => (`/relationship/${item.id}/contacts`)}
+        >
+        <PageNavigation
+          back={['/', 'Dashboard']}
+          title='Relationships'
+          add={['/relationships/new']}
+          />
+      </List>
     )
   }
 

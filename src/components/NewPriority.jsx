@@ -1,8 +1,6 @@
 import React                from 'react';
 import { withRouter } from 'react-router-dom';
 import PageNavigation       from './PageNavigation';
-import { Route }  from 'react-router-dom';
-
 import '../css/FormView.css';
 
 
@@ -32,9 +30,7 @@ class NewPriority extends React.Component {
 
   render(){
     return (
-      <Route path='/priorities/new' render={() => (
-
-      <div className='new-input-wrapper'>
+      <div className='new-input-wrapper route-transition enter-right exit-right'>
         <PageNavigation
           back={['/', 'Dashboard']}
           title='New Priority'
@@ -55,9 +51,6 @@ class NewPriority extends React.Component {
       </div>
     )
   }
-  />
-)
-}
 }
 
 export default withRouter(NewPriority);

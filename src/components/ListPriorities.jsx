@@ -1,5 +1,4 @@
 import React          from 'react';
-import { Route }      from 'react-router-dom';
 import PageNavigation from './PageNavigation';
 import List           from './List';
 import '../css/ListViews.css'
@@ -13,11 +12,11 @@ function Priorities(props) {
   }
 
   return (
-    <Route exact path='/priorities' render={() => (
-      <List section='relationships'
-        instructions={{
-          display: showInstructions,
-          icon: '/images/priorities-instructions-tableview.png' }}
+    <List section='relationships'
+      className='route-transition enter-right exit-right'
+      instructions={{
+        display: showInstructions,
+        icon: '/images/priorities-instructions-tableview.png' }}
         data={props.data}
         delete={deletePriority}
         makeLink={(item, match) => (`/priority/${item.id}/projects`)}
@@ -28,7 +27,6 @@ function Priorities(props) {
           add={['/priorities/new']}
           />
       </List>
-      )}/>
     )
   }
 

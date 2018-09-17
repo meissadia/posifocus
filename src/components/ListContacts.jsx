@@ -1,5 +1,4 @@
 import React          from 'react';
-import { Route }      from 'react-router-dom';
 import PageNavigation from './PageNavigation';
 import List           from './List';
 import '../css/ListViews.css'
@@ -20,31 +19,27 @@ let Contacts = (props) => {
     return match.url + '/new'
   }
 
-  return (
-    <Route exact path='/relationship/:relationship_id/contacts'
-      render={ ({match}) => {
-        let relationship = props.getSingle('relationships', match.params.relationship_id);
-        let contacts = props.getContacts(relationship);
-        let showInstructions = contacts.length === 0;
+  let relationship = props.getSingle('relationships', props.match.params.relationship_id);
+  let contacts = props.getContacts(relationship);
+  let showInstructions = contacts.length === 0;
 
-        return (
-          <List section='contacts'
-            instructions={{
-              display: showInstructions,
-              icon: '/images/contacts-instructions-tableview.png' }}
-            data={contacts}
-            delete={deleteContact}
-            toggle={props.toggle}
-            match={match}
-            >
-            <PageNavigation
-              back={['/relationships', 'Relationships']}
-              title={navTitle(relationship)}
-              add={[addLink(match)]}
-              />
-          </List>
-        )
-      }} />
+  return (
+    <List section='contacts'
+      className='route-transition enter-right exit-right'
+      instructions={{
+        display: showInstructions,
+        icon: '/images/contacts-instructions-tableview.png' }}
+        data={contacts}
+        delete={deleteContact}
+        toggle={props.toggle}
+        match={props.match}
+        >
+        <PageNavigation
+          back={['/relationships', 'Relationships']}
+          title={navTitle(relationship)}
+          add={[addLink(props.match)]}
+          />
+      </List>
     )
   }
 

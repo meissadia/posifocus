@@ -1,28 +1,26 @@
-import React      from 'react';
-import UserHeader from './UserHeader';
-import StatBar    from './StatBar';
-import MainMenu   from './MainMenu';
-import { Route }  from 'react-router-dom';
+import React        from 'react';
+import UserHeader   from './UserHeader';
+import StatBar      from './StatBar';
+import MainMenu     from './MainMenu';
 
 export default function Dashboard(props){
   return (
-    <Route exact path='/(index.html)?' render={ () => (
-        <div>
-          <UserHeader
-            data={props.userHeader}
-            updateUserHeader={props.updateUserHeader}
-            />
-          <StatBar
-            gratitudeCount={props.gratitudeCount}
-            contacts={props.contacts}
-            doneTaskCount={props.doneTaskCount}
-            />
-          <MainMenu
-            reset={props.resetState}
-            projectCount={props.projectCount}
-            taskCount={props.taskCount}
-            />
-        </div>
-      )} />
+    <div className='route-transition enter-left exit-left'>
+      <UserHeader
+        data={props.userHeader}
+        updateUserHeader={props.updateUserHeader}
+        />
+      <StatBar
+        gratitudeCount={props.gratitudeCount}
+        contacts={props.contacts}
+        doneTaskCount={props.doneTaskCount}
+        />
+      <MainMenu
+        reset={props.resetState}
+        projectCount={props.projectCount}
+        taskCount={props.taskCount}
+        />
+      <div id='app-version'>Version 0.0.1</div>
+    </div>
   )
 }
