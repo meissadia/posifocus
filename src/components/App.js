@@ -4,27 +4,28 @@ import {
   CSSTransition
 } from 'react-transition-group';
 import { Route, Switch }       from 'react-router-dom';
-import * as State      from './lib/AppState';
-import AppFrame        from './components/AppFrame';
-import Dashboard       from './components/Dashboard';
-import Gratitudes      from './components/ListGratitudes';
-import Priorities      from './components/ListPriorities';
-import Projects        from './components/ListProjects';
-import Tasks           from './components/ListTasks';
-import Relationships   from './components/ListRelationships';
-import Contacts        from './components/ListContacts';
-import TodaysTasks     from './components/ListTodaysTasks';
-import NewGratitude    from './components/NewGratitude';
-import NewPriority     from './components/NewPriority';
-import NewProject      from './components/NewProject';
-import NewTask         from './components/NewTask';
-import NewRelationship from './components/NewRelationship';
-import NewContact      from './components/NewContact';
-import NotificationBar from './components/notifications/NotificationBar';
+import * as State      from '../lib/AppState';
+import AppFrame        from './AppFrame';
+import Dashboard       from './Dashboard';
+import Gratitudes      from './ListGratitudes';
+import Priorities      from './ListPriorities';
+import Projects        from './ListProjects';
+import Tasks           from './ListTasks';
+import Relationships   from './ListRelationships';
+import Contacts        from './ListContacts';
+import TodaysTasks     from './ListTodaysTasks';
+import NewGratitude    from './NewGratitude';
+import NewPriority     from './NewPriority';
+import NewProject      from './NewProject';
+import NewTask         from './NewTask';
+import NewRelationship from './NewRelationship';
+import NewContact      from './NewContact';
+import NotificationBar from './notifications/NotificationBar';
 import SimpleStorage    from 'react-simple-storage';
 
-import './css/App.css';
-import './css/RouteTransitions.css';
+import '../css/Reset.css';
+import '../css/App.css';
+import '../css/RouteTransitions.css';
 
 class App extends Component {
   constructor(props) {
@@ -89,6 +90,7 @@ class App extends Component {
         <NotificationBar
           online={this.state.online}
           update={this.state.update}
+          autoUpdate={true}
           />
 
         {/* Wrapper for Route Transition Animations */}
@@ -118,6 +120,7 @@ class App extends Component {
                         <Gratitudes
                           data={this.state.gratitudes}
                           delete={this.deleteFromStateArray}
+                          location={location}
                           />
                       )}
                       />
@@ -125,6 +128,7 @@ class App extends Component {
                         <Priorities
                           data={this.state.priorities}
                           delete={this.deletePriority}
+                          location={location}
                           />
                       )}
                       />
@@ -132,6 +136,7 @@ class App extends Component {
                         <Relationships
                           data={this.state.relationships}
                           delete={this.deleteRelationship}
+                          location={location}
                           />
                       )}
                       />
@@ -140,6 +145,7 @@ class App extends Component {
                           data={this.state.tasks.filter((task) => (task.today))}
                           delete={this.deleteFromStateArray}
                           toggle={this.taskToggle}
+                          location={location}
                           />
                       )}
                       />
@@ -150,6 +156,7 @@ class App extends Component {
                           getSingle={this.getSingle}
                           delete={this.deleteProject}
                           match={match}
+                          location={location}
                           />
                       )}
                       />
@@ -160,6 +167,7 @@ class App extends Component {
                           getContacts={this.getContacts}
                           delete={this.deleteFromStateArray}
                           match={match}
+                          location={location}
                           />
                       )}
                       />
@@ -195,6 +203,7 @@ class App extends Component {
                           delete={this.deleteFromStateArray}
                           toggle={this.taskToggle}
                           match={match}
+                          location={location}
                           />
                       )}
                       />

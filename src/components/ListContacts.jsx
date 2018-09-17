@@ -25,7 +25,7 @@ let Contacts = (props) => {
 
   return (
     <List section='contacts'
-      className='route-transition enter-right exit-right'
+      className='route-transition exit-right'
       instructions={{
         display: showInstructions,
         icon: '/images/contacts-instructions-tableview.png' }}
@@ -33,6 +33,7 @@ let Contacts = (props) => {
         delete={deleteContact}
         toggle={props.toggle}
         match={props.match}
+        location={props.location}
         >
         <PageNavigation
           back={['/relationships', 'Relationships']}

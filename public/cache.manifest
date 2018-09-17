@@ -1,5 +1,5 @@
 CACHE MANIFEST
-#v0.0.1a
+#v0.0.1b
 /manifest.json
 /static/js/bundle.js
 /static/js/bundle.js.map
@@ -20,4 +20,3 @@ CACHE MANIFEST
 /images/relationships@2x.png
 /images/tasks-instructions-tableview.png
 /images/tasks@2x.png
-/fonts/Raleway-Medium.ttf

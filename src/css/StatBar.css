@@ -3,7 +3,7 @@
   display: flex;
   flex-flow: row no-wrap;
   justify-content: space-evenly;
-  background: rgb(10, 115, 200);
+  background: rgba(10, 115, 200, .9);
   cursor: default;
 }
 
@@ -12,12 +12,13 @@
   text-align: center;
   color: white;
   font-size: 12px;
+  padding: 1px 0;
 }
 
 .stat-block-line span {
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .stat-block {
-  padding: 1px 0;
+  padding: 2px 0;
 }

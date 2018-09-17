@@ -1,12 +1,11 @@
-
-@font-face {
-  font-family: "Raleway";
-  src: url("/fonts/Raleway-Medium.ttf");
+.flex {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
 }
 
-body {
-  margin: 0;
-  padding: 0;
+.flex.column {
+  flex-flow: column wrap;
 }
 
 header {
@@ -17,22 +16,11 @@ header {
   border-bottom: 1px solid rgba(0, 0, 0, .2);
 }
 
-ul {
-  padding: 0;
-  margin: 0;
-}
-
-a {
-  text-decoration: none;
-}
-
-p {
-  margin: 10px 0;
-}
+a { text-decoration: none; }
 
 .App {
-  font-family: 'Raleway', sans-serif;
-  font-size: 14px;
+  font-family: Helvetica, sans-serif;
+  font-size: calc(14px + 1 * ((100vw - 400px) / 800));
   font-weight: lighter;
   width: 100%;
   color: white;
@@ -54,20 +42,35 @@ p {
   padding: 10px 0;
 }
 
+::-webkit-input-placeholder { /* Chrome */
+  color: black;
+}
+
+::-moz-placeholder { /* Firefox 19+ */
+  color: black;
+  opacity: 1;
+}
+:-moz-placeholder { /* Firefox 4 - 18 */
+  color: black;
+  opacity: 1;
+}
+
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: white;
-    opacity: 1; /* Firefox */
+    opacity: 1;
     transition: color .5s;
 }
 
 :-ms-input-placeholder { /* Internet Explorer 10-11 */
     color: white;
     transition: color .5s;
+    opacity: 1;
 }
 
 ::-ms-input-placeholder { /* Microsoft Edge */
     color: white;
     transition: color .5s;
+    opacity: 1;
 }
 
 :focus::-webkit-input-placeholder { color:transparent; }

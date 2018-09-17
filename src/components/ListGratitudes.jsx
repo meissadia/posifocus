@@ -13,12 +13,13 @@ function Gratitudes(props) {
 
   return (
     <List section='gratitudes'
-      className='route-transition enter-right exit-right'
+      className='route-transition exit-right'
       instructions={{
         display: showInstructions,
         icon: '/images/gratitudes-instructions-tableview.png' }}
         data={props.data}
         delete={deleteGratitude}
+        location={props.location}
         >
         <PageNavigation
           back={['/', 'Dashboard']}

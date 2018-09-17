@@ -3,7 +3,6 @@ import { withRouter } from 'react-router-dom';
 import PageNavigation       from './PageNavigation';
 import '../css/FormView.css';
 
-
 class NewRelationship extends React.Component {
   constructor(props){
     super(props);
@@ -21,7 +20,7 @@ class NewRelationship extends React.Component {
     }
 
     this.props.addHandler('relationships', new_relationship);
-    this.props.history.push(this.cancelLink());
+    this.props.history.push({pathname: this.cancelLink(), state: {enter: 'enter-left'}});
   }
 
   cancelLink(){
@@ -34,7 +33,7 @@ class NewRelationship extends React.Component {
         <PageNavigation
           back={['/', 'Dashboard']}
           title='New Relationship'
-          add={[this.cancelLink(), '< Cancel >']}
+          add={[{pathname: this.cancelLink(), state: {enter: 'enter-left'}}, '< Cancel >']}
           />
         <form name='gform' className='g-form' onSubmit={this.handleAddRelationship}>
           <label htmlFor="title">

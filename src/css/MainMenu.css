@@ -40,21 +40,21 @@
 .menu-item-details .tagline,
 .menu-item-details .title {
   margin: 0;
-  font-weight: 300;
 }
 
 .menu-item-details .title {
-  /* font-weight: bold; */
-  font-size: 24px;
+  font-size: 18px;
 }
 
 .menu-item-details .tagline {
+  font-size: 14px;
   padding-left: 5px;
+  padding-top: 5px;
 }
 
 #reset-state {
   text-decoration: none;
-  font-size: 1.2em;
+  font-size: 16px;
   text-align: center;
   height: 50px;
   line-height: 50px;
@@ -68,16 +68,15 @@
   background: rgba(212, 83, 0, 0.7);
 }
 
-
 .priorities-submenu {
   justify-content: center;
+  align-self: center;
   width: 70%;
   margin: 0 auto;
   padding: 5px;
   color: white;
   border-radius: 20px;
-  font-size: 16px;
-  font-weight: bold;
+  font-size: 14px;
   background: rgba(0, 155, 180, 0.8);
 }
 
@@ -93,5 +92,4 @@
 .priorities-submenu .icon {
   max-width: 25px;
   margin-right: 10px;
-  align-self: center;
 }

@@ -13,13 +13,14 @@ let Relationships = (props) => {
 
   return (
     <List section='relationships'
-      className='route-transition enter-right exit-right'
+      className='route-transition exit-right'
       instructions={{
         display: showInstructions,
         icon: '/images/relationships-instructions-tableview.png' }}
         data={props.data}
         delete={deleteRelationship}
         makeLink={(item) => (`/relationship/${item.id}/contacts`)}
+        location={props.location}
         >
         <PageNavigation
           back={['/', 'Dashboard']}

@@ -22,7 +22,7 @@ let Projects = (props) => {
 
   return (
     <List section='projects'
-      className='route-transition enter-right exit-right'
+      className='route-transition exit-right'
       instructions={{
         display: showInstructions,
         icon: '/images/projects-instructions-tableview.png' }}
@@ -30,6 +30,7 @@ let Projects = (props) => {
         delete={deleteProject}
         makeLink={(item, match) => (`${match.url.slice(0,-1)}/${item.id}/tasks`)}
         match={match}
+        location={props.location}
         >
         <PageNavigation
           back={['/priorities', 'Priorities']}

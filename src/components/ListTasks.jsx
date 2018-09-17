@@ -35,7 +35,7 @@ let Tasks = (props) => {
 
   return (
     <List section='tasks'
-      className='route-transition enter-right exit-right'
+      className='route-transition exit-right'
       data={tasks}
       instructions={{
         display: showInstructions,
@@ -43,6 +43,7 @@ let Tasks = (props) => {
         delete={deleteTask}
         toggle={props.toggle}
         match={match}
+        location={props.location}
         >
         <PageNavigation
           back={[navBackLink(match), navBackText(priority)]}

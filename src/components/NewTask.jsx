@@ -29,7 +29,7 @@ class NewTask extends React.Component {
     }
 
     this.props.addHandler('tasks', new_project);
-    this.props.history.push(this.cancelLink(document.gform.url.value));
+    this.props.history.push({pathname: this.cancelLink(document.gform.url.value), state: {enter: 'enter-left'}});
   }
 
   cancelLink(url){
@@ -46,7 +46,7 @@ class NewTask extends React.Component {
         <PageNavigation
           back={[this.backLink(this.url), 'Projects']}
           title='New Task'
-          add={[this.cancelLink(this.url), '< Cancel >']}
+          add={[{pathname: this.cancelLink(this.url), state: {enter: 'enter-left'}}, '< Cancel >']}
           />
         <form name='gform' className='g-form' onSubmit={this.handleAddTask}>
           <label htmlFor="title">

@@ -6,7 +6,10 @@ import '../../css/Notifications.css';
 const NotificationBar = props => (
   <Fragment>
     <AppOffline online={props.online} />
-    <UpdateAvailable online={props.online} update={props.update} />
+    <UpdateAvailable
+      online={props.online}
+      update={props.update}
+      autoUpdate={props.autoUpdate}/>
   </Fragment>
 )
 

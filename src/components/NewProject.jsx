@@ -24,7 +24,8 @@ class NewProject extends React.Component {
     }
 
     if (this.props.addHandler('projects', new_project)){
-      this.props.history.push(this.cancelLink(document.gform.url.value));
+      this.props.history.push({pathname: this.cancelLink(document.gform.url.value), state: {enter: 'enter-left'}});
+
     } else {
       alert('Error adding contact!');
     }
@@ -40,7 +41,8 @@ class NewProject extends React.Component {
         <PageNavigation
           back={['/priorities', 'Priorities']}
           title='New Project'
-          add={[this.cancelLink(this.url), '< Cancel >']}
+          add={[{pathname: this.cancelLink(this.url), state: {enter: 'enter-left'}}, '< Cancel >']}
+
           />
         <form name='gform' className='g-form' onSubmit={this.handleAddProject}>
           <label htmlFor="title">

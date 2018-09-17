@@ -53,7 +53,7 @@ class NewContact extends React.Component {
         <PageNavigation
           back={[this.backLink(this.url), 'Relationships']}
           title='New Contact'
-          add={[this.cancelLink(this.url), '< Cancel >']}
+          add={[{pathname: this.cancelLink(this.url), state: {enter: 'enter-left'}}, '< Cancel >']}
           />
         <form name='gform' className='g-form' onSubmit={this.handleAddContact}>
           <label htmlFor="title">

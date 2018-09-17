@@ -13,13 +13,14 @@ function Priorities(props) {
 
   return (
     <List section='relationships'
-      className='route-transition enter-right exit-right'
+      className='route-transition exit-right'
       instructions={{
         display: showInstructions,
         icon: '/images/priorities-instructions-tableview.png' }}
         data={props.data}
         delete={deletePriority}
         makeLink={(item, match) => (`/priority/${item.id}/projects`)}
+        location={props.location}
         >
         <PageNavigation
           back={['/', 'Dashboard']}

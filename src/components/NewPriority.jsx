@@ -21,7 +21,7 @@ class NewPriority extends React.Component {
     }
 
     this.props.addHandler('priorities', new_relationship);
-    this.props.history.push(this.cancelLink());
+    this.props.history.push({pathname: this.cancelLink(), state: {enter: 'enter-left'}});
   }
 
   cancelLink(){
@@ -34,7 +34,7 @@ class NewPriority extends React.Component {
         <PageNavigation
           back={['/', 'Dashboard']}
           title='New Priority'
-          add={[this.cancelLink(), '< Cancel >']}
+          add={[{pathname: this.cancelLink(), state: {enter: 'enter-left'}}, '< Cancel >']}
           />
         <form name='gform' className='g-form' onSubmit={this.handleAddPriority}>
           <label htmlFor="title">

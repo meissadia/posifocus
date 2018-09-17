@@ -22,7 +22,7 @@ class NewGratitude extends React.Component {
     }
 
     this.props.addHandler('gratitudes', new_gratitude);
-    this.props.history.push(this.cancelLink());
+    this.props.history.push({pathname: this.cancelLink(), state: {enter: 'enter-left'}});
   }
 
   parseDate(date){
@@ -46,7 +46,7 @@ class NewGratitude extends React.Component {
         <PageNavigation
           back={['/', 'Dashboard']}
           title='New Gratitude'
-          add={[this.cancelLink(), '< Cancel >']}
+          add={[{pathname: this.cancelLink(), state: {enter: 'enter-left'}}, '< Cancel >']}
           />
         <form name='gform' className='g-form' onSubmit={this.handleNewGratitude}>
           <label htmlFor="title">

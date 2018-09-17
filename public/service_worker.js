@@ -1,4 +1,4 @@
-const version = "0.0.1a";
+const version = "0.0.1b";
 const cacheName = `posifocus-web-${version}`;
 
 self.addEventListener('install', e => {
@@ -27,7 +27,6 @@ self.addEventListener('install', e => {
         `/images/tasks-instructions-tableview.png`,
         `/images/tasks@2x.png`,
         `/manifest.json`,
-        `/fonts/Raleway-Medium.ttf`
       ])
           .then(() => self.skipWaiting());
     })

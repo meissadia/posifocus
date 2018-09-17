@@ -13,13 +13,14 @@ let TodaysTasks = (props) => {
 
   return (
     <List section='tasks'
-      className='route-transition enter-right exit-right'
+      className='route-transition exit-right'
       instructions={{
         display: showInstructions,
         icon: '/images/tasks-instructions-tableview.png' }}
         data={props.data}
         delete={deleteTask}
         toggle={props.toggle}
+        location={props.location}
         >
         <PageNavigation
           back={['/', 'Dashboard']}

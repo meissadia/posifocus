@@ -3,8 +3,15 @@ import Instructions   from './Instructions';
 import ListItem       from './ListItem';
 import {TransitionGroup, CSSTransition} from 'react-transition-group';
 
+let enterDirection = (props) => {
+  let direction = props.location && props.location.state && props.location.state.enter
+  direction = direction || 'enter-right'
+
+  return props.className + ' ' + direction;
+}
+
 const List = (props) => (
-  <div className={'list-wrapper ' + props.className}>
+  <div className={'list-wrapper ' + enterDirection(props) }>
     {props.children} {/* Page Navigation */}
     <ul className='item-list'>
       <TransitionGroup>
