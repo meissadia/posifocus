@@ -6,7 +6,7 @@ import {
 import { Route, Switch }       from 'react-router-dom';
 import * as State      from '../lib/AppState';
 import AppFrame        from './AppFrame';
-import Dashboard       from './Dashboard';
+import Dashboard       from './dashboard/Dashboard';
 import Gratitudes      from './ListGratitudes';
 import Priorities      from './ListPriorities';
 import Projects        from './ListProjects';
