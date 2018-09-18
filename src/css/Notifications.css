@@ -20,7 +20,7 @@
 }
 
 .notification.update {
-  background-color: rgb(47, 115, 51, 0.6);
+  background-color: rgba(47, 115, 51, 0.6);
 }
 
 .notification.offline{

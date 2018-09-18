@@ -1,10 +1,16 @@
+.new-input-wrapper {
+  min-height: calc(100vh - 73px);
+  background: rgba(0, 0, 0, .85);
+
+}
+.new-input-wrapper .controls {
+  background: rgba(0, 150, 255, 1);
+}
 
 .g-form {
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
-  /* background: black; */
-  background: rgba(0, 0, 0, .75);
   text-align: center;
 }
 
@@ -48,8 +54,4 @@
 .form-toggle span {
   width: 150px;
   margin-left: 10px;
-}
-
-.new-input-wrapper .controls {
-  background: rgba(0, 150, 255, 1);
 }

@@ -1,8 +1,42 @@
 import React                from 'react';
 import { withRouter } from 'react-router-dom';
 import PageNavigation       from './PageNavigation';
+// import Form       from './Form';
 import '../css/FormView.css';
 
+// let NewGratitude = props => {
+//   let handleNewGratitude = (event) => {
+//     event.preventDefault();
+//     var date = new Date();
+//     var gdate = parseDate(document.gform.date.value);
+//
+//     var new_gratitude = {
+//       id: date.getTime().toString(),
+//       title: document.gform.title.value || document.gform.title.attributes.placeholder.value,
+//       content: document.gform.content.value || document.gform.content.attributes.placeholder.value,
+//       date: gdate
+//     }
+//
+//     props.addHandler('gratitudes', new_gratitude);
+//     props.history.push({pathname: cancelLink(), state: {enter: 'enter-left'}});
+//   }
+//
+//   let parseDate = (date) => {
+//     if(!date){ return (new Date()).toString() };
+//     return new Date(date).toString();
+//   }
+//
+//   let cancelLink = () => ('/gratitudes');
+//
+//   return (
+//     <Form onSubmit={handleNewGratitude}>
+//
+//     </Form>
+//   )
+//
+//
+//
+// }
 class NewGratitude extends React.Component {
   constructor(props){
     super(props);
