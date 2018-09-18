@@ -21,6 +21,7 @@ import NewTask         from './NewTask';
 import NewRelationship from './NewRelationship';
 import NewContact      from './NewContact';
 import NotificationBar from './notifications/NotificationBar';
+import AppHeader from './AppHeader';
 import SimpleStorage    from 'react-simple-storage';
 
 import '../css/Reset.css';
@@ -45,6 +46,7 @@ class App extends Component {
     this.getTasks = State.getTasks.bind(this);
     this.getContacts = State.getContacts.bind(this);
     this.saveStateToStorage = State.saveStateToStorage.bind(this);
+    this.setBackground = this.setBackground.bind(this);
   }
 
   /* We need to save directly to localStorage for mobile apps */
@@ -80,13 +82,23 @@ class App extends Component {
 
   setOnlineStatus = isOnline => this.setState({ online: isOnline });
 
+  setBackground = color => {
+    this.setState((prevState) => {
+      let { style } = prevState;
+      if(color.indexOf('linear') < 0){
+        color = `linear-gradient(${color}, ${color})`
+      }
+      style = Object.assign(style, { background: color });
+      return { style: style }
+    });
+  }
+
   render() {
     return (
-      <AppFrame>
-
+      <AppFrame background={this.state.style.background}>
         {/* Sync State with localStorage */}
         <SimpleStorage parent={this}  blacklist={['update']} />
-
+        <AppHeader />
         <NotificationBar
           online={this.state.online}
           update={this.state.update}
@@ -113,6 +125,7 @@ class App extends Component {
                           doneTaskCount={this.state.tasks.filter((t) => (t.done)).length}
                           contacts={this.state.contacts}
                           resetState={this.resetState}
+                          setBackground={this.setBackground}
                           />
                       )}
                       />
@@ -121,6 +134,7 @@ class App extends Component {
                           data={this.state.gratitudes}
                           delete={this.deleteFromStateArray}
                           location={location}
+                          setBackground={this.setBackground}
                           />
                       )}
                       />
@@ -129,6 +143,7 @@ class App extends Component {
                           data={this.state.priorities}
                           delete={this.deletePriority}
                           location={location}
+                          setBackground={this.setBackground}
                           />
                       )}
                       />
@@ -137,6 +152,7 @@ class App extends Component {
                           data={this.state.relationships}
                           delete={this.deleteRelationship}
                           location={location}
+                          setBackground={this.setBackground}
                           />
                       )}
                       />
@@ -146,6 +162,7 @@ class App extends Component {
                           delete={this.deleteFromStateArray}
                           toggle={this.taskToggle}
                           location={location}
+                          setBackground={this.setBackground}
                           />
                       )}
                       />
@@ -157,6 +174,7 @@ class App extends Component {
                           delete={this.deleteProject}
                           match={match}
                           location={location}
+                          setBackground={this.setBackground}
                           />
                       )}
                       />
@@ -168,6 +186,7 @@ class App extends Component {
                           delete={this.deleteFromStateArray}
                           match={match}
                           location={location}
+                          setBackground={this.setBackground}
                           />
                       )}
                       />
@@ -176,6 +195,7 @@ class App extends Component {
                         <NewTask
                           addHandler={this.addToStateArray}
                           match={match}
+                          setBackground={this.setBackground}
                           />
                       )}
                       />
@@ -184,6 +204,7 @@ class App extends Component {
                         <NewContact
                           addHandler={this.addToStateArray}
                           match={match}
+                          setBackground={this.setBackground}
                           />
                       )}
                       />
@@ -192,6 +213,7 @@ class App extends Component {
                         <NewProject
                           addHandler={this.addToStateArray}
                           match={match}
+                          setBackground={this.setBackground}
                           />
                       )}
                       />
@@ -204,6 +226,7 @@ class App extends Component {
                           toggle={this.taskToggle}
                           match={match}
                           location={location}
+                          setBackground={this.setBackground}
                           />
                       )}
                       />
@@ -211,6 +234,7 @@ class App extends Component {
                       render={({ match }) => (
                         <NewPriority
                           addHandler={this.addToStateArray}
+                          setBackground={this.setBackground}
                           />
                       )}
                       />
@@ -218,6 +242,7 @@ class App extends Component {
                       render={({ match }) => (
                         <NewGratitude
                           addHandler={this.addToStateArray}
+                          setBackground={this.setBackground}
                           />
                       )}
                       />
@@ -225,6 +250,7 @@ class App extends Component {
                       render={({ match }) => (
                         <NewRelationship
                           addHandler={this.addToStateArray}
+                          setBackground={this.setBackground}
                           />
                       )}
                       />

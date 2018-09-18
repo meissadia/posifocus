@@ -7,27 +7,27 @@
 
 .enter-left.route-transition-enter {
   left: -100vw;
-  opacity: 0;
+  /* opacity: 0; */
 }
 
 .enter-left.route-transition-enter-active {
   left: 0;
-  opacity: 1;
+  /* opacity: 1; */
 }
 
 .exit-left.route-transition-exit {
-  /* left: 0; */
-  opacity: 1;
+  left: 0;
+  /* opacity: 1; */
 }
 
 .exit-left.route-transition-exit-active {
-  /* left: -100vw; */
-  opacity: 0;
+  left: -100vw;
+  /* opacity: 0; */
 }
 
 .enter-right.route-transition-enter {
   right: -100vw;
-  opacity: 0;
+  /* opacity: 0; */
 }
 
 .enter-right.route-transition-enter-active {
@@ -47,22 +47,22 @@
 
 .enter-bottom.route-transition-enter {
   top: 100vw;
-  opacity: 0;
+  /* opacity: 0; */
 }
 
 .enter-bottom.route-transition-enter-active {
   top: 75px;
-  opacity: 1;
+  /* opacity: 1; */
 }
 
 .exit-bottom.route-transition-exit {
   top: 75px;
-  opacity: 1;
+  /* opacity: 1; */
 }
 
 .exit-bottom.route-transition-exit-active {
   top: 100vw;
-  opacity: 0;
+  /* opacity: 0; */
 }
 
 

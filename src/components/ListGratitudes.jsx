@@ -1,6 +1,7 @@
 import React          from 'react';
 import PageNavigation from './PageNavigation';
 import List           from './List';
+import Colors         from '../lib/Colors'
 import '../css/ListViews.css'
 
 function Gratitudes(props) {
@@ -20,7 +21,8 @@ function Gratitudes(props) {
         data={props.data}
         delete={deleteGratitude}
         location={props.location}
-        bgList='rgba(0, 150, 255, 0.8)'
+        background={Colors.gratitudes}
+        setBackground={props.setBackground}
         >
         <PageNavigation
           back={['/', 'Dashboard']}

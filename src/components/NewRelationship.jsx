@@ -9,11 +9,6 @@ class NewRelationship extends React.Component {
     this.handleAddRelationship = this.handleAddRelationship.bind(this);
   }
 
-  componentDidMount(){
-    let header = document.getElementById('header');
-    header.style.background = 'rgba(0, 150, 255, 1)';
-  }
-
   handleAddRelationship(event){
     event.preventDefault();
     var date = new Date();

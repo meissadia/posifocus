@@ -1,6 +1,7 @@
 import React          from 'react';
 import PageNavigation from './PageNavigation';
 import List           from './List';
+import Colors           from '../lib/Colors';
 import '../css/ListViews.css'
 
 let Contacts = (props) => {
@@ -34,7 +35,8 @@ let Contacts = (props) => {
         toggle={props.toggle}
         match={props.match}
         location={props.location}
-        bgList='rgba(24,129,165,.8)'
+        background={Colors.contacts}
+        setBackground={props.setBackground}
         >
         <PageNavigation
           back={['/relationships', 'Relationships']}

@@ -1,20 +1,16 @@
 import React       from 'react';
-import { NavLink } from 'react-router-dom';
+import Colors from '../lib/Colors';
 
 const AppFrame = (props) => {
   return (
-    <div className='App'>
-      <header id='header'>
-        <NavLink to='/' prefetch='true'>
-          <img className='app-logo'
-            src='/images/posifocus-logo.png'
-            alt='Posifocus Target'
-            />
-        </NavLink>
-      </header>
+    <div id='App' style={styles(props)}>
       { props.children }
     </div>
   )
 }
+
+let styles = props => ({
+  background: props.background || Colors.blue_green
+})
 
 export default AppFrame;

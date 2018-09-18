@@ -1,10 +1,12 @@
 .new-input-wrapper {
   min-height: calc(100vh - 73px);
-  background: rgba(0, 0, 0, .85);
+  background: rgba(0, 0, 0, .2);
 
 }
 .new-input-wrapper .controls {
-  background: rgba(0, 150, 255, 1);
+  /* background: rgba(0, 150, 255, 1); */
+  background: rgba(0, 0, 0, .1);
+
 }
 
 .g-form {
@@ -35,7 +37,7 @@
 
 #submit-button {
   height: 75px;
-  background: rgba(0, 150, 255, 1);
+  background: rgba(255, 255, 255, .4);
   margin: 30px;
   cursor: pointer;
   border-radius: 0;

@@ -1,6 +1,7 @@
 import React          from 'react';
 import PageNavigation from './PageNavigation';
 import List           from './List';
+import Colors         from '../lib/Colors';
 import '../css/ListViews.css'
 
 function Priorities(props) {
@@ -21,7 +22,8 @@ function Priorities(props) {
         delete={deletePriority}
         makeLink={(item, match) => (`/priority/${item.id}/projects`)}
         location={props.location}
-        bgList='rgba(16, 156, 227, 0.8)'
+        background={Colors.priorities}
+        setBackground={props.setBackground}
         >
         <PageNavigation
           back={['/', 'Dashboard']}

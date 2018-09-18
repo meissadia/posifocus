@@ -21,7 +21,7 @@
   padding: 10px;
   background: rgba(0, 0, 0, .2);
   border-top: 1px solid rgba(0, 0, 0, 0.2);
-  transition: background 1s;
+  transition: background 5s;
 }
 
 .list-item a {

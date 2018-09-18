@@ -1,6 +1,7 @@
 import React          from 'react';
 import PageNavigation from './PageNavigation';
 import List           from './List';
+import Colors         from '../lib/Colors';
 import '../css/ListViews.css'
 
 let Relationships = (props) => {
@@ -21,7 +22,8 @@ let Relationships = (props) => {
         delete={deleteRelationship}
         makeLink={(item) => (`/relationship/${item.id}/contacts`)}
         location={props.location}
-        bgList='rgba(31,164,200,.8)'
+        background={Colors.relationships}
+        setBackground={props.setBackground}
         >
         <PageNavigation
           back={['/', 'Dashboard']}

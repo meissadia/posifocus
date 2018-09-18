@@ -1,6 +1,8 @@
 import React          from 'react';
 import PageNavigation from './PageNavigation';
 import List           from './List';
+import Colors         from '../lib/Colors';
+
 import '../css/ListViews.css'
 
 let TodaysTasks = (props) => {
@@ -21,7 +23,8 @@ let TodaysTasks = (props) => {
         delete={deleteTask}
         toggle={props.toggle}
         location={props.location}
-        bgList='rgba(43, 170, 177, 0.8)'
+        background={Colors.todays}
+        setBackground={props.setBackground}
         >
         <PageNavigation
           back={['/', 'Dashboard']}

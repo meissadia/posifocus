@@ -14,7 +14,7 @@ class Form extends React.Component {
 
   componentDidMount(){
     let header = document.getElementById('header');
-    header.style.background = 'rgba(0, 150, 255, 1)';
+    // header.style.background = 'rgba(0, 150, 255, 1)';
   }
 
   render(){

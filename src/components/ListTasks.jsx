@@ -1,6 +1,8 @@
 import React          from 'react';
 import PageNavigation from './PageNavigation';
 import List           from './List';
+import Colors         from '../lib/Colors';
+
 import '../css/ListViews.css'
 
 let Tasks = (props) => {
@@ -44,7 +46,8 @@ let Tasks = (props) => {
         toggle={props.toggle}
         match={match}
         location={props.location}
-        bgList='rgba(13,104,154,1)'
+        background={Colors.tasks}
+        setBackground={props.setBackground}
         >
         <PageNavigation
           back={[navBackLink(match), navBackText(priority)]}

@@ -43,11 +43,6 @@ class NewGratitude extends React.Component {
     this.handleNewGratitude = this.handleNewGratitude.bind(this);
   }
 
-  componentDidMount(){
-    let header = document.getElementById('header');
-    header.style.background = 'rgba(0, 150, 255, 1)';
-  }
-
   handleNewGratitude(event){
     event.preventDefault();
     var date = new Date();

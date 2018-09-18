@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   padding: 30px 0 10px 0;
-  background: linear-gradient(rgba(0, 150, 255, 1), rgba(0, 148, 255, .6))
+  /* background: linear-gradient(rgba(0, 150, 255, 1), rgba(0, 148, 255, .6)) */
 }
 
 input, textarea {

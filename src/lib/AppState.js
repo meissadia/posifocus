@@ -1,9 +1,14 @@
+import Colors from './Colors';
+
 export function initState() {
   return ({
     userHeader: {
       user_name: '',
       user_image: '',
       user_tagline: ''
+    },
+    style: {
+      background: Colors.blue_green
     },
     gratitudes:[],
     priorities: [],

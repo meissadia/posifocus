@@ -10,11 +10,6 @@ class NewPriority extends React.Component {
     this.handleAddPriority = this.handleAddPriority.bind(this);
   }
 
-  componentDidMount(){
-    let header = document.getElementById('header');
-    header.style.background = 'rgba(0, 150, 255, 1)';
-  }
-
   handleAddPriority(event){
     event.preventDefault();
     var date = new Date();

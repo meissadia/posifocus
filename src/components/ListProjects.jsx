@@ -1,6 +1,7 @@
 import React          from 'react';
 import PageNavigation from './PageNavigation';
 import List           from './List';
+import Colors           from '../lib/Colors';
 import '../css/ListViews.css'
 
 let Projects = (props) => {
@@ -31,7 +32,8 @@ let Projects = (props) => {
         makeLink={(item, match) => (`${match.url.slice(0,-1)}/${item.id}/tasks`)}
         match={match}
         location={props.location}
-        bgList='rgba(13,125,183,1)'
+        background={Colors.projects}
+        setBackground={props.setBackground}
         >
         <PageNavigation
           back={['/priorities', 'Priorities']}

@@ -1,5 +1,4 @@
 #main-menu {
-  background: linear-gradient(rgba(0, 150, 255, 0.8), rgba(62, 187, 154, 0.8));
   margin-top: 10px;
 }
 
@@ -62,6 +61,9 @@
   display: block;
   color: white;
   transition: background .5s;
+  background: rgb(42,160,161);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+
 }
 
 #reset-state:hover {
@@ -77,16 +79,18 @@
   color: white;
   border-radius: 20px;
   font-size: 14px;
-  background: rgba(0, 155, 180, 0.8);
+  /* background: rgba(0, 155, 180, 0.8); */
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .priorities-submenu > div {
-  padding: 0 15px;
+  padding: 5px 15px;
   border-radius: 20px;
 }
 
 .priorities-submenu .second {
-  background: rgba(0, 165, 180, 0.8);
+  /* background: rgba(0, 165, 180, 0.8); */
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .priorities-submenu .icon {
