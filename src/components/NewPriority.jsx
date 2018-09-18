@@ -37,7 +37,7 @@ class NewPriority extends React.Component {
           add={[{pathname: this.cancelLink(), state: {enter: 'enter-left'}}, '< Cancel >']}
           />
         <form name='gform' className='g-form' onSubmit={this.handleAddPriority}>
-          <label htmlFor="title">
+          <label htmlFor="title" className='center'>
             What's Most Important to You?
           </label>
           <input

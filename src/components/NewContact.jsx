@@ -56,7 +56,7 @@ class NewContact extends React.Component {
           add={[{pathname: this.cancelLink(this.url), state: {enter: 'enter-left'}}, '< Cancel >']}
           />
         <form name='gform' className='g-form' onSubmit={this.handleAddContact}>
-          <label htmlFor="title">
+          <label htmlFor="title" className='center'>
             What was the Last Contact you had with this Person?
           </label>
           <input

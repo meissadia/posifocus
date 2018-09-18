@@ -1,4 +1,4 @@
-const version = "0.0.1f";
+const version = "0.0.1g";
 const cacheName = `posifocus-web-${version}`;
 
 self.addEventListener('install', e => {

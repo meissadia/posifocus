@@ -14,7 +14,7 @@ let TodaysTasks = (props) => {
   }
 
   return (
-    <List section='tasks'
+    <List section='todays'
       className='route-transition exit-right'
       instructions={{
         display: showInstructions,

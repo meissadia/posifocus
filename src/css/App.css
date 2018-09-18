@@ -3,11 +3,31 @@
   font-size: calc(14px + 1 * ((100vw - 400px) / 800));
   font-weight: lighter;
   width: 100%;
+  min-height: 100vh;
   color: white;
-  height: 100vh;
-  transition: background 1s;
-  background: linear-gradient(rgba(0, 0, 0, .2), rgba(0, 0, 0, .2))
+  transition: background .5s;
 }
+#App.gratitudes {
+   background: rgba(0, 150, 235, 1);
+ }
+#App.priorities {
+   background: rgba(15, 155, 220, 1);
+ }
+#App.relationships {
+   background: rgba(30, 165, 205, 1);
+ }
+#App.todays {
+   background: rgba(45, 175, 175, 1);
+ }
+#App.projects {
+   background: rgba(15, 125, 185, 1);
+ }
+#App.contacts {
+   background: rgba(25, 130, 165, 1);
+ }
+#App.tasks {
+   background: rgba(15, 105, 155, 1);
+ }
 
 .flex {
   display: flex;
@@ -25,6 +45,7 @@ header {
   padding-top: 25px;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
 }
+
 
 a { text-decoration: none; }
 

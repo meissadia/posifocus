@@ -45,7 +45,7 @@ class NewProject extends React.Component {
 
           />
         <form name='gform' className='g-form' onSubmit={this.handleAddProject}>
-          <label htmlFor="title">
+          <label htmlFor="title" className='center'>
             What Project Will Contribute Most to this Priority?
           </label>
           <input

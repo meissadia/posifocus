@@ -21,6 +21,10 @@
   padding: 20px 0 20px 30px;
 }
 
+.g-form label.center {
+  text-align: center;
+}
+
 .g-form input,
 .g-form textarea {
   background: transparent;

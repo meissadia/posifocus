@@ -11,7 +11,7 @@ let enterDirection = (props) => {
 
 class List extends React.Component {
   componentDidMount() {
-    this.props.setBackground(this.props.background);
+    this.props.setBackground(this.props.section);
   }
 
   render(){

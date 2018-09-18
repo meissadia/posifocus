@@ -13,7 +13,7 @@ class NewTask extends React.Component {
     this.params = this.props.match.params;
     this.url = this.props.match.url;
   }
-  
+
   handleAddTask(event){
     event.preventDefault();
     let date = new Date();
@@ -49,7 +49,7 @@ class NewTask extends React.Component {
           add={[{pathname: this.cancelLink(this.url), state: {enter: 'enter-left'}}, '< Cancel >']}
           />
         <form name='gform' className='g-form' onSubmit={this.handleAddTask}>
-          <label htmlFor="title">
+          <label htmlFor="title" className='center'>
             What Task Must Be Done to Complete this Project?
           </label>
           <input

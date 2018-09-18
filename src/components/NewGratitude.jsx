@@ -83,7 +83,7 @@ class NewGratitude extends React.Component {
           add={[{pathname: this.cancelLink(), state: {enter: 'enter-left'}}, '< Cancel >']}
           />
         <form name='gform' className='g-form' onSubmit={this.handleNewGratitude}>
-          <label htmlFor="title">
+          <label htmlFor="title" className='center'>
             What Are You Grateful For Today?
           </label>
           <input

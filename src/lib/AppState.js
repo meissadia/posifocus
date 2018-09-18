@@ -1,4 +1,4 @@
-import Colors from './Colors';
+// import Colors from './Colors';
 
 export function initState() {
   return ({
@@ -8,7 +8,7 @@ export function initState() {
       user_tagline: ''
     },
     style: {
-      background: Colors.blue_green
+      background: ''
     },
     gratitudes:[],
     priorities: [],

@@ -85,9 +85,9 @@ class App extends Component {
   setBackground = color => {
     this.setState((prevState) => {
       let { style } = prevState;
-      if(color.indexOf('linear') < 0){
-        color = `linear-gradient(${color}, ${color})`
-      }
+      // if(color.indexOf('linear') < 0){
+      //   color = `linear-gradient(${color}, ${color})`
+      // }
       style = Object.assign(style, { background: color });
       return { style: style }
     });

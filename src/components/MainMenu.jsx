@@ -7,7 +7,7 @@ import '../css/MainMenu.css';
 class MainMenu extends React.Component {
 
   componentDidMount(){
-    this.props.setBackground(Colors.blue_green);
+    this.props.setBackground('base');
   }
 
   render(){

@@ -36,7 +36,7 @@ class NewRelationship extends React.Component {
           add={[{pathname: this.cancelLink(), state: {enter: 'enter-left'}}, '< Cancel >']}
           />
         <form name='gform' className='g-form' onSubmit={this.handleAddRelationship}>
-          <label htmlFor="title">
+          <label htmlFor="title" className='center'>
             Who Do You Want To Build A Better Relationship With?
           </label>
           <input

@@ -1,16 +1,16 @@
 import React       from 'react';
-import Colors from '../lib/Colors';
+// import Colors from '../lib/Colors';
 
 const AppFrame = (props) => {
   return (
-    <div id='App' style={styles(props)}>
+    <div id='App' className={classes(props)}>
       { props.children }
     </div>
   )
 }
 
-let styles = props => ({
-  background: props.background || Colors.blue_green
-})
+let classes = props => {
+  return props.background
+}
 
 export default AppFrame;
