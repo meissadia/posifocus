@@ -1,9 +1,10 @@
 #main-menu {
   margin-top: 10px;
+  background: linear-gradient(#0094ff, #3ebc9a);
 }
 
 .menu-item-link:hover {
-  transition: background .5s;
+  transition: background .25s;
   background: rgba(0, 0, 0, 0.2);
 }
 
@@ -61,7 +62,7 @@
   display: block;
   color: white;
   transition: background .5s;
-  background: rgb(42,160,161);
+  /* background: rgb(42,160,161); */
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 
 }
@@ -80,7 +81,7 @@
   border-radius: 20px;
   font-size: 14px;
   /* background: rgba(0, 155, 180, 0.8); */
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 200, 255, 0.1);
 }
 
 .priorities-submenu > div {
@@ -90,7 +91,7 @@
 
 .priorities-submenu .second {
   /* background: rgba(0, 165, 180, 0.8); */
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 200, 255, 0.1);
 }
 
 .priorities-submenu .icon {

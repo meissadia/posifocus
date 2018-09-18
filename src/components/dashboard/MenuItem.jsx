@@ -6,8 +6,8 @@ import '../../css/MainMenu.css';
 
 let MenuItem = (props) => {
   return (
-    <div className='menu-item-link' style={styles(props)}>
-      <NavLink to={navlink(props)} onClick={updateBackground.bind(this, props)} prefetch='true'>
+    <div className='menu-item-link'>
+      <NavLink to={navlink(props)} prefetch='true'>
         <div className='flex menu-item'>
           <MenuItemIcon icon={props.icon} title={props.title} />
           <div className="menu-item-details">
@@ -22,7 +22,7 @@ let MenuItem = (props) => {
 }
 
 let styles = props => ({
-  background: props.background || Colors.clear
+  // background: props.background || Colors.blue_green
 })
 
 let navlink = props => {
@@ -32,9 +32,5 @@ let navlink = props => {
   }
 }
 
-let updateBackground = (props, event) => {
-  // console.log('Item set bg: ' + props.background);
-  // props.setBackground(props.background)
-}
 
 export default MenuItem;
