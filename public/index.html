@@ -81,6 +81,7 @@
           reg.onupdatefound = () => {
             const installingWorker = reg.installing;
             installingWorker.onstatechange = () => {
+              console.log('installingWorker.state: ' + installingWorker.state);
               switch (installingWorker.state) {
                 case 'installed':
                 if (navigator.serviceWorker.controller) {
