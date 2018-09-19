@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" manifest='cache.manifest'>
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -56,8 +56,8 @@
       .splash p {
         width: 100%;
         color: white;
-
       }
+
     </style>
   </head>
   <body style='padding:0; margin:0'>
@@ -66,18 +66,17 @@
     </noscript>
     <div id="root">
       <div class='splash'>
-        <!-- <img src="./images/posifocus-logo.png" alt="Posifocus Text With Target"> -->
-        <img src="%PUBLIC_URL%/images/posifocus-logo.png" alt="Posifocus Text With Target">
+        <p>POSIFOCUS</p>
         <p>Live With Purpose</p>
       </div>
     </div>
     <script>
     window.isUpdateAvailable = new Promise(function(resolve, reject) {
       // lazy way of disabling service workers while developing
-      if ('serviceWorker' in navigator && ['localhost', '127'].indexOf(location.hostname) === -1) {
-      // if ('serviceWorker' in navigator) {
+      // if ('serviceWorker' in navigator && ['localhost', '127'].indexOf(location.hostname) === -1) {
+      if ('serviceWorker' in navigator) {
         // register service worker file
-        navigator.serviceWorker.register('service_worker.js')
+        navigator.serviceWorker.register('service-worker.js')
         .then(reg => {
           reg.onupdatefound = () => {
             const installingWorker = reg.installing;
@@ -100,6 +99,7 @@
       }
     });
     </script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script> -->
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

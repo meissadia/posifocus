@@ -1,7 +1,11 @@
-import React        from 'react';
-import MenuItem     from './MenuItem'
-import Submenu      from './MenuSubmenu'
-import Colors       from '../../lib/Colors';
+import React             from 'react';
+import MenuItem          from './MenuItem'
+import Submenu           from './MenuSubmenu'
+import Colors            from '../../lib/Colors';
+import gratitudesIcon    from '../../images/gratitudes@2x.png'
+import prioritiesIcon    from '../../images/priorities@2x.png'
+import relationshipsIcon from '../../images/relationships@2x.png'
+import tasksIcon         from '../../images/tasks@2x.png'
 import '../../css/MainMenu.css';
 
 class MainMenu extends React.Component {
@@ -14,7 +18,7 @@ class MainMenu extends React.Component {
     return (
       <div id='main-menu'>
         <MenuItem
-          icon='images/gratitudes@2x.png'
+          icon={gratitudesIcon}
           title='Gratitudes'
           tagline='Because Grateful People Are Happy'
           link='/gratitudes'
@@ -22,7 +26,7 @@ class MainMenu extends React.Component {
           setBackground={this.props.setBackground}
           />
         <MenuItem
-          icon='images/priorities@2x.png'
+          icon={prioritiesIcon}
           title='Priorities'
           tagline='The Most Important Aspects of Your Life'
           link='/priorities'
@@ -35,7 +39,7 @@ class MainMenu extends React.Component {
             />
         </MenuItem>
         <MenuItem
-          icon='images/relationships@2x.png'
+          icon={relationshipsIcon}
           title='Relationships'
           tagline='Forget Stocks. Invest in People.'
           link='/relationships'
@@ -43,7 +47,7 @@ class MainMenu extends React.Component {
           setBackground={this.props.setBackground}
           />
         <MenuItem
-          icon='images/tasks@2x.png'
+          icon={tasksIcon}
           title="Today's Tasks"
           tagline='Stay Focused, Make an Impact'
           link='/tasks/today'

@@ -1,6 +1,6 @@
 #main-menu {
   margin-top: 10px;
-  background: linear-gradient(#0094ff, #3ebc9a);
+  background: linear-gradient(rgb(0, 148, 255), rgb(62, 187, 154));
 }
 
 .menu-item-link:hover {

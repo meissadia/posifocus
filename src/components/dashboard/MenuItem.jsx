@@ -1,7 +1,6 @@
 import React        from 'react';
 import { NavLink }  from 'react-router-dom';
 import MenuItemIcon from './MenuItemIcon';
-import Colors from '../../lib/Colors';
 import '../../css/MainMenu.css';
 
 let MenuItem = (props) => {

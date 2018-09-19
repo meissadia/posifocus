@@ -1,4 +1,5 @@
 import React from 'react';
+import blankUser from '../../images/blank-user.png';
 
 const UserImage = (props) => {
   return (
@@ -7,7 +8,7 @@ const UserImage = (props) => {
         <img
           id='userImage'
           className='user-image'
-          src={props.image || 'images/blank-user.png'}
+          src={props.image || blankUser}
           alt="User Avatar" />
       </label>
       <input

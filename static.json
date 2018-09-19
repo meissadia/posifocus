@@ -8,6 +8,9 @@
   "headers": {
     "/service_worker.js": {
       "Cache-Control": "no-store, no-cache"
+    },
+    "/service-worker.js": {
+      "Cache-Control": "no-store, no-cache"
     }
   }
 }

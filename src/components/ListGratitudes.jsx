@@ -2,35 +2,34 @@ import React          from 'react';
 import PageNavigation from './PageNavigation';
 import List           from './List';
 import Colors         from '../lib/Colors'
-import '../css/ListViews.css'
+import '../css/ListViews.css';
 
 function Gratitudes(props) {
+  let sectionTitle = 'gratitudes'
 
   let showInstructions = props.data.length === 0;
-  let deleteGratitude = (event) => {
+  let deleteHandler = (event) => {
     event.preventDefault();
-    props.delete('gratitudes', event.target.attributes.jsvalue.value);
+    props.delete(sectionTitle, event.target.attributes.jsvalue.value);
   }
 
   return (
-    <List section='gratitudes'
+    <List section={sectionTitle}
       className='route-transition exit-right'
-      instructions={{
-        display: showInstructions,
-        icon: '/images/gratitudes-instructions-tableview.png' }}
-        data={props.data}
-        delete={deleteGratitude}
-        location={props.location}
-        background={Colors.gratitudes}
-        setBackground={props.setBackground}
-        >
-        <PageNavigation
-          back={['/', 'Dashboard']}
-          title='Gratitudes'
-          add={['/gratitudes/new']}
-          />
-      </List>
-    )
-  }
+      instructions={{ display: showInstructions }}
+      data={props.data}
+      delete={deleteHandler}
+      location={props.location}
+      background={Colors.gratitudes}
+      setBackground={props.setBackground}
+      >
+      <PageNavigation
+        back={['/', 'Dashboard']}
+        title='Gratitudes'
+        add={['/gratitudes/new']}
+        />
+    </List>
+  )
+}
 
-  export default Gratitudes;
+export default Gratitudes;
