@@ -18,7 +18,5 @@
     "eject": "react-scripts eject",
     "deploy": "npm run build && surge ./build 'https://posifocus.surge.sh'"
   },
-  "devDependencies": {
-    "surge": "^0.20.1"
-  }
+  "devDependencies": {}
 }
