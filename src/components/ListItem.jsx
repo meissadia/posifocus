@@ -48,7 +48,6 @@ function ItemField(props) {
     value = (
       <div className='link'>
         <div className='value'>{value}</div>
-        <div className='arrow'>></div>
       </div>
     );
   }
