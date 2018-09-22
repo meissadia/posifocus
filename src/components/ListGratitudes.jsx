@@ -22,6 +22,7 @@ function Gratitudes(props) {
       location={props.location}
       background={Colors.gratitudes}
       setBackground={props.setBackground}
+      itemType='shallow'
       >
       <PageNavigation
         back={['/', 'Dashboard']}

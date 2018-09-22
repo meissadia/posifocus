@@ -37,6 +37,7 @@ let Contacts = (props) => {
         location={props.location}
         background={Colors.contacts}
         setBackground={props.setBackground}
+        itemType='shallow'
         >
         <PageNavigation
           back={['/relationships', 'Relationships']}

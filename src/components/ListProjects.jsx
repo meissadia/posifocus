@@ -34,6 +34,7 @@ let Projects = (props) => {
         location={props.location}
         background={Colors.projects}
         setBackground={props.setBackground}
+        itemType='deep'
         >
         <PageNavigation
           back={['/priorities', 'Priorities']}

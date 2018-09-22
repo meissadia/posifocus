@@ -9,17 +9,29 @@ let enterDirection = (props) => {
   return props.className + ' ' + direction;
 }
 
+let calcBg = (index, total, type) => {
+  if (type !== 'deep') { return null };
+  let max = total * 1.2;
+  let pct = index / max;
+  return `rgba(0, 0, 0, ${pct})`;
+}
+
 class List extends React.Component {
   componentDidMount() {
     this.props.setBackground(this.props.section);
   }
 
   render(){
+    let deepListItem = 'item-list ' + this.props.deepListItem;
+    let totalCount = this.props.data.length;
+    let itemType = this.props.itemType;
+
     return (
       <div className={'list-wrapper ' + enterDirection(this.props)}>
         {this.props.children} {/* Page Navigation */}
-        <ul className='item-list'>
+        <ul className={deepListItem}>
           <TransitionGroup>
+
             { this.props.data.map((item, index) => (
               <CSSTransition
                 timeout={250}
@@ -34,7 +46,8 @@ class List extends React.Component {
                   link={this.props.link}
                   makeLink={this.props.makeLink}
                   match={this.props.match}
-                  bgColor={this.props.bgItem}
+                  bgColor={calcBg(index, totalCount, itemType)}
+                  itemType={itemType}
                   />
               </CSSTransition>
             ))}

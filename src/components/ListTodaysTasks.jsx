@@ -25,6 +25,7 @@ let TodaysTasks = (props) => {
         location={props.location}
         background={Colors.todays}
         setBackground={props.setBackground}
+        itemType='task'
         >
         <PageNavigation
           back={['/', 'Dashboard']}

@@ -24,6 +24,7 @@ function Priorities(props) {
         location={props.location}
         background={Colors.priorities}
         setBackground={props.setBackground}
+        itemType='deep'
         >
         <PageNavigation
           back={['/', 'Dashboard']}

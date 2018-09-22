@@ -8,7 +8,7 @@ import deleteIcon  from '../images/delete-icon.png';
 function ListItem(props) {
   let item = props.item;
   let match = props.match
-  let cname = 'list-item';
+  let cname = 'list-item ' + props.itemType;
   if(props.item.done) { cname += ' done'};
   let item_link = props.link || (props.makeLink && props.makeLink(item, match));
   return (
@@ -27,11 +27,11 @@ function ListItem(props) {
         label='Done?'
         toggle={props.toggle}
         />
+      <DateField date={item.date} />
       <div className='list-item-actions'>
         <ListIcon name='edit' href='#' id={item.id} alt='Pencil' src={editIcon} onclick={(event) => {event.preventDefault()}}/>
         <ListIcon name='delete' onclick={props.delete} id={item.id} alt='Trashcan' src={deleteIcon}/>
       </div>
-      <DateField date={item.date} />
     </li>
   )
 }
@@ -44,7 +44,14 @@ function ItemField(props) {
     value = `${props.target} ${value}`;
   }
 
-  if(props.link) { value = value.toString() + " >" };
+  if(props.link) {
+    value = (
+      <div className='link'>
+        <div className='value'>{value}</div>
+        <div className='arrow'>></div>
+      </div>
+    );
+  }
 
   let item = <div className={props.target}>{value}</div>
 

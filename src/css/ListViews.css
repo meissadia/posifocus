@@ -1,10 +1,15 @@
 .instructions {
+  max-width: 500px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.instruction-image {
   width: 100%;
 }
 
 .list-wrapper{
   padding-bottom: 10px;
-  min-height: calc(100vh - 85px);
 }
 
 .item-list {
@@ -17,32 +22,71 @@
   display: flex;
   flex-flow: column nowrap;
   list-style: none;
-  margin: 10px;
-  padding: 10px;
-  background: rgba(0, 0, 0, .2);
-  border-top: 1px solid rgba(0, 0, 0, 0.2);
   transition: background 5s;
 }
 
-.list-item a {
-  color: white;
+.list-item.shallow {
+  background: rgba(20, 20, 20, .6);
+  margin: 10px;
+  padding: 10px;
 }
 
-.list-item a .title {
-  border-bottom: 1px solid rgba(255,255,255,0.5);
+.list-item.shallow .title {
+  margin-bottom: 10px;
+}
+
+.list-item.deep {
+  margin: 0px;
+  padding: 10px 20px;
+  justify-content: space-between;
+}
+
+.list-item.deep .date {
+  display: none;
+}
+
+
+.list-item.deep .list-item-actions {
+  position: absolute;
+  right: 20px;
+}
+
+.list-item.deep .title {
+  /* border-bottom: 1px dashed rgba(255,255,255,0.5); */
+  width: 90%;
+  padding: 5px 0;
+  font-size: 16px;
+}
+
+.list-item.deep .title .link{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+
+.list-item-actions {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
 }
 
 .list-item.done {
-  background: rgba(119, 119, 119, 0.6);
+  background: rgba(119, 119, 119, 0.6) !important;
 }
 
 .list-item.done .title {
   text-decoration: line-through;
 }
 
+li.list-item.task {
+  margin: 10px;
+  padding: 10px;
+  background: rgba(0, 0, 0, .5);
+}
+
 .title {
   font-size: 18px;
-  margin-bottom: 10px;
   width: 100%;
 }
 
@@ -63,11 +107,7 @@
   cursor: pointer;
 }
 
-.list-item-actions {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: flex-end;
-}
+/* Toggle Switches */
 
 .toggle-item {
   display: flex;

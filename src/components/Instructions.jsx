@@ -9,9 +9,9 @@ import projectsIcon from '../images/projects-instructions-tableview.png';
 let Instructions = (props) => {
   if(!props.display) { return null };
   return (
-    <li>
+    <li className='instructions'>
       <img
-        className='instructions'
+        className='instruction-image'
         src={sectionIcon(props.section)}
         alt={`${props.section} instructions`}
         />

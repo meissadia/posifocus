@@ -28,7 +28,7 @@ let offlineBackground = (image) => {
   let html = document.documentElement;
   if(html){
     html.style.background =
-      `linear-gradient(rgba(0, 150, 255, 0.9), rgba(62, 187, 154, 0.9)), url(${fieldRows})`;
+      `linear-gradient(rgba(0, 150, 255, 0.8), rgba(62, 187, 154, 0.8)), url(${fieldRows})`;
     html.style.backgroundPosition = 'center';
     html.style.backgroundSize = 'cover';
   }

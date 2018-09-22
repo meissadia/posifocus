@@ -48,6 +48,7 @@ let Tasks = (props) => {
         location={props.location}
         background={Colors.tasks}
         setBackground={props.setBackground}
+        itemType='task'
         >
         <PageNavigation
           back={[navBackLink(match), navBackText(priority)]}

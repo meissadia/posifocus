@@ -27,12 +27,14 @@
 
 .g-form input,
 .g-form textarea {
-  background: transparent;
+  background: rgba(0, 0, 0, .3);
   border: 0;
   color: white;
   text-align: center;
   font-weight: 200;
   font-size: 1.5em;
+  width: 90%;
+  margin: 0 auto;
 }
 
 .g-form input {
@@ -45,6 +47,7 @@
   margin: 30px;
   cursor: pointer;
   border-radius: 0;
+  align-self: center;
 }
 
 #date-input {
