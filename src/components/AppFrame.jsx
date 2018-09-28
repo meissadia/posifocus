@@ -2,10 +2,6 @@ import React from 'react';
 import fieldRows from '../images/bgimage_small.jpg';
 
 class AppFrame extends React.Component {
-  constructor(props){
-    super(props);
-  }
-
   componentDidMount() {
     offlineBackground(fieldRows);
   }

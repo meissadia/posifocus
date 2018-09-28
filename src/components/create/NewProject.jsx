@@ -1,8 +1,7 @@
 import React                from 'react';
-import { withRouter } from 'react-router-dom';
-import PageNavigation       from './PageNavigation';
-import '../css/FormView.css';
-
+import { withRouter }       from 'react-router-dom';
+import PageNavigation       from '../PageNavigation';
+import '../../css/FormView.css';
 
 class NewProject extends React.Component {
   constructor(props){

@@ -1,12 +1,17 @@
 import React             from 'react';
-import MenuItem          from './MenuItem'
-import Submenu           from './MenuSubmenu'
+import MenuItem          from './MenuItem';
+import Submenu           from './MenuSubmenu';
 import Colors            from '../../lib/Colors';
-import gratitudesIcon    from '../../images/gratitudes@2x.png'
-import prioritiesIcon    from '../../images/priorities@2x.png'
-import relationshipsIcon from '../../images/relationships@2x.png'
-import tasksIcon         from '../../images/tasks@2x.png'
+import gratitudesIcon    from '../../images/gratitudes@2x.png';
+import prioritiesIcon    from '../../images/priorities@2x.png';
+import tasksIcon         from '../../images/tasks.svg';
+import settingsIcon      from '../../images/settings.svg';
+import { faUsers }       from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../../css/MainMenu.css';
+
+
+
 
 class MainMenu extends React.Component {
 
@@ -39,7 +44,7 @@ class MainMenu extends React.Component {
             />
         </MenuItem>
         <MenuItem
-          icon={relationshipsIcon}
+          faIcon={<FontAwesomeIcon icon={faUsers} size='3x'/>}
           title='Relationships'
           tagline='Forget Stocks. Invest in People.'
           link='/relationships'
@@ -48,9 +53,18 @@ class MainMenu extends React.Component {
           />
         <MenuItem
           icon={tasksIcon}
+          iconInvert={true}
           title="Today's Tasks"
           tagline='Stay Focused, Make an Impact'
           link='/tasks/today'
+          background={Colors.todays}
+          setBackground={this.props.setBackground}
+          />
+        <MenuItem
+          icon={settingsIcon}
+          title="Settings"
+          tagline='Cloud Sync'
+          link='/settings'
           background={Colors.todays}
           setBackground={this.props.setBackground}
           />
@@ -61,53 +75,5 @@ class MainMenu extends React.Component {
     )
   }
 }
-
-
-// let MainMenu = (props) => {
-//   return (
-//     <div id='main-menu' onLoad={resetBackground.bind(null, props)}>
-//       <MenuItem
-//         icon='images/gratitudes@2x.png'
-//         title='Gratitudes'
-//         tagline='Because Grateful People Are Happy'
-//         link='/gratitudes'
-//         background={Colors.gratitudes}
-//         setBackground={props.setBackground}
-//         />
-//       <MenuItem
-//         icon='images/priorities@2x.png'
-//         title='Priorities'
-//         tagline='The Most Important Aspects of Your Life'
-//         link='/priorities'
-//         background={Colors.priorities}
-//         setBackground={props.setBackground}
-//         >
-//         <Submenu
-//           projCount={props.projectCount}
-//           taskCount={props.taskCount}
-//           />
-//       </MenuItem>
-//       <MenuItem
-//         icon='images/relationships@2x.png'
-//         title='Relationships'
-//         tagline='Forget Stocks. Invest in People.'
-//         link='/relationships'
-//         background={Colors.relationships}
-//         setBackground={props.setBackground}
-//         />
-//       <MenuItem
-//         icon='images/tasks@2x.png'
-//         title="Today's Tasks"
-//         tagline='Stay Focused, Make an Impact'
-//         link='/tasks/today'
-//         background={Colors.todays}
-//         setBackground={props.setBackground}
-//         />
-//       <a id='reset-state' href='/' onClick={props.reset} >
-//         Reset Data
-//       </a>
-//     </div>
-//   )
-// }
 
 export default MainMenu;

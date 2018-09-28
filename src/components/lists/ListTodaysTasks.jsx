@@ -1,9 +1,8 @@
 import React          from 'react';
-import PageNavigation from './PageNavigation';
+import PageNavigation from '../PageNavigation';
 import List           from './List';
-import Colors         from '../lib/Colors';
-
-import '../css/ListViews.css'
+import Colors         from '../../lib/Colors';
+import '../../css/ListViews.css'
 
 let TodaysTasks = (props) => {
   let showInstructions = props.data.length === 0;

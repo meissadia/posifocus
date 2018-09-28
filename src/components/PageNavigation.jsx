@@ -20,7 +20,7 @@ let PageNavigation = (props) => {
           prefetch='true'>
           &lt; {props.back[1] || back}
         </NavLink> :
-        <NonLink />
+        <NonLink text={props.backNonLink}/>
       }
       <NonLink text={props.title} />
       {
@@ -29,7 +29,7 @@ let PageNavigation = (props) => {
           to={props.add[0]} prefetch='true'>
           {props.add[1] || add}
         </NavLink> :
-        <NonLink />
+        <NonLink text={props.addNonLink}/>
       }
     </div>
   )

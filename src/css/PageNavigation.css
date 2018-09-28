@@ -3,6 +3,7 @@
   align-items: center;
   background: transparent;
   height: 50px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .controls a {
@@ -14,6 +15,7 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  padding: 5px 0;
 }
 
 .controls .non-link {

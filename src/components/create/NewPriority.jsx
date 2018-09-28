@@ -1,15 +1,16 @@
 import React                from 'react';
-import { withRouter } from 'react-router-dom';
-import PageNavigation       from './PageNavigation';
-import '../css/FormView.css';
+import { withRouter }       from 'react-router-dom';
+import PageNavigation       from '../PageNavigation';
+import '../../css/FormView.css';
 
-class NewRelationship extends React.Component {
+
+class NewPriority extends React.Component {
   constructor(props){
     super(props);
-    this.handleAddRelationship = this.handleAddRelationship.bind(this);
+    this.handleAddPriority = this.handleAddPriority.bind(this);
   }
 
-  handleAddRelationship(event){
+  handleAddPriority(event){
     event.preventDefault();
     var date = new Date();
 
@@ -19,12 +20,12 @@ class NewRelationship extends React.Component {
       date: date.toString()
     }
 
-    this.props.addHandler('relationships', new_relationship);
+    this.props.addHandler('priorities', new_relationship);
     this.props.history.push({pathname: this.cancelLink(), state: {enter: 'enter-left'}});
   }
 
   cancelLink(){
-    return '/relationships';
+    return '/priorities'
   }
 
   render(){
@@ -32,18 +33,18 @@ class NewRelationship extends React.Component {
       <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
         <PageNavigation
           back={['/', 'Dashboard']}
-          title='New Relationship'
+          title='New Priority'
           add={[{pathname: this.cancelLink(), state: {enter: 'enter-left'}}, '< Cancel >']}
           />
-        <form name='gform' className='g-form' onSubmit={this.handleAddRelationship}>
+        <form name='gform' className='g-form' onSubmit={this.handleAddPriority}>
           <label htmlFor="title" className='center'>
-            Who Do You Want To Build A Better Relationship With?
+            What's Most Important to You?
           </label>
           <input
             type="text"
             name="title"
             autoComplete="off"
-            placeholder="My Brother"
+            placeholder="Family, Friends, Faith"
             />
           <input id='submit-button' type="submit" name="submit" value="Save" />
         </form>
@@ -52,4 +53,4 @@ class NewRelationship extends React.Component {
   }
 }
 
-export default withRouter(NewRelationship);
+export default withRouter(NewPriority);

@@ -8,7 +8,13 @@ let MenuItem = (props) => {
     <div className='menu-item-link'>
       <NavLink to={navlink(props)} prefetch='true'>
         <div className='flex menu-item'>
-          <MenuItemIcon icon={props.icon} title={props.title} />
+          { props.faIcon ||
+              <MenuItemIcon
+                icon={props.icon}
+                title={props.title}
+                invert={props.iconInvert}
+                />
+          }
           <div className="menu-item-details">
             <p className='title'>{props.title || <br />}</p>
             <p className='tagline'>{props.tagline || <br />}</p>

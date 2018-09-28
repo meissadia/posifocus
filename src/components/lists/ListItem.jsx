@@ -2,8 +2,8 @@ import React       from 'react';
 import { NavLink } from 'react-router-dom';
 import ListIcon    from './ListIcon';
 import ToggleItem  from './ToggleItem';
-import editIcon    from '../images/edit-icon.png';
-import deleteIcon  from '../images/delete-icon.png';
+import editIcon    from '../../images/edit-icon.png';
+import deleteIcon  from '../../images/delete-icon.png';
 
 function ListItem(props) {
   let item = props.item;

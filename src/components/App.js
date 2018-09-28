@@ -1,28 +1,28 @@
-import React, { Component }  from 'react';
-import {
-  TransitionGroup,
-  CSSTransition
-} from 'react-transition-group';
-import { Route, Switch }       from 'react-router-dom';
+import React, { Component } from 'react';
+import { Route, Switch }    from 'react-router-dom';
+import { TransitionGroup,
+         CSSTransition }    from 'react-transition-group';
 import * as State      from '../lib/AppState';
 import AppFrame        from './AppFrame';
-import Dashboard       from './dashboard/Dashboard';
-import Gratitudes      from './ListGratitudes';
-import Priorities      from './ListPriorities';
-import Projects        from './ListProjects';
-import Tasks           from './ListTasks';
-import Relationships   from './ListRelationships';
-import Contacts        from './ListContacts';
-import TodaysTasks     from './ListTodaysTasks';
-import NewGratitude    from './NewGratitude';
-import NewPriority     from './NewPriority';
-import NewProject      from './NewProject';
-import NewTask         from './NewTask';
-import NewRelationship from './NewRelationship';
-import NewContact      from './NewContact';
+import AppHeader       from './AppHeader';
 import NotificationBar from './notifications/NotificationBar';
-import AppHeader from './AppHeader';
-import SimpleStorage    from 'react-simple-storage';
+import Dashboard       from './dashboard/Dashboard';
+import Settings        from './settings/Settings';
+import Gratitudes      from './lists/ListGratitudes';
+import Priorities      from './lists/ListPriorities';
+import Projects        from './lists/ListProjects';
+import Tasks           from './lists/ListTasks';
+import Relationships   from './lists/ListRelationships';
+import Contacts        from './lists/ListContacts';
+import TodaysTasks     from './lists/ListTodaysTasks';
+import NewGratitude    from './create/NewGratitude';
+import NewPriority     from './create/NewPriority';
+import NewProject      from './create/NewProject';
+import NewTask         from './create/NewTask';
+import NewRelationship from './create/NewRelationship';
+import NewContact      from './create/NewContact';
+import SimpleStorage   from 'react-simple-storage';
+import { firebase }    from './firebase';
 
 import '../css/Reset.css';
 import '../css/App.css';
@@ -47,6 +47,7 @@ class App extends Component {
     this.getContacts = State.getContacts.bind(this);
     this.saveStateToStorage = State.saveStateToStorage.bind(this);
     this.setBackground = this.setBackground.bind(this);
+    this.updateStateHandler = this.updateStateHandler.bind(this);
   }
 
   /* We need to save directly to localStorage for mobile apps */
@@ -59,6 +60,15 @@ class App extends Component {
     window.addEventListener('offline', () => this.setOnlineStatus(false));
     this.onManifestUpdateReady();
     this.onServiceWorkerUpdate();
+    this.onAuthUserChange();
+  }
+
+  onAuthUserChange(){
+    firebase.auth.onAuthStateChanged(authUser => {
+      authUser
+      ? this.setState({ authUser })
+      : this.setState({ authUser: null });
+    });
   }
 
   onManifestUpdateReady(){
@@ -89,6 +99,8 @@ class App extends Component {
       return { style: style }
     });
   }
+
+  updateStateHandler = state => this.setState({ ...state });
 
   render() {
     return (
@@ -122,6 +134,14 @@ class App extends Component {
                           doneTaskCount={this.state.tasks.filter((t) => (t.done)).length}
                           contacts={this.state.contacts}
                           resetState={this.resetState}
+                          setBackground={this.setBackground}
+                          />
+                      )}
+                      />
+                    <Route path='/settings' render={()=> (
+                        <Settings
+                          state={this.state}
+                          updateState={this.updateStateHandler}
                           setBackground={this.setBackground}
                           />
                       )}

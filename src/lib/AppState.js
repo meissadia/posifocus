@@ -1,5 +1,3 @@
-// import Colors from './Colors';
-
 export function initState() {
   return ({
     userHeader: {
@@ -17,7 +15,8 @@ export function initState() {
     relationships: [],
     contacts: [],
     online: true,
-    update: false
+    update: false,
+    authUser: null,
   })
 }
 
@@ -34,17 +33,17 @@ export function resetState(event){
   };
 }
 
-export function deleteFromStateArray(stateKey, targetId){
-  let state = this.state[stateKey] || [];
-  let update = state.filter((e) => (e.id !== targetId));
-  this.setState({ [stateKey]: update });
-}
-
 export function addToStateArray(stateKey, value){
   var state = this.state[stateKey] || [];
   state.unshift(value);
   this.setState({ [stateKey]: state });
   return true;
+}
+
+export function deleteFromStateArray(stateKey, targetId){
+  let state = this.state[stateKey] || [];
+  let update = state.filter((e) => (e.id !== targetId));
+  this.setState({ [stateKey]: update });
 }
 
 export function deleteProject(project_id){

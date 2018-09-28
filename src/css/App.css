@@ -28,6 +28,11 @@
 #App.tasks {
    background: rgba(15, 105, 155, 0.6);
  }
+#App.settings {
+   background: rgba(62, 187, 154, 0.6);
+   background: rgba(62, 187, 134, 0.6);
+
+ }
  #App.base {
  }
 

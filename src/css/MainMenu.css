@@ -10,6 +10,7 @@
 
 .menu-item-link {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 5px 0;
 }
 
 .menu-item {
@@ -24,6 +25,10 @@
 .menu-item-icon {
   max-width: 50px;
   max-height: 50px;
+}
+
+.invert {
+  filter: invert(1);
 }
 
 .menu-item-details {
@@ -62,7 +67,6 @@
   display: block;
   color: white;
   transition: background .5s;
-  /* background: rgb(42,160,161); */
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 
 }
@@ -74,27 +78,26 @@
 .priorities-submenu {
   justify-content: center;
   align-self: center;
-  width: 70%;
+  max-width: 400px;
   margin: 0 auto;
   padding: 5px;
   color: white;
   border-radius: 20px;
   font-size: 14px;
-  /* background: rgba(0, 155, 180, 0.8); */
   background: rgba(0, 200, 255, 0.1);
 }
 
 .priorities-submenu > div {
-  padding: 5px 15px;
+  padding: 0px 15px;
   border-radius: 20px;
 }
 
 .priorities-submenu .second {
-  /* background: rgba(0, 165, 180, 0.8); */
   background: rgba(0, 200, 255, 0.1);
 }
 
 .priorities-submenu .icon {
   max-width: 25px;
+  max-height: 25px;
   margin-right: 10px;
 }

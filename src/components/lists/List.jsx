@@ -29,7 +29,7 @@ class List extends React.Component {
     return (
       <div className={'list-wrapper ' + enterDirection(this.props)}>
         {this.props.children} {/* Page Navigation */}
-        <ul className={deepListItem}>
+        <ul className={deepListItem} style={{background: this.props.background}}>
           <TransitionGroup>
 
             { this.props.data.map((item, index) => (
