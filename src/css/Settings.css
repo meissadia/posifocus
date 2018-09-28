@@ -44,11 +44,11 @@
 .cloud-sync .sync-button:hover .icon {
   position: relative;
   bottom: 3px;
-  filter: invert(1) drop-shadow(0px 0px 10px rgba(0,255,0,.6));
+  /* filter: invert(1) drop-shadow(0px 0px 10px rgba(0,255,0,.6)); */
 }
 
 .cloud-sync .sync-button:hover {
-  background: rgba(50, 120, 50, 0.9);
+  /* background: rgba(50, 120, 50, 0.9); */
 }
 
 .settings .result {
