@@ -27,10 +27,6 @@
   max-height: 50px;
 }
 
-.invert {
-  filter: invert(1);
-}
-
 .menu-item-details {
   display: flex;
   flex-flow: column nowrap;

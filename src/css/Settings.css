@@ -20,11 +20,12 @@
   justify-content: center;
   flex-flow: column;
   text-align: center;
-  margin: 0 auto 20px auto;
+  margin: 0 5px 10px 5px;
   padding: 10px 20px;
   cursor: pointer;
   border: 1px solid rgba(0, 0, 0, 0.7);
-  width: 60%;
+  width: 30%;
+  flex-grow: 1;
   background: rgba(52, 177, 124, 1);
   transition: .3s;
 }
@@ -38,7 +39,6 @@
   bottom: 0;
   transition: .3s;
   color: white;
-  filter: invert(1);
 }
 
 .cloud-sync .sync-button:hover .icon {

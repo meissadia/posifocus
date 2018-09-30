@@ -5,13 +5,9 @@ import Colors            from '../../lib/Colors';
 import gratitudesIcon    from '../../images/gratitudes@2x.png';
 import prioritiesIcon    from '../../images/priorities@2x.png';
 import tasksIcon         from '../../images/tasks.svg';
+import relationshipsIcon from '../../images/relationships.svg';
 import settingsIcon      from '../../images/settings.svg';
-import { faUsers }       from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../../css/MainMenu.css';
-
-
-
 
 class MainMenu extends React.Component {
 
@@ -44,7 +40,7 @@ class MainMenu extends React.Component {
             />
         </MenuItem>
         <MenuItem
-          faIcon={<FontAwesomeIcon icon={faUsers} size='3x'/>}
+          icon={relationshipsIcon}
           title='Relationships'
           tagline='Forget Stocks. Invest in People.'
           link='/relationships'
@@ -53,7 +49,6 @@ class MainMenu extends React.Component {
           />
         <MenuItem
           icon={tasksIcon}
-          iconInvert={true}
           title="Today's Tasks"
           tagline='Stay Focused, Make an Impact'
           link='/tasks/today'
@@ -68,9 +63,6 @@ class MainMenu extends React.Component {
           background={Colors.todays}
           setBackground={this.props.setBackground}
           />
-        <a id='reset-state' href='/' onClick={this.props.reset} >
-          Reset Data
-        </a>
       </div>
     )
   }

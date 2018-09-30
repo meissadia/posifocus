@@ -71,6 +71,14 @@ a {
   padding: 10px 0;
 }
 
+.invert {
+  filter: invert(1);
+}
+
+.uninvert {
+  filter: invert(0);
+}
+
 ::-webkit-input-placeholder { /* Chrome */
   color: white;
 }

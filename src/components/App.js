@@ -133,7 +133,6 @@ class App extends Component {
                           taskCount={this.state.tasks.length}
                           doneTaskCount={this.state.tasks.filter((t) => (t.done)).length}
                           contacts={this.state.contacts}
-                          resetState={this.resetState}
                           setBackground={this.setBackground}
                           />
                       )}
@@ -143,6 +142,7 @@ class App extends Component {
                           state={this.state}
                           updateState={this.updateStateHandler}
                           setBackground={this.setBackground}
+                          resetAppState={this.resetState}
                           />
                       )}
                       />

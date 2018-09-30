@@ -28,8 +28,9 @@ export function updateUserHeader(key, value){
 }
 
 export function resetState(event){
-  if(window.confirm('Erase all data?')) {
+  if(window.confirm('Erase all Local data?')) {
     this.setState(this.initState());
+    return true;
   };
 }
 

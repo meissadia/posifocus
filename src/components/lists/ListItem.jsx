@@ -2,8 +2,8 @@ import React       from 'react';
 import { NavLink } from 'react-router-dom';
 import ListIcon    from './ListIcon';
 import ToggleItem  from './ToggleItem';
-import editIcon    from '../../images/edit-icon.png';
-import deleteIcon  from '../../images/delete-icon.png';
+import editIcon    from '../../images/edit.svg';
+import deleteIcon  from '../../images/delete.svg';
 
 function ListItem(props) {
   let item = props.item;
@@ -13,24 +13,26 @@ function ListItem(props) {
   let item_link = props.link || (props.makeLink && props.makeLink(item, match));
   return (
     <li className={cname} style={style(props)}>
-      <ItemField target={'title'} item={item} link={item_link}/>
-      <ItemField target={'content'} item={item} />
-      <ToggleItem
-        target={'today'}
-        item={item}
-        label='Due Today?'
-        toggle={props.toggle}
-        />
-      <ToggleItem
-        target={'done'}
-        item={item}
-        label='Done?'
-        toggle={props.toggle}
-        />
-      <DateField date={item.date} />
+      <div className='list-item-content'>
+        <ItemField target={'title'} item={item} link={item_link}/>
+        <ItemField target={'content'} item={item} />
+        <ToggleItem
+          target={'today'}
+          item={item}
+          label='Due Today?'
+          toggle={props.toggle}
+          />
+        <ToggleItem
+          target={'done'}
+          item={item}
+          label='Done?'
+          toggle={props.toggle}
+          />
+        <DateField date={item.date} />
+      </div>
       <div className='list-item-actions'>
-        <ListIcon name='edit' href='#' id={item.id} alt='Pencil' src={editIcon} onclick={(event) => {event.preventDefault()}}/>
-        <ListIcon name='delete' onclick={props.delete} id={item.id} alt='Trashcan' src={deleteIcon}/>
+        <ListIcon name='edit' invert={true} href='#' id={item.id} alt='Pencil' src={editIcon} onclick={(event) => {event.preventDefault()}}/>
+        <ListIcon name='delete' invert={true} onclick={props.delete} id={item.id} alt='Trashcan' src={deleteIcon}/>
       </div>
     </li>
   )

@@ -3,10 +3,17 @@ import { auth, db }   from '../firebase/index';
 import { SignUpForm } from './SignUp';
 import { SignInForm } from './SignIn';
 import PageNavigation from '../PageNavigation';
+import Credits        from './Credits';
 import uploadIcon     from '../../images/upload.svg';
-import downloadIcon   from '../../images/download.svg';
+import downloadIcon   from '../../images/cloud-download.svg';
 import logoutIcon     from '../../images/logout.svg';
+import refreshIcon    from '../../images/reload.svg';
+import creditsIcon    from '../../images/credits.svg';
 import '../../css/Settings.css';
+
+const SIGNIN = 0;
+const SIGNUP = 1;
+const CREDITS = 2;
 
 class Settings extends React.Component {
   constructor(props) {
@@ -16,7 +23,7 @@ class Settings extends React.Component {
     this.syncFromCloud = this.syncFromCloud.bind(this);
     this.setOption = this.setOption.bind(this);
     this.updateState = this.updateState.bind(this);
-    this.resetState = this.resetState.bind(this);
+    this.resetSettingsState = this.resetSettingsState.bind(this);
   }
 
   componentDidMount(){
@@ -26,7 +33,7 @@ class Settings extends React.Component {
   initState = () => ({
     error: null,
     result: null,
-    option: 0,
+    option: SIGNIN,
   })
 
   setOption(opt){
@@ -37,7 +44,7 @@ class Settings extends React.Component {
     this.setState({ ...obj });
   }
 
-  resetState(){
+  resetSettingsState(){
     this.updateState(this.initState());
   }
 
@@ -88,12 +95,18 @@ class Settings extends React.Component {
           updateState={this.props.updateState}
           syncToCloud={this.syncToCloud}
           syncFromCloud={this.syncFromCloud}
-          resetState={this.resetState}
+          resetSettingsState={this.resetSettingsState}
+          resetAppState={this.props.resetAppState}
+          setOption={this.setOption}
           />
-    } else if (this.state.option === 0) {
+    } else if (this.state.option === SIGNIN) {
       main =  <SignInForm setOption={this.setOption} />
-    } else {
+    } else if (this.state.option === SIGNUP) {
       main =  <SignUpForm setOption={this.setOption} />
+    }
+
+    if (this.state.option === CREDITS) {
+      main =  <Credits />
     }
 
     return (
@@ -119,7 +132,7 @@ const CloudSync = props => (
         onClick={props.syncToCloud.bind(null, props.state)}
         className="sync-button">
         <h1>Sync to Cloud</h1>
-        <img className='icon' src={uploadIcon} alt='Arrow up into cloud' />
+        <img className='icon invert' src={uploadIcon} alt='Arrow up into cloud' />
         <p>Save your content to Cloud storage.</p>
         <p className='warn'></p>
       </div>
@@ -127,24 +140,46 @@ const CloudSync = props => (
         onClick={props.syncFromCloud.bind(null, props.state.authUser.uid, props.updateState)}
         className="sync-button">
         <h1>Download from Cloud</h1>
-        <img className='icon' src={downloadIcon} alt='Arrow down into inbox' />
+        <img className='icon invert' src={downloadIcon} alt='Arrow down into inbox' />
         <p>Restore your content from Cloud storage.</p>
       </div>
       <div
-        onClick={verifyAndSignOut.bind(null, props.resetState)}
+        onClick={verifyAppReset.bind(null, props.resetAppState, props.resetSettingsState)}
+        className="sync-button">
+        <h1>Reset Local Data</h1>
+        <img className='icon invert' src={refreshIcon} alt='Cycle of Arrows' />
+        <p>Deletes all locally stored content.</p>
+      </div>
+      <div
+        onClick={props.setOption.bind(null, CREDITS)}
+        className="sync-button">
+        <h1>Credits</h1>
+        <img className='icon invert' src={creditsIcon} alt='Cycle of Arrows' />
+        <p>Thanks!</p>
+      </div>
+      <div
+        onClick={verifyAndSignOut.bind(null, props.resetSettingsState)}
         className="sync-button">
         <h1>Sign Out</h1>
-        <img className='icon' src={logoutIcon} alt='Arrow exiting door' />
+        <img className='icon invert' src={logoutIcon} alt='Arrow exiting door' />
         <p>Disconnect Cloud Backup.</p>
       </div>
     </div>
   </div>
 )
 
-const verifyAndSignOut = (resetState, event) =>
+const verifyAndSignOut = (resetSettingsState, event) =>
   window.confirm('Are you sure you want to Sign Out?')
     && auth.doSignOut()
-    && resetState();
+    && resetSettingsState();
+
+const verifyAppReset = (resetAppState, resetSettingsState) => {
+  let reset_more = resetAppState();
+  if(reset_more) {
+    resetSettingsState();
+    auth.doSignOut();
+  }
+}
 
 // Display message
 const Result = props =>

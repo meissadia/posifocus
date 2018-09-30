@@ -3,7 +3,7 @@ import React from 'react';
 export default function ListIcon(props){
   return (
     <a
-      className={props.name + ' list-icon'}
+      className={props.name + ' list-icon' + invert(props)}
       onClick={props.onclick}
       href={props.href}
       >
@@ -15,3 +15,5 @@ export default function ListIcon(props){
     </a>
   )
 }
+
+const invert = (props) => props.invert ? ' invert' : '';
