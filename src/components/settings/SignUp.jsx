@@ -4,7 +4,6 @@ import PageNavigation       from '../PageNavigation';
 import '../../css/Settings.css'
 
 const INITIAL_STATE = {
-  username: '',
   email: '',
   passwordOne: '',
   passwordTwo: '',
@@ -37,13 +36,12 @@ class SignUpForm extends Component {
   }
 
   render() {
-    const { username, email, passwordOne, passwordTwo, error } = this.state;
+    const { email, passwordOne, passwordTwo, error } = this.state;
 
     const isInvalid =
       passwordOne !== passwordTwo ||
       passwordOne === '' ||
-      email === '' ||
-      username === '';
+      email === '';
 
     return (
       <div className='route-transition enter-left exit-bottom' key='signup-form'>
@@ -52,12 +50,6 @@ class SignUpForm extends Component {
           title='Sign Up'
           />
       <form className='login' onSubmit={this.onSubmit}>
-        <input
-          value={username}
-          onChange={event => this.setState(byPropKey('username', event.target.value))}
-          type="text"
-          placeholder="Full Name"
-          />
         <input
           value={email}
           onChange={event => this.setState(byPropKey('email', event.target.value))}
