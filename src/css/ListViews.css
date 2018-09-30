@@ -153,7 +153,7 @@
 /* Animate List Items */
 
 .list-item {
-  transition: 250ms ease-in;
+  transition: 250ms ease-out;
   position: relative;
 }
 
@@ -174,12 +174,22 @@
   position: relative;
   left: 0;
   /* opacity: 1; */
-  height: 100px;
-  background: transparent;
+  background: red !important;
+}
+.list-item-exit.shallow {
+  height: 103px;
+}
+.list-item-exit.deep {
+  height: 50px;
+}
+.list-item-exit.task {
+  height: 120px;
 }
 
 .list-item-exit.list-item-exit-active {
-  left: -100vw;
   opacity: 0;
   height: 0;
+  padding: 0;
+  margin: 0;
+  border: none;
 }
