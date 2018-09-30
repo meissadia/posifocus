@@ -1,12 +1,10 @@
 .new-input-wrapper {
   min-height: calc(100vh - 73px);
   background: rgba(0, 0, 0, .5);
-
 }
-.new-input-wrapper .controls {
-  /* background: rgba(0, 150, 255, 1); */
-  background: rgba(0, 0, 0, .1);
 
+.new-input-wrapper .controls {
+  background: rgba(0, 0, 0, .1);
 }
 
 .g-form {
@@ -53,6 +51,7 @@
 #date-input {
   text-align: center;
   align-self: center;
+  width: auto;
 }
 
 .form-toggle {

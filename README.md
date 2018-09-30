@@ -1,15 +1,36 @@
-## Motivation
-[Posifocus](https://posifocus.com/) is a mentality supported by an iOS app.
-
-This version is a Progressive Web Application implemented with React, attempting to re-create the app look, feel, and function via a web browser.
-
 ## Demo  
 
-The current demo is deployed on Surge.
+[Posifocus Web](https://posifocus.surge.sh)  
 
-[Posifocus Web](https://posifocus.surge.sh)
+## Motivation  
+[Posifocus](https://posifocus.com/) is a mentality supported by an iOS app.  
 
-## Development
+[Posifocus Web](https://posifocus.surge.sh) is a Progressive Web Application implemented with React, aiming to expa
+
+## Todo  
+
+Global  
+  - [ ] Establish shared Object formats so that we can share Cloud storage across web/ios.  
+
+Security  
+  - [X] Ensure no keys are exposed? {key, firebase, auth}
+
+Registration  
+  - [ ] Add full name, username?  
+  - [ ] Enable Password Forgot
+  - [ ] Enable Password Change
+
+List  
+  - [ ] Enable list-item edit  
+  - [ ] Enable create/edit without route change (should help fix item animations)  
+
+UI  
+  - [ ] Find appropriate colors  
+  - [ ] Switch all icons to SVG  
+  - [ ] Revisit background color/graphic implementation  
+  - [X] Date off-center in New Contact on iOS
+
+## Development  
 
 Create a .env file in your project root with the following variables configured with your Firebase configuration values.  
 ```
