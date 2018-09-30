@@ -4,20 +4,43 @@ import '../../css/Credits.css';
 
 const Credits = (props) => {
   return (
-    <div>
+    <div className='credits'>
       <PageNavigation
         back={['/settings', 'Settings']}
         title='Credits'
         />
-      <div className='flaticon-credit'>Icon "Bookmark" made by <a href="https://www.flaticon.com/authors/freepik" title="Bookmark">freepik</a> on <a href="https://www.flaticon.com/"     title="Flaticon">Flaticon</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"     title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
-      <div className='flaticon-credit'>Icon "Cloud computing" made by <a href="https://www.flaticon.com/authors/freepik" title="Cloud computing">freepik</a> on <a href="https://www.flaticon.com/"     title="Flaticon">Flaticon</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"     title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
-      <div className='flaticon-credit'>Icon "Garbage" made by <a href="https://www.flaticon.com/authors/freepik" title="Garbage">freepik</a> on <a href="https://www.flaticon.com/"     title="Flaticon">Flaticon</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"     title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
-      <div className='flaticon-credit'>Icon "Logout" made by <a href="https://www.flaticon.com/authors/elias-bikbulatov" title="Logout">elias-bikbulatov</a> on <a href="https://www.flaticon.com/"     title="Flaticon">Flaticon</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"     title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
-      <div className='flaticon-credit'>Icon "Pencil edit button" made by <a href="https://www.flaticon.com/authors/freepik" title="Pencil edit button">freepik</a> on <a href="https://www.flaticon.com/"     title="Flaticon">Flaticon</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"     title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
-      <div className='flaticon-credit'>Icon "Reload" made by <a href="https://www.flaticon.com/authors/kiranshastry" title="Reload">kiranshastry</a> on <a href="https://www.flaticon.com/"     title="Flaticon">Flaticon</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"     title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
-      <div className='flaticon-credit'>Icon "Upload" made by <a href="https://www.flaticon.com/authors/gregor-cresnar" title="Upload">gregor-cresnar</a> on <a href="https://www.flaticon.com/"     title="Flaticon">Flaticon</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"     title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+      <table>
+        <caption>Resources</caption>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Creator</th>
+            <th>Found at</th>
+            <th>License</th>
+          </tr>
+        </thead>
+        <tbody>
+          <Flaticon iconName="Bookmark" creator='freepik' />
+          <Flaticon iconName="Cloud computing" creator='freepik' />
+          <Flaticon iconName="Garbage" creator='freepik' />
+          <Flaticon iconName="Logout" creator='elias-bikbulatov' />
+          <Flaticon iconName="Pencil edit button" creator='freepik' />
+          <Flaticon iconName="Reload" creator='kiranshastry' />
+          <Flaticon iconName="Upload" creator='gregor-cresnar' />
+          <Flaticon iconName="Back" creator='gregor-cresnar' />
+        </tbody>
+      </table>
     </div>
   )
 }
+
+const Flaticon = (props) => (
+  <tr className="flaticon-credit">
+    <td>{props.iconName}</td>
+    <td><a href={`https://www.flaticon.com/authors/${props.creator}`}>{props.creator}</a></td>
+    <td><a href="https://www.flaticon.com/"     title="Flaticon">Flaticon</a></td>
+    <td><a href="http://creativecommons.org/licenses/by/3.0/"  title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></td>
+  </tr>
+)
 
 export default Credits;

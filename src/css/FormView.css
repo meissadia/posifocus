@@ -1,6 +1,8 @@
 .new-input-wrapper {
-  min-height: calc(100vh - 73px);
-  background: rgba(0, 0, 0, .5);
+  position: absolute;
+  top: 0;
+  min-height: calc(100vh);
+  background: rgba(0, 0, 0);
 }
 
 .new-input-wrapper .controls {

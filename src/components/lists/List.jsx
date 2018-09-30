@@ -9,16 +9,12 @@ let enterDirection = (props) => {
   return props.className + ' ' + direction;
 }
 
-let calcBg = (index, total, type) => {
-  if (type !== 'deep') { return null };
-  let max = total * 1.2;
-  let pct = index / max;
-  return `rgba(0, 0, 0, ${pct})`;
-}
-
 class List extends React.Component {
-  componentDidMount() {
-    this.props.setBackground(this.props.section);
+  calcBg = (index, total) => {
+    if (this.props.itemType !== 'deep') { return this.props.background };
+    let max = total * 1.2;
+    let pct = index / max;
+    return `rgba(0, 0, 0, ${pct})`;
   }
 
   render(){
@@ -46,7 +42,7 @@ class List extends React.Component {
                   link={this.props.link}
                   makeLink={this.props.makeLink}
                   match={this.props.match}
-                  bgColor={calcBg(index, totalCount, itemType)}
+                  bgColor={this.calcBg(index, totalCount)}
                   itemType={itemType}
                   />
               </CSSTransition>

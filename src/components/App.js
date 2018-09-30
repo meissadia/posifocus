@@ -3,6 +3,7 @@ import { Route, Switch }    from 'react-router-dom';
 import { TransitionGroup,
          CSSTransition }    from 'react-transition-group';
 import * as State      from '../lib/AppState';
+import '../lib/Helpers';
 import AppFrame        from './AppFrame';
 import AppHeader       from './AppHeader';
 import NotificationBar from './notifications/NotificationBar';
@@ -94,9 +95,9 @@ class App extends Component {
 
   setBackground = color => {
     this.setState((prevState) => {
-      let { style } = prevState;
-      style = Object.assign(style, { background: color });
-      return { style: style }
+      // let { style } = prevState;
+      // style = Object.assign(style, { background: color });
+      // return { style: style }
     });
   }
 

@@ -153,7 +153,7 @@ const CloudSync = props => (
       <div
         onClick={props.setOption.bind(null, CREDITS)}
         className="sync-button">
-        <h1>Credits</h1>
+        <h1>Resource Credits</h1>
         <img className='icon invert' src={creditsIcon} alt='Cycle of Arrows' />
         <p>Thanks!</p>
       </div>

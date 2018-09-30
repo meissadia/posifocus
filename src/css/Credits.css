@@ -1,11 +1,30 @@
-.flaticon-credit {
+.credits table {
   width: 90%;
-  height: 25px;
-  line-height: 25px;
+  margin: 10px auto 0 auto;
+  padding: 10px
+}
+
+.credits table th {
+  padding: 10px 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.credits table td {
+  width: 25%;
+  padding: 5px 0;
+  margin: 0;
+}
+
+.credits table caption {
+  /* width: 90%; */
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px 0;
+}
+
+.flaticon-credit {
+  width: 100%;
   background: rgba(0, 0, 0, 0.3);
-  margin: 5px auto;
   text-align: center;
-  padding: 5px ;
 }
 
 .flaticon-credit a {

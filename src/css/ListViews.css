@@ -9,13 +9,15 @@
 }
 
 .list-wrapper{
-  padding-bottom: 10px;
+  /* padding-bottom: 10px; */
 }
 
 .item-list {
   width: 100%;
   margin: 0;
   padding: 5px 0;
+  /* background: rgba(0, 0, 0, 0.5); */
+  /* filter: blur(5px); */
 }
 
 .list-item {
@@ -33,11 +35,15 @@
   padding: 10px 20px;
 }
 
-.list-item.shallow {
-  background: rgba(20, 20, 20, .4);
+.list-item.shallow,
+.list-item.task {
+  /* background: rgba(20, 20, 20, .4); */
   margin: 10px;
   padding: 10px;
+  border: 1px solid rgba(0, 0, 0, .2);
+  box-shadow: 0 0 20px rgba(0, 0, 0, .4);
 }
+
 
 .list-item.shallow .title {
   margin-bottom: 10px;
@@ -96,13 +102,8 @@
   text-align: right;
 }
 
-li.list-item.task {
-  margin: 10px;
-  padding: 10px;
-  background: rgba(0, 0, 0, .3);
-}
 
-li.list-item.task .title {
+.list-item.task .title {
   padding: 0 0 10px 0;
 }
 
