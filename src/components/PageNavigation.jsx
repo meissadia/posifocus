@@ -1,6 +1,8 @@
 import React       from 'react';
 import { NavLink } from 'react-router-dom';
 import '../css/PageNavigation.css';
+import backIcon from '../images/back.svg';
+import plusIcon from '../images/plus.svg';
 
 let NonLink = (props) => (
   <a className='non-link'>
@@ -9,8 +11,8 @@ let NonLink = (props) => (
 )
 
 let PageNavigation = (props) => {
-  let add = 'New +';
-  let back = '< Back';
+  // let add = 'New';
+  let back = 'Back';
   return(
     <div className="flex row controls">
       {
@@ -18,16 +20,15 @@ let PageNavigation = (props) => {
         <NavLink
           to={{pathname: props.back[0], state: {enter: 'enter-left'}}}
           prefetch='true'>
-          &lt; {props.back[1] || back}
+          <img className='icon invert' src={backIcon} /> {props.back[1] || back}
         </NavLink> :
         <NonLink text={props.backNonLink}/>
       }
       <NonLink text={props.title} />
       {
         props.add ?
-        <NavLink
-          to={props.add[0]} prefetch='true'>
-          {props.add[1] || add}
+        <NavLink to={props.add[0]} prefetch='true'>
+          {props.add[1] || <img className='icon' src={plusIcon} />}
         </NavLink> :
         <NonLink text={props.addNonLink}/>
       }

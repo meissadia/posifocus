@@ -28,6 +28,7 @@ const Credits = (props) => {
           <Flaticon iconName="Reload" creator='kiranshastry' />
           <Flaticon iconName="Upload" creator='gregor-cresnar' />
           <Flaticon iconName="Back" creator='gregor-cresnar' />
+          <Flaticon iconName="Left arrow angle..." creator='catalin-fertu' />
         </tbody>
       </table>
     </div>
