@@ -94,7 +94,7 @@
 }
 
 .list-item.done {
-  background: rgba(119, 119, 119, 0.6) !important;
+  background: rgba(119, 119, 119, 1) !important;
 }
 
 .list-item.done .title {

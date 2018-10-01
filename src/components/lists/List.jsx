@@ -12,20 +12,17 @@ let enterDirection = (props) => {
 
 class List extends React.Component {
   calcBg = (index, total) => {
-    if (this.props.itemType !== 'deep') {
-      return this.props.background.alpha(1).pct(.2).str() ;
-    }
+    // if (this.props.itemType !== 'deep') {
+      // return this.props.background.alpha(1).pct(.2).str() ;
+    // }
 
     let max = total * 1.2;
     let pct = index / max;
 
     let { background } = this.props
-    if(background) {
-      return background.alpha(.9).pct(pct).str();
-    } else {
-      background = new Color(0,0,0,0);
-      return background.alpha(pct).str();
-    }
+    return background
+      ? background.alpha(.9).pct(pct).str()
+      : (new Color(0,0,0,0)).alpha(pct).str()
   }
 
   render(){
