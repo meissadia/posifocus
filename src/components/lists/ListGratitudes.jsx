@@ -1,6 +1,4 @@
 import React          from 'react';
-import {Route } from 'react-router-dom';
-// import NewGratitude   from '../create/NewGratitude';
 import PageNavigation from '../PageNavigation';
 import List           from './List';
 import Colors         from '../../lib/Colors';

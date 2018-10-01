@@ -1,6 +1,4 @@
 import React        from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckSquare } from '@fortawesome/free-regular-svg-icons';
 import projectsIcon      from '../../images/projects.svg';
 import tasksIcon         from '../../images/tasks.svg';
 

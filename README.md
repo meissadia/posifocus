@@ -27,10 +27,11 @@ List
 
 UI  
   - [ ] Find appropriate colors  
-  - [ ] Move Reset Data to Settings  
+  - [X] Move Reset Data to Settings  
   - [ ] Switch all icons to SVG  
-  - [ ] Revisit background color/graphic implementation
-  - [ ] Revisit Settings layout
+  - [X] Revisit background colorimplementation
+  - [ ] Revisit background graphic implementation
+  - [X] Revisit Settings layout
   - [ ] Finish animating Settings
   - [X] Date off-center in New Contact on iOS
 

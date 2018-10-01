@@ -40,7 +40,7 @@ const Flaticon = (props) => (
     <td>{props.iconName}</td>
     <td><a href={`https://www.flaticon.com/authors/${props.creator}`}>{props.creator}</a></td>
     <td><a href="https://www.flaticon.com/"     title="Flaticon">Flaticon</a></td>
-    <td><a href="http://creativecommons.org/licenses/by/3.0/"  title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></td>
+    <td><a href="http://creativecommons.org/licenses/by/3.0/"  title="Creative Commons BY 3.0" target="_blank" rel="noopener noreferrer">CC 3.0 BY</a></td>
   </tr>
 )
 

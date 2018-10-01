@@ -23,7 +23,7 @@ export function Color(r=0, g=0, b=0, a=0) {
   this.darken = (amount) => {
     let new_color = {};
     Object.keys(this.rgba).forEach((key) => (
-      new_color[key] = Math.max(this.rgba[key] - amount), 50)
+      new_color[key] = Math.max(this.rgba[key] - amount, 50))
     )
     return new Color(new_color.r, new_color.g, new_color.b, a);
   }
@@ -40,7 +40,7 @@ export function Color(r=0, g=0, b=0, a=0) {
   this.lighten = (amount) => {
     let new_color = {};
     Object.keys(this.rgba).forEach((key) => (
-      new_color[key] = Math.min(this.rgba[key] - amount), 255)
+      new_color[key] = Math.min(this.rgba[key] - amount, 255))
     )
     return new Color(new_color.r, new_color.g, new_color.b, a);
   }
