@@ -9,7 +9,7 @@ import projectsIcon from '../../images/projects-instructions-tableview.png';
 let Instructions = (props) => {
   if(!props.display) { return null };
   return (
-    <li className='instructions'>
+    <li className='instructions' style={bgcolor(props)}>
       <img
         className='instruction-image'
         src={sectionIcon(props.section)}
@@ -37,7 +37,10 @@ let sectionIcon = (section) => {
     default:
 
   }
-
 }
+
+let bgcolor = (props) => ({
+  background: props.bgColor
+})
 
 export default Instructions;

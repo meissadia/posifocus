@@ -64,6 +64,7 @@ class List extends React.Component {
                 section={this.props.section}
                 src={this.props.instructions.icon}
                 display={this.props.instructions.display}
+                bgColor={this.calcBg(0, 1)}
                 />
             </CSSTransition>
           </TransitionGroup>

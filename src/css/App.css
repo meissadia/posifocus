@@ -29,7 +29,7 @@
    background: rgba(15, 105, 155, 0.6);
  }
 #App.settings {
-   background: rgb(46,171,174,0.8);
+   background: rgba(46, 171, 174, 0.8);
  }
  #App.base {
    /* background: linear-gradient(rgba(0, 150, 255, 0.8), rgba(62, 187, 154, 0.8)); */

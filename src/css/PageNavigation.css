@@ -17,7 +17,6 @@
   text-align: center;
   overflow: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis;
   padding: 5px 0;
   display: flex;
   flex-flow: row;
@@ -28,7 +27,7 @@
 .controls .non-link {
   cursor: inherit;
   text-decoration: none;
-  overflow: inherit;
+  overflow: visible;
 }
 
 .controls img {
