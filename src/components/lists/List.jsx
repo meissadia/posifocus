@@ -1,7 +1,7 @@
 import React from 'react';
 import Instructions   from './Instructions';
 import ListItem       from './ListItem';
-import {Color} from '../../lib/Colors'
+import Colors, {Color} from '../../lib/Colors'
 import {TransitionGroup, CSSTransition} from 'react-transition-group';
 
 let enterDirection = (props) => {
@@ -64,7 +64,7 @@ class List extends React.Component {
                 section={this.props.section}
                 src={this.props.instructions.icon}
                 display={this.props.instructions.display}
-                bgColor={this.calcBg(0, 1)}
+                bgColor={Colors.shade10.str()}
                 />
             </CSSTransition>
           </TransitionGroup>
