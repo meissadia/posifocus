@@ -1,0 +1,54 @@
+class Task: Object {
+    @objc dynamic var name: String = ""
+    @objc dynamic var order: Int = 0
+    @objc dynamic var completed: Bool = false
+    @objc dynamic var today: Bool = false
+    @objc dynamic var todayOrder: Int = 0
+    var parentProject = LinkingObjects(fromType: Project.self, property: "tasks")
+}
+
+class Contact: Object {
+    @objc dynamic var name: String = ""
+    @objc dynamic var notes: String = ""
+    @objc dynamic var day = Date()
+    var parentRelationship = LinkingObjects(fromType: Relationship.self, property: "contacts")
+}
+
+class Gratitude: Object {
+    @objc dynamic var name: String = ""
+    @objc dynamic var notes: String = ""
+    @objc dynamic var day = Date()
+    @objc dynamic var category: String = ""
+    @objc dynamic var rating: Int = 0
+}
+
+class Priority: Object {
+    @objc dynamic var name: String = ""
+    @objc dynamic var order: Int = 0
+    @objc dynamic var completed: Bool = false
+    let projects = List<Project>()
+}
+
+class Profile: Object {
+    @objc dynamic var name: String = ""
+    @objc dynamic var motto: String = ""
+    @objc dynamic var profilePic: String = ""
+    @objc dynamic var tasksCompleted: Int = 0
+    @objc dynamic var lastContact: Int = 0
+}
+
+class Project: Object {
+    @objc dynamic var name: String = ""
+    @objc dynamic var order: Int = 0
+    @objc dynamic var completed: Bool = false
+    var parentPriority = LinkingObjects(fromType: Priority.self, property: "projects")
+    let tasks = List<Task>()
+}
+
+class Relationship: Object {
+    @objc dynamic var name: String = ""
+    @objc dynamic var birthday: Date = Date()
+    @objc dynamic var lastContact: Date = Date()
+    @objc dynamic var notes: String = ""
+    let contacts = List<Contact>()
+}

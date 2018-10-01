@@ -1,6 +1,6 @@
 import React  from 'react';
 import Toggle from 'react-toggle';
-import '../../css/ReactToggle.css';
+import '../../css/ReactToggle.sass';
 
 export default function ToggleItem(props) {
   let value = props.item[props.target];

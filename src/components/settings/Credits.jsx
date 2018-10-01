@@ -1,6 +1,6 @@
 import React from 'react';
 import PageNavigation from '../PageNavigation';
-import '../../css/Credits.css';
+import '../../css/Credits.sass';
 
 const Credits = (props) => {
   return (

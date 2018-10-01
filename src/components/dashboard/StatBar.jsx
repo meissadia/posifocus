@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../css/StatBar.css';
+import '../../css/StatBar.sass';
 
 export default function StatBar(props) {
   return (

@@ -9,7 +9,7 @@ import downloadIcon   from '../../images/cloud-download.svg';
 import logoutIcon     from '../../images/logout.svg';
 import refreshIcon    from '../../images/reload.svg';
 import creditsIcon    from '../../images/credits.svg';
-import '../../css/Settings.css';
+import '../../css/Settings.sass';
 
 const SIGNIN = 0;
 const SIGNUP = 1;

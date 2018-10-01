@@ -1,13 +1,12 @@
-import React        from 'react';
-import projectsIcon      from '../../images/projects.svg';
-import tasksIcon         from '../../images/tasks.svg';
+import React          from 'react';
+import projectsIcon   from '../../images/projects.svg';
+import tasksIcon      from '../../images/tasks.svg';
 
-
-import '../../css/MainMenu.css';
+import '../../css/MainMenu.sass';
 
 let MenuSubmenu = (props) => (
   <div className="priorities-submenu flex row" >
-    <div className="flex row" >
+    <div className="first flex row" >
       <img src={projectsIcon} className='icon' alt="Open Folder" />
       <p>Projects: {props.projCount}</p>
     </div>

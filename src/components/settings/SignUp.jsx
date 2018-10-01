@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { auth, db }         from '../firebase/index';
 import PageNavigation       from '../PageNavigation';
-import '../../css/Settings.css'
+import '../../css/Settings.sass'
 
 const INITIAL_STATE = {
   email: '',

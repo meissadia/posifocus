@@ -1,7 +1,7 @@
 import React                from 'react';
 import { withRouter }       from 'react-router-dom';
 import PageNavigation       from '../PageNavigation';
-import '../../css/FormView.css';
+import '../../css/FormView.sass';
 
 class NewGratitude extends React.Component {
   constructor(props){
@@ -46,7 +46,7 @@ class NewGratitude extends React.Component {
         <PageNavigation
           back={['/', 'Dashboard']}
           title='New Gratitude'
-          add={[{pathname: this.cancelLink(), state: {enter: 'enter-left'}}, '< Cancel >']}
+          add={[{pathname: this.cancelLink(), state: {enter: 'enter-bottom'}}, '< Cancel >']}
           />
         <form name='gform' className='g-form' onSubmit={this.handleNewGratitude}>
           <label htmlFor="title" className='center'>

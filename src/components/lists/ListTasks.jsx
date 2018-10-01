@@ -2,7 +2,7 @@ import React          from 'react';
 import PageNavigation from '../PageNavigation';
 import List           from './List';
 import Colors         from '../../lib/Colors';
-import '../../css/ListViews.css'
+import '../../css/ListViews.sass'
 
 let Tasks = (props) => {
 

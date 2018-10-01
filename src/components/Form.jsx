@@ -1,6 +1,6 @@
 import React                from 'react';
 import { withRouter } from 'react-router-dom';
-import '../css/FormView.css';
+import '../css/FormView.sass';
 
 class Form extends React.Component {
   constructor(props) {
@@ -11,12 +11,7 @@ class Form extends React.Component {
       return elem;
     }).join('-');
   }
-
-  componentDidMount(){
-    let header = document.getElementById('header');
-    // header.style.background = 'rgba(0, 150, 255, 1)';
-  }
-
+  
   render(){
     return(
       <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>

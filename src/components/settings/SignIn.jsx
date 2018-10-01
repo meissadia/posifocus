@@ -2,7 +2,7 @@ import React,
        { Component }  from 'react';
 import { auth }       from '../firebase/index';
 import PageNavigation from '../PageNavigation';
-import '../../css/Settings.css'
+import '../../css/Settings.sass'
 
 const byPropKey = (propertyName, value) => () => ({
   [propertyName]: value,

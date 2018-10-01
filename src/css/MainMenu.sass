@@ -1,0 +1,63 @@
+@import basics
+
+#main-menu
+  margin-top: 10px
+  background: linear-gradient(rgba(0, 148, 255, 1), rgba(62, 187, 154, 1))
+  transform: translateZ(0)
+
+.menu-item-link
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2)
+  padding: 5px 0
+  &:hover
+    transition: background $transition-length
+    background: rgba(0, 0, 0, 0.2)
+  .menu-item
+    justify-content: center
+    align-items: center
+    background: inherit
+    padding: 5px 0
+    margin-left: 5%
+    color: white
+  .menu-item-details
+    display: flex
+    flex-flow: column nowrap
+    flex-basis: 300px
+    margin-left: 5%
+    a
+      color: white
+    .tagline,
+    .title
+      margin: 0
+    .title
+      font-size: 18px
+    .tagline
+      font-size: 14px
+      padding-left: 5px
+      padding-top: 5px
+
+.menu-item-icon
+  max-width: 50px
+  max-height: 50px
+
+#reset-state:hover
+  background: rgba(212, 83, 0, 0.7)
+
+.priorities-submenu
+  justify-content: center
+  align-self: center
+  max-width: 400px
+  margin: 0 auto
+  padding: 5px
+  color: white
+  border-radius: 20px
+  font-size: 14px
+  background: rgba(0, 200, 255, 0.1)
+  .first
+    padding: 0px 15px
+    border-radius: 20px
+  .second
+    background: rgba(0, 200, 255, 0.1)
+  .icon
+    max-width: 25px
+    max-height: 25px
+    margin-right: 10px

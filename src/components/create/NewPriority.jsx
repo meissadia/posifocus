@@ -1,7 +1,7 @@
 import React                from 'react';
 import { withRouter }       from 'react-router-dom';
 import PageNavigation       from '../PageNavigation';
-import '../../css/FormView.css';
+import '../../css/FormView.sass';
 
 
 class NewPriority extends React.Component {
