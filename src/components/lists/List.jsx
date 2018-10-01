@@ -12,9 +12,9 @@ let enterDirection = (props) => {
 
 class List extends React.Component {
   calcBg = (index, total) => {
-    // if (this.props.itemType !== 'deep') {
-      // return this.props.background.alpha(1).pct(.2).str() ;
-    // }
+    if (this.props.itemType !== 'deep') {
+      return this.props.background.alpha(1).pct(.2).str() ;
+    }
 
     let max = total * 1.2;
     let pct = index / max;

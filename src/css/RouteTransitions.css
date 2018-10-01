@@ -2,6 +2,7 @@
   width: 100vw;
   transition-property: left, top, right, bottom, opacity;
   transition-duration: .25s;
+  transform: translateZ(0);
 }
 
 .enter-left.route-transition-enter {
