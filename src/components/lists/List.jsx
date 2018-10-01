@@ -1,6 +1,7 @@
 import React from 'react';
 import Instructions   from './Instructions';
 import ListItem       from './ListItem';
+import {Color} from '../../lib/Colors'
 import {TransitionGroup, CSSTransition} from 'react-transition-group';
 
 let enterDirection = (props) => {
@@ -11,21 +12,31 @@ let enterDirection = (props) => {
 
 class List extends React.Component {
   calcBg = (index, total) => {
-    if (this.props.itemType !== 'deep') { return this.props.background };
+    if (this.props.itemType !== 'deep') {
+      return this.props.background.alpha(1).pct(.2).str() ;
+    }
+
     let max = total * 1.2;
     let pct = index / max;
-    return `rgba(0, 0, 0, ${pct})`;
+
+    let { background } = this.props
+    if(background) {
+      return background.alpha(.9).pct(pct).str();
+    } else {
+      background = new Color(0,0,0,0);
+      return background.alpha(pct).str();
+    }
   }
 
   render(){
-    let deepListItem = 'item-list ' + this.props.deepListItem;
+    let deepListItem = 'item-list ' + this.props.itemType;
     let totalCount = this.props.data.length;
     let itemType = this.props.itemType;
 
     return (
       <div className={'list-wrapper ' + enterDirection(this.props)}>
         {this.props.children} {/* Page Navigation */}
-        <ul className={deepListItem} style={{background: this.props.background}}>
+        <ul className={deepListItem} >
           <TransitionGroup>
 
             { this.props.data.map((item, index) => (

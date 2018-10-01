@@ -27,6 +27,7 @@
 .controls .non-link {
   cursor: inherit;
   text-decoration: none;
+  overflow: inherit;
 }
 
 .controls img {

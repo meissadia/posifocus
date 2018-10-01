@@ -26,14 +26,9 @@ let MenuItem = (props) => {
   )
 }
 
-let styles = props => ({
-  // background: props.background || Colors.blue_green
-})
-
 let navlink = props => {
   return {
     pathname: props.link,
-    state: styles(props)
   }
 }
 
