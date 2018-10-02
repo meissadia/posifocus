@@ -76,7 +76,6 @@ function DateField(props) {
 function style(props){
   return {
     background: props.bgColor,
-    // opacity: (1 - (1 - props.index))/10
   }
 }
 

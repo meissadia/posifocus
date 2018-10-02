@@ -22,7 +22,10 @@ class NewGratitude extends React.Component {
     }
 
     this.props.addHandler('gratitudes', new_gratitude);
-    this.props.history.push({pathname: this.cancelLink(), state: {enter: 'enter-left'}});
+    this.props.history.push({
+      pathname: this.cancelLink(),
+      state: { enter: 'enter-left'}
+    });
   }
 
   parseDate(date){

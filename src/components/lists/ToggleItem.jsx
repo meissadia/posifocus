@@ -8,15 +8,15 @@ export default function ToggleItem(props) {
   let key = props.target + '_' + props.item.id;
   return(
     <div className='toggle-item'>
+      <label htmlFor={key}>
+        {props.label}
+      </label>
       <Toggle
         id={key}
         name={props.item.id}
         defaultChecked={value}
         onChange={props.toggle}
         />
-      <label htmlFor={key}>
-        {props.label}
-      </label>
     </div>
   )
 }

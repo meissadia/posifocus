@@ -5,7 +5,9 @@ import Colors, {Color} from '../../lib/Colors'
 import {TransitionGroup, CSSTransition} from 'react-transition-group';
 
 let enterDirection = (props) => {
-  let direction = props.location && props.location.state && props.location.state.enter
+  let direction = props.location
+    && props.location.state
+    && props.location.state.enter
   direction = direction || 'enter-right'
   return props.className + ' ' + direction;
 }
@@ -31,6 +33,8 @@ class List extends React.Component {
     let itemType = this.props.itemType;
 
     return (
+      // Direction can be controlled through location state
+      // this.props.location.state.enter
       <div className={'list-wrapper ' + enterDirection(this.props)}>
         {this.props.children} {/* Page Navigation */}
         <ul className={deepListItem} >

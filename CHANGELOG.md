@@ -1,4 +1,5 @@
 # v0.0.6
+- Separate plain/auth'd Settings
 - Added sass by upgrading to react-scripts 2.0.1
 - Converted CSS to Sass
 

@@ -1,6 +1,9 @@
 @import basics
 
-.cloud-sync
+$option_c: rgba(29, 116, 129, 1)
+
+.cloud-sync,
+.local-options
   display: flex
   justify-content: center
   flex-flow: column
@@ -9,7 +12,16 @@
     display: flex
     flex-flow: row wrap
     justify-content: space-around
-    padding-bottom: 20px
+    background: $shade10
+    margin: 10px
+    padding: 10px 0
+    border: 1px solid $shade20
+    .title
+      flex-basis: 100%
+      text-align: center
+      padding: 5px 0
+      background: $shade30
+      margin: 0 10px
     .icon
       width: 50px
       height: 50px
@@ -19,7 +31,8 @@
       bottom: 0
       transition: $transition-length
       color: white
-  .sync-button
+  .sync-button,
+  .option-link
     display: flex
     justify-content: center
     flex-flow: column
@@ -30,16 +43,14 @@
     width: 30%
     flex-grow: 1
     transition: $transition-length $transition-timing-function
-    border: 1px solid rgba(0, 0, 0, 0.3)
-    background: rgba(29, 116, 129, 1)
+    border: 1px solid $shade30
+    background: $shade30
     &:hover
       background: rgba(125, 125, 125, .5)
       .icon
         position: relative
         bottom: 3px
         filter: invert(1) drop-shadow(10px 10px 10px rgba(0,0,0,1))
-
-
 
 .settings
   .result
