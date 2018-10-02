@@ -1,3 +1,8 @@
+# v0.0.8
+- Integrated Signup/Signin into the CloudSync component
+- Extracted and Animated Credits route
+- Added location state for back/add PageNavigation
+
 # v0.0.7
 - Removed react-scripts 2.0.1 because it made updating Service Workers more difficult
 - Add node-sass for Sass pre-processing

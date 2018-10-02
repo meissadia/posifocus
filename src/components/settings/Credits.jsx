@@ -4,9 +4,9 @@ import '../../styles/css/Credits.css';
 
 const Credits = (props) => {
   return (
-    <div className='credits'>
+    <div className='credits route-transition enter-right exit-bottom'>
       <PageNavigation
-        back={['/settings', 'Settings']}
+        back={[{pathname: '/settings', state: {enter: 'enter-left'}}, 'Settings']}
         title='Credits'
         />
       <table>

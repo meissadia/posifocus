@@ -63,7 +63,7 @@ table {
     background: rgba(25, 130, 165, 0.6); }
   #App.tasks {
     background: rgba(15, 105, 155, 0.6); }
-  #App.settings {
+  #App.settings, #App.credits {
     background: rgba(46, 171, 174, 0.8); }
   #App header {
     height: 47px;
@@ -139,5 +139,3 @@ table {
 
 :focus::placeholder {
   color: transparent; }
-
-/*# sourceMappingURL=App.css.map */

@@ -4,7 +4,9 @@
   justify-content: center;
   flex-flow: column; }
   .cloud-sync .options,
-  .local-options .options {
+  .cloud-sync .form,
+  .local-options .options,
+  .local-options .form {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
@@ -12,13 +14,17 @@
     margin: 10px;
     border: 2px solid rgba(0, 0, 0, 0.4); }
     .cloud-sync .options .title,
-    .local-options .options .title {
+    .cloud-sync .form .title,
+    .local-options .options .title,
+    .local-options .form .title {
       flex-basis: 100%;
       text-align: center;
       padding: 10px 0;
       background: rgba(0, 0, 0, 0.4); }
     .cloud-sync .options .icon,
-    .local-options .options .icon {
+    .cloud-sync .form .icon,
+    .local-options .options .icon,
+    .local-options .form .icon {
       width: 50px;
       height: 50px;
       margin: 0 auto;
@@ -50,6 +56,50 @@
       position: relative;
       bottom: 3px;
       filter: invert(1) drop-shadow(10px 10px 10px black); }
+  .cloud-sync .form,
+  .local-options .form {
+    flex-flow: column;
+    padding-bottom: 10px; }
+    .cloud-sync .form .login,
+    .local-options .form .login {
+      display: flex;
+      justify-content: center;
+      flex-flow: column nowrap;
+      margin: 10px 10px 0 10px;
+      padding-bottom: 10px;
+      background: rgba(0, 0, 0, 0.3); }
+      .cloud-sync .form .login input,
+      .local-options .form .login input {
+        background: transparent;
+        padding: 10px 0;
+        margin: 5px auto;
+        border: 0;
+        font-size: 16px;
+        color: white; }
+      .cloud-sync .form .login button,
+      .local-options .form .login button {
+        margin: 0 auto;
+        padding: 10px; }
+      .cloud-sync .form .login + .signup,
+      .cloud-sync .form .login + .signin,
+      .local-options .form .login + .signup,
+      .local-options .form .login + .signin {
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        text-align: center;
+        padding: 10px;
+        cursor: pointer;
+        margin: 0px 10px;
+        background: rgba(0, 0, 0, 0.4); }
+        .cloud-sync .form .login + .signup span,
+        .cloud-sync .form .login + .signin span,
+        .local-options .form .login + .signup span,
+        .local-options .form .login + .signin span {
+          font-size: 16px;
+          padding: 5px;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+          margin: 0 auto; }
 
 .settings .result {
   padding: 10px;
@@ -60,37 +110,3 @@
 
 .settings .success {
   background: rgba(50, 120, 50, 0.7); }
-
-.settings .login {
-  display: flex;
-  justify-content: center;
-  flex-flow: column nowrap;
-  margin: 10px 20px 0 20px;
-  padding-bottom: 10px;
-  background: rgba(0, 0, 0, 0.3); }
-  .settings .login input {
-    background: transparent;
-    padding: 10px 0;
-    margin: 5px auto;
-    border: 0;
-    font-size: 16px;
-    color: white; }
-  .settings .login button {
-    margin: 0 auto;
-    padding: 10px; }
-  .settings .login + .signup,
-  .settings .login + .signin {
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
-    text-align: center;
-    padding: 10px;
-    cursor: pointer;
-    margin: 0px 20px 0 20px;
-    background: rgba(0, 0, 0, 0.4); }
-    .settings .login + .signup span,
-    .settings .login + .signin span {
-      font-size: 16px;
-      padding: 5px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-      margin: 0 auto; }

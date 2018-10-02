@@ -7,20 +7,19 @@ $option_c: rgba(29, 116, 129, 1)
   display: flex
   justify-content: center
   flex-flow: column
-  .options
+  .options,
+  .form
     display: flex
     flex-flow: row wrap
     justify-content: space-around
     background: $shade10
     margin: 10px
-    // padding: 0px 10px
     border: 2px solid $shade40
     .title
       flex-basis: 100%
       text-align: center
       padding: 10px 0
       background: $shade40
-      // margin: 0 10px
     .icon
       width: 50px
       height: 50px
@@ -49,6 +48,41 @@ $option_c: rgba(29, 116, 129, 1)
         position: relative
         bottom: 3px
         filter: invert(1) drop-shadow(10px 10px 10px rgba(0,0,0,1))
+  .form
+    flex-flow: column
+    padding-bottom: 10px
+    .login
+      display: flex
+      justify-content: center
+      flex-flow: column nowrap
+      margin: 10px 10px 0 10px
+      padding-bottom: 10px
+      background: rgba(0, 0, 0, 0.3)
+      input
+        background: transparent
+        padding: 10px 0
+        margin: 5px auto
+        border: 0
+        font-size: 16px
+        color: white
+      button
+        margin: 0 auto
+        padding: 10px
+      & + .signup,
+      & + .signin
+        display: flex
+        flex-flow: column
+        justify-content: center
+        text-align: center
+        padding: 10px
+        cursor: pointer
+        margin: 0px 10px
+        background: rgba(0, 0, 0, 0.4)
+        span
+          font-size: 16px
+          padding: 5px
+          border-bottom: 1px solid rgba(255, 255, 255, 0.3)
+          margin: 0 auto
 
 .settings
   .result
@@ -58,35 +92,3 @@ $option_c: rgba(29, 116, 129, 1)
     background: rgba(255, 0, 0, 0.5)
   .success
     background: rgba(50, 120, 50, 0.7)
-  .login
-    display: flex
-    justify-content: center
-    flex-flow: column nowrap
-    margin: 10px 20px 0 20px
-    padding-bottom: 10px
-    background: rgba(0, 0, 0, 0.3)
-    input
-      background: transparent
-      padding: 10px 0
-      margin: 5px auto
-      border: 0
-      font-size: 16px
-      color: white
-    button
-      margin: 0 auto
-      padding: 10px
-    & + .signup,
-    & + .signin
-      display: flex
-      flex-flow: column
-      justify-content: center
-      text-align: center
-      padding: 10px
-      cursor: pointer
-      margin: 0px 20px 0 20px
-      background: rgba(0, 0, 0, 0.4)
-      span
-        font-size: 16px
-        padding: 5px
-        border-bottom: 1px solid rgba(255, 255, 255, 0.3)
-        margin: 0 auto

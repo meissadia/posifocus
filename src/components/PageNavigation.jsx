@@ -10,15 +10,25 @@ let NonLink = (props) => (
   </a>
 )
 
+let linkState = (dest) => {
+  if(dest.pathname) { return dest };
+
+  return {
+    pathname: dest,
+    state: {
+      enter: 'enter-left'
+    }
+  }
+}
+
 let PageNavigation = (props) => {
-  // let add = 'New';
   let back = 'Back';
   return(
     <div className="flex row controls">
       {
         props.back ?
         <NavLink
-          to={{pathname: props.back[0], state: {enter: 'enter-left'}}}
+          to={linkState(props.back[0])}
           prefetch='true'>
           <img className='icon invert' src={backIcon} alt='Back arrow'/> {props.back[1] || back}
         </NavLink> :
@@ -27,7 +37,7 @@ let PageNavigation = (props) => {
       <NonLink text={props.title} />
       {
         props.add ?
-        <NavLink to={props.add[0]} prefetch='true'>
+        <NavLink to={linkState(props.add[0])} prefetch='true'>
           {props.add[1] || <img className='icon' alt='Plus' src={plusIcon} />}
         </NavLink> :
         <NonLink text={props.addNonLink}/>

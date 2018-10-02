@@ -30,7 +30,8 @@
   &.tasks {
     background: $tasks;
   }
-  &.settings {
+  &.settings,
+  &.credits {
     background: $settings;
   }
 

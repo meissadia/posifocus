@@ -22,6 +22,7 @@ import NewProject      from './create/NewProject';
 import NewTask         from './create/NewTask';
 import NewRelationship from './create/NewRelationship';
 import NewContact      from './create/NewContact';
+import Credits         from './settings/Credits';
 import SimpleStorage   from 'react-simple-storage';
 import { firebase }    from './firebase';
 
@@ -137,7 +138,8 @@ class App extends Component {
                           />
                       )}
                       />
-                    <Route path='/settings' render={()=> (
+                    <Route exact path='/settings/credits' component={Credits} />
+                    <Route exact path='/settings' render={()=> (
                         <Settings
                           state={this.state}
                           updateState={this.updateStateHandler}
