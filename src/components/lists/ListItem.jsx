@@ -10,6 +10,7 @@ function ListItem(props) {
   let match = props.match
   let cname = 'list-item ' + props.itemType;
   if(props.item.done) { cname += ' done'};
+  if(props.item.today) { cname += ' today'};
   let item_link = props.link || (props.makeLink && props.makeLink(item, match));
   return (
     <li className={cname} style={style(props)}>

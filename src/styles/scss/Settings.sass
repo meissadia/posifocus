@@ -7,21 +7,20 @@ $option_c: rgba(29, 116, 129, 1)
   display: flex
   justify-content: center
   flex-flow: column
-  padding-bottom: 0px
   .options
     display: flex
     flex-flow: row wrap
     justify-content: space-around
     background: $shade10
     margin: 10px
-    padding: 10px 0
-    border: 1px solid $shade20
+    // padding: 0px 10px
+    border: 2px solid $shade40
     .title
       flex-basis: 100%
       text-align: center
-      padding: 5px 0
-      background: $shade30
-      margin: 0 10px
+      padding: 10px 0
+      background: $shade40
+      // margin: 0 10px
     .icon
       width: 50px
       height: 50px
@@ -43,10 +42,9 @@ $option_c: rgba(29, 116, 129, 1)
     width: 30%
     flex-grow: 1
     transition: $transition-length $transition-timing-function
-    border: 1px solid $shade30
+    border: 1px solid $shade10
     background: $shade30
     &:hover
-      background: rgba(125, 125, 125, .5)
       .icon
         position: relative
         bottom: 3px

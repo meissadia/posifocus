@@ -1,8 +1,9 @@
 # v0.0.7
-- Removed react-scripts 2.0.1 because it made updating Service Workers incredibly difficult.
+- Removed react-scripts 2.0.1 because it made updating Service Workers more difficult
 - Add node-sass for Sass pre-processing
 - Refactored CSS file structures
 - Update build scripts to account for Sass
+- UI Tweaks to Settings
 
 # v0.0.6
 - Separate plain/auth'd Settings

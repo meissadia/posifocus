@@ -14,7 +14,7 @@ let enterDirection = (props) => {
 
 class List extends React.Component {
   calcBg = (index, total) => {
-    if (this.props.itemType !== 'deep') {
+    if (this.props.itemType === 'shallow') {
       return this.props.background.alpha(1).pct(.2).str() ;
     }
 

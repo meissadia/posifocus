@@ -2,7 +2,7 @@
   text-align: center;
   margin: 0 auto; }
   .instructions .instruction-image {
-    height: calc(100vh - 73px); }
+    width: 90%; }
 
 .item-list {
   width: 100%;
@@ -56,7 +56,7 @@
           margin-left: 20px;
           font-size: 20px; }
   .list-item.done {
-    background: rgba(0, 0, 0, 0.5) !important; }
+    background: #646464 !important; }
     .list-item.done .title {
       text-decoration: line-through; }
 
@@ -124,5 +124,3 @@
     height: 0;
     border: none;
     background: rgba(0, 0, 0, 0); }
-
-/*# sourceMappingURL=ListViews.css.map */
