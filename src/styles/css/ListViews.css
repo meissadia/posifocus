@@ -1,0 +1,128 @@
+.instructions {
+  text-align: center;
+  margin: 0 auto; }
+  .instructions .instruction-image {
+    height: calc(100vh - 73px); }
+
+.item-list {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  transform: translateZ(0); }
+  .item-list.shallow, .item-list.task {
+    padding: 10px 0; }
+
+.list-item {
+  display: flex;
+  flex-flow: column nowrap;
+  list-style: none;
+  transition: background 0.25s; }
+  .list-item .list-item-content {
+    flex-grow: 1; }
+  .list-item .list-item-actions {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    margin: 10px 0 0 0; }
+  .list-item .date {
+    text-align: right; }
+  .list-item.shallow, .list-item.task {
+    margin: 0 10px 10px 10px;
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.2); }
+  .list-item.task .title {
+    padding: 0 0 10px 0; }
+  .list-item.shallow .title {
+    margin-bottom: 10px; }
+  .list-item.deep {
+    flex-flow: row nowrap;
+    margin: 0px;
+    justify-content: space-between;
+    align-items: center; }
+    .list-item.deep .list-item-content {
+      padding: 10px 20px; }
+    .list-item.deep .date {
+      display: none; }
+    .list-item.deep .list-item-actions {
+      margin: 0; }
+    .list-item.deep .title {
+      padding: 5px 0;
+      font-size: 16px;
+      line-height: 20px; }
+      .list-item.deep .title .link {
+        display: flex;
+        flex-flow: row nowrap; }
+        .list-item.deep .title .link .arrow {
+          margin-left: 20px;
+          font-size: 20px; }
+  .list-item.done {
+    background: rgba(0, 0, 0, 0.5) !important; }
+    .list-item.done .title {
+      text-decoration: line-through; }
+
+.list-icon {
+  align-self: flex-end;
+  width: 20px;
+  height: 20px;
+  padding-right: 10px; }
+  .list-icon img {
+    height: 100%;
+    width: 100%;
+    cursor: pointer; }
+
+.title {
+  font-size: 18px;
+  width: 100%; }
+
+.content {
+  font-size: 16px;
+  margin-bottom: 10px;
+  padding: 5px 0 0 5px; }
+
+.date {
+  align-self: flex-end; }
+
+/* Toggle Switches */
+.toggle-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 0; }
+  .toggle-item label {
+    margin-left: 10px;
+    min-width: 100px; }
+
+/* Animate List Items */
+.list-item {
+  transition: 0.25s ease-in-out;
+  position: relative;
+  transform: translateZ(0);
+  background: rgba(0, 0, 0, 0); }
+
+.list-item-enter {
+  position: relative;
+  left: -100vh;
+  background: green;
+  opacity: 0; }
+  .list-item-enter .list-item-enter-active {
+    left: 0;
+    opacity: 1;
+    background: inherit; }
+
+.list-item-exit {
+  position: relative;
+  left: 0;
+  background: white !important; }
+  .list-item-exit.shallow {
+    height: 103px; }
+  .list-item-exit.deep {
+    height: 50px; }
+  .list-item-exit.task {
+    height: 120px; }
+  .list-item-exit.list-item-exit-active {
+    opacity: 0;
+    height: 0;
+    border: none;
+    background: rgba(0, 0, 0, 0); }
+
+/*# sourceMappingURL=ListViews.css.map */

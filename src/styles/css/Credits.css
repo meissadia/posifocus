@@ -1,0 +1,23 @@
+.credits table {
+  width: 90%;
+  margin: 10px auto 0 auto;
+  padding: 10px; }
+  .credits table th {
+    padding: 10px 0;
+    background: rgba(0, 0, 0, 0.4); }
+  .credits table td {
+    width: 25%;
+    padding: 5px 0;
+    margin: 0; }
+  .credits table caption {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px 0; }
+  .credits table tr.flaticon-credit {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    text-align: center; }
+    .credits table tr.flaticon-credit a {
+      padding: 5px;
+      text-decoration: underline; }
+
+/*# sourceMappingURL=Credits.css.map */

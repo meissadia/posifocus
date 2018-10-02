@@ -1,6 +1,6 @@
 import React                from 'react';
 import { withRouter } from 'react-router-dom';
-import '../css/FormView.sass';
+import '../styles/css/FormView.css';
 
 class Form extends React.Component {
   constructor(props) {

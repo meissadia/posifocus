@@ -25,8 +25,8 @@ import NewContact      from './create/NewContact';
 import SimpleStorage   from 'react-simple-storage';
 import { firebase }    from './firebase';
 
-import '../css/App.scss';
-import '../css/RouteTransitions.sass';
+import '../styles/css/App.css';
+import '../styles/css/RouteTransitions.css';
 
 class App extends Component {
   constructor(props) {

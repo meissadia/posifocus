@@ -6,7 +6,7 @@ import prioritiesIcon    from '../../images/priorities@2x.png';
 import tasksIcon         from '../../images/tasks.svg';
 import relationshipsIcon from '../../images/relationships.svg';
 import settingsIcon      from '../../images/settings.svg';
-import '../../css/MainMenu.sass';
+import '../../styles/css/MainMenu.css';
 
 class MainMenu extends React.Component {
 

@@ -1,0 +1,106 @@
+.cloud-sync,
+.local-options {
+  display: flex;
+  justify-content: center;
+  flex-flow: column;
+  padding-bottom: 0px; }
+  .cloud-sync .options,
+  .local-options .options {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    background: rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    padding: 10px 0;
+    border: 1px solid rgba(0, 0, 0, 0.2); }
+    .cloud-sync .options .title,
+    .local-options .options .title {
+      flex-basis: 100%;
+      text-align: center;
+      padding: 5px 0;
+      background: rgba(0, 0, 0, 0.3);
+      margin: 0 10px; }
+    .cloud-sync .options .icon,
+    .local-options .options .icon {
+      width: 50px;
+      height: 50px;
+      margin: 0 auto;
+      padding: 10px;
+      position: relative;
+      bottom: 0;
+      transition: 0.25s;
+      color: white; }
+  .cloud-sync .sync-button,
+  .cloud-sync .option-link,
+  .local-options .sync-button,
+  .local-options .option-link {
+    display: flex;
+    justify-content: center;
+    flex-flow: column;
+    text-align: center;
+    margin: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+    width: 30%;
+    flex-grow: 1;
+    transition: 0.25s ease-in-out;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.3); }
+    .cloud-sync .sync-button:hover,
+    .cloud-sync .option-link:hover,
+    .local-options .sync-button:hover,
+    .local-options .option-link:hover {
+      background: rgba(125, 125, 125, 0.5); }
+      .cloud-sync .sync-button:hover .icon,
+      .cloud-sync .option-link:hover .icon,
+      .local-options .sync-button:hover .icon,
+      .local-options .option-link:hover .icon {
+        position: relative;
+        bottom: 3px;
+        filter: invert(1) drop-shadow(10px 10px 10px black); }
+
+.settings .result {
+  padding: 10px;
+  text-align: center; }
+
+.settings .error {
+  background: rgba(255, 0, 0, 0.5); }
+
+.settings .success {
+  background: rgba(50, 120, 50, 0.7); }
+
+.settings .login {
+  display: flex;
+  justify-content: center;
+  flex-flow: column nowrap;
+  margin: 10px 20px 0 20px;
+  padding-bottom: 10px;
+  background: rgba(0, 0, 0, 0.3); }
+  .settings .login input {
+    background: transparent;
+    padding: 10px 0;
+    margin: 5px auto;
+    border: 0;
+    font-size: 16px;
+    color: white; }
+  .settings .login button {
+    margin: 0 auto;
+    padding: 10px; }
+  .settings .login + .signup,
+  .settings .login + .signin {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    margin: 0px 20px 0 20px;
+    background: rgba(0, 0, 0, 0.4); }
+    .settings .login + .signup span,
+    .settings .login + .signin span {
+      font-size: 16px;
+      padding: 5px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      margin: 0 auto; }
+
+/*# sourceMappingURL=Settings.css.map */

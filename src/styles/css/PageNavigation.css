@@ -1,0 +1,32 @@
+.controls {
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  height: 50px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  font-weight: 500;
+  letter-spacing: .5px;
+  transform: translateZ(0); }
+  .controls .non-link {
+    cursor: inherit;
+    text-decoration: none;
+    overflow: visible; }
+  .controls .icon {
+    margin: 0 3px; }
+  .controls a {
+    cursor: pointer;
+    color: white;
+    width: 30%;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 5px 0;
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center; }
+  .controls img {
+    width: 20px;
+    height: 20px; }
+
+/*# sourceMappingURL=PageNavigation.css.map */

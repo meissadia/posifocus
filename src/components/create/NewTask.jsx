@@ -2,8 +2,8 @@ import React                from 'react';
 import { withRouter }       from 'react-router-dom';
 import Toggle               from 'react-toggle';
 import PageNavigation       from '../PageNavigation';
-import '../../css/FormView.sass';
-import '../../css/ReactToggle.sass';
+import '../../styles/css/FormView.css';
+import '../../styles/css/ReactToggle.css';
 
 class NewTask extends React.Component {
   constructor(props){

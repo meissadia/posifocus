@@ -1,7 +1,7 @@
 import React     from 'react';
 import UserImage from './UserImage'
 import UserText  from './UserText'
-import '../../css/UserHeader.sass'
+import '../../styles/css/UserHeader.css'
 
 class UserHeader extends React.Component {
   constructor(props){

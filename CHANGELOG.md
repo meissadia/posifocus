@@ -1,7 +1,13 @@
+# v0.0.7
+- Removed react-scripts 2.0.1 because it made updating Service Workers incredibly difficult.
+- Add node-sass for Sass pre-processing
+- Refactored CSS file structures
+- Update build scripts to account for Sass
+
 # v0.0.6
 - Separate plain/auth'd Settings
-- Added sass by upgrading to react-scripts 2.0.1
 - Converted CSS to Sass
+- Added sass by upgrading to react-scripts 2.0.1
 
 # v0.0.5
 - Solved list colors!! Hopefully for good.

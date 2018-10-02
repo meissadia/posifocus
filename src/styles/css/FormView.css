@@ -1,0 +1,51 @@
+.new-input-wrapper {
+  min-height: calc(100vh - 73px);
+  background: rgba(0, 0, 0, 0.8); }
+  .new-input-wrapper .controls {
+    background: rgba(0, 0, 0, 0.1); }
+
+.g-form {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  text-align: center;
+  font-family: Helvetica, sans-serif; }
+  .g-form label {
+    text-align: left;
+    padding: 20px 0 20px 30px; }
+    .g-form label.center {
+      text-align: center; }
+  .g-form input,
+  .g-form textarea {
+    border: 0;
+    color: white;
+    text-align: center;
+    font-weight: 200;
+    font-size: 25px;
+    width: 90%;
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0); }
+  .g-form input {
+    line-height: 25px; }
+
+#submit-button {
+  height: 75px;
+  background: rgba(255, 255, 255, 0.4);
+  margin: 30px;
+  cursor: pointer;
+  border-radius: 0;
+  align-self: center; }
+
+#date-input {
+  text-align: center;
+  align-self: center;
+  width: auto; }
+
+.form-toggle {
+  justify-content: center;
+  align-items: center; }
+  .form-toggle span {
+    width: 150px;
+    margin-left: 10px; }
+
+/*# sourceMappingURL=FormView.css.map */

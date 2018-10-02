@@ -1,6 +1,6 @@
 import React       from 'react';
 import { NavLink } from 'react-router-dom';
-import '../css/PageNavigation.sass';
+import '../styles/css/PageNavigation.css';
 import backIcon from '../images/back.svg';
 import plusIcon from '../images/plus.svg';
 

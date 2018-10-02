@@ -1,7 +1,7 @@
 import React                from 'react';
 import { withRouter }       from 'react-router-dom';
 import PageNavigation       from '../PageNavigation';
-import '../../css/FormView.sass';
+import '../../styles/css/FormView.css';
 
 class NewRelationship extends React.Component {
   constructor(props){

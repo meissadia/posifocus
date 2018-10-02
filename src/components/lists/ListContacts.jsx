@@ -2,7 +2,7 @@ import React          from 'react';
 import PageNavigation from '../PageNavigation';
 import List           from './List';
 import Colors         from '../../lib/Colors';
-import '../../css/ListViews.sass'
+import '../../styles/css/ListViews.css'
 
 let Contacts = (props) => {
 

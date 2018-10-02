@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react';
 import AppOffline       from './AppOffline';
 import UpdateAvailable  from './UpdateAvailable';
-import '../../css/Notifications.sass';
+import '../../styles/css/Notifications.css';
 
 const NotificationBar = props => (
   <Fragment>
