@@ -111,7 +111,7 @@ class Settings extends React.Component {
           <div className='options'>
             <h1 className='title'>Device</h1>
             <div
-              onClick={verifyAppReset.bind(null, this.props.resetAppState, this.props.resetSettingsState)}
+              onClick={verifyAppReset.bind(null, this.props.resetAppState, this.resetSettingsState)}
               className="option-link">
               <h1>Reset Local Data</h1>
               <img className='icon invert' src={refreshIcon} alt='Cycle of Arrows' />
