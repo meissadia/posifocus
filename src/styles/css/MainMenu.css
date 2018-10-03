@@ -43,21 +43,23 @@
 .priorities-submenu {
   justify-content: center;
   align-self: center;
-  max-width: 400px;
+  width: 300px;
   margin: 0 auto;
   padding: 5px;
   color: white;
-  border-radius: 20px;
   font-size: 14px;
-  background: rgba(0, 200, 255, 0.1); }
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center; }
+  .priorities-submenu .first span, .priorities-submenu .second span {
+    padding-left: 15px; }
   .priorities-submenu .first {
-    padding: 0px 15px;
-    border-radius: 20px; }
+    padding-right: 35px; }
   .priorities-submenu .second {
-    background: rgba(0, 200, 255, 0.1); }
+    background: rgba(255, 255, 255, 0.1);
+    padding: 3px 15px; }
   .priorities-submenu .icon {
     max-width: 25px;
     max-height: 25px;
     margin-right: 10px; }
-
-/*# sourceMappingURL=MainMenu.css.map */

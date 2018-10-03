@@ -2,6 +2,9 @@
 - Integrated Signup/Signin into the CloudSync component
 - Extracted and Animated Credits route
 - Added location state for back/add PageNavigation
+- Removed edit button until it's functional to avoid confusion
+- Updated Submenu styling to better reflect iOS look
+- Brightened the colors of Settings, it felt too dark.
 
 # v0.0.7
 - Removed react-scripts 2.0.1 because it made updating Service Workers more difficult

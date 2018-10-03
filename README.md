@@ -11,14 +11,8 @@
 
 Global  
   - [ ] Establish shared Object formats so that we can share Cloud storage across web/ios.  
-  - [X] Separate CloudSync and non-Sync related Settings
-
-Security  
-  - [X] Ensure no keys are exposed? {key, firebase, auth}
-  - [X] Teardown alternate deployments
 
 Registration  
-  - [X] ~~Save full name~~ Remove full name from Sign Up
   - [ ] Enable Password Forgot
   - [ ] Enable Password Change
 
@@ -31,10 +25,6 @@ UI
   - [ ] Switch all icons to SVG  
   - [ ] Revisit background graphic implementation
   - [ ] Finish animating Settings
-  - [X] Revisit Settings layout
-  - [X] Revisit background colorimplementation
-  - [X] Move Reset Data to Settings  
-  - [X] Date off-center in New Contact on iOS
 
 ## Development  
 
