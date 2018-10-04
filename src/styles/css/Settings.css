@@ -20,7 +20,7 @@
       flex-basis: 100%;
       text-align: center;
       padding: 10px 0;
-      background: rgba(0, 0, 0, 0.4); }
+      background: rgba(0, 0, 0, 0.6); }
     .cloud-sync .options .icon,
     .cloud-sync .form .icon,
     .local-options .options .icon,
@@ -48,7 +48,7 @@
     flex-grow: 1;
     transition: 0.25s ease-in-out;
     border: 1px solid rgba(0, 0, 0, 0.1);
-    background: rgba(0, 0, 0, 0.3); }
+    background: rgba(0, 0, 0, 0.5); }
     .cloud-sync .sync-button:hover .icon,
     .cloud-sync .option-link:hover .icon,
     .local-options .sync-button:hover .icon,
@@ -67,7 +67,7 @@
       flex-flow: column nowrap;
       margin: 10px 10px 0 10px;
       padding-bottom: 10px;
-      background: rgba(0, 0, 0, 0.3); }
+      background: rgba(0, 0, 0, 0.5); }
       .cloud-sync .form .login input,
       .local-options .form .login input {
         background: transparent;
@@ -91,7 +91,7 @@
         padding: 10px;
         cursor: pointer;
         margin: 0px 10px;
-        background: rgba(0, 0, 0, 0.4); }
+        background: rgba(0, 0, 0, 0.6); }
         .cloud-sync .form .login + .signup span,
         .cloud-sync .form .login + .signin span,
         .local-options .form .login + .signup span,
