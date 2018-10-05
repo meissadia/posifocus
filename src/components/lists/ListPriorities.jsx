@@ -13,7 +13,7 @@ function Priorities(props) {
   }
 
   return (
-    <List section='relationships'
+    <List section='priorities'
       className='route-transition exit-right'
       instructions={{
         display: showInstructions,

@@ -1,30 +1,42 @@
+@import basics
+
 .controls
   justify-content: space-between
   align-items: center
   background: transparent
   height: 50px
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2)
+  border-bottom: 1px solid $shade20
   font-weight: 500
-  letter-spacing: .5px
   transform: translateZ(0)
-  .non-link
-    cursor: inherit
-    text-decoration: none
-    overflow: visible
-  .icon
-    margin: 0 3px
   a
+    text-align: center
     cursor: pointer
     color: white
-    width: 30%
-    text-align: center
     overflow: hidden
-    white-space: nowrap
+    text-overflow: ellipsis
     padding: 5px 0
     display: flex
-    flex-flow: row
-    justify-content: center
+    flex-flow: row nowrap
     align-items: center
-  img
-    width: 20px
-    height: 20px
+    &.non-link
+      cursor: inherit
+      text-decoration: none
+      overflow: hidden
+    .icon
+      width: 20px
+      height: 20px
+    &.middle
+      flex-basis: 33%
+      flex-grow: 2
+    &.middle
+      align-items: center
+      justify-content: center
+    &.right
+      padding-right: 10px
+      justify-content: flex-end
+      flex-basis: 20%
+      flex-grow: 1
+    &.left
+      padding-left: 10px
+      flex-basis: 20%
+      flex-grow: 1

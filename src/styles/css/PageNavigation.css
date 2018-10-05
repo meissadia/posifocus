@@ -5,28 +5,36 @@
   height: 50px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   font-weight: 500;
-  letter-spacing: .5px;
   transform: translateZ(0); }
-  .controls .non-link {
-    cursor: inherit;
-    text-decoration: none;
-    overflow: visible; }
-  .controls .icon {
-    margin: 0 3px; }
   .controls a {
+    text-align: center;
     cursor: pointer;
     color: white;
-    width: 30%;
-    text-align: center;
     overflow: hidden;
-    white-space: nowrap;
+    text-overflow: ellipsis;
     padding: 5px 0;
     display: flex;
-    flex-flow: row;
-    justify-content: center;
+    flex-flow: row nowrap;
     align-items: center; }
-  .controls img {
-    width: 20px;
-    height: 20px; }
-
-/*# sourceMappingURL=PageNavigation.css.map */
+    .controls a.non-link {
+      cursor: inherit;
+      text-decoration: none;
+      overflow: hidden; }
+    .controls a .icon {
+      width: 20px;
+      height: 20px; }
+    .controls a.middle {
+      flex-basis: 33%;
+      flex-grow: 2; }
+    .controls a.middle {
+      align-items: center;
+      justify-content: center; }
+    .controls a.right {
+      padding-right: 10px;
+      justify-content: flex-end;
+      flex-basis: 20%;
+      flex-grow: 1; }
+    .controls a.left {
+      padding-left: 10px;
+      flex-basis: 20%;
+      flex-grow: 1; }
