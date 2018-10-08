@@ -5,7 +5,7 @@
 ## Motivation  
 [Posifocus](https://posifocus.com/) is a mentality supported by an iOS app.  
 
-[Posifocus Web](https://posifocus.surge.sh) is a Progressive Web Application implemented with React, aiming to expa
+[Posifocus Web](https://posifocus.surge.sh) is a Progressive Web Application implemented with React, aiming to expand the reach of Posifocus to non-iOS devices. 
 
 ## Todo  
 
