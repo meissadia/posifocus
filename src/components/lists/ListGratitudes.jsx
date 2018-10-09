@@ -21,7 +21,6 @@ function Gratitudes(props) {
       delete={deleteHandler}
       location={props.location}
       background={Colors.gratitudes}
-      setBackground={props.setBackground}
       itemType='shallow'
       >
       <PageNavigation

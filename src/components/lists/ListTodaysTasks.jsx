@@ -23,7 +23,6 @@ let TodaysTasks = (props) => {
         toggle={props.toggle}
         location={props.location}
         background={Colors.todays}
-        setBackground={props.setBackground}
         itemType='task'
         >
         <PageNavigation

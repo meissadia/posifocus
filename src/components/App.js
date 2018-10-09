@@ -47,7 +47,6 @@ class App extends Component {
     this.getTasks = State.getTasks.bind(this);
     this.getContacts = State.getContacts.bind(this);
     this.saveStateToStorage = State.saveStateToStorage.bind(this);
-    this.setBackground = this.setBackground.bind(this);
     this.updateStateHandler = this.updateStateHandler.bind(this);
   }
 
@@ -93,14 +92,6 @@ class App extends Component {
 
   setOnlineStatus = isOnline => this.setState({ online: isOnline });
 
-  setBackground = color => {
-    this.setState((prevState) => {
-      // let { style } = prevState;
-      // style = Object.assign(style, { background: color });
-      // return { style: style }
-    });
-  }
-
   updateStateHandler = state => this.setState({ ...state });
 
   render() {
@@ -134,7 +125,6 @@ class App extends Component {
                           taskCount={this.state.tasks.length}
                           doneTaskCount={this.state.tasks.filter((t) => (t.done)).length}
                           contacts={this.state.contacts}
-                          setBackground={this.setBackground}
                           />
                       )}
                       />
@@ -143,7 +133,6 @@ class App extends Component {
                         <Settings
                           state={this.state}
                           updateState={this.updateStateHandler}
-                          setBackground={this.setBackground}
                           resetAppState={this.resetState}
                           />
                       )}
@@ -153,7 +142,6 @@ class App extends Component {
                           data={this.state.gratitudes}
                           delete={this.deleteFromStateArray}
                           location={location}
-                          setBackground={this.setBackground}
                           />
                       )}
                       />
@@ -162,7 +150,6 @@ class App extends Component {
                           data={this.state.priorities}
                           delete={this.deletePriority}
                           location={location}
-                          setBackground={this.setBackground}
                           />
                       )}
                       />
@@ -171,7 +158,6 @@ class App extends Component {
                           data={this.state.relationships}
                           delete={this.deleteRelationship}
                           location={location}
-                          setBackground={this.setBackground}
                           />
                       )}
                       />
@@ -181,7 +167,6 @@ class App extends Component {
                           delete={this.deleteFromStateArray}
                           toggle={this.taskToggle}
                           location={location}
-                          setBackground={this.setBackground}
                           />
                       )}
                       />
@@ -193,7 +178,6 @@ class App extends Component {
                           delete={this.deleteProject}
                           match={match}
                           location={location}
-                          setBackground={this.setBackground}
                           />
                       )}
                       />
@@ -205,7 +189,6 @@ class App extends Component {
                           delete={this.deleteFromStateArray}
                           match={match}
                           location={location}
-                          setBackground={this.setBackground}
                           />
                       )}
                       />
@@ -214,7 +197,6 @@ class App extends Component {
                         <NewTask
                           addHandler={this.addToStateArray}
                           match={match}
-                          setBackground={this.setBackground}
                           />
                       )}
                       />
@@ -223,7 +205,6 @@ class App extends Component {
                         <NewContact
                           addHandler={this.addToStateArray}
                           match={match}
-                          setBackground={this.setBackground}
                           />
                       )}
                       />
@@ -232,7 +213,6 @@ class App extends Component {
                         <NewProject
                           addHandler={this.addToStateArray}
                           match={match}
-                          setBackground={this.setBackground}
                           />
                       )}
                       />
@@ -245,7 +225,6 @@ class App extends Component {
                           toggle={this.taskToggle}
                           match={match}
                           location={location}
-                          setBackground={this.setBackground}
                           />
                       )}
                       />
@@ -253,7 +232,6 @@ class App extends Component {
                       render={({ match }) => (
                         <NewPriority
                           addHandler={this.addToStateArray}
-                          setBackground={this.setBackground}
                           />
                       )}
                       />
@@ -261,7 +239,6 @@ class App extends Component {
                       render={({ match }) => (
                         <NewGratitude
                           addHandler={this.addToStateArray}
-                          setBackground={this.setBackground}
                           />
                       )}
                       />
@@ -269,7 +246,6 @@ class App extends Component {
                       render={({ match }) => (
                         <NewRelationship
                           addHandler={this.addToStateArray}
-                          setBackground={this.setBackground}
                           />
                       )}
                       />

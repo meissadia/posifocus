@@ -46,7 +46,6 @@ let Tasks = (props) => {
         match={match}
         location={props.location}
         background={Colors.tasks}
-        setBackground={props.setBackground}
         itemType='task'
         >
         <PageNavigation

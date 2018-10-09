@@ -33,7 +33,6 @@ let Projects = (props) => {
         match={match}
         location={props.location}
         background={Colors.projects}
-        setBackground={props.setBackground}
         itemType='deep'
         >
         <PageNavigation

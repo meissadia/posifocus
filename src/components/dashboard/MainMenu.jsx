@@ -10,10 +10,6 @@ import '../../styles/css/MainMenu.css';
 
 class MainMenu extends React.Component {
 
-  componentDidMount(){
-    this.props.setBackground('base');
-  }
-
   render(){
     return (
       <div id='main-menu'>
@@ -22,14 +18,12 @@ class MainMenu extends React.Component {
           title='Gratitudes'
           tagline='Because Grateful People Are Happy'
           link='/gratitudes'
-          setBackground={this.props.setBackground}
           />
         <MenuItem
           icon={prioritiesIcon}
           title='Priorities'
           tagline='The Most Important Aspects of Your Life'
           link='/priorities'
-          setBackground={this.props.setBackground}
           >
           <Submenu
             projCount={this.props.projectCount}
@@ -41,21 +35,18 @@ class MainMenu extends React.Component {
           title='Relationships'
           tagline='Forget Stocks. Invest in People.'
           link='/relationships'
-          setBackground={this.props.setBackground}
           />
         <MenuItem
           icon={tasksIcon}
           title="Today's Tasks"
           tagline='Stay Focused, Make an Impact'
           link='/tasks/today'
-          setBackground={this.props.setBackground}
           />
         <MenuItem
           icon={settingsIcon}
           title="Settings"
           tagline='Cloud Sync'
           link='/settings'
-          setBackground={this.props.setBackground}
           />
       </div>
     )

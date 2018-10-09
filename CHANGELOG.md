@@ -7,6 +7,7 @@
 - Brightened the colors of Settings, it felt too dark.
 - Prevent long text overlap in PageNavigation
 - Show correct Instructions for Priorites
+- Remove unused fn setBackground
 
 # v0.0.7
 - Removed react-scripts 2.0.1 because it made updating Service Workers more difficult

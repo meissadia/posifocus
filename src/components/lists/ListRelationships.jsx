@@ -23,7 +23,6 @@ let Relationships = (props) => {
         makeLink={(item) => (`/relationship/${item.id}/contacts`)}
         location={props.location}
         background={Colors.relationships}
-        setBackground={props.setBackground}
         itemType='deep'
         >
         <PageNavigation

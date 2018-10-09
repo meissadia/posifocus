@@ -36,7 +36,6 @@ let Contacts = (props) => {
         match={props.match}
         location={props.location}
         background={Colors.contacts}
-        setBackground={props.setBackground}
         itemType='shallow'
         >
         <PageNavigation

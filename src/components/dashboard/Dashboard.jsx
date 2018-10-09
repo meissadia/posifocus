@@ -20,7 +20,6 @@ export default function Dashboard(props){
         reset={props.resetState}
         projectCount={props.projectCount}
         taskCount={props.taskCount}
-        setBackground={props.setBackground}
         />
       <Version />
     </div>

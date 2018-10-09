@@ -23,7 +23,6 @@ function Priorities(props) {
         makeLink={(item, match) => (`/priority/${item.id}/projects`)}
         location={props.location}
         background={Colors.priorities}
-        setBackground={props.setBackground}
         itemType='deep'
         >
         <PageNavigation
