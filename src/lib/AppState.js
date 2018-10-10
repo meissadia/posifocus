@@ -55,7 +55,7 @@ export function deleteProject(project_id){
 
 export function deletePriority(priority){
   let priorities = this.state.priorities.filter((e) => (e.id !== priority));
-  let projects = this.state.tasks.filter((e) => (e.priority !== priority));
+  let projects = this.state.projects.filter((e) => (e.priority !== priority));
   let tasks = this.state.tasks.filter((e) => (e.priority !== priority));
   this.setState({ tasks, projects, priorities })
 }

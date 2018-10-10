@@ -1,3 +1,6 @@
+# v0.0.9
+- Fixed critical error where deleting a Priority caused Tasks to overwrite Projects
+
 # v0.0.8
 - Integrated Signup/Signin into the CloudSync component
 - Extracted and Animated Credits route
