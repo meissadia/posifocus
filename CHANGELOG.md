@@ -1,5 +1,11 @@
+# v0.0.10
+- Added editing for all item types (Gratitudes, Tasks, ...)
+- Lots of code cleanup
+- Add documentation for AppState
+- Add documentation for Helpers
+
 # v0.0.9
-- Fixed critical error where deleting a Priority caused Tasks to overwrite Projects
+- Fixed critical bug where deleting a Priority caused Tasks to overwrite Projects
 
 # v0.0.8
 - Integrated Signup/Signin into the CloudSync component

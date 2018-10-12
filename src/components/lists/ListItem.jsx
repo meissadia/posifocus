@@ -32,7 +32,7 @@ function ListItem(props) {
         <DateField date={item.date} />
       </div>
       <div className='list-item-actions'>
-        {/* <ListIcon name='edit' invert={true} href='#' id={item.id} alt='Pencil' src={editIcon} onclick={(event) => {event.preventDefault()}}/> */}
+        <ListIcon name='edit' invert={true} id={item.id} alt='Pencil' src={editIcon} onclick={props.edit}/> 
         <ListIcon name='delete' invert={true} onclick={props.delete} id={item.id} alt='Trashcan' src={deleteIcon}/>
       </div>
     </li>

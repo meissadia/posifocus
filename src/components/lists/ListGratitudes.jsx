@@ -2,6 +2,7 @@ import React          from 'react';
 import PageNavigation from '../PageNavigation';
 import List           from './List';
 import Colors         from '../../lib/Colors';
+import { withRouter } from 'react-router-dom';
 import '../../styles/css/ListViews.css'
 
 function Gratitudes(props) {
@@ -9,9 +10,15 @@ function Gratitudes(props) {
 
   let showInstructions = props.data.length === 0;
   let deleteHandler = (event) => {
-    event.preventDefault();
     props.delete(sectionTitle, event.target.attributes.jsvalue.value);
   }
+
+  let editHandler = (event) => {
+    let id = event.target.attributes.jsvalue.value;
+    let url = `/${sectionTitle}/${id}/edit`;
+    props.history.push(url);
+  }
+
 
   return (
     <List section={sectionTitle}
@@ -19,8 +26,9 @@ function Gratitudes(props) {
       instructions={{ display: showInstructions }}
       data={props.data}
       delete={deleteHandler}
+      edit={editHandler}
       location={props.location}
-      background={Colors.gratitudes}
+      background={Colors[sectionTitle]}
       itemType='shallow'
       >
       <PageNavigation
@@ -32,4 +40,4 @@ function Gratitudes(props) {
   )
 }
 
-export default Gratitudes;
+export default withRouter(Gratitudes);

@@ -2,13 +2,21 @@ import React          from 'react';
 import PageNavigation from '../PageNavigation';
 import List           from './List';
 import Colors         from '../../lib/Colors';
+import { withRouter } from 'react-router-dom';
 import '../../styles/css/ListViews.css'
 
 let Tasks = (props) => {
+  let sectionTitle = 'tasks';
 
   var deleteTask = (event) => {
     event.preventDefault();
     props.delete('tasks', event.target.attributes.jsvalue.value);
+  }
+
+  let editHandler = (event) => {
+    let id = event.target.attributes.jsvalue.value;
+    let url = `/${sectionTitle}/${id}/edit`;
+    props.history.push(url);
   }
 
   let navTitle = (project) => {
@@ -35,26 +43,25 @@ let Tasks = (props) => {
   let showInstructions = tasks.length === 0;
 
   return (
-    <List section='tasks'
+    <List section={sectionTitle}
       className='route-transition exit-right'
       data={tasks}
-      instructions={{
-        display: showInstructions,
-        icon: '/images/tasks-instructions-tableview.png' }}
-        delete={deleteTask}
-        toggle={props.toggle}
-        match={match}
-        location={props.location}
-        background={Colors.tasks}
-        itemType='task'
-        >
-        <PageNavigation
-          back={[navBackLink(match), navBackText(priority)]}
-          title={navTitle(project)}
-          add={[`${url}/new`]}
-          />
-      </List>
-    )
-  }
+      instructions={{ display: showInstructions }}
+      delete={deleteTask}
+      edit={editHandler}
+      toggle={props.toggle}
+      match={match}
+      location={props.location}
+      background={Colors[sectionTitle]}
+      itemType='task'
+      >
+      <PageNavigation
+        back={[navBackLink(match), navBackText(priority)]}
+        title={navTitle(project)}
+        add={[`${url}/new`]}
+        />
+    </List>
+  )
+}
 
-  export default Tasks;
+export default withRouter(Tasks);

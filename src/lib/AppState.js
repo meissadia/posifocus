@@ -1,3 +1,4 @@
+// Initial State for App
 export function initState() {
   return ({
     userHeader: {
@@ -20,6 +21,11 @@ export function initState() {
   })
 }
 
+/**
+ * Update User Header Information
+ * @param {string} key - Property Name
+ * @param {any} value - Property Value
+**/
 export function updateUserHeader(key, value){
   let userHeader = {...this.state.userHeader};
   userHeader[key] = value;
@@ -27,6 +33,9 @@ export function updateUserHeader(key, value){
   return null;
 }
 
+/**
+ * Reset Application State with Confirmation
+**/
 export function resetState(event){
   if(window.confirm('Erase all Local data?')) {
     this.setState(this.initState());
@@ -34,6 +43,11 @@ export function resetState(event){
   };
 }
 
+/**
+ * Prepend an item to an array stored in State
+ * @param {string} stateKey - array name
+ * @param {object} value - item to prepend
+**/
 export function addToStateArray(stateKey, value){
   var state = this.state[stateKey] || [];
   state.unshift(value);
@@ -41,18 +55,31 @@ export function addToStateArray(stateKey, value){
   return true;
 }
 
+/**
+ * Delete an item from an array stored in State
+ * @param {string} stateKey - array name
+ * @param {number} targetId - id of target
+**/
 export function deleteFromStateArray(stateKey, targetId){
   let state = this.state[stateKey] || [];
   let update = state.filter((e) => (e.id !== targetId));
   this.setState({ [stateKey]: update });
 }
 
-export function deleteProject(project_id){
-  let projects = this.state.projects.filter((e) => (e.id !== project_id));
-  let tasks = this.state.tasks.filter((e) => (e.project !== project_id));
+/**
+ * Delete a Project by id
+ * @param {number} project - Target ID
+**/
+export function deleteProject(project){
+  let projects = this.state.projects.filter((e) => (e.id !== project));
+  let tasks = this.state.tasks.filter((e) => (e.project !== project));
   this.setState({ tasks, projects });
 }
 
+/**
+ * Delete a Priority along with it's related Projects and Tasks
+ * @param {number} priority - Target ID
+**/
 export function deletePriority(priority){
   let priorities = this.state.priorities.filter((e) => (e.id !== priority));
   let projects = this.state.projects.filter((e) => (e.priority !== priority));
@@ -60,6 +87,10 @@ export function deletePriority(priority){
   this.setState({ tasks, projects, priorities })
 }
 
+/**
+ * Delete a Relationship and it's related Contacts
+ * @param {number} relationship - Target ID
+**/
 export function deleteRelationship(relationship){
   this.deleteFromStateArray('relationships', relationship);
   let contacts = this.state.contacts.filter((e) => (
@@ -68,6 +99,9 @@ export function deleteRelationship(relationship){
   this.setState({ contacts });
 }
 
+/**
+ * Event Handler for Task toggle switches
+**/
 export function taskToggle(event){
   let task_id = event.target.attributes.name.value;
   let task = this.getSingle('tasks', task_id);
@@ -83,18 +117,52 @@ export function taskToggle(event){
   }
 }
 
+/**
+ * Retrieve an item from a State array by ID
+ * @param {string} key - Array Name
+ * @param {number} id - Target ID
+**/
 export function getSingle(key, id){
   return this.state[key].filter((e) => (e.id === id))[0];
 }
 
+/**
+ * Update an item in a State array by ID
+ * @param {string} key - Array Name
+ * @param {object} item - Item to Update
+ * @param {number} item.id - Target ID
+**/
+export function updateSingle(key, item){
+  this.setState((state, props) => {
+    let index = state[key].findIndex((elem) => elem.id === item.id );
+    if(index >= 0){
+      let updated = state[key].slice();
+      updated[index] = item;
+      return { [key]: updated };
+    }
+  })
+}
+
+/**
+ * Retrieve the Projects related to a Priority
+ * @param {number} priority - Priority ID
+**/
 export function getProjects(priority){
   return this.state.projects.filter((e) => (e.priority === priority))
 }
 
+/**
+ * Retrieve the Tasks related to a Project
+ * @param {number} project - Project ID
+**/
 export function getTasks(project){
   return this.state.tasks.filter((e) => (e.project === project));
 }
 
+/**
+ * Retrieve the Contacts related to a Relationship
+ * @param {number} relationship - Relationship ID
+**/
 export function getContacts(relationship){
   if(!relationship) { return [] };
 
@@ -103,6 +171,10 @@ export function getContacts(relationship){
   ));
 }
 
+/**
+ * Save Application State to localStorage
+ * @param {boolean} allowNewKey - Enable storage
+**/
 export function saveStateToStorage(allowNewKey = true) {
   let prefix = "";
   let parent = this;

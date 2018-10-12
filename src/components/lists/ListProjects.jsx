@@ -2,13 +2,21 @@ import React          from 'react';
 import PageNavigation from '../PageNavigation';
 import List           from './List';
 import Colors         from '../../lib/Colors';
+import { withRouter } from 'react-router-dom';
 import '../../styles/css/ListViews.css'
 
 let Projects = (props) => {
+  let sectionTitle = 'projects'
 
   let deleteProject = (event) => {
     event.preventDefault();
     props.delete(event.target.attributes.jsvalue.value);
+  }
+
+  let editHandler = (event) => {
+    let id = event.target.attributes.jsvalue.value;
+    let url = `/${sectionTitle}/${id}/edit`;
+    props.history.push(url);
   }
 
   let navTitle = (parent) => {
@@ -24,24 +32,23 @@ let Projects = (props) => {
   return (
     <List section='projects'
       className='route-transition exit-right'
-      instructions={{
-        display: showInstructions,
-        icon: '/images/projects-instructions-tableview.png' }}
-        data={data}
-        delete={deleteProject}
-        makeLink={(item, match) => (`${match.url.slice(0,-1)}/${item.id}/tasks`)}
-        match={match}
-        location={props.location}
-        background={Colors.projects}
-        itemType='deep'
-        >
-        <PageNavigation
-          back={['/priorities', 'Priorities']}
-          title={navTitle(parent)}
-          add={[`${match.url}/new`]}
-          />
-      </List>
-    )
-  }
+      instructions={{ display: showInstructions }}
+      data={data}
+      delete={deleteProject}
+      edit={editHandler}
+      makeLink={(item, match) => (`${match.url.slice(0,-1)}/${item.id}/tasks`)}
+      match={match}
+      location={props.location}
+      background={Colors[sectionTitle]}
+      itemType='deep'
+      >
+      <PageNavigation
+        back={['/priorities', 'Priorities']}
+        title={navTitle(parent)}
+        add={[`${match.url}/new`]}
+        />
+    </List>
+  )
+}
 
-  export default Projects;
+export default withRouter(Projects);

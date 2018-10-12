@@ -50,6 +50,7 @@ class List extends React.Component {
                   item={item}
                   index={index}
                   delete={this.props.delete}
+                  edit={this.props.edit}
                   toggle={this.props.toggle}
                   link={this.props.link}
                   makeLink={this.props.makeLink}
