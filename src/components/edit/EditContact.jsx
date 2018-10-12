@@ -1,6 +1,7 @@
 import React                from 'react';
 import { withRouter }       from 'react-router-dom';
 import PageNavigation       from '../PageNavigation';
+import * as FH              from '../../lib/FormHelpers';
 import '../../styles/css/FormView.css';
 
 class Edit extends React.Component {
@@ -14,22 +15,17 @@ class Edit extends React.Component {
   save(event){
     event.preventDefault();
 
-    let { title, content } =  document.gform;
+    let { title, content, date } =  document.gform;
     let edited = {
       id: this.item.id,
       relationship: this.item.relationship,
       title: title.value || title.attributes.placeholder.value,
       content: content.value || content.attributes.placeholder.value,
-      date: this.item.date,
+      date: FH.parseDate(date.value)
     }
 
     this.props.updateSingle(this.section, edited);
     this.props.history.push(this.cancelLink());
-  }
-
-  parseDate(date){
-    if(!date){ return (new Date()).toString() };
-    return new Date(date).toString();
   }
 
   cancelLink(){
@@ -64,6 +60,13 @@ class Edit extends React.Component {
             name="content"
             placeholder="Making plans to meet up this weekend.."
             defaultValue={this.item.content}
+            />
+          <label htmlFor='date-input'>Date:</label>
+          <input
+            id='date-input'
+            type="date"
+            name="date"
+            defaultValue={FH.dateInputDefault(this.item.date)}
             />
           <input id='submit-button' type="submit" name="submit" value="Save" />
         </form>

@@ -1,6 +1,7 @@
 import React                from 'react';
 import { withRouter }       from 'react-router-dom';
 import PageNavigation       from '../PageNavigation';
+import * as FH              from '../../lib/FormHelpers';
 import '../../styles/css/FormView.css';
 
 class NewGratitude extends React.Component {
@@ -12,13 +13,12 @@ class NewGratitude extends React.Component {
   handleNewGratitude(event){
     event.preventDefault();
     var date = new Date();
-    var gdate = this.parseDate(document.gform.date.value);
 
     var new_gratitude = {
       id: date.getTime().toString(),
       title: document.gform.title.value || document.gform.title.attributes.placeholder.value,
       content: document.gform.content.value || document.gform.content.attributes.placeholder.value,
-      date: gdate
+      date: FH.parseDate(document.gform.date.value)
     }
 
     this.props.addHandler('gratitudes', new_gratitude);
@@ -28,22 +28,11 @@ class NewGratitude extends React.Component {
     });
   }
 
-  parseDate(date){
-    if(!date){ return (new Date()).toString() };
-    return new Date(date).toString();
-  }
-
   cancelLink(){
     return '/gratitudes'
   }
 
   render(){
-    var date = new Date();
-    var currentDateString = [date.getFullYear(), date.getMonth() + 1, date.getDate()].map((elem) => {
-      if (elem < 10) return ('0' + elem);
-      return elem;
-    }).join('-');
-
     return (
       <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
         <PageNavigation
@@ -71,7 +60,7 @@ class NewGratitude extends React.Component {
             id='date-input'
             type="date"
             name="date"
-            defaultValue={currentDateString}
+            defaultValue={FH.dateInputDefault()}
             />
           <input id='submit-button' type="submit" name="submit" value="Save" />
         </form>

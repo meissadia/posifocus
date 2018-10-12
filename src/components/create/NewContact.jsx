@@ -1,6 +1,7 @@
 import React                from 'react';
 import { withRouter }       from 'react-router-dom';
 import PageNavigation       from '../PageNavigation';
+import * as FH              from '../../lib/FormHelpers';
 import '../../styles/css/FormView.css';
 
 class NewContact extends React.Component {
@@ -14,23 +15,17 @@ class NewContact extends React.Component {
   handleAddContact(event){
     event.preventDefault();
     let date = new Date();
-    let gdate = this.parseDate(document.gform.date.value);
 
     let new_contact = {
       id: date.getTime().toString(),
       relationship: document.gform.relationship.value,
       title: document.gform.title.value || document.gform.title.attributes.placeholder.value,
       content: document.gform.content.value || document.gform.content.attributes.placeholder.value,
-      date: gdate
+      date: FH.parseDate(document.gform.date.value)
     }
 
     this.props.addHandler('contacts', new_contact);
     this.props.history.push(this.cancelLink(document.gform.url.value));
-  }
-
-  parseDate(date){
-    if(!date){ return (new Date()).toString() };
-    return new Date(date).toString();
   }
 
   cancelLink(url){
@@ -42,12 +37,6 @@ class NewContact extends React.Component {
   }
 
   render(){
-    let date = new Date();
-    let currentDateString = [date.getFullYear(), date.getMonth() + 1, date.getDate()].map((elem) => {
-      if (elem < 10) return ('0' + elem);
-      return elem;
-    }).join('-');
-
     return (
       <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
         <PageNavigation
@@ -75,7 +64,7 @@ class NewContact extends React.Component {
             id='date-input'
             type="date"
             name="date"
-            defaultValue={currentDateString}
+            defaultValue={FH.dateInputDefault()}
             />
           <input name="relationship" value={this.params.relationship_id} hidden readOnly/>
           <input name="url" value={this.url} hidden readOnly/>

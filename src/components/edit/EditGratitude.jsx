@@ -1,6 +1,7 @@
 import React                from 'react';
 import { withRouter }       from 'react-router-dom';
 import PageNavigation       from '../PageNavigation';
+import * as FH              from '../../lib/FormHelpers';
 import '../../styles/css/FormView.css';
 
 class EditGratitude extends React.Component {
@@ -12,12 +13,12 @@ class EditGratitude extends React.Component {
 
   save(event){
     event.preventDefault();
-    let { title, content } = document.gform;
+    let { title, content, date } = document.gform;
     var edited = {
       id: this.item.id,
       title: title.value || title.attributes.placeholder.value,
       content: content.value || content.attributes.placeholder.value,
-      date: this.item.date
+      date: FH.parseDate(date.value)
     }
 
     this.props.updateSingle('gratitudes', edited);
@@ -25,11 +26,6 @@ class EditGratitude extends React.Component {
       pathname: this.cancelLink(),
       state: { enter: 'enter-left'}
     });
-  }
-
-  parseDate(date){
-    if(!date){ return (new Date()).toString() };
-    return new Date(date).toString();
   }
 
   cancelLink(){
@@ -60,6 +56,13 @@ class EditGratitude extends React.Component {
             name="content"
             placeholder="My kids surprised me today by..."
             defaultValue={this.item.content}
+            />
+          <label htmlFor='date-input'>Date:</label>
+          <input
+            id='date-input'
+            type="date"
+            name="date"
+            defaultValue={FH.dateInputDefault(this.item.date)}
             />
           <input id='submit-button' type="submit" name="submit" value="Save" />
         </form>

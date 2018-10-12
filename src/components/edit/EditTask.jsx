@@ -2,6 +2,7 @@ import React                from 'react';
 import { withRouter }       from 'react-router-dom';
 import Toggle               from 'react-toggle';
 import PageNavigation       from '../PageNavigation';
+import * as FH              from '../../lib/FormHelpers';
 import '../../styles/css/FormView.css';
 import '../../styles/css/ReactToggle.css';
 
@@ -16,7 +17,7 @@ class EditTask extends React.Component {
 
   save(event){
     event.preventDefault();
-    let { title, today, done } = document.gform
+    let { title, today, date, done } = document.gform
     let edited = {
       id: this.item.id,
       priority: this.item.priority,
@@ -24,7 +25,7 @@ class EditTask extends React.Component {
       title: title.value || title.attributes.placeholder.value,
       today: today.checked,
       done: done.checked,
-      date: this.item.date
+      date: FH.parseDate(date.value)
     }
 
     this.props.updateSingle('tasks', edited);
@@ -87,6 +88,13 @@ class EditTask extends React.Component {
               defaultChecked={this.item.done} />
             <span>Done?</span>
           </label>
+          <label htmlFor='date-input'>Date:</label>
+          <input
+            id='date-input'
+            type="date"
+            name="date"
+            defaultValue={FH.dateInputDefault(this.item.date)}
+            />
           <input id='submit-button' type="submit" name="submit" value="Save" />
         </form>
       </div>

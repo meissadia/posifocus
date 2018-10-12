@@ -32,8 +32,8 @@ function ListItem(props) {
         <DateField date={item.date} />
       </div>
       <div className='list-item-actions'>
-        <ListIcon name='edit' invert={true} id={item.id} alt='Pencil' src={editIcon} onclick={props.edit}/> 
-        <ListIcon name='delete' invert={true} onclick={props.delete} id={item.id} alt='Trashcan' src={deleteIcon}/>
+        <ListIcon name='edit' invert={true} id={item.id} alt='Pencil' src={editIcon} onclick={props.edit} />
+        <ListIcon name='delete' invert={true} onclick={props.delete} id={item.id} alt='Trashcan' src={deleteIcon} />
       </div>
     </li>
   )
@@ -64,12 +64,11 @@ function ItemField(props) {
 }
 
 function DateField(props) {
-  let formatDate = (dateString) => (
-    dateString.split(' ').slice(0,4).join(' ')
-  )
+  let parts = props.date.split(' ');
+  let displayDate = `${parts[1]} ${parts[2]}, ${parts[3]}`
   return (
     <div className='date'>
-      {formatDate(props.date)}
+      {displayDate}
     </div>
   )
 }

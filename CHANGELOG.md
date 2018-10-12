@@ -1,5 +1,6 @@
 # v0.0.10
 - Added editing for all item types (Gratitudes, Tasks, ...)
+- Fixed dates being off by one day
 - Lots of code cleanup
 - Add documentation for AppState
 - Add documentation for Helpers
