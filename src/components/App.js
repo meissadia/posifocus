@@ -26,6 +26,7 @@ import EditProject      from './edit/EditProject';
 import EditTask         from './edit/EditTask';
 import EditContact      from './edit/EditContact';
 import EditRelationship from './edit/EditRelationship';
+import OrderableList    from './OrderableList';
 
 import '../lib/Helpers';
 import * as State      from '../lib/AppState';
@@ -81,6 +82,7 @@ class App extends Component {
   }
 
   onServiceWorkerUpdate(){
+    if(!window['isUpdateAvailable']) return;
     window['isUpdateAvailable'].then(isAvailable => {
       console.log('ServiceWorker, update available?: ' + (isAvailable ? 'Yes.' : 'No.'));
       this.setState({ update: isAvailable });
@@ -117,6 +119,16 @@ class App extends Component {
                 timeout={250}
                 >
                 <Switch location={location}>
+                  {/********************************************************/}
+                  {/*************** Test OrderableList Route ***************/}
+                  {/********************************************************/}
+                  {/* Component design notes:
+                    • Create a Test<OrderableList|T> component that reads test data 
+                      from an external source but will utilize name matched prop data
+                      when present.
+                  */}
+                  <Route exact path='/testOL' component={OrderableList} />
+
                   {/********************************************************/}
                   {/******************* Dashboard Routes *******************/}
                   {/********************************************************/}

@@ -176,6 +176,11 @@ export function getContacts(relationship){
  * @param {boolean} allowNewKey - Enable storage
 **/
 export function saveStateToStorage(allowNewKey = true) {
+  // FIXME: Added to make tests pass.  
+  // Need to understand why this worked fine before.
+  var local_storage = window && window.localStorage;
+  if(!local_storage) return;
+
   let prefix = "";
   let parent = this;
   let blacklist = ['update'];
@@ -185,7 +190,7 @@ export function saveStateToStorage(allowNewKey = true) {
     // save item to storage if not on the blacklist
     let prefixWithKey = `${prefix}_${key}`;
     if (blacklist.indexOf(key) < 0 && allowNewKey) {
-      localStorage.setItem(prefixWithKey, JSON.stringify(parent.state[key]));
+      local_storage.setItem(prefixWithKey, JSON.stringify(parent.state[key]));
     }
   }
 }
