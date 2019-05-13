@@ -1,53 +1,60 @@
-import React          from 'react';
-import PageNavigation from '../PageNavigation';
-import List           from './List';
-import Colors         from '../../lib/Colors';
+import React from 'react';
 import { withRouter } from 'react-router-dom';
 import '../../styles/css/ListViews.css'
+import Colors from '../../lib/Colors';
+import { GlobalContext } from '../App';
+import PageNavigation from '../PageNavigation';
+import List from './List';
 
-let Projects = (props) => {
-  let sectionTitle = 'projects'
+const Projects = props => {
+  const section = 'projects';
+  const match = props.match;
 
-  let deleteProject = (event) => {
+  const deleteHandler = (deleter, event) => {
     event.preventDefault();
-    props.delete(event.target.attributes.jsvalue.value);
+    deleter(event.target.attributes.jsvalue.value);
   }
 
-  let editHandler = (event) => {
-    let id = event.target.attributes.jsvalue.value;
-    let url = `/${sectionTitle}/${id}/edit`;
+  const editHandler = (event) => {
+    const id = event.target.attributes.jsvalue.value;
+    const url = `/${section}/${id}/edit`;
     props.history.push(url);
   }
 
-  let navTitle = (parent) => {
-    if(parent) { return parent.title + ' Projects' }
+  const navTitle = (parent) => {
+    if (parent) { return parent.title + ' Projects' }
     return 'Projects'
   }
 
-  let match = props.match;
-  let data = props.getProjects(match.params.priority_id);
-  let parent = props.getSingle('priorities', match.params.priority_id);
-  let showInstructions = data.length === 0;
-
   return (
-    <List section='projects'
-      className='route-transition exit-right'
-      instructions={{ display: showInstructions }}
-      data={data}
-      delete={deleteProject}
-      edit={editHandler}
-      makeLink={(item, match) => (`${match.url.slice(0,-1)}/${item.id}/tasks`)}
-      match={match}
-      location={props.location}
-      background={Colors[sectionTitle]}
-      itemType='deep'
-      >
-      <PageNavigation
-        back={['/priorities', 'Priorities']}
-        title={navTitle(parent)}
-        add={[`${match.url}/new`]}
-        />
-    </List>
+    <GlobalContext.Consumer>
+      {({ functions, location }) => {
+        const { deleteProject, getSingle, getProjects } = functions;
+        const projects = getProjects(match.params.priority_id);
+        const parent = getSingle('priorities', match.params.priority_id);
+
+        return (
+          <List section={section}
+            className='route-transition exit-right'
+            instructions={{ display: projects.length === 0 }}
+            data={projects}
+            delete={deleteHandler.bind(null, deleteProject)}
+            edit={editHandler}
+            makeLink={(item, match) => (`${match.url.slice(0, -1)}/${item.id}/tasks`)}
+            match={match}
+            location={location}
+            background={Colors[section]}
+            itemType='deep'
+          >
+            <PageNavigation
+              back={['/priorities', 'Priorities']}
+              title={navTitle(parent)}
+              add={[`${match.url}/new`]}
+            />
+          </List>
+        )
+      }}
+    </GlobalContext.Consumer>
   )
 }
 

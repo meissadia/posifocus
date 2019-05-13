@@ -1,44 +1,52 @@
-import React          from 'react';
-import PageNavigation from '../PageNavigation';
-import List           from './List';
-import Colors         from '../../lib/Colors';
+import React from 'react';
 import { withRouter } from 'react-router-dom';
+
 import '../../styles/css/ListViews.css'
+import Colors from '../../lib/Colors';
+import PageNavigation from '../PageNavigation';
+import { GlobalContext } from '../App';
+import List from './List';
 
-function Priorities(props) {
-  let sectionTitle = 'priorities';
-  let showInstructions = props.data.length === 0;
+const Priorities = props => {
+  const sectionTitle = 'priorities';
 
-  let deletePriority = (event) => {
+  const destroy = (destroyer, event) => {
     event.preventDefault();
-    props.delete(event.target.attributes.jsvalue.value);
+    destroyer(event.target.attributes.jsvalue.value);
   }
 
-  let edit = (event) => {
-    let id = event.target.attributes.jsvalue.value;
-    let url = `/${sectionTitle}/${id}/edit`;
-    console.log(url);
+  const edit = (event) => {
+    const id = event.target.attributes.jsvalue.value;
+    const url = `/${sectionTitle}/${id}/edit`;
     props.history.push(url);
   }
 
   return (
-    <List section={sectionTitle}
-      className='route-transition exit-right'
-      instructions={{ display: showInstructions }}
-      data={props.data}
-      delete={deletePriority}
-      edit={edit}
-      makeLink={(item, match) => (`/priority/${item.id}/projects`)}
-      location={props.location}
-      background={Colors[sectionTitle]}
-      itemType='deep'
-      >
-      <PageNavigation
-        back={['/', 'Dashboard']}
-        title='Priorities'
-        add={[`/${sectionTitle}/new`]}
-        />
-    </List>
+    <GlobalContext.Consumer>
+      {({ state, functions, location }) => {
+        const { priorities } = state;
+        const { deletePriority } = functions;
+
+        return (
+          <List section={sectionTitle}
+            className='route-transition exit-right'
+            instructions={{ display: priorities.length === 0 }}
+            data={priorities}
+            delete={destroy.bind(null, deletePriority)}
+            edit={edit}
+            makeLink={item => (`/priority/${item.id}/projects`)}
+            location={location}
+            background={Colors[sectionTitle]}
+            itemType='deep'
+          >
+            <PageNavigation
+              back={['/', 'Dashboard']}
+              title='Priorities'
+              add={[`/${sectionTitle}/new`]}
+            />
+          </List>);
+      }}
+    </GlobalContext.Consumer>
   )
 }
 

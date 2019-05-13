@@ -1,64 +1,68 @@
-import React                from 'react';
-import { withRouter }       from 'react-router-dom';
-import PageNavigation       from '../PageNavigation';
+import React from 'react';
+import { withRouter } from 'react-router-dom';
+
 import '../../styles/css/FormView.css';
+import PageNavigation from '../PageNavigation';
+import { GlobalContext } from '../App';
 
-class EditProject extends React.Component {
-  constructor(props){
-    super(props);
-    this.section = 'projects';
-    this.save = this.save.bind(this);
-    this.params = this.props.match.params;
-    this.url = this.props.match.url;
-    this.item = this.props.getSingle(this.section, this.params.id);
-  }
+const EditProject = props => {
+  const section = 'projects';
 
-  save(event){
+  const save = (item, update, event) => {
     event.preventDefault();
-    let { title } = document.gform
-    let edited = {
-      id: this.item.id,
-      priority: this.item.priority,
+    const title = document.gform.title;
+    const edited = {
+      id: item.id,
+      priority: item.priority,
       title: title.value || title.attributes.placeholder.value,
-      date: this.item.date
+      date: item.date
     }
 
-    this.props.updateSingle(this.section, edited);
-    this.props.history.push({
-      pathname: this.cancelLink(),
-      state: {enter: 'enter-left'}
+    update(section, edited);
+    props.history.push({
+      pathname: cancelLink(item),
+      state: { enter: 'enter-left' }
     });
   }
 
-  cancelLink(){
-    return `/priority/${this.item.priority}/projects`
-  }
+  const cancelLink = item => `/priority/${item.priority}/projects`;
 
-  render(){
-    return (
-      <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
-        <PageNavigation
-          back={['/priorities', 'Priorities']}
-          title='Edit Project'
-          add={[{pathname: this.cancelLink(), state: {enter: 'enter-bottom'}}, '< Cancel >']}
+  return (
+    <GlobalContext.Consumer>
+      {({ functions }) => {
+        const { getSingle, updateSingle } = functions;
+        const currentItem = getSingle(section, props.match.params.id) || {};
 
-          />
-        <form name='gform' className='g-form' onSubmit={this.save}>
-          <label htmlFor="title" className='center'>
-            What Project Will Contribute Most to this Priority?
-          </label>
-          <input
-            type="text"
-            name="title"
-            autoComplete="off"
-            placeholder="Backyard BBQ/New Diet/Vacation..."
-            defaultValue={this.item.title}
+        return (
+          <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
+            <PageNavigation
+              back={['/priorities', 'Priorities']}
+              title='Edit Project'
+              add={[{ pathname: cancelLink(currentItem), state: { enter: 'enter-bottom' } }, '< Cancel >']}
+
             />
-          <input id='submit-button' type="submit" name="submit" value="Save" />
-        </form>
-      </div>
-    )
-  }
-}
+            <form
+              name='gform'
+              className='g-form'
+              onSubmit={save.bind(null, currentItem, updateSingle)}
+            >
+              <label htmlFor="title" className='center'>
+                What Project Will Contribute Most to this Priority?
+          </label>
+              <input
+                type="text"
+                name="title"
+                autoComplete="off"
+                placeholder="Backyard BBQ/New Diet/Vacation..."
+                defaultValue={currentItem.title}
+              />
+              <input id='submit-button' type="submit" name="submit" value="Save" />
+            </form>
+          </div>
+        )
+      }}
+    </GlobalContext.Consumer>
+  );
+};
 
 export default withRouter(EditProject);

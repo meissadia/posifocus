@@ -1,65 +1,70 @@
-import React                from 'react';
-import { withRouter }       from 'react-router-dom';
-import PageNavigation       from '../PageNavigation';
+import React from 'react';
+import { withRouter } from 'react-router-dom';
+
 import '../../styles/css/FormView.css';
+import { GlobalContext } from '../App';
+import PageNavigation from '../PageNavigation';
 
-class NewProject extends React.Component {
-  constructor(props){
-    super(props);
-    this.handleAddProject = this.handleAddProject.bind(this);
-    this.params = this.props.match.params;
-    this.url = this.props.match.url;
-  }
-
-  handleAddProject(event){
+const NewProject = props => {
+  const handleNewProject = (add, event) => {
     event.preventDefault();
-    let date = new Date();
+    const date = new Date();
 
-    let new_project = {
+    const new_project = {
       id: date.getTime().toString(),
       priority: document.gform.priority.value,
       title: document.gform.title.value || document.gform.title.attributes.placeholder.value,
       date: date.toString()
     }
 
-    if (this.props.addHandler('projects', new_project)){
-      this.props.history.push({pathname: this.cancelLink(document.gform.url.value), state: {enter: 'enter-left'}});
-
+    if (add('projects', new_project)) {
+      props.history.push({ 
+        pathname: cancelLink(document.gform.url.value), 
+        state: { enter: 'enter-left' }
+      });
     } else {
       alert('Error adding contact!');
     }
   }
 
-  cancelLink(url){
-    return url.slice(0, -4);
-  }
+  const cancelLink = url => url.slice(0, -4);
 
-  render(){
-    return (
-      <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
-        <PageNavigation
-          back={['/priorities', 'Priorities']}
-          title='New Project'
-          add={[{pathname: this.cancelLink(this.url), state: {enter: 'enter-left'}}, '< Cancel >']}
+  return (
+    <GlobalContext.Consumer>
+      {({functions}) => {
+        const { params, url } = props.match;
 
+        return (
+          <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
+          <PageNavigation
+            back={['/priorities', 'Priorities']}
+            title='New Project'
+            add={[{ pathname: cancelLink(url), state: { enter: 'enter-left' } }, '< Cancel >']}
+    
           />
-        <form name='gform' className='g-form' onSubmit={this.handleAddProject}>
-          <label htmlFor="title" className='center'>
-            What Project Will Contribute Most to this Priority?
-          </label>
-          <input
-            type="text"
-            name="title"
-            autoComplete="off"
-            placeholder="Backyard BBQ/New Diet/Vacation..."
+          <form
+            name='gform'
+            className='g-form'
+            onSubmit={handleNewProject.bind(null, functions.addToStateArray)}
+          >
+            <label htmlFor="title" className='center'>
+              What Project Will Contribute Most to this Priority?
+              </label>
+            <input
+              type="text"
+              name="title"
+              autoComplete="off"
+              placeholder="Backyard BBQ/New Diet/Vacation..."
             />
-          <input name="priority" value={this.params.priority_id} hidden readOnly/>
-          <input name="url" value={this.url} hidden readOnly/>
-          <input id='submit-button' type="submit" name="submit" value="Save" />
-        </form>
-      </div>
-    )
-  }
-}
+            <input name="priority" value={params.priority_id} hidden readOnly />
+            <input name="url" value={url} hidden readOnly />
+            <input id='submit-button' type="submit" name="submit" value="Save" />
+          </form>
+        </div>
+        );
+      }}
+    </GlobalContext.Consumer>
+  );
+};
 
 export default withRouter(NewProject);

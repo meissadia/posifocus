@@ -1,66 +1,72 @@
-import React          from 'react';
-import PageNavigation from '../PageNavigation';
-import List           from './List';
-import Colors         from '../../lib/Colors';
+import React from 'react';
 import { withRouter } from 'react-router-dom';
+
 import '../../styles/css/ListViews.css'
+import Colors from '../../lib/Colors';
+import PageNavigation from '../PageNavigation';
+import { GlobalContext } from '../App';
+import List from './List';
 
-let Tasks = (props) => {
-  let sectionTitle = 'tasks';
+const Tasks = (props) => {
+  const section = 'tasks';
 
-  var deleteTask = (event) => {
+  const deleteTask = (deleter, event) => {
     event.preventDefault();
-    props.delete('tasks', event.target.attributes.jsvalue.value);
+    deleter(section, event.target.attributes.jsvalue.value);
   }
 
-  let editHandler = (event) => {
-    let id = event.target.attributes.jsvalue.value;
-    let url = `/${sectionTitle}/${id}/edit`;
+  const editHandler = (event) => {
+    const id = event.target.attributes.jsvalue.value;
+    const url = `/${section}/${id}/edit`;
     props.history.push(url);
   }
 
-  let navTitle = (project) => {
-    let val = 'Tasks';
-    if(project) { return project.title + ' Tasks' }
+  const navTitle = (project) => {
+    const val = 'Tasks';
+    if (project) { return project.title + ' Tasks' }
     return val;
   }
 
-  let navBackText = (priority) => {
-    if(priority) { return priority.title }
+  const navBackText = (priority) => {
+    if (priority) { return priority.title }
     return 'Projects'
   }
 
-  let navBackLink = (match) => {
-    return match.url.split('/').slice(0,-2).join('/') + 's'
+  const navBackLink = (match) => {
+    return match.url.split('/').slice(0, -2).join('/') + 's'
   }
 
-  let match = props.match;
-  let url = match.url;
-  let params = match.params;
-  let project = props.getSingle('projects', params.project_id);
-  let priority = project && props.getSingle('priorities', project.priority)
-  let tasks = props.getTasks(params.project_id);
-  let showInstructions = tasks.length === 0;
-
   return (
-    <List section={sectionTitle}
-      className='route-transition exit-right'
-      data={tasks}
-      instructions={{ display: showInstructions }}
-      delete={deleteTask}
-      edit={editHandler}
-      toggle={props.toggle}
-      match={match}
-      location={props.location}
-      background={Colors[sectionTitle]}
-      itemType='task'
-      >
-      <PageNavigation
-        back={[navBackLink(match), navBackText(priority)]}
-        title={navTitle(project)}
-        add={[`${url}/new`]}
-        />
-    </List>
+    <GlobalContext.Consumer>
+      {({ functions }) => {
+        const { url, params } = props.match;
+        const {getTasks, getSingle, taskToggle, deleteFromStateArray} = functions;
+        const project = getSingle('projects', params.project_id);
+        const priority = project && getSingle('priorities', project.priority)
+        const tasks = getTasks(props.match.params.project_id);
+
+        return (
+          <List section={section}
+            className='route-transition exit-right'
+            data={tasks}
+            instructions={{ display: tasks.length === 0 }}
+            delete={deleteTask.bind(null, deleteFromStateArray)}
+            edit={editHandler}
+            toggle={taskToggle}
+            match={props.match}
+            location={props.location}
+            background={Colors[section]}
+            itemType='task'
+          >
+            <PageNavigation
+              back={[navBackLink(props.match), navBackText(priority)]}
+              title={navTitle(project)}
+              add={[`${url}/new`]}
+            />
+          </List>
+        );
+      }}
+    </GlobalContext.Consumer>
   )
 }
 

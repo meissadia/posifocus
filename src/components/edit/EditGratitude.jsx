@@ -1,74 +1,89 @@
-import React                from 'react';
-import { withRouter }       from 'react-router-dom';
-import PageNavigation       from '../PageNavigation';
-import * as FH              from '../../lib/FormHelpers';
+import React from 'react';
+import { withRouter } from 'react-router-dom';
+
 import '../../styles/css/FormView.css';
+import { parseDate, dateInputDefault } from '../../lib/FormHelpers';
+import { GlobalContext } from '../App';
+import PageNavigation from '../PageNavigation';
 
-class EditGratitude extends React.Component {
-  constructor(props){
-    super(props);
-    this.save = this.save.bind(this);
-    this.item = this.props.getSingle('gratitudes', this.props.match.params.id);
-  }
-
-  save(event){
+/**
+ * Dialog to update a Gratitude
+ * @param {Object} props 
+ */
+const EditGratitude = props => {
+  /**
+   * Update state with changes
+   * @param {String} itemId 
+   * @param {Function} update 
+   * @param {Event} event 
+   */
+  const save = (itemId, update, event) => {
     event.preventDefault();
-    let { title, content, date } = document.gform;
-    var edited = {
-      id: this.item.id,
+    const { title, content, date } = document.gform;
+    const edited = {
+      id: itemId,
       title: title.value || title.attributes.placeholder.value,
       content: content.value || content.attributes.placeholder.value,
-      date: FH.parseDate(date.value)
-    }
+      date: parseDate(date.value)
+    };
 
-    this.props.updateSingle('gratitudes', edited);
-    this.props.history.push({
-      pathname: this.cancelLink(),
-      state: { enter: 'enter-left'}
+    update('gratitudes', edited);
+    props.history.push({
+      pathname: cancelLink(),
+      state: { enter: 'enter-left' }
     });
-  }
+  };
 
-  cancelLink(){
-    return '/gratitudes'
-  }
+  const cancelLink = () => '/gratitudes';
 
-  render(){
-    return (
-      <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
-        <PageNavigation
-          back={['/', 'Dashboard']}
-          title='Edit Gratitude'
-          add={[{pathname: this.cancelLink(), state: {enter: 'enter-bottom'}}, '< Cancel >']}
-          />
-        <form name='gform' className='g-form' onSubmit={this.save}>
-          <label htmlFor="title" className='center'>
-            What Are You Grateful For Today?
-          </label>
-          <input
-            type="text"
-            name="title"
-            autoComplete="off"
-            placeholder="Family / Clean Water / etc..."
-            defaultValue={this.item.title}
+  return (
+    <GlobalContext.Consumer>
+      {({ functions }) => {
+        const { getSingle, updateSingle } = functions;
+        const currentItem = getSingle('gratitudes', props.match.params.id) || {};
+
+        return (
+          <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
+            <PageNavigation
+              back={['/', 'Dashboard']}
+              title='Edit Gratitude'
+              add={[{ pathname: cancelLink(), state: { enter: 'enter-bottom' } }, '< Cancel >']}
             />
-          <label htmlFor='content'>Notes:</label>
-          <textarea
-            name="content"
-            placeholder="My kids surprised me today by..."
-            defaultValue={this.item.content}
-            />
-          <label htmlFor='date-input'>Date:</label>
-          <input
-            id='date-input'
-            type="date"
-            name="date"
-            defaultValue={FH.dateInputDefault(this.item.date)}
-            />
-          <input id='submit-button' type="submit" name="submit" value="Save" />
-        </form>
-      </div>
-    )
-  }
-}
+            <form 
+              name='gform' 
+              className='g-form' 
+              onSubmit={save.bind(null, currentItem.id, updateSingle)}
+            >
+              <label htmlFor="title" className='center'>
+                What Are You Grateful For Today?
+              </label>
+              <input
+                type="text"
+                name="title"
+                autoComplete="off"
+                placeholder="Family / Clean Water / etc..."
+                defaultValue={currentItem.title}
+              />
+              <label htmlFor='content'>Notes:</label>
+              <textarea
+                name="content"
+                placeholder="My kids surprised me today by..."
+                defaultValue={currentItem.content}
+              />
+              <label htmlFor='date-input'>Date:</label>
+              <input
+                id='date-input'
+                type="date"
+                name="date"
+                defaultValue={dateInputDefault(currentItem.date)}
+              />
+              <input id='submit-button' type="submit" name="submit" value="Save" />
+            </form>
+          </div>
+        );
+      }}
+    </GlobalContext.Consumer>
+  );
+};
 
 export default withRouter(EditGratitude);

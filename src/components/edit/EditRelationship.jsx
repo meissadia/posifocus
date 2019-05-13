@@ -1,58 +1,63 @@
-import React                from 'react';
-import { withRouter }       from 'react-router-dom';
-import PageNavigation       from '../PageNavigation';
+import React from 'react';
+import { withRouter } from 'react-router-dom';
+
 import '../../styles/css/FormView.css';
+import { GlobalContext } from '../App';
+import PageNavigation from '../PageNavigation';
 
-class EditRelationship extends React.Component {
-  constructor(props){
-    super(props);
-    this.section = 'relationships';
-    this.save = this.save.bind(this);
-    this.item = this.props.getSingle(this.section, this.props.match.params.id);
-  }
+const EditRelationship = props => {
+  const section = 'relationships';
 
-  save(event){
+  const save = (item, update, event) => {
     event.preventDefault();
-    let { title } = document.gform;
-    var edited = {
-      id: this.item.id,
+    const title = document.gform.title;
+    const edited = {
+      id: item.id,
       title: title.value || title.attributes.placeholder.value,
-      date: this.item.date
+      date: item.date
     }
 
-    this.props.updateSingle(this.section, edited);
-    this.props.history.push(this.cancelLink());
-
+    update(section, edited);
+    props.history.push(cancelLink(item));
   }
 
-  cancelLink(){
-    return `/${this.section}`;
-  }
+  const cancelLink = () => `/${section}`;
 
-  render(){
-    return (
-      <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
-        <PageNavigation
-          back={['/', 'Dashboard']}
-          title='Edit Relationship'
-          add={[{pathname: this.cancelLink(), state: {enter: 'enter-bottom'}}, '< Cancel >']}
-          />
-        <form name='gform' className='g-form' onSubmit={this.save}>
-          <label htmlFor="title" className='center'>
-            Who Do You Want To Build A Better Relationship With?
-          </label>
-          <input
-            type="text"
-            name="title"
-            autoComplete="off"
-            placeholder="My Brother"
-            defaultValue={this.item.title}
+  return (
+    <GlobalContext.Consumer>
+      {({ functions }) => {
+        const { getSingle, updateSingle } = functions;
+        const currentItem = getSingle(section, props.match.params.id) || {};
+
+        return (
+          <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
+            <PageNavigation
+              back={['/', 'Dashboard']}
+              title='Edit Relationship'
+              add={[{ pathname: cancelLink(), state: { enter: 'enter-bottom' } }, '< Cancel >']}
             />
-          <input id='submit-button' type="submit" name="submit" value="Save" />
-        </form>
-      </div>
-    )
-  }
-}
+            <form
+              name='gform'
+              className='g-form'
+              onSubmit={save.bind(null, currentItem, updateSingle)}
+            >
+              <label htmlFor="title" className='center'>
+                Who Do You Want To Build A Better Relationship With?
+            </label>
+              <input
+                type="text"
+                name="title"
+                autoComplete="off"
+                placeholder="My Brother"
+                defaultValue={currentItem.title}
+              />
+              <input id='submit-button' type="submit" name="submit" value="Save" />
+            </form>
+          </div>
+        )
+      }}
+    </GlobalContext.Consumer>
+  );
+};
 
 export default withRouter(EditRelationship);

@@ -1,56 +1,60 @@
-import React          from 'react';
-import PageNavigation from '../PageNavigation';
-import List           from './List';
-import Colors         from '../../lib/Colors';
+import React from 'react';
 import { withRouter } from 'react-router-dom';
 import '../../styles/css/ListViews.css'
+import Colors from '../../lib/Colors';
+import { GlobalContext } from '../App';
+import PageNavigation from '../PageNavigation';
+import List from './List';
 
-let Contacts = (props) => {
-  let sectionTitle = 'contacts'
+const Contacts = props => {
+  const section = 'contacts';
 
-  let deleteContact = (event) => {
+  const deleteHandler = (deleter, event) => {
     event.preventDefault();
-    props.delete(sectionTitle, event.target.attributes.jsvalue.value);
+    deleter(section, event.target.attributes.jsvalue.value);
   }
 
-  let editHandler = (event) => {
-    let id = event.target.attributes.jsvalue.value;
-    let url = `/${sectionTitle}/${id}/edit`;
+  const editHandler = (event) => {
+    const id = event.target.attributes.jsvalue.value;
+    const url = `/${section}/${id}/edit`;
     props.history.push(url);
   }
 
-  let navTitle = (parent) => {
-    if(parent) { return parent.title + ' Contacts' }
-    return 'Contacts'
+  const navTitle = parent => {
+    if (parent) return parent.title + ' Contacts';
+    return 'Contacts';
   }
 
-  let addLink = (match) => {
-    return match.url + '/new'
-  }
-
-  let relationship = props.getSingle('relationships', props.match.params.relationship_id);
-  let contacts = props.getContacts(relationship);
-  let showInstructions = contacts.length === 0;
-
+  const addLink = match => match.url + '/new';
+  
   return (
-    <List section={sectionTitle}
-      className='route-transition exit-right'
-      instructions={{ display: showInstructions }}
-      data={contacts}
-      delete={deleteContact}
-      edit={editHandler}
-      toggle={props.toggle}
-      match={props.match}
-      location={props.location}
-      background={Colors[sectionTitle]}
-      itemType='shallow'
-      >
-      <PageNavigation
-        back={['/relationships', 'Relationships']}
-        title={navTitle(relationship)}
-        add={[addLink(props.match)]}
-        />
-    </List>
+    <GlobalContext.Consumer>
+      {({ functions }) => {
+        const { getSingle, getContacts, deleteFromStateArray } = functions;
+        const relationship = getSingle('relationships', props.match.params.relationship_id);
+        const contacts = getContacts(relationship);
+
+        return (
+          <List section={section}
+            className='route-transition exit-right'
+            instructions={{ display: contacts.length === 0 }}
+            data={contacts}
+            delete={deleteHandler.bind(null, deleteFromStateArray)}
+            edit={editHandler}
+            match={props.match}
+            location={props.location}
+            background={Colors[section]}
+            itemType='shallow'
+          >
+            <PageNavigation
+              back={['/relationships', 'Relationships']}
+              title={navTitle(relationship)}
+              add={[addLink(props.match)]}
+            />
+          </List>
+        );
+      }}
+    </GlobalContext.Consumer>
   )
 }
 

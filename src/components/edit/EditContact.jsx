@@ -1,78 +1,80 @@
-import React                from 'react';
-import { withRouter }       from 'react-router-dom';
-import PageNavigation       from '../PageNavigation';
-import * as FH              from '../../lib/FormHelpers';
+import React from 'react';
+import { withRouter } from 'react-router-dom';
+import PageNavigation from '../PageNavigation';
+import { parseDate, dateInputDefault } from '../../lib/FormHelpers';
 import '../../styles/css/FormView.css';
+import { GlobalContext } from '../App';
 
-class Edit extends React.Component {
-  constructor(props){
-    super(props);
-    this.section = 'contacts';
-    this.save = this.save.bind(this);
-    this.item = this.props.getSingle(this.section, this.props.match.params.id);
-  }
+const EditContact = props => {
+  const section = 'contacts';
 
-  save(event){
+  const save = (item, update, event) => {
     event.preventDefault();
 
-    let { title, content, date } =  document.gform;
-    let edited = {
-      id: this.item.id,
-      relationship: this.item.relationship,
+    const { title, content, date } = document.gform;
+    const edited = {
+      id: item.id,
+      relationship: item.relationship,
       title: title.value || title.attributes.placeholder.value,
       content: content.value || content.attributes.placeholder.value,
-      date: FH.parseDate(date.value)
+      date: parseDate(date.value)
     }
 
-    this.props.updateSingle(this.section, edited);
-    this.props.history.push(this.cancelLink());
+    update(section, edited);
+    props.history.push(cancelLink(item));
   }
 
-  cancelLink(){
-    return `/relationship/${this.item.relationship}/contacts`;
-  }
+  const cancelLink = item => `/relationship/${item.relationship}/contacts`;
 
-  backLink(url){
-    return '/relationships';
-  }
+  const backLink = () => '/relationships';
 
-  render(){
-    return (
-      <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
-        <PageNavigation
-          back={[this.backLink(), 'Relationships']}
-          title='Edit Contact'
-          add={[{pathname: this.cancelLink(), state: {enter: 'enter-left'}}, '< Cancel >']}
-          />
-        <form name='gform' className='g-form' onSubmit={this.save}>
-          <label htmlFor="title" className='center'>
-            What was the Last Contact you had with this Person?
-          </label>
-          <input
-            type="text"
-            name="title"
-            autoComplete="off"
-            placeholder="Call/Text/Email/Lunch..."
-            defaultValue={this.item.title}
+  return (
+    <GlobalContext.Consumer>
+      {({ state, functions }) => {
+        const { getSingle, updateSingle } = functions;
+        const currentItem = getSingle(section, props.match.params.id);
+
+        return (
+          <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
+            <PageNavigation
+              back={[backLink(), 'Relationships']}
+              title='Edit Contact'
+              add={[{ pathname: cancelLink(currentItem), state: { enter: 'enter-left' } }, '< Cancel >']}
             />
-          <label htmlFor='content'>Notes:</label>
-          <textarea
-            name="content"
-            placeholder="Making plans to meet up this weekend.."
-            defaultValue={this.item.content}
-            />
-          <label htmlFor='date-input'>Date:</label>
-          <input
-            id='date-input'
-            type="date"
-            name="date"
-            defaultValue={FH.dateInputDefault(this.item.date)}
-            />
-          <input id='submit-button' type="submit" name="submit" value="Save" />
-        </form>
-      </div>
-    )
-  }
+            <form
+              name='gform'
+              className='g-form'
+              onSubmit={save.bind(null, currentItem, updateSingle)}
+            >
+              <label htmlFor="title" className='center'>
+                What was the Last Contact you had with this Person?
+              </label>
+              <input
+                type="text"
+                name="title"
+                autoComplete="off"
+                placeholder="Call/Text/Email/Lunch..."
+                defaultValue={currentItem.title}
+              />
+              <label htmlFor='content'>Notes:</label>
+              <textarea
+                name="content"
+                placeholder="Making plans to meet up this weekend.."
+                defaultValue={currentItem.content}
+              />
+              <label htmlFor='date-input'>Date:</label>
+              <input
+                id='date-input'
+                type="date"
+                name="date"
+                defaultValue={dateInputDefault(currentItem.date)}
+              />
+              <input id='submit-button' type="submit" name="submit" value="Save" />
+            </form>
+          </div>);
+      }}
+    </GlobalContext.Consumer>
+  )
 }
 
-export default withRouter(Edit);
+export default withRouter(EditContact);

@@ -1,23 +1,18 @@
-import React                from 'react';
-import { withRouter }       from 'react-router-dom';
-import Toggle               from 'react-toggle';
-import PageNavigation       from '../PageNavigation';
+import React from 'react';
+import { withRouter } from 'react-router-dom';
+import Toggle from 'react-toggle';
+
 import '../../styles/css/FormView.css';
 import '../../styles/css/ReactToggle.css';
+import PageNavigation from '../PageNavigation';
+import { GlobalContext } from '../App';
 
-class NewTask extends React.Component {
-  constructor(props){
-    super(props);
-    this.handleAddTask = this.handleAddTask.bind(this);
-    this.params = this.props.match.params;
-    this.url = this.props.match.url;
-  }
-
-  handleAddTask(event){
+const NewTask = props => {
+  const handleAddTask = (add, event) => {
     event.preventDefault();
-    let date = new Date();
+    const date = new Date();
 
-    let new_project = {
+    const new_project = {
       id: date.getTime().toString(),
       priority: document.gform.priority.value,
       project: document.gform.project.value,
@@ -27,50 +22,57 @@ class NewTask extends React.Component {
       date: date.toString()
     }
 
-    this.props.addHandler('tasks', new_project);
-    this.props.history.push({pathname: this.cancelLink(document.gform.url.value), state: {enter: 'enter-left'}});
+    add('tasks', new_project);
+    props.history.push({ 
+      pathname: cancelLink(document.gform.url.value), 
+      state: { enter: 'enter-left' } 
+    });
   }
 
-  cancelLink(url){
-    return url.split('/').slice(0,-1).join('/');
-  }
+  const cancelLink = url => url.split('/').slice(0, -1).join('/');
 
-  backLink(url){
-    return url.split('/').slice(0,-3).join('/') + 's';
-  }
+  const backLink = url => url.split('/').slice(0, -3).join('/') + 's';
 
-  render(){
-    return (
-      <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
-        <PageNavigation
-          back={[this.backLink(this.url), 'Projects']}
-          title='New Task'
-          add={[{pathname: this.cancelLink(this.url), state: {enter: 'enter-left'}}, '< Cancel >']}
-          />
-        <form name='gform' className='g-form' onSubmit={this.handleAddTask}>
-          <label htmlFor="title" className='center'>
-            What Task Must Be Done to Complete this Project?
-          </label>
-          <input
-            type="text"
-            name="title"
-            autoComplete="off"
-            placeholder="Send Party Invite..."
+  return (
+    <GlobalContext.Consumer>
+      {({ functions }) => {
+        const { params, url } = props.match;
+        return (
+          <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
+            <PageNavigation
+              back={[backLink(url), 'Projects']}
+              title='New Task'
+              add={[{ pathname: cancelLink(url), state: { enter: 'enter-left' } }, '< Cancel >']}
             />
-          <label className='flex row form-toggle' htmlFor="today">
-            <Toggle
-              id='today'
-              defaultChecked={false} />
-            <span>On Today's Task List?</span>
-          </label>
-          <input name="priority" value={this.params.priority_id} hidden readOnly/>
-          <input name="project" value={this.params.project_id} hidden readOnly/>
-          <input name="url" value={this.url} hidden readOnly/>
-          <input id='submit-button' type="submit" name="submit" value="Save" />
-        </form>
-      </div>
-    )
-  }
+            <form
+              name='gform'
+              className='g-form'
+              onSubmit={handleAddTask.bind(null, functions.addToStateArray)}
+            >
+              <label htmlFor="title" className='center'>
+                What Task Must Be Done to Complete this Project?
+              </label>
+              <input
+                type="text"
+                name="title"
+                autoComplete="off"
+                placeholder="Send Party Invite..."
+              />
+              <label className='flex row form-toggle' htmlFor="today">
+                <Toggle
+                  id='today'
+                  defaultChecked={false} />
+                <span>On Today's Task List?</span>
+              </label>
+              <input name="priority" value={params.priority_id} hidden readOnly />
+              <input name="project" value={params.project_id} hidden readOnly />
+              <input name="url" value={url} hidden readOnly />
+              <input id='submit-button' type="submit" name="submit" value="Save" />
+            </form>
+          </div>)
+      }}
+    </GlobalContext.Consumer>
+  )
 }
 
-  export default withRouter(NewTask);
+export default withRouter(NewTask);

@@ -1,16 +1,12 @@
-import React                from 'react';
-import { withRouter }       from 'react-router-dom';
-import PageNavigation       from '../PageNavigation';
+import React from 'react';
+import { withRouter } from 'react-router-dom';
+import PageNavigation from '../PageNavigation';
 import '../../styles/css/FormView.css';
+import { GlobalContext } from '../App';
 
+const NewPriority = props => {
 
-class NewPriority extends React.Component {
-  constructor(props){
-    super(props);
-    this.handleAddPriority = this.handleAddPriority.bind(this);
-  }
-
-  handleAddPriority(event){
+  const handleAddPriority = (add, event) => {
     event.preventDefault();
     var date = new Date();
 
@@ -20,37 +16,43 @@ class NewPriority extends React.Component {
       date: date.toString()
     }
 
-    this.props.addHandler('priorities', new_relationship);
-    this.props.history.push({pathname: this.cancelLink(), state: {enter: 'enter-left'}});
+    add('priorities', new_relationship);
+    props.history.push({ pathname: cancelLink(), state: { enter: 'enter-left' } });
   }
 
-  cancelLink(){
-    return '/priorities'
-  }
+  const cancelLink = () => '/priorities';
 
-  render(){
-    return (
-      <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
-        <PageNavigation
-          back={['/', 'Dashboard']}
-          title='New Priority'
-          add={[{pathname: this.cancelLink(), state: {enter: 'enter-left'}}, '< Cancel >']}
-          />
-        <form name='gform' className='g-form' onSubmit={this.handleAddPriority}>
-          <label htmlFor="title" className='center'>
-            What's Most Important to You?
-          </label>
-          <input
-            type="text"
-            name="title"
-            autoComplete="off"
-            placeholder="Family, Friends, Faith"
+  return (
+    <GlobalContext.Consumer>
+      {({ functions }) => {
+        return (
+          <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
+            <PageNavigation
+              back={['/', 'Dashboard']}
+              title='New Priority'
+              add={[{ pathname: cancelLink(), state: { enter: 'enter-left' } }, '< Cancel >']}
             />
-          <input id='submit-button' type="submit" name="submit" value="Save" />
-        </form>
-      </div>
-    )
-  }
+            <form
+              name='gform'
+              className='g-form'
+              onSubmit={handleAddPriority.bind(null, functions.addToStateArray)}
+            >
+              <label htmlFor="title" className='center'>
+                What's Most Important to You?
+                </label>
+              <input
+                type="text"
+                name="title"
+                autoComplete="off"
+                placeholder="Family, Friends, Faith"
+              />
+              <input id='submit-button' type="submit" name="submit" value="Save" />
+            </form>
+          </div>
+        );
+      }}
+    </GlobalContext.Consumer>
+  )
 }
 
 export default withRouter(NewPriority);
