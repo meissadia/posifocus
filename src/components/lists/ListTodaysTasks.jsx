@@ -23,7 +23,7 @@ const TodaysTasks = (props) => {
   return (
     <GlobalContext.Consumer>
       {({ state, functions }) => {
-        const { deleteFromStateArray, taskToggle } = functions;
+        const { deleteFromStateArray, taskToggle, getSingle } = functions;
         const tasks = state.tasks.filter(task => task.today);
 
         return (
@@ -33,7 +33,7 @@ const TodaysTasks = (props) => {
             data={tasks}
             delete={deleteHandler.bind(null, deleteFromStateArray)}
             edit={editHandler}
-            toggle={taskToggle}
+            toggle={taskToggle.bind(null, getSingle)}
             location={props.location}
             background={Colors.todays}
             itemType='task'

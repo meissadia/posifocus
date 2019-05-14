@@ -52,7 +52,7 @@ const Tasks = (props) => {
             instructions={{ display: tasks.length === 0 }}
             delete={deleteTask.bind(null, deleteFromStateArray)}
             edit={editHandler}
-            toggle={taskToggle}
+            toggle={taskToggle.bind(null, getSingle)}
             match={props.match}
             location={props.location}
             background={Colors[section]}

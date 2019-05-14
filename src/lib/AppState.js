@@ -102,9 +102,9 @@ export function deleteRelationship(relationship){
 /**
  * Event Handler for Task toggle switches
 **/
-export function taskToggle(event){
+export function taskToggle(search, event){
   let task_id = event.target.attributes.name.value;
-  let task = this.getSingle('tasks', task_id);
+  let task = search('tasks', task_id);
 
   let attr = event.target.id.split('_')[0];
   task[attr] = event.target.checked;
