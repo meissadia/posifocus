@@ -96,10 +96,9 @@ export const ListHOC = (WrappedComponent, sectionTitle) => {
       destroyer(event.target.attributes.jsvalue.value);
     };
 
-    showEditor = (url = this.defaultUrl, event) => {
+    showEditor = (event) => {
       const id = event.target.attributes.jsvalue.value;
-      url(sectionTitle, id)
-      this.props.history.push(url);
+      this.props.history.push(this.defaultUrl(sectionTitle, id));
     };
 
     defaultUrl = (title, id) => `/${title}/${id}/edit`;

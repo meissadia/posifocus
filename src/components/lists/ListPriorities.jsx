@@ -4,50 +4,35 @@ import { withRouter } from 'react-router-dom';
 import '../../styles/css/ListViews.css'
 import Colors from '../../lib/Colors';
 import PageNavigation from '../PageNavigation';
-import { GlobalContext } from '../App';
-import List from './List';
+import List, { ListHOC } from './List';
+import NewPriority from '../../components/create/NewPriority';
+import EditPriority from '../../components/edit/EditPriority';
 
 const Priorities = props => {
-  const sectionTitle = 'priorities';
+  const getId = () => props.location.pathname.split('/')[2];
 
-  const destroy = (destroyer, event) => {
-    event.preventDefault();
-    destroyer(event.target.attributes.jsvalue.value);
-  }
-
-  const edit = (event) => {
-    const id = event.target.attributes.jsvalue.value;
-    const url = `/${sectionTitle}/${id}/edit`;
-    props.history.push(url);
-  }
+  if (props.isNew(props)) return <NewPriority />
+  if (props.isEdit(props)) return <EditPriority pid={getId()} />
 
   return (
-    <GlobalContext.Consumer>
-      {({ state, functions, location }) => {
-        const { priorities } = state;
-        const { deletePriority } = functions;
-
-        return (
-          <List section={sectionTitle}
-            className='route-transition exit-right'
-            instructions={{ display: priorities.length === 0 }}
-            data={priorities}
-            delete={destroy.bind(null, deletePriority)}
-            edit={edit}
-            makeLink={item => (`/priority/${item.id}/projects`)}
-            location={location}
-            background={Colors[sectionTitle]}
-            itemType='deep'
-          >
-            <PageNavigation
-              back={['/', 'Dashboard']}
-              title='Priorities'
-              add={[`/${sectionTitle}/new`]}
-            />
-          </List>);
-      }}
-    </GlobalContext.Consumer>
-  )
+    <List section={props.sectionTitle}
+      className='route-transition exit-right'
+      instructions={{ display: props.data.length === 0 }}
+      data={props.data}
+      delete={props.destroy.bind(props.functions.deletePriority)}
+      edit={props.showEditor}
+      makeLink={item => (`/priority/${item.id}/projects`)}
+      location={props.location}
+      background={Colors[props.sectionTitle]}
+      itemType='deep'
+    >
+      <PageNavigation
+        back={['/', 'Dashboard']}
+        title='Priorities'
+        add={[`/${props.sectionTitle}/new`]}
+      />
+    </List>
+  );
 }
 
-export default withRouter(Priorities);
+export default withRouter(ListHOC(Priorities, 'priorities'));

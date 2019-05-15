@@ -30,7 +30,7 @@ const EditPriority = props => {
     <GlobalContext.Consumer>
       {({ functions }) => {
         const { getSingle, updateSingle } = functions;
-        const currentItem = getSingle('priorities', props.match.params.id) || {};
+        const currentItem = getSingle('priorities', props.pid) || {};
 
         return (
           <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>

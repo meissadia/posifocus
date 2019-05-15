@@ -162,9 +162,7 @@ class App extends Component {
                   <Route path={Path.Gratitudes} component={Gratitudes} />
 
                   {/******************* Priority Routes *******************/}
-                  <Route exact path={Path.Priorities} component={Priorities} />
-                  <Route exact path={Path.NewPriority} component={NewPriority} />
-                  <Route exact path={Path.EditPriority} component={EditPriority} />
+                  <Route path={Path.Priorities} component={Priorities} />
 
                   {/***************** Relationship Routes *****************/}
                   <Route exact path={Path.Relationships} component={Relationships} />
