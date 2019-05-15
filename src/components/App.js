@@ -168,8 +168,6 @@ class App extends Component {
 
                   {/***************** Relationship Routes *****************/}
                   <Route exact path={Path.Relationships} component={Relationships} />
-                  <Route exact path={Path.NewRelationship} component={NewRelationship} />
-                  <Route exact path={Path.EditRelationship} component={EditRelationship} />
 
                   {/********************* Task Routes *********************/}
                   <Route exact path={Path.TodaysTasks} component={TodaysTasks} />
