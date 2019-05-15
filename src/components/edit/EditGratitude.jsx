@@ -40,7 +40,7 @@ const EditGratitude = props => {
     <GlobalContext.Consumer>
       {({ functions }) => {
         const { getSingle, updateSingle } = functions;
-        const currentItem = getSingle('gratitudes', props.match.params.id) || {};
+        const currentItem = getSingle('gratitudes', props.gid) || {};
 
         return (
           <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>

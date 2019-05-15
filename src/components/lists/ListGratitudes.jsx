@@ -3,48 +3,35 @@ import { withRouter } from 'react-router-dom';
 
 import '../../styles/css/ListViews.css'
 import Colors from '../../lib/Colors';
+import NewGratitude from '../create/NewGratitude';
+import EditGratitude from '../edit/EditGratitude';
 import PageNavigation from '../PageNavigation';
-import { GlobalContext } from '../App';
-import List from './List';
+import List, { ListHOC } from './List';
 
-const Gratitudes = (props) => {
-  const sectionTitle = 'gratitudes';
+const Gratitudes = props => {
+  const getId = () => props.location.pathname.split('/')[2];
 
-  const deleteHandler = (handler, event) => handler(
-    sectionTitle, 
-    event.target.attributes.jsvalue.value
-  );
-
-  const editHandler = (event) => {
-    const id = event.target.attributes.jsvalue.value;
-    const url = `/${sectionTitle}/${id}/edit`;
-    props.history.push(url);
-  }
+  if (props.isNew(props)) return <NewGratitude />;
+  if (props.isEdit(props)) return <EditGratitude gid={getId()} />;
 
   return (
-    <GlobalContext.Consumer>
-      {({ state, functions, location }) => {
-        return (
-          <List section={sectionTitle}
-            className='route-transition exit-right'
-            instructions={{ display: state.gratitudes.length === 0 }}
-            data={state.gratitudes}
-            delete={deleteHandler.bind(null, functions.deleteFromStateArray)}
-            edit={editHandler}
-            location={location}
-            background={Colors[sectionTitle]}
-            itemType='shallow'
-          >
-            <PageNavigation
-              back={['/', 'Dashboard']}
-              title='Gratitudes'
-              add={['/gratitudes/new']}
-            />
-          </List>
-        )
-      }}
-    </GlobalContext.Consumer>
+    <List section={props.sectionTitle}
+      className='route-transition exit-right'
+      instructions={{ display: props.data.length === 0 }}
+      data={props.data}
+      delete={props.destroy}
+      edit={props.showEditor}
+      location={props.location}
+      background={Colors[props.sectionTitle]}
+      itemType='shallow'
+    >
+      <PageNavigation
+        back={['/', 'Dashboard']}
+        title='Gratitudes'
+        add={['/gratitudes/new']}
+      />
+    </List>
   );
 };
 
-export default withRouter(Gratitudes);
+export default withRouter(ListHOC(Gratitudes, 'gratitudes'));

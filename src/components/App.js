@@ -19,13 +19,11 @@ import Tasks from './lists/ListTasks';
 import Relationships from './lists/ListRelationships';
 import Contacts from './lists/ListContacts';
 import TodaysTasks from './lists/ListTodaysTasks';
-import NewGratitude from './create/NewGratitude';
 import NewPriority from './create/NewPriority';
 import NewProject from './create/NewProject';
 import NewTask from './create/NewTask';
 import NewRelationship from './create/NewRelationship';
 import NewContact from './create/NewContact';
-import EditGratitude from './edit/EditGratitude';
 import EditPriority from './edit/EditPriority';
 import EditProject from './edit/EditProject';
 import EditTask from './edit/EditTask';
@@ -48,7 +46,6 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = State.initState();
-    this.initState = State.initState.bind(this);
     this.saveStateToStorage = State.saveStateToStorage.bind(this);
   }
 
@@ -162,9 +159,7 @@ class App extends Component {
                   <Route exact path={Path.Credits} component={Credits} />
 
                   {/******************* Gratitude Routes *******************/}
-                  <Route exact path={Path.Gratitudes} component={Gratitudes} />
-                  <Route exact path={Path.NewGratitude} component={NewGratitude} />
-                  <Route exact path={Path.EditGratitude} component={EditGratitude} />
+                  <Route path={Path.Gratitudes} component={Gratitudes} />
 
                   {/******************* Priority Routes *******************/}
                   <Route exact path={Path.Priorities} component={Priorities} />
@@ -190,7 +185,7 @@ class App extends Component {
 
                   {/******************** Contact Routes ********************/}
                   <Route exact path={Path.Contacts} component={Contacts} />
-                  <Route exact path={Path.NewContact} component={NewContact} />
+                  <Route exact path={Path.NewContact} component={NewContact} /> 
                   <Route exact path={Path.EditContact} component={EditContact} />
                 </GlobalContext.Provider>
               </Switch>
