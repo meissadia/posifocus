@@ -11,8 +11,8 @@ import EditRelationship from '../../components/edit/EditRelationship';
 const Relationships = props => {
   const getId = () => props.location.pathname.split('/')[2];
 
-  if(props.isNew(props)) return <NewRelationship />
-  if(props.isEdit(props)) return <EditRelationship rid={getId()} />
+  if (props.isNew(props)) return <NewRelationship />
+  if (props.isEdit(props)) return <EditRelationship rid={getId()} />
 
   return (
     <List section={props.sectionTitle}

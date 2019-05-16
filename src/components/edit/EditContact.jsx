@@ -4,6 +4,7 @@ import PageNavigation from '../PageNavigation';
 import { parseDate, dateInputDefault } from '../../lib/FormHelpers';
 import '../../styles/css/FormView.css';
 import { GlobalContext } from '../App';
+import { parseUrl } from '../../lib/Helpers';
 
 const EditContact = props => {
   const section = 'contacts';
@@ -30,9 +31,10 @@ const EditContact = props => {
 
   return (
     <GlobalContext.Consumer>
-      {({ state, functions }) => {
+      {({ functions, location }) => {
+        const urlParams = parseUrl(location.pathname);
         const { getSingle, updateSingle } = functions;
-        const currentItem = getSingle(section, props.match.params.id);
+        const currentItem = getSingle(section, urlParams.contacts) || {};
 
         return (
           <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>

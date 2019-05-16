@@ -1,6 +1,6 @@
-import React          from 'react';
+import React from 'react';
 import { withRouter } from 'react-router-dom';
-import fieldRows      from '../images/bgimage_small.jpg';
+import fieldRows from '../images/bgimage_small.jpg';
 
 class AppFrame extends React.Component {
   constructor(props) {
@@ -9,7 +9,7 @@ class AppFrame extends React.Component {
   }
 
   newBackground = (pathname) => {
-    let bg = pathname.split('/').last();
+    let bg = pathname.split('/').slice(-1)[0];
     return bg || 'base';
   }
 
@@ -27,7 +27,7 @@ class AppFrame extends React.Component {
   render() {
     return (
       <div id='App' className={this.state.background}>
-        { this.props.children }
+        {this.props.children}
       </div>
     )
   }
@@ -37,9 +37,9 @@ class AppFrame extends React.Component {
 // Fallback for app background
 let offlineBackground = (image) => {
   let html = document.documentElement;
-  if(html){
+  if (html) {
     html.style.background =
-    `linear-gradient(rgba(0, 150, 255, 0.8), rgba(62, 187, 154, 0.8)), url(${fieldRows})`;
+      `linear-gradient(rgba(0, 150, 255, 0.8), rgba(62, 187, 154, 0.8)), url(${fieldRows})`;
     html.style.backgroundPosition = 'center';
     html.style.backgroundSize = 'cover';
   }

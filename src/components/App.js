@@ -1,41 +1,27 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import SimpleStorage from 'react-simple-storage';
-
-import '../styles/css/App.css';
-import '../styles/css/RouteTransitions.css';
-import '../lib/Helpers';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import * as State from '../lib/AppState';
 
-import NotificationBar from './notifications/NotificationBar';
-import Dashboard from './dashboard/Dashboard';
-import Settings from './settings/Settings';
-import Credits from './settings/Credits';
-import Gratitudes from './lists/ListGratitudes';
-import Priorities from './lists/ListPriorities';
-import Projects from './lists/ListProjects';
-import Tasks from './lists/ListTasks';
-import Relationships from './lists/ListRelationships';
-import Contacts from './lists/ListContacts';
-import TodaysTasks from './lists/ListTodaysTasks';
-import NewPriority from './create/NewPriority';
-import NewProject from './create/NewProject';
-import NewTask from './create/NewTask';
-import NewRelationship from './create/NewRelationship';
-import NewContact from './create/NewContact';
-import EditPriority from './edit/EditPriority';
-import EditProject from './edit/EditProject';
-import EditTask from './edit/EditTask';
-import EditContact from './edit/EditContact';
-import EditRelationship from './edit/EditRelationship';
+import '../lib/Helpers';
+import '../styles/css/App.css';
+import '../styles/css/RouteTransitions.css';
 
 import { firebase } from './firebase';
 import { Path } from './Path';
 import AppFrame from './AppFrame';
 import AppHeader from './AppHeader';
-
+import Contacts from './lists/ListContacts';
+import Dashboard from './dashboard/Dashboard';
+import Gratitudes from './lists/ListGratitudes';
+import NotificationBar from './notifications/NotificationBar';
 import OrderableList from './OrderableList';
+import Priorities from './lists/ListPriorities';
+import Projects from './lists/ListProjects';
+import Relationships from './lists/ListRelationships';
+import Settings from './settings/Settings';
+import Tasks from './lists/ListTasks';
 
 export const GlobalContext = React.createContext({
   state: {},
@@ -85,7 +71,7 @@ class App extends Component {
         resetAppState: State.resetState.bind(this),
         taskToggle: State.taskToggle.bind(this),
         updateSingle: State.updateSingle.bind(this),
-        updateStateHandler: this.updateStateHandler,
+        updateStateHandler: State.updateStateHandler.bind(this),
         updateUserHeader: State.updateUserHeader.bind(this),
       },
       ...updateState
@@ -117,8 +103,6 @@ class App extends Component {
 
   setOnlineStatus = isOnline => this.setState({ online: isOnline });
 
-  updateStateHandler = newState => this.setState({ ...newState });
-
   render() {
     return (
       <AppFrame background={this.state.style.background}>
@@ -144,45 +128,21 @@ class App extends Component {
                   value={this.updatedGlobalContext({ location })}
                 >
                   {/*************** Test OrderableList Route ***************/}
+                  <Route exact path={Path.OrderableList} component={OrderableList} />
                   {/* Component design notes:
                     • Create a Test<OrderableList|T> component that reads test data 
                       from an external source but will utilize name matched prop data
                       when present.
                   */}
-                  <Route exact path={Path.OrderableList} component={OrderableList} />
 
-                  {/******************* Dashboard Routes *******************/}
                   <Route exact path={Path.Dashboard} component={Dashboard} />
-
-                  {/******************** Setting Routes ********************/}
-                  <Route exact path={Path.Settings} component={Settings} />
-                  <Route exact path={Path.Credits} component={Credits} />
-
-                  {/******************* Gratitude Routes *******************/}
+                  <Route path={Path.Settings} component={Settings} />
                   <Route path={Path.Gratitudes} component={Gratitudes} />
-
-                  {/******************* Priority Routes *******************/}
                   <Route path={Path.Priorities} component={Priorities} />
-
-                  {/***************** Relationship Routes *****************/}
-                  <Route exact path={Path.Relationships} component={Relationships} />
-
-                  {/********************* Task Routes *********************/}
-                  <Route exact path={Path.TodaysTasks} component={TodaysTasks} />
-                  <Route exact path={Path.Tasks} component={Tasks} />
-                  <Route exact path={Path.NewTask} component={NewTask} />
-                  <Route exact path={Path.EditTask} component={EditTask} />
-                  <Route exact path={Path.EditTodays} render={() => <EditTask todays={true} />} />
-
-                  {/******************** Project Routes ********************/}
-                  <Route exact path={Path.Projects} component={Projects} />
-                  <Route exact path={Path.NewProject} component={NewProject} />
-                  <Route exact path={Path.EditProject} component={EditProject} />
-
-                  {/******************** Contact Routes ********************/}
-                  <Route exact path={Path.Contacts} component={Contacts} />
-                  <Route exact path={Path.NewContact} component={NewContact} /> 
-                  <Route exact path={Path.EditContact} component={EditContact} />
+                  <Route path={Path.Relationships} component={Relationships} />
+                  <Route path={Path.Tasks} component={Tasks} />
+                  <Route path={Path.Projects} component={Projects} />
+                  <Route path={Path.Contacts} component={Contacts} />
                 </GlobalContext.Provider>
               </Switch>
             </CSSTransition>

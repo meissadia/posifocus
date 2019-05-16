@@ -2,51 +2,40 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import '../../styles/css/ListViews.css'
 import Colors from '../../lib/Colors';
-import { GlobalContext } from '../App';
+import EditTask from '../edit/EditTask';
 import PageNavigation from '../PageNavigation';
-import List from './List';
+import List, { ListHOC } from './List';
 
-const TodaysTasks = (props) => {
-  const section = 'todays';
+const TodaysTasks = props => {
+
+  if (props.isEdit(props)) return <EditTask todays={true} />
 
   const deleteHandler = (deleter, event) => {
     event.preventDefault();
     deleter('tasks', event.target.attributes.jsvalue.value);
   }
 
-  const editHandler = (event) => {
-    const id = event.target.attributes.jsvalue.value;
-    const url = `/${section}/${id}/edit`;
-    props.history.push(url);
-  }
+  const { deleteFromStateArray, taskToggle, getSingle } = props.functions;
+  const tasks = props.data.filter(task => task.today);
 
   return (
-    <GlobalContext.Consumer>
-      {({ state, functions }) => {
-        const { deleteFromStateArray, taskToggle, getSingle } = functions;
-        const tasks = state.tasks.filter(task => task.today);
-
-        return (
-          <List section={section}
-            className='route-transition exit-right'
-            instructions={{ display: tasks.length === 0 }}
-            data={tasks}
-            delete={deleteHandler.bind(null, deleteFromStateArray)}
-            edit={editHandler}
-            toggle={taskToggle.bind(null, getSingle)}
-            location={props.location}
-            background={Colors.todays}
-            itemType='task'
-          >
-            <PageNavigation
-              back={['/', 'Dashboard']}
-              title="Today's Tasks"
-            />
-          </List>
-        );
-      }}
-    </GlobalContext.Consumer>
-  )
+    <List section={props.sectionTitle}
+      className='route-transition exit-right'
+      instructions={{ display: tasks.length === 0 }}
+      data={tasks}
+      delete={deleteHandler.bind(null, deleteFromStateArray)}
+      edit={props.showEditor}
+      toggle={taskToggle.bind(null, getSingle)}
+      location={props.location}
+      background={Colors.todays}
+      itemType='task'
+    >
+      <PageNavigation
+        back={['/', 'Dashboard']}
+        title="Today's Tasks"
+      />
+    </List>
+  );
 }
 
-export default withRouter(TodaysTasks);
+export default withRouter(ListHOC(TodaysTasks, 'todays'));

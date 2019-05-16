@@ -55,6 +55,7 @@ class List extends React.Component {
                   toggle={this.props.toggle}
                   link={this.props.link}
                   makeLink={this.props.makeLink}
+                  location={this.props.location}
                   match={this.props.match}
                   bgColor={this.calcBg(index, totalCount)}
                   itemType={itemType}
@@ -98,11 +99,12 @@ export const ListHOC = (WrappedComponent, sectionTitle) => {
 
     showEditor = (event) => {
       const id = event.target.attributes.jsvalue.value;
-      this.props.history.push(this.defaultUrl(sectionTitle, id));
+      this.props.history.push(`${this.props.location.pathname}/${id}/edit`);
     };
 
-    defaultUrl = (title, id) => `/${title}/${id}/edit`;
     back = () => this.props.history.pop();
+
+    titleMapper = title => (title === 'todays' ? 'tasks' : title);
 
     render = () => {
       return (
@@ -110,7 +112,7 @@ export const ListHOC = (WrappedComponent, sectionTitle) => {
           {({ state, functions, location }) => {
             return (
               <WrappedComponent
-                data={state[sectionTitle]}
+                data={state[this.titleMapper(sectionTitle)]}
                 destroy={this.destroy.bind(null, functions.deleteFromStateArray.bind(null, sectionTitle))}
                 functions={functions}
                 globalLocation={location}

@@ -6,6 +6,7 @@ import '../../styles/css/FormView.css';
 import '../../styles/css/ReactToggle.css';
 import PageNavigation from '../PageNavigation';
 import { GlobalContext } from '../App';
+import { parseUrl } from '../../lib/Helpers';
 
 const NewTask = props => {
   const handleAddTask = (add, event) => {
@@ -35,8 +36,10 @@ const NewTask = props => {
 
   return (
     <GlobalContext.Consumer>
-      {({ functions }) => {
-        const { params, url } = props.match;
+      {({ functions, location }) => {
+        const url = location.pathname;
+        const params = parseUrl(url);
+
         return (
           <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
             <PageNavigation
@@ -64,8 +67,8 @@ const NewTask = props => {
                   defaultChecked={false} />
                 <span>On Today's Task List?</span>
               </label>
-              <input name="priority" value={params.priority_id} hidden readOnly />
-              <input name="project" value={params.project_id} hidden readOnly />
+              <input name="priority" value={params.priority} hidden readOnly />
+              <input name="project" value={params.project} hidden readOnly />
               <input name="url" value={url} hidden readOnly />
               <input id='submit-button' type="submit" name="submit" value="Save" />
             </form>

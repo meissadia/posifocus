@@ -9,6 +9,7 @@ import '../../styles/css/Settings.css';
 import { GlobalContext } from '../App';
 import PageNavigation from '../PageNavigation';
 import CloudSync from './CloudSync';
+import Credits from './Credits';
 
 const enterDirection = (props) => {
   const direction = props.location
@@ -74,6 +75,7 @@ class Settings extends React.Component {
   }
 
   render() {
+    if (this.props.location.pathname.includes('credits')) return <Credits />
     return (
       <GlobalContext.Consumer>
         {({ state, functions }) => {

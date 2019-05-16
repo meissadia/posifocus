@@ -5,6 +5,7 @@ import '../../styles/css/FormView.css';
 import { parseDate, dateInputDefault } from '../../lib/FormHelpers';
 import PageNavigation from '../PageNavigation';
 import { GlobalContext } from '../App';
+import { parseUrl } from '../../lib/Helpers';
 
 const NewContact = props => {
   const handleAddContact = (add, event) => {
@@ -28,8 +29,9 @@ const NewContact = props => {
 
   return (
     <GlobalContext.Consumer>
-      {({ functions }) => {
-        const { params, url } = props.match;
+      {({ functions, location }) => {
+        const url = location.pathname;
+        const params = parseUrl(url);
 
         return (
           <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
@@ -64,7 +66,7 @@ const NewContact = props => {
                 name="date"
                 defaultValue={dateInputDefault()}
               />
-              <input name="relationship" value={params.relationship_id} hidden readOnly />
+              <input name="relationship" value={params.relationship} hidden readOnly />
               <input name="url" value={url} hidden readOnly />
               <input id='submit-button' type="submit" name="submit" value="Save" />
             </form>

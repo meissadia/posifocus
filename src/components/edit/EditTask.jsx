@@ -6,6 +6,7 @@ import { parseDate, dateInputDefault } from '../../lib/FormHelpers';
 import '../../styles/css/FormView.css';
 import '../../styles/css/ReactToggle.css';
 import { GlobalContext } from '../App';
+import { parseUrl } from '../../lib/Helpers';
 
 const EditTask = props => {
   const section = 'tasks';
@@ -25,7 +26,7 @@ const EditTask = props => {
 
     update(section, edited);
     props.history.push({
-      pathname: cancelLink(null, item),
+      pathname: cancelLink(item),
       state: { enter: 'enter-left' }
     });
   }
@@ -35,7 +36,7 @@ const EditTask = props => {
       return '/tasks/today';
     } else {
       const { priority, project } = item;
-      return `/priority/${priority}/project/${project}/tasks`;
+      return `/tasks/priority/${priority}/project/${project}`;
     }
   }
 
@@ -52,9 +53,10 @@ const EditTask = props => {
 
   return (
     <GlobalContext.Consumer>
-      {({ functions }) => {
+      {({ functions, location }) => {
+        const urlParams = parseUrl(location.pathname);
         const { getSingle, updateSingle } = functions;
-        const currentItem = getSingle(section, props.match.params.id) || {};
+        const currentItem = getSingle(section, urlParams.today || urlParams.tasks) || {};
 
         return (
           <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>

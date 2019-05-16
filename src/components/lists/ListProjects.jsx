@@ -1,61 +1,49 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+
 import '../../styles/css/ListViews.css'
 import Colors from '../../lib/Colors';
-import { GlobalContext } from '../App';
 import PageNavigation from '../PageNavigation';
-import List from './List';
+import NewProject from '../create/NewProject';
+import EditProject from '../edit/EditProject';
+import { parseUrl } from '../../lib/Helpers';
+import List, { ListHOC } from './List';
 
 const Projects = props => {
-  const section = 'projects';
-  const match = props.match;
+  const urlParams = parseUrl(props.location.pathname);
 
-  const deleteHandler = (deleter, event) => {
-    event.preventDefault();
-    deleter(event.target.attributes.jsvalue.value);
-  }
-
-  const editHandler = (event) => {
-    const id = event.target.attributes.jsvalue.value;
-    const url = `/${section}/${id}/edit`;
-    props.history.push(url);
-  }
+  if (props.isNew(props)) return <NewProject />;
+  if (props.isEdit(props)) return <EditProject cid={urlParams.project} />;
 
   const navTitle = (parent) => {
     if (parent) { return parent.title + ' Projects' }
     return 'Projects'
   }
 
-  return (
-    <GlobalContext.Consumer>
-      {({ functions, location }) => {
-        const { deleteProject, getSingle, getProjects } = functions;
-        const projects = getProjects(match.params.priority_id);
-        const parent = getSingle('priorities', match.params.priority_id);
+  const { deleteProject, getSingle, getProjects } = props.functions;
+  const projects = getProjects(urlParams.priority);
+  const parent = getSingle('priorities', urlParams.priority);
 
-        return (
-          <List section={section}
-            className='route-transition exit-right'
-            instructions={{ display: projects.length === 0 }}
-            data={projects}
-            delete={deleteHandler.bind(null, deleteProject)}
-            edit={editHandler}
-            makeLink={(item, match) => (`${match.url.slice(0, -1)}/${item.id}/tasks`)}
-            match={match}
-            location={location}
-            background={Colors[section]}
-            itemType='deep'
-          >
-            <PageNavigation
-              back={['/priorities', 'Priorities']}
-              title={navTitle(parent)}
-              add={[`${match.url}/new`]}
-            />
-          </List>
-        )
-      }}
-    </GlobalContext.Consumer>
+  return (
+    <List section={props.sectionTitle}
+      className='route-transition exit-right'
+      instructions={{ display: projects.length === 0 }}
+      data={projects}
+      delete={props.destroy.bind(deleteProject)}
+      edit={props.showEditor}
+      makeLink={(item, _match, location) => (`/tasks${location.pathname.slice(0, -1)}/${item.id}`)}
+      match={props.match}
+      location={props.location}
+      background={Colors[props.sectionTitle]}
+      itemType='deep'
+    >
+      <PageNavigation
+        back={['/priorities', 'Priorities']}
+        title={navTitle(parent)}
+        add={[`${props.location.pathname}/new`]}
+      />
+    </List>
   )
 }
 
-export default withRouter(Projects);
+export default withRouter(ListHOC(Projects, 'projects'));

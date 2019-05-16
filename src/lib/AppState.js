@@ -9,7 +9,7 @@ export function initState() {
     style: {
       background: ''
     },
-    gratitudes:[],
+    gratitudes: [],
     priorities: [],
     projects: [],
     tasks: [],
@@ -21,13 +21,16 @@ export function initState() {
   })
 }
 
+// setState callback
+export const updateStateHandler = newState => this.setState({ ...newState });
+
 /**
  * Update User Header Information
  * @param {string} key - Property Name
  * @param {any} value - Property Value
 **/
-export function updateUserHeader(key, value){
-  let userHeader = {...this.state.userHeader};
+export function updateUserHeader(key, value) {
+  const userHeader = { ...this.state.userHeader };
   userHeader[key] = value;
   this.setState({ userHeader });
   return null;
@@ -36,8 +39,8 @@ export function updateUserHeader(key, value){
 /**
  * Reset Application State with Confirmation
 **/
-export function resetState(event){
-  if(window.confirm('Erase all Local data?')) {
+export function resetState(event) {
+  if (window.confirm('Erase all Local data?')) {
     this.setState(this.initState());
     return true;
   };
@@ -48,8 +51,8 @@ export function resetState(event){
  * @param {string} stateKey - array name
  * @param {object} value - item to prepend
 **/
-export function addToStateArray(stateKey, value){
-  var state = this.state[stateKey] || [];
+export function addToStateArray(stateKey, value) {
+  const state = this.state[stateKey] || [];
   state.unshift(value);
   this.setState({ [stateKey]: state });
   return true;
@@ -60,9 +63,9 @@ export function addToStateArray(stateKey, value){
  * @param {string} stateKey - array name
  * @param {number} targetId - id of target
 **/
-export function deleteFromStateArray(stateKey, targetId){
-  let state = this.state[stateKey] || [];
-  let update = state.filter((e) => (e.id !== targetId));
+export function deleteFromStateArray(stateKey, targetId) {
+  const state = this.state[stateKey] || [];
+  const update = state.filter((e) => (e.id !== targetId));
   this.setState({ [stateKey]: update });
 }
 
@@ -70,9 +73,9 @@ export function deleteFromStateArray(stateKey, targetId){
  * Delete a Project by id
  * @param {number} project - Target ID
 **/
-export function deleteProject(project){
-  let projects = this.state.projects.filter((e) => (e.id !== project));
-  let tasks = this.state.tasks.filter((e) => (e.project !== project));
+export function deleteProject(project) {
+  const projects = this.state.projects.filter((e) => (e.id !== project));
+  const tasks = this.state.tasks.filter((e) => (e.project !== project));
   this.setState({ tasks, projects });
 }
 
@@ -80,10 +83,10 @@ export function deleteProject(project){
  * Delete a Priority along with it's related Projects and Tasks
  * @param {number} priority - Target ID
 **/
-export function deletePriority(priority){
-  let priorities = this.state.priorities.filter((e) => (e.id !== priority));
-  let projects = this.state.projects.filter((e) => (e.priority !== priority));
-  let tasks = this.state.tasks.filter((e) => (e.priority !== priority));
+export function deletePriority(priority) {
+  const priorities = this.state.priorities.filter((e) => (e.id !== priority));
+  const projects = this.state.projects.filter((e) => (e.priority !== priority));
+  const tasks = this.state.tasks.filter((e) => (e.priority !== priority));
   this.setState({ tasks, projects, priorities })
 }
 
@@ -91,9 +94,9 @@ export function deletePriority(priority){
  * Delete a Relationship and it's related Contacts
  * @param {number} relationship - Target ID
 **/
-export function deleteRelationship(relationship){
+export function deleteRelationship(relationship) {
   this.deleteFromStateArray('relationships', relationship);
-  let contacts = this.state.contacts.filter((e) => (
+  const contacts = this.state.contacts.filter((e) => (
     e.relationship !== relationship
   ));
   this.setState({ contacts });
@@ -102,16 +105,16 @@ export function deleteRelationship(relationship){
 /**
  * Event Handler for Task toggle switches
 **/
-export function taskToggle(search, event){
-  let task_id = event.target.attributes.name.value;
-  let task = search('tasks', task_id);
+export function taskToggle(search, event) {
+  const task_id = event.target.attributes.name.value;
+  const task = search('tasks', task_id);
 
-  let attr = event.target.id.split('_')[0];
+  const attr = event.target.id.split('_')[0];
   task[attr] = event.target.checked;
 
-  let index = this.state.tasks.findIndex((e, idx) => (e.id === task_id));
-  if(index > -1) {
-    let tasks = this.state.tasks;
+  const index = this.state.tasks.findIndex((e, idx) => (e.id === task_id));
+  if (index > -1) {
+    const tasks = this.state.tasks;
     tasks[index] = task;
     this.setState({ tasks });
   }
@@ -122,7 +125,7 @@ export function taskToggle(search, event){
  * @param {string} key - Array Name
  * @param {number} id - Target ID
 **/
-export function getSingle(key, id){
+export function getSingle(key, id) {
   return this.state[key].filter((e) => (e.id === id))[0];
 }
 
@@ -132,11 +135,11 @@ export function getSingle(key, id){
  * @param {object} item - Item to Update
  * @param {number} item.id - Target ID
 **/
-export function updateSingle(key, item){
-  this.setState((state, props) => {
-    let index = state[key].findIndex((elem) => elem.id === item.id );
-    if(index >= 0){
-      let updated = state[key].slice();
+export function updateSingle(key, item) {
+  this.setState(state => {
+    const index = state[key].findIndex((elem) => elem.id === item.id);
+    if (index >= 0) {
+      const updated = state[key].slice();
       updated[index] = item;
       return { [key]: updated };
     }
@@ -147,7 +150,7 @@ export function updateSingle(key, item){
  * Retrieve the Projects related to a Priority
  * @param {number} priority - Priority ID
 **/
-export function getProjects(priority){
+export function getProjects(priority) {
   return this.state.projects.filter((e) => (e.priority === priority))
 }
 
@@ -155,7 +158,7 @@ export function getProjects(priority){
  * Retrieve the Tasks related to a Project
  * @param {number} project - Project ID
 **/
-export function getTasks(project){
+export function getTasks(project) {
   return this.state.tasks.filter((e) => (e.project === project));
 }
 
@@ -163,8 +166,8 @@ export function getTasks(project){
  * Retrieve the Contacts related to a Relationship
  * @param {number} relationship - Relationship ID
 **/
-export function getContacts(relationship){
-  if(!relationship) { return [] };
+export function getContacts(relationship) {
+  if (!relationship) { return [] };
 
   return this.state.contacts.filter((e) => (
     e.relationship === relationship.id
@@ -179,11 +182,11 @@ export function saveStateToStorage(allowNewKey = true) {
   // FIXME: Added to make tests pass.  
   // Need to understand why this worked fine before.
   var local_storage = window && window.localStorage;
-  if(!local_storage) return;
+  if (!local_storage) return;
 
-  let prefix = "";
-  let parent = this;
-  let blacklist = ['update'];
+  const prefix = "";
+  const parent = this;
+  const blacklist = ['update'];
 
   // loop through all of the parent's state
   for (let key in this.state) {
