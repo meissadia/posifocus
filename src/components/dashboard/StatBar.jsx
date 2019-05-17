@@ -26,7 +26,7 @@ const StatBlock = (props) => (
 const StatBar = () => (
   <GlobalContext.Consumer>
     {({ state }) => {
-      const [ gratitudeCount, doneTaskCount, lastContact ] = calcStats(state);
+      const [gratitudeCount, doneTaskCount, lastContact] = calcStats(state);
       return (
         <section className='stat-bar'>
           <StatBlock

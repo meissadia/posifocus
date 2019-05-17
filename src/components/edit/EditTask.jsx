@@ -13,7 +13,7 @@ const EditTask = props => {
 
   const save = (item, update, event) => {
     event.preventDefault();
-    const { title, today, date, done } = document.gform
+    const { title, today, date, done } = document.gform;
     const edited = {
       id: item.id,
       priority: item.priority,
