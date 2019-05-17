@@ -2,7 +2,6 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 
 import '../../styles/css/ListViews.css'
-import Colors from '../../lib/Colors';
 import PageNavigation from '../PageNavigation';
 import List, { ListHOC } from './List';
 import NewRelationship from '../../components/create/NewRelationship';
@@ -21,9 +20,8 @@ const Relationships = props => {
       data={props.data}
       delete={props.destroy.bind(null, props.functions.deleteRelationship)}
       edit={props.showEditor}
-      makeLink={(item) => (`/relationship/${item.id}/contacts`)}
+      makeLink={item => (`/relationship/${item.id}/contacts`)}
       location={props.location}
-      background={Colors[props.sectionTitle]}
       itemType='deep'
     >
       <PageNavigation

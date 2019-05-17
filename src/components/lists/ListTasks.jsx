@@ -2,7 +2,6 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 
 import '../../styles/css/ListViews.css'
-import Colors from '../../lib/Colors';
 import PageNavigation from '../PageNavigation';
 import NewTask from '../create/NewTask';
 import EditTask from '../edit/EditTask';
@@ -11,7 +10,7 @@ import { parseUrl } from '../../lib/Helpers';
 import TodaysTasks from '../lists/ListTodaysTasks';
 
 
-const Tasks = (props) => {
+const Tasks = props => {
   const parsed = parseUrl(props.location.pathname);
 
   if (props.location.pathname.includes('today'))
@@ -34,7 +33,7 @@ const Tasks = (props) => {
   }
 
   const navBackLink = location => {
-    return location.pathname.split('/').slice(0, -2).join('/') + 's'
+    return '/' + location.pathname.split('/').slice(2, 5).join('/') + 's'
   }
 
   // Override props.showEditor
@@ -61,7 +60,6 @@ const Tasks = (props) => {
       toggle={taskToggle.bind(null, getSingle)}
       match={props.match}
       location={props.location}
-      background={Colors[props.sectionTitle]}
       itemType='task'
     >
       <PageNavigation

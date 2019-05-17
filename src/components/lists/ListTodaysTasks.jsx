@@ -1,7 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import '../../styles/css/ListViews.css'
-import Colors from '../../lib/Colors';
 import EditTask from '../edit/EditTask';
 import PageNavigation from '../PageNavigation';
 import List, { ListHOC } from './List';
@@ -27,7 +26,6 @@ const TodaysTasks = props => {
       edit={props.showEditor}
       toggle={taskToggle.bind(null, getSingle)}
       location={props.location}
-      background={Colors.todays}
       itemType='task'
     >
       <PageNavigation

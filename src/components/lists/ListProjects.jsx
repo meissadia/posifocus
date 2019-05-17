@@ -2,7 +2,6 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 
 import '../../styles/css/ListViews.css'
-import Colors from '../../lib/Colors';
 import PageNavigation from '../PageNavigation';
 import NewProject from '../create/NewProject';
 import EditProject from '../edit/EditProject';
@@ -31,10 +30,9 @@ const Projects = props => {
       data={projects}
       delete={props.destroy.bind(deleteProject)}
       edit={props.showEditor}
-      makeLink={(item, _match, location) => (`/tasks${location.pathname.slice(0, -1)}/${item.id}`)}
+      makeLink={(item, location) => `/tasks${location.pathname.slice(0, -1)}/${item.id}`}
       match={props.match}
       location={props.location}
-      background={Colors[props.sectionTitle]}
       itemType='deep'
     >
       <PageNavigation

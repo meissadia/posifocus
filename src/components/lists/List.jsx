@@ -1,42 +1,31 @@
 import React from 'react';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { get } from 'lodash';
+
+import { parseUrl } from '../../lib/Helpers';
+import { GlobalContext } from '../App';
 import Instructions from './Instructions';
 import ListItem from './ListItem';
-import Colors, { Color } from '../../lib/Colors'
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import { GlobalContext } from '../App';
-
-let enterDirection = (props) => {
-  let direction = props.location
-    && props.location.state
-    && props.location.state.enter
-  direction = direction || 'enter-right'
-  return props.className + ' ' + direction;
-}
 
 class List extends React.Component {
-  calcBg = (index, total) => {
-    if (this.props.itemType === 'shallow') {
-      return this.props.background.alpha(1).pct(.2).str();
-    }
-
-    let max = total * 1.2;
-    let pct = index / max;
-
-    let { background } = this.props
-    return background
-      ? background.alpha(.9).pct(pct).str()
-      : (new Color(0, 0, 0, 0)).alpha(pct).str()
+  /**
+  * Transition Animation Direction can be controlled through Location's state.
+  * `this.props.location.state.enter`
+  */
+  enterDirection = () => {
+    const direction = get(this.props, 'location.state.enter', 'enter-right');
+    return [this.props.className, direction].join(' ');
   }
 
+  dummy = () => false;
+
   render() {
-    let deepListItem = 'item-list ' + this.props.itemType;
-    let totalCount = this.props.data.length;
-    let itemType = this.props.itemType;
+    const deepListItem = 'item-list ' + this.props.itemType;
+    const totalCount = this.props.data.length;
+    const itemType = this.props.itemType;
 
     return (
-      // Direction can be controlled through location state
-      // this.props.location.state.enter
-      <div className={'list-wrapper ' + enterDirection(this.props)}>
+      <div className={'list-wrapper ' + this.enterDirection()}>
         {this.props.children} {/* Page Navigation */}
         <ul className={deepListItem} >
           <TransitionGroup>
@@ -50,14 +39,15 @@ class List extends React.Component {
                 <ListItem
                   item={item}
                   index={index}
-                  delete={this.props.delete}
+                  destroyer={this.props.delete}
                   edit={this.props.edit}
                   toggle={this.props.toggle}
                   link={this.props.link}
-                  makeLink={this.props.makeLink}
+                  makeLink={this.props.makeLink || this.dummy}
                   location={this.props.location}
                   match={this.props.match}
-                  bgColor={this.calcBg(index, totalCount)}
+                  section={this.props.section}
+                  totalCount={totalCount}
                   itemType={itemType}
                 />
               </CSSTransition>
@@ -71,7 +61,6 @@ class List extends React.Component {
                 section={this.props.section}
                 src={this.props.instructions.icon}
                 display={this.props.instructions.display}
-                bgColor={Colors.shade10.str()}
               />
             </CSSTransition>
           </TransitionGroup>
@@ -88,10 +77,6 @@ class List extends React.Component {
  */
 export const ListHOC = (WrappedComponent, sectionTitle) => {
   return class extends React.Component {
-    constructor(props) {
-      super(props);
-    };
-
     destroy = (destroyer, event) => {
       event.preventDefault();
       destroyer(event.target.attributes.jsvalue.value);
@@ -121,6 +106,7 @@ export const ListHOC = (WrappedComponent, sectionTitle) => {
                 isNew={props => props.location.pathname.includes('new')}
                 isEdit={props => props.location.pathname.includes('edit')}
                 back={this.back}
+                urlParams={parseUrl(location.pathname)}
                 {...this.props}
               />
             )

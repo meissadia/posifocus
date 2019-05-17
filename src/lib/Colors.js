@@ -1,4 +1,4 @@
-let Colors = {
+const Colors = {
   blue: new Color(0, 150, 255, 0.9),
   green: new Color(62, 187, 154, 0.9),
   clear: new Color(0, 0, 0, 0),
@@ -18,11 +18,11 @@ Colors.blue_green = `linear-gradient(${Colors.blue.str()}, ${Colors.green.str()}
 
 export default Colors;
 
-export function Color(r=0, g=0, b=0, a=0) {
+export function Color(r = 0, g = 0, b = 0, a = 0) {
   this.rgba = { r, g, b, a };
 
   this.darken = (amount) => {
-    let new_color = {};
+    const new_color = {};
     Object.keys(this.rgba).forEach((key) => (
       new_color[key] = Math.round(Math.max(this.rgba[key] - amount, 50)))
     )
@@ -30,16 +30,16 @@ export function Color(r=0, g=0, b=0, a=0) {
   }
 
   this.pct = (pct) => {
-    let new_color = {};
+    const new_color = {};
     Object.keys(this.rgba).forEach((key) => (
       new_color[key] = Math.round((1 - pct) * this.rgba[key])
-      )
+    )
     )
     return new Color(new_color.r, new_color.g, new_color.b, a);
   }
 
   this.lighten = (amount) => {
-    let new_color = {};
+    const new_color = {};
     Object.keys(this.rgba).forEach((key) => (
       new_color[key] = Math.round(Math.min(this.rgba[key] - amount, 255)))
     )

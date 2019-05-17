@@ -5,21 +5,30 @@ import relationshipsIcon from '../../images/relationships-instructions-tableview
 import tasksIcon from '../../images/tasks-instructions-tableview.png';
 import prioritiesIcon from '../../images/priorities-instructions-tableview.png';
 import projectsIcon from '../../images/projects-instructions-tableview.png';
+import Colors from '../../lib/Colors'
 
-let Instructions = (props) => {
-  if(!props.display) { return null };
+
+const Instructions = props => {
+  if (!props.display) return null;
+
   return (
-    <li className='instructions' style={bgcolor(props)}>
+    <li
+      className='instructions'
+      style={{ background: props.bgColor }}>
       <img
         className='instruction-image'
         src={sectionIcon(props.section)}
         alt={`${props.section} instructions`}
-        />
+      />
     </li>
   )
 }
 
-let sectionIcon = (section) => {
+Instructions.defaultProps = {
+  bgColor: Colors.shade10.str(),
+};
+
+const sectionIcon = section => {
   switch (section) {
     case 'gratitudes':
       return gratitudesIcon;
@@ -35,12 +44,7 @@ let sectionIcon = (section) => {
     case 'projects':
       return projectsIcon;
     default:
-
   }
 }
-
-let bgcolor = (props) => ({
-  background: props.bgColor
-})
 
 export default Instructions;

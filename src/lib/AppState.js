@@ -22,7 +22,9 @@ export function initState() {
 }
 
 // setState callback
-export const updateStateHandler = newState => this.setState({ ...newState });
+export function updateStateHandler(newState) {
+  this.setState({ ...newState });
+}
 
 /**
  * Update User Header Information
@@ -41,7 +43,7 @@ export function updateUserHeader(key, value) {
 **/
 export function resetState(event) {
   if (window.confirm('Erase all Local data?')) {
-    this.setState(this.initState());
+    this.setState(initState());
     return true;
   };
 }

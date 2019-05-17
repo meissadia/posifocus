@@ -8,7 +8,9 @@ class AppFrame extends React.Component {
     this.state = { background: this.newBackground(window.location.pathname), level: 0 };
   }
 
-  newBackground = (pathname) => {
+  newBackground = pathname => {
+    if (pathname.includes('today')) return 'today';
+    if (pathname.includes('tasks')) return 'tasks';
     let bg = pathname.split('/').slice(-1)[0];
     return bg || 'base';
   }

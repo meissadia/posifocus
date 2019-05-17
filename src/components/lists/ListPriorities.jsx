@@ -2,7 +2,6 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 
 import '../../styles/css/ListViews.css'
-import Colors from '../../lib/Colors';
 import PageNavigation from '../PageNavigation';
 import List, { ListHOC } from './List';
 import NewPriority from '../../components/create/NewPriority';
@@ -21,9 +20,8 @@ const Priorities = props => {
       data={props.data}
       delete={props.destroy.bind(props.functions.deletePriority)}
       edit={props.showEditor}
-      makeLink={item => (`/priority/${item.id}/projects`)}
+      makeLink={item => `/priority/${item.id}/projects`}
       location={props.location}
-      background={Colors[props.sectionTitle]}
       itemType='deep'
     >
       <PageNavigation

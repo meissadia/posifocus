@@ -3,7 +3,6 @@ import { withRouter } from 'react-router-dom';
 import { get } from 'lodash';
 
 import '../../styles/css/ListViews.css'
-import Colors from '../../lib/Colors';
 import PageNavigation from '../PageNavigation';
 import NewContact from '../create/NewContact';
 import EditContact from '../edit/EditContact';
@@ -36,7 +35,6 @@ const Contacts = props => {
       edit={props.showEditor}
       match={props.match}
       location={props.location}
-      background={Colors[props.sectionTitle]}
       itemType='shallow'
     >
       <PageNavigation
