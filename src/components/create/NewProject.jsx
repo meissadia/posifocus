@@ -28,7 +28,7 @@ const NewProject = props => {
     }
   }
 
-  const cancelLink = url => url.slice(0, -4);
+  const cancelLink = url => url.slice(0, -4) || '/';
 
   return (
     <GlobalContext.Consumer>

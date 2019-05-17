@@ -24,13 +24,13 @@ const NewTask = props => {
     }
 
     add('tasks', new_project);
-    props.history.push({ 
-      pathname: cancelLink(document.gform.url.value), 
-      state: { enter: 'enter-left' } 
+    props.history.push({
+      pathname: cancelLink(document.gform.url.value),
+      state: { enter: 'enter-left' }
     });
   }
 
-  const cancelLink = url => url.split('/').slice(0, -1).join('/');
+  const cancelLink = url => url.split('/').slice(0, -1).join('/') || '/';;
 
   const backLink = url => url.split('/').slice(0, -3).join('/') + 's';
 

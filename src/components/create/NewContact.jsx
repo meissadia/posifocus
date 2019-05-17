@@ -24,7 +24,7 @@ const NewContact = props => {
     props.history.push(cancelLink(document.gform.url.value));
   }
 
-  const cancelLink = url => url.split('/').slice(0, -1).join('/');
+  const cancelLink = url => url.split('/').slice(0, -1).join('/') || '/';;
   const backLink = url => url.split('/').slice(0, -3).join('/') + 's';
 
   return (

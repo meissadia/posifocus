@@ -70,11 +70,7 @@ class Settings extends React.Component {
             this.setState({ error: 'No backup data found!', result: null });
           }
         })
-        .catch(error => {
-          console.log('error');
-          console.log(error);
-          this.setState({ error, result: null });
-        })
+        .catch(error => this.setState({ error, result: null }));
     }
   }
 
