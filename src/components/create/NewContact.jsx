@@ -5,7 +5,6 @@ import '../../styles/css/FormView.css';
 import { parseDate, dateInputDefault } from '../../lib/FormHelpers';
 import PageNavigation from '../PageNavigation';
 import { GlobalContext } from '../App';
-import { parseUrl } from '../../lib/Helpers';
 
 const NewContact = props => {
   const handleAddContact = (add, event) => {
@@ -29,50 +28,46 @@ const NewContact = props => {
 
   return (
     <GlobalContext.Consumer>
-      {({ functions, location }) => {
-        const url = location.pathname;
-        const params = parseUrl(url);
-
-        return (
-          <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
-            <PageNavigation
-              back={[backLink(url), 'Relationships']}
-              title='New Contact'
-              add={[{ pathname: cancelLink(url), state: { enter: 'enter-left' } }, '< Cancel >']}
-            />
-            <form
-              name='gform'
-              className='g-form'
-              onSubmit={handleAddContact.bind(null, functions.addToStateArray)}
-            >
-              <label htmlFor="title" className='center'>
-                What was the Last Contact you had with this Person?
+      {({ functions, urlParams }) => (
+        <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
+          <PageNavigation
+            back={[backLink(urlParams.url), 'Relationships']}
+            title='New Contact'
+            add={[{ pathname: cancelLink(urlParams.url), state: { enter: 'enter-left' } }, '< Cancel >']}
+          />
+          <form
+            name='gform'
+            className='g-form'
+            onSubmit={handleAddContact.bind(null, functions.addToStateArray)}
+          >
+            <label htmlFor="title" className='center'>
+              What was the Last Contact you had with this Person?
               </label>
-              <input
-                type="text"
-                name="title"
-                autoComplete="off"
-                placeholder="Call/Text/Email/Lunch..."
-              />
-              <label htmlFor='content'>Notes:</label>
-              <textarea
-                name="content"
-                placeholder="Making plans to meet up this weekend.."
-              />
-              <label htmlFor='date-input'>Date:</label>
-              <input
-                id='date-input'
-                type="date"
-                name="date"
-                defaultValue={dateInputDefault()}
-              />
-              <input name="relationship" value={params.relationship} hidden readOnly />
-              <input name="url" value={url} hidden readOnly />
-              <input id='submit-button' type="submit" name="submit" value="Save" />
-            </form>
-          </div>
-        )
-      }}
+            <input
+              type="text"
+              name="title"
+              autoComplete="off"
+              placeholder="Call/Text/Email/Lunch..."
+            />
+            <label htmlFor='content'>Notes:</label>
+            <textarea
+              name="content"
+              placeholder="Making plans to meet up this weekend.."
+            />
+            <label htmlFor='date-input'>Date:</label>
+            <input
+              id='date-input'
+              type="date"
+              name="date"
+              defaultValue={dateInputDefault()}
+            />
+            <input name="relationship" value={urlParams.relationship} hidden readOnly />
+            <input name="url" value={urlParams.url} hidden readOnly />
+            <input id='submit-button' type="submit" name="submit" value="Save" />
+          </form>
+        </div>
+      )
+      }
     </GlobalContext.Consumer>
   )
 };

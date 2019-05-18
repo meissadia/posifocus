@@ -22,6 +22,7 @@ import Projects from './lists/ListProjects';
 import Relationships from './lists/ListRelationships';
 import Settings from './settings/Settings';
 import Tasks from './lists/ListTasks';
+import { parseUrl } from '../lib/Helpers';
 
 export const GlobalContext = React.createContext({
   state: {},
@@ -125,7 +126,10 @@ class App extends Component {
             >
               <Switch location={location}>
                 <GlobalContext.Provider
-                  value={this.updatedGlobalContext({ location })}
+                  value={this.updatedGlobalContext({
+                    location,
+                    urlParams: parseUrl(location.pathname),
+                  })}
                 >
                   {/*************** Test OrderableList Route ***************/}
                   <Route exact path={Path.OrderableList} component={OrderableList} />

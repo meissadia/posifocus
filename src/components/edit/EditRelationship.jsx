@@ -4,7 +4,6 @@ import { withRouter } from 'react-router-dom';
 import '../../styles/css/FormView.css';
 import { GlobalContext } from '../App';
 import PageNavigation from '../PageNavigation';
-import { parseUrl } from '../../lib/Helpers';
 
 const EditRelationship = props => {
   const section = 'relationships';
@@ -26,10 +25,9 @@ const EditRelationship = props => {
 
   return (
     <GlobalContext.Consumer>
-      {({ functions, location }) => {
+      {({ functions, urlParams }) => {
         const { getSingle, updateSingle } = functions;
-        const params = parseUrl(location.pathname);
-        const currentItem = getSingle(section, params.relationships) || {};
+        const currentItem = getSingle(section, urlParams.relationships) || {};
 
         return (
           <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>

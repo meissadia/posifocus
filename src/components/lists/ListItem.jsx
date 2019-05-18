@@ -102,7 +102,9 @@ const ItemField = props => {
       </div>
     </NavLink>
   );
-}
+};
+
+ItemField.displayName = 'ItemField';
 
 const DateField = props => {
   const [month, dayOfMonth, year] = props.date.split(' ').slice(1, 4);
@@ -110,5 +112,7 @@ const DateField = props => {
 
   return <div className='date'>{displayDate}</div>
 };
+
+DateField.displayName = 'DateField';
 
 export default ListItem;

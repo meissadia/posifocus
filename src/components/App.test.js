@@ -1,13 +1,13 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { mount } from 'enzyme';
-import { JSDOM } from "jsdom";
-import App from './App';
-import { InitTestState } from '../lib/InitTestState';
+import { get } from 'lodash';
+import { JSDOM } from 'jsdom';
 
-/**
- * Jest: Custom matcher to get more informative error message
- */
+import { InitTestState } from '../lib/InitTestState';
+import App from './App';
+
+/** Jest: Custom matcher to get more informative error message **/
 expect.extend({
   toRender(wrapper, component) {
     const pass = wrapper.find(component).length >= 1
@@ -21,21 +21,46 @@ expect.extend({
   },
 });
 
-/**
- * Helper Methods
- */
-const navigateToUrl = (wrapper, url) => wrapper.find('Router').props().history.push(url);
+/** Helper Methods **/
+const buildWrapper = ({ path }) => mount(
+  <MemoryRouter initialEntries={[path || '/']}>
+    <App />
+  </MemoryRouter>
+);
+
+const navigateToUrl = (wrapper, url) => {
+  wrapper.find('Router').props().history.push(url);
+  wrapper.update();
+}
 const readAppStateByKey = (wrapper, key) => wrapper.find('App').state(key);
 const getAppState = wrapper => wrapper.find('App').state();
+const print = wrapper => console.log(wrapper.debug());
+const readWrapperPathVars = wrapper => {
+  const keys = ['gratitudes', 'priorities', 'projects', 'tasks', 'relationships', 'contacts'];
+  const vars = {}
+  keys.forEach(x => {
+    vars[x] = get(readAppStateByKey(wrapper, x)[0], 'id')
+  });
+  return vars;
+};
+const readPathVars = state => {
+  const keys = ['gratitudes', 'priorities', 'projects', 'tasks', 'relationships', 'contacts'];
+  const vars = {}
+  keys.forEach(x => {
+    vars[x] = state[x][0] && state[x][0].id
+  });
+  return vars;
+}
 
-// Inject path with test-generated values
-const addVars = (path, vars) =>
+/* Inject path with test-generated values */
+const addVars = (path, vars) => (
   path.split('/')
     .map(part => {
       if (!part.includes(':')) return part;
       return vars[part.replace(':', '')]
     })
-    .join('/');
+    .join('/')
+);
 
 describe('App', () => {
   it('renders Section routes', () => {
@@ -55,13 +80,34 @@ describe('App', () => {
 
     routes.forEach(route => {
       const [component, path] = route;
-      const wrapper = mount(
-        <MemoryRouter initialEntries={[path]}>
-          <App />
-        </MemoryRouter>
-      );
+      const wrapper = buildWrapper({ path });
 
       expect(wrapper).toRender(component);
+    })
+  });
+
+  it('renders Section content', () => {
+    const routes = [
+      // [Component, Path]
+      ['Gratitudes', '/gratitudes'],
+      ['Priorities', '/priorities'],
+      ['Relationships', '/relationships'],
+      ['Tasks', '/tasks/priority/:priorities/projects/:projects'],
+      ['TodaysTasks', '/tasks/today'],
+      ['Projects', '/priority/:priorities/projects'],
+      ['Contacts', '/relationship/:relationships/contacts'],
+    ];
+
+    routes.forEach(route => {
+      let [component, path] = route;
+      path = addVars(path, readPathVars(InitTestState));
+      const wrapper = buildWrapper({ path });
+      wrapper.find('App').setState(InitTestState); // Seed App with test data 
+
+      expect(wrapper).toRender(component);
+
+      const classname = wrapper.find('#list li').first().props().className;
+      expect(classname).not.toBe('instructions');
     })
   });
 
@@ -77,17 +123,13 @@ describe('App', () => {
 
     routes.forEach(route => {
       const [component, path] = route;
-      const wrapper = mount(
-        <MemoryRouter initialEntries={[path]}>
-          <App />
-        </MemoryRouter>
-      );
+      const wrapper = buildWrapper({ path });
 
       expect(wrapper).toRender(component);
     })
   });
 
-  it('creates New data', () => {
+  it('Creates new data', () => {
     const routes = [
       ['NewGratitude', '/gratitudes/new', 'gratitudes'],
       ['NewPriority', '/priorities/new', 'priorities'],
@@ -97,11 +139,7 @@ describe('App', () => {
       ['NewContact', '/relationship/:relationships/contacts/new', 'contacts'],
     ];
 
-    const wrapper = mount(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>
-    );
+    const wrapper = buildWrapper({});
 
     const idCache = {}; // Track a the latest live id for each Model
     const unverifiedFields = ['id', 'date']; // FIXME: Test properly
@@ -115,19 +153,19 @@ describe('App', () => {
       global.document.gform = {
         content: { value: 'content' },
         date: { value: 'date' },
-        priority: { value: 'priority' },
-        project: { value: 'project' },
-        relationship: { value: 'relationship' },
+        priority: { value: get(idCache, 'priorities', 'priority') },
+        project: { value: get(idCache, 'projects', 'project') },
+        relationship: { value: get(idCache, 'relationships', 'relationship') },
         title: { value: 'title' },
         url: { value: wrapper.find('Router').props().history.location.pathname },
         today: { checked: true },
         done: { checked: false },
       }
 
-      expect(readAppStateByKey(wrapper, stateKey).length).toBe(0);  // Each collection should start empty
+      // Each collection should start empty
+      expect(readAppStateByKey(wrapper, stateKey).length).toBe(0);
 
       navigateToUrl(wrapper, addVars(path, idCache));
-      wrapper.update();
 
       /**
        * FIXME
@@ -152,11 +190,12 @@ describe('App', () => {
         expect(currentItem[key]).toEqual(value || checked);
       });
 
-      // Save latest IDs
-      idCache[stateKey] = currentItem.id;
+      // TODO: Verify exit navigation (location)
+
+      idCache[stateKey] = currentItem.id; // Save latest IDs
     }); // end routes
 
-    // console.log('Test Data: App State
+    // console.log('Test Data: App State');
     // console.log(JSON.stringify(getAppState(wrapper)));
   });
 
@@ -172,11 +211,7 @@ describe('App', () => {
 
     routes.forEach(route => {
       const [component, path] = route;
-      const wrapper = mount(
-        <MemoryRouter initialEntries={[path]}>
-          <App />
-        </MemoryRouter>
-      );
+      const wrapper = buildWrapper({ path });
 
       expect(wrapper).toRender(component);
     })
@@ -192,11 +227,7 @@ describe('App', () => {
       ['EditContact', '/relationship/:relationships/contacts/:contacts/edit', 'contacts'],
     ];
 
-    const wrapper = mount(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>
-    );
+    const wrapper = buildWrapper({});
 
     // Load test data and verify that it's set
     wrapper.find('App').setState(InitTestState);
@@ -205,8 +236,8 @@ describe('App', () => {
     // FIXME: Tests for relationships?
     const unverifiedFields = ['id', 'date', 'priority', 'project', 'relationship'];
 
-    const idCache = {};
-    routes.forEach(route => idCache[route[2]] = readAppStateByKey(wrapper, route[2])[0].id);
+    const pathVars = {};
+    routes.forEach(route => pathVars[route[2]] = readAppStateByKey(wrapper, route[2])[0].id);
 
     const dom = new JSDOM()
     global.document = dom.window.document
@@ -215,8 +246,7 @@ describe('App', () => {
     routes.forEach(route => {
       const [, path, stateKey] = route;
 
-      navigateToUrl(wrapper, addVars(path, idCache));
-      wrapper.update();
+      navigateToUrl(wrapper, addVars(path, pathVars));
 
       global.document.gform = {
         content: { value: 'edited_content' },
@@ -246,6 +276,42 @@ describe('App', () => {
       });
 
     });
+  });
 
+  it('deletes Models', () => {
+    const pathVars = {};
+    const routes = [
+      /*[Component, Path, StateKey, ShouldBeEmpty]*/
+      ['Gratitude', '/gratitudes/', 'gratitudes', ['gratitudes']],
+      ['Priority', '/priorities/', 'priorities', ['priorities', 'projects', 'tasks']],
+      ['Project', '/priority/:priorities/projects/', 'projects', ['projects', 'tasks']],
+      ['Task', '/tasks/priority/:priorities/projects/:projects/', 'tasks', ['tasks']],
+      ['Relationship', '/relationships/', 'relationships', ['relationships', 'contacts']],
+      ['Contact', '/relationship/:relationships/contacts/', 'contacts', ['contacts']],
+    ];
+
+    routes.forEach(route => {
+      const [, path, stateKey, shouldBeEmpty] = route;
+      const wrapper = buildWrapper({});
+
+      wrapper.find('App').setState(InitTestState); // Seed App with test data 
+      routes.forEach(route =>                      // Load pathVars
+        pathVars[route[2]] = readAppStateByKey(wrapper, route[2])[0].id);
+
+      navigateToUrl(wrapper, addVars(path, pathVars));
+
+      const collection = readAppStateByKey(wrapper, stateKey);
+      expect(collection.length).toBe(1);  // Verify there's data to delete
+
+      wrapper.find(`ListIcon[name="delete"] img`).first().simulate('click');
+      wrapper.update(); // Click delete icon
+
+      // Verify all related collections have been updated
+      shouldBeEmpty.forEach(x => {
+        const collection = readAppStateByKey(wrapper, x);
+        expect(collection.length).toBe(0);
+      });
+
+    });
   });
 })

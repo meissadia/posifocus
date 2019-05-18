@@ -2,7 +2,6 @@ import React from 'react';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { get } from 'lodash';
 
-import { parseUrl } from '../../lib/Helpers';
 import { GlobalContext } from '../App';
 import Instructions from './Instructions';
 import ListItem from './ListItem';
@@ -27,7 +26,7 @@ class List extends React.Component {
     return (
       <div className={'list-wrapper ' + this.enterDirection()}>
         {this.props.children} {/* Page Navigation */}
-        <ul className={deepListItem} >
+        <ul id='list' className={deepListItem} >
           <TransitionGroup>
 
             {this.props.data.map((item, index) => (
@@ -82,6 +81,18 @@ export const ListHOC = (WrappedComponent, sectionTitle) => {
       destroyer(event.target.attributes.jsvalue.value);
     };
 
+    destroyerMap = {
+      priorities: 'deletePriority',
+      projects: 'deleteProject',
+      relationships: 'deleteRelationship',
+    }
+
+    getDestroyer = (functions) => {
+      const mapped = this.destroyerMap[sectionTitle];
+      if (mapped) return functions[mapped];
+      return functions.deleteFromStateArray.bind(null, sectionTitle);
+    }
+
     showEditor = (event) => {
       const id = event.target.attributes.jsvalue.value;
       this.props.history.push(`${this.props.location.pathname}/${id}/edit`);
@@ -94,19 +105,19 @@ export const ListHOC = (WrappedComponent, sectionTitle) => {
     render = () => {
       return (
         <GlobalContext.Consumer>
-          {({ state, functions, location }) => {
+          {({ state, functions, urlParams }) => {
             return (
               <WrappedComponent
                 data={state[this.titleMapper(sectionTitle)]}
-                destroy={this.destroy.bind(null, functions.deleteFromStateArray.bind(null, sectionTitle))}
+                destroy={this.destroy.bind(null, this.getDestroyer(functions))}
                 functions={functions}
-                globalLocation={location}
                 sectionTitle={sectionTitle}
                 showEditor={this.showEditor}
                 isNew={props => props.location.pathname.includes('new')}
                 isEdit={props => props.location.pathname.includes('edit')}
+                isToday={props => props.location.pathname.includes('today')}
                 back={this.back}
-                urlParams={parseUrl(location.pathname)}
+                urlParams={urlParams}
                 {...this.props}
               />
             )

@@ -6,19 +6,18 @@ import PageNavigation from '../PageNavigation';
 import NewTask from '../create/NewTask';
 import EditTask from '../edit/EditTask';
 import List, { ListHOC } from './List';
-import { parseUrl } from '../../lib/Helpers';
 import TodaysTasks from '../lists/ListTodaysTasks';
 
 
 const Tasks = props => {
-  const parsed = parseUrl(props.location.pathname);
+  const { urlParams } = props;
 
-  if (props.location.pathname.includes('today'))
+  if (props.isToday(props))
     return <TodaysTasks />;
   if (props.isNew(props))
     return <NewTask />;
   if (props.isEdit(props))
-    return <EditTask tid={parsed.tasks} />;
+    return <EditTask tid={urlParams.tasks} />;
 
 
   const navTitle = (project) => {
@@ -33,7 +32,7 @@ const Tasks = props => {
   }
 
   const navBackLink = location => {
-    return '/' + location.pathname.split('/').slice(2, 5).join('/') + 's'
+    return '/' + location.pathname.split('/').slice(2, 5).join('/')
   }
 
   // Override props.showEditor
@@ -46,9 +45,9 @@ const Tasks = props => {
 
 
   const { getTasks, getSingle, taskToggle, deleteFromStateArray } = props.functions;
-  const project = getSingle('projects', parsed.project);
+  const project = getSingle('projects', urlParams.projects);
   const priority = project && getSingle('priorities', project.priority)
-  const tasks = getTasks(parsed.project);
+  const tasks = getTasks(urlParams.projects);
 
   return (
     <List section={props.sectionTitle}

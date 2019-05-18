@@ -4,7 +4,6 @@ import { withRouter } from 'react-router-dom';
 import '../../styles/css/FormView.css';
 import PageNavigation from '../PageNavigation';
 import { GlobalContext } from '../App';
-import { parseUrl } from '../../lib/Helpers';
 
 const EditProject = props => {
   const section = 'projects';
@@ -30,10 +29,9 @@ const EditProject = props => {
 
   return (
     <GlobalContext.Consumer>
-      {({ functions, location }) => {
-        const urlParams = parseUrl(location.pathname);
+      {({ functions, urlParams }) => {
         const { getSingle, updateSingle } = functions;
-        const currentItem = getSingle(section, urlParams.projects) || {};
+        const currentItem = getSingle(section, urlParams.projects || urlParams.project) || {};
 
         return (
           <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>

@@ -18,7 +18,7 @@ const Relationships = props => {
       className='route-transition exit-right'
       instructions={{ display: props.data.length === 0 }}
       data={props.data}
-      delete={props.destroy.bind(null, props.functions.deleteRelationship)}
+      delete={props.destroy}
       edit={props.showEditor}
       makeLink={item => (`/relationship/${item.id}/contacts`)}
       location={props.location}

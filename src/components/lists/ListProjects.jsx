@@ -5,11 +5,10 @@ import '../../styles/css/ListViews.css'
 import PageNavigation from '../PageNavigation';
 import NewProject from '../create/NewProject';
 import EditProject from '../edit/EditProject';
-import { parseUrl } from '../../lib/Helpers';
 import List, { ListHOC } from './List';
 
 const Projects = props => {
-  const urlParams = parseUrl(props.location.pathname);
+  const urlParams = props.urlParams;
 
   if (props.isNew(props)) return <NewProject />;
   if (props.isEdit(props)) return <EditProject cid={urlParams.project} />;
@@ -30,7 +29,7 @@ const Projects = props => {
       data={projects}
       delete={props.destroy.bind(deleteProject)}
       edit={props.showEditor}
-      makeLink={(item, location) => `/tasks${location.pathname.slice(0, -1)}/${item.id}`}
+      makeLink={(item, location) => `/tasks${location.pathname}/${item.id}`}
       match={props.match}
       location={props.location}
       itemType='deep'

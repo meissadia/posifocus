@@ -6,7 +6,6 @@ import { parseDate, dateInputDefault } from '../../lib/FormHelpers';
 import '../../styles/css/FormView.css';
 import '../../styles/css/ReactToggle.css';
 import { GlobalContext } from '../App';
-import { parseUrl } from '../../lib/Helpers';
 
 const EditTask = props => {
   const section = 'tasks';
@@ -36,7 +35,7 @@ const EditTask = props => {
       return '/tasks/today';
     } else {
       const { priority, project } = item;
-      return `/tasks/priority/${priority}/project/${project}`;
+      return `/tasks/priority/${priority}/projects/${project}`;
     }
   }
 
@@ -53,8 +52,7 @@ const EditTask = props => {
 
   return (
     <GlobalContext.Consumer>
-      {({ functions, location }) => {
-        const urlParams = parseUrl(location.pathname);
+      {({ functions, urlParams }) => {
         const { getSingle, updateSingle } = functions;
         const currentItem = getSingle(section, urlParams.today || urlParams.tasks) || {};
 

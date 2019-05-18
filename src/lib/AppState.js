@@ -97,11 +97,11 @@ export function deletePriority(priority) {
  * @param {number} relationship - Target ID
 **/
 export function deleteRelationship(relationship) {
-  this.deleteFromStateArray('relationships', relationship);
+  const relationships = this.state.relationships.filter((e) => (e.id !== relationship));
   const contacts = this.state.contacts.filter((e) => (
     e.relationship !== relationship
   ));
-  this.setState({ contacts });
+  this.setState({ contacts, relationships });
 }
 
 /**

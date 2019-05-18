@@ -26,5 +26,7 @@ export const parseUrl = str => {
     if (states.includes(part)) result[part] = true;
   });
 
+  result.url = str; // might be able to avoid passing location to GlobalContext by including it here
+
   return result;
 };

@@ -6,11 +6,10 @@ import '../../styles/css/ListViews.css'
 import PageNavigation from '../PageNavigation';
 import NewContact from '../create/NewContact';
 import EditContact from '../edit/EditContact';
-import { parseUrl } from '../../lib/Helpers';
 import List, { ListHOC } from './List';
 
 const Contacts = props => {
-  const urlParams = parseUrl(props.location.pathname);
+  const { urlParams } = props;
 
   if (props.isNew(props)) return <NewContact />;
   if (props.isEdit(props)) return <EditContact cid={urlParams.contacts} />;

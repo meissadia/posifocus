@@ -6,14 +6,13 @@ import '../../styles/css/FormView.css';
 import '../../styles/css/ReactToggle.css';
 import PageNavigation from '../PageNavigation';
 import { GlobalContext } from '../App';
-import { parseUrl } from '../../lib/Helpers';
 
 const NewTask = props => {
   const handleAddTask = (add, event) => {
     event.preventDefault();
     const date = new Date();
 
-    const new_project = {
+    const new_task = {
       id: date.getTime().toString(),
       priority: document.gform.priority.value,
       project: document.gform.project.value,
@@ -23,7 +22,7 @@ const NewTask = props => {
       date: date.toString()
     }
 
-    add('tasks', new_project);
+    add('tasks', new_task);
     props.history.push({
       pathname: cancelLink(document.gform.url.value),
       state: { enter: 'enter-left' }
@@ -36,44 +35,40 @@ const NewTask = props => {
 
   return (
     <GlobalContext.Consumer>
-      {({ functions, location }) => {
-        const url = location.pathname;
-        const params = parseUrl(url);
-
-        return (
-          <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
-            <PageNavigation
-              back={[backLink(url), 'Projects']}
-              title='New Task'
-              add={[{ pathname: cancelLink(url), state: { enter: 'enter-left' } }, '< Cancel >']}
+      {({ functions, urlParams }) => (
+        <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
+          <PageNavigation
+            back={[backLink(urlParams.url), 'Projects']}
+            title='New Task'
+            add={[{ pathname: cancelLink(urlParams.url), state: { enter: 'enter-left' } }, '< Cancel >']}
+          />
+          <form
+            name='gform'
+            className='g-form'
+            onSubmit={handleAddTask.bind(null, functions.addToStateArray)}
+          >
+            <label htmlFor="title" className='center'>
+              What Task Must Be Done to Complete this Project?
+              </label>
+            <input
+              type="text"
+              name="title"
+              autoComplete="off"
+              placeholder="Send Party Invite..."
             />
-            <form
-              name='gform'
-              className='g-form'
-              onSubmit={handleAddTask.bind(null, functions.addToStateArray)}
-            >
-              <label htmlFor="title" className='center'>
-                What Task Must Be Done to Complete this Project?
-              </label>
-              <input
-                type="text"
-                name="title"
-                autoComplete="off"
-                placeholder="Send Party Invite..."
-              />
-              <label className='flex row form-toggle' htmlFor="today">
-                <Toggle
-                  id='today'
-                  defaultChecked={false} />
-                <span>On Today's Task List?</span>
-              </label>
-              <input name="priority" value={params.priority} hidden readOnly />
-              <input name="project" value={params.project} hidden readOnly />
-              <input name="url" value={url} hidden readOnly />
-              <input id='submit-button' type="submit" name="submit" value="Save" />
-            </form>
-          </div>)
-      }}
+            <label className='flex row form-toggle' htmlFor="today">
+              <Toggle
+                id='today'
+                defaultChecked={false} />
+              <span>On Today's Task List?</span>
+            </label>
+            <input name="priority" value={urlParams.priority} hidden readOnly />
+            <input name="project" value={urlParams.projects} hidden readOnly />
+            <input name="url" value={urlParams.url} hidden readOnly />
+            <input id='submit-button' type="submit" name="submit" value="Save" />
+          </form>
+        </div>
+      )}
     </GlobalContext.Consumer>
   )
 }

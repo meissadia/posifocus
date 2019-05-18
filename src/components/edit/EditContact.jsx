@@ -4,7 +4,6 @@ import PageNavigation from '../PageNavigation';
 import { parseDate, dateInputDefault } from '../../lib/FormHelpers';
 import '../../styles/css/FormView.css';
 import { GlobalContext } from '../App';
-import { parseUrl } from '../../lib/Helpers';
 
 const EditContact = props => {
   const section = 'contacts';
@@ -31,8 +30,7 @@ const EditContact = props => {
 
   return (
     <GlobalContext.Consumer>
-      {({ functions, location }) => {
-        const urlParams = parseUrl(location.pathname);
+      {({ functions, urlParams }) => {
         const { getSingle, updateSingle } = functions;
         const currentItem = getSingle(section, urlParams.contacts) || {};
 
