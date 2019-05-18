@@ -5,7 +5,9 @@ import '../../styles/css/ListViews.css'
 import PageNavigation from '../PageNavigation';
 import NewProject from '../create/NewProject';
 import EditProject from '../edit/EditProject';
-import List, { ListHOC } from './List';
+import List from './List';
+import ListHOC from './ListHOC';
+import withGlobalContext from '../GlobalContextHOC';
 
 const Projects = props => {
   const urlParams = props.urlParams;
@@ -43,4 +45,8 @@ const Projects = props => {
   )
 }
 
-export default withRouter(ListHOC(Projects, 'projects'));
+export default withRouter(
+  withGlobalContext(
+    ListHOC(Projects, 'projects')
+  )
+);

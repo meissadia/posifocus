@@ -6,7 +6,9 @@ import '../../styles/css/ListViews.css'
 import PageNavigation from '../PageNavigation';
 import NewContact from '../create/NewContact';
 import EditContact from '../edit/EditContact';
-import List, { ListHOC } from './List';
+import List from './List';
+import ListHOC from './ListHOC';
+import withGlobalContext from '../GlobalContextHOC';
 
 const Contacts = props => {
   const { urlParams } = props;
@@ -45,4 +47,8 @@ const Contacts = props => {
   );
 }
 
-export default withRouter(ListHOC(Contacts, 'contacts'));
+export default withRouter(
+  withGlobalContext(
+    ListHOC(Contacts, 'contacts')
+  )
+);

@@ -3,7 +3,10 @@ import { withRouter } from 'react-router-dom';
 
 import '../../styles/css/ListViews.css'
 import PageNavigation from '../PageNavigation';
-import List, { ListHOC } from './List';
+import List from './List';
+import ListHOC from './ListHOC';
+import withGlobalContext from '../GlobalContextHOC';
+
 import NewRelationship from '../../components/create/NewRelationship';
 import EditRelationship from '../../components/edit/EditRelationship';
 
@@ -33,4 +36,8 @@ const Relationships = props => {
   );
 };
 
-export default withRouter(ListHOC(Relationships, 'relationships'));
+export default withRouter(
+  withGlobalContext(
+    ListHOC(Relationships, 'relationships')
+  )
+);

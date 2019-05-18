@@ -5,7 +5,9 @@ import '../../styles/css/ListViews.css'
 import PageNavigation from '../PageNavigation';
 import NewTask from '../create/NewTask';
 import EditTask from '../edit/EditTask';
-import List, { ListHOC } from './List';
+import List from './List';
+import ListHOC from './ListHOC';
+import withGlobalContext from '../GlobalContextHOC';
 import TodaysTasks from '../lists/ListTodaysTasks';
 
 
@@ -70,4 +72,8 @@ const Tasks = props => {
   );
 }
 
-export default withRouter(ListHOC(Tasks, 'tasks'));
+export default withRouter(
+  withGlobalContext(
+    ListHOC(Tasks, 'tasks')
+  )
+);

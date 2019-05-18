@@ -6,7 +6,9 @@ import Colors from '../../lib/Colors';
 import NewGratitude from '../create/NewGratitude';
 import EditGratitude from '../edit/EditGratitude';
 import PageNavigation from '../PageNavigation';
-import List, { ListHOC } from './List';
+import List from './List';
+import ListHOC from './ListHOC';
+import withGlobalContext from '../GlobalContextHOC';
 
 const Gratitudes = props => {
   const getId = () => props.location.pathname.split('/')[2];
@@ -34,4 +36,4 @@ const Gratitudes = props => {
   );
 };
 
-export default withRouter(ListHOC(Gratitudes, 'gratitudes'));
+export default withRouter(withGlobalContext(ListHOC(Gratitudes, 'gratitudes')));

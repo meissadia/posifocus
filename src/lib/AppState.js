@@ -114,7 +114,7 @@ export function taskToggle(search, event) {
   const attr = event.target.id.split('_')[0];
   task[attr] = event.target.checked;
 
-  const index = this.state.tasks.findIndex((e, idx) => (e.id === task_id));
+  const index = this.state.tasks.findIndex(e => e.id === task_id);
   if (index > -1) {
     const tasks = this.state.tasks;
     tasks[index] = task;

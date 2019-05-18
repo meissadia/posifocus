@@ -3,7 +3,9 @@ import { withRouter } from 'react-router-dom';
 import '../../styles/css/ListViews.css'
 import EditTask from '../edit/EditTask';
 import PageNavigation from '../PageNavigation';
-import List, { ListHOC } from './List';
+import List from './List';
+import ListHOC from './ListHOC';
+import withGlobalContext from '../GlobalContextHOC';
 
 const TodaysTasks = props => {
 
@@ -36,4 +38,8 @@ const TodaysTasks = props => {
   );
 }
 
-export default withRouter(ListHOC(TodaysTasks, 'todays'));
+export default withRouter(
+  withGlobalContext(
+    ListHOC(TodaysTasks, 'todays')
+  )
+);

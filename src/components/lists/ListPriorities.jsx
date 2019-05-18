@@ -3,7 +3,9 @@ import { withRouter } from 'react-router-dom';
 
 import '../../styles/css/ListViews.css'
 import PageNavigation from '../PageNavigation';
-import List, { ListHOC } from './List';
+import List from './List';
+import ListHOC from './ListHOC';
+import withGlobalContext from '../GlobalContextHOC';
 import NewPriority from '../../components/create/NewPriority';
 import EditPriority from '../../components/edit/EditPriority';
 
@@ -33,4 +35,8 @@ const Priorities = props => {
   );
 }
 
-export default withRouter(ListHOC(Priorities, 'priorities'));
+export default withRouter(
+  withGlobalContext(
+    ListHOC(Priorities, 'priorities')
+  )
+);

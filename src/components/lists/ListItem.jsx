@@ -8,14 +8,14 @@ import Colors, { Color } from '../../lib/Colors'
 
 const ListItem = props => {
   const {
-    done, edit, itemType, link, location, index,
-    makeLink, today, toggle, destroyer, item, totalCount
+    edit, itemType, link, location, index,
+    makeLink, toggle, destroyer, item, totalCount
   } = props;
 
   const enhancedClassName = () => {
     let className = 'list-item ' + itemType;
-    className += (done ? ' done' : '');
-    className += (today ? ' today' : '');
+    className += (item.done ? ' done' : '');
+    className += (item.today ? ' today' : '');
     return className;
   }
 
@@ -104,15 +104,11 @@ const ItemField = props => {
   );
 };
 
-ItemField.displayName = 'ItemField';
-
 const DateField = props => {
   const [month, dayOfMonth, year] = props.date.split(' ').slice(1, 4);
   const displayDate = `${month} ${dayOfMonth}, ${year}`
 
   return <div className='date'>{displayDate}</div>
 };
-
-DateField.displayName = 'DateField';
 
 export default ListItem;

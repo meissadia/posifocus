@@ -2,7 +2,6 @@ import React from 'react';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { get } from 'lodash';
 
-import { GlobalContext } from '../App';
 import Instructions from './Instructions';
 import ListItem from './ListItem';
 
@@ -68,64 +67,5 @@ class List extends React.Component {
     )
   }
 }
-
-/**
- * HOC to reuse List logic
- * @param {Component} WrappedComponent 
- * @param {FUnction} selectData Read data from GlobalContext.state
- */
-export const ListHOC = (WrappedComponent, sectionTitle) => {
-  return class extends React.Component {
-    destroy = (destroyer, event) => {
-      event.preventDefault();
-      destroyer(event.target.attributes.jsvalue.value);
-    };
-
-    destroyerMap = {
-      priorities: 'deletePriority',
-      projects: 'deleteProject',
-      relationships: 'deleteRelationship',
-    }
-
-    getDestroyer = (functions) => {
-      const mapped = this.destroyerMap[sectionTitle];
-      if (mapped) return functions[mapped];
-      return functions.deleteFromStateArray.bind(null, sectionTitle);
-    }
-
-    showEditor = (event) => {
-      const id = event.target.attributes.jsvalue.value;
-      this.props.history.push(`${this.props.location.pathname}/${id}/edit`);
-    };
-
-    back = () => this.props.history.pop();
-
-    titleMapper = title => (title === 'todays' ? 'tasks' : title);
-
-    render = () => {
-      return (
-        <GlobalContext.Consumer>
-          {({ state, functions, urlParams }) => {
-            return (
-              <WrappedComponent
-                data={state[this.titleMapper(sectionTitle)]}
-                destroy={this.destroy.bind(null, this.getDestroyer(functions))}
-                functions={functions}
-                sectionTitle={sectionTitle}
-                showEditor={this.showEditor}
-                isNew={props => props.location.pathname.includes('new')}
-                isEdit={props => props.location.pathname.includes('edit')}
-                isToday={props => props.location.pathname.includes('today')}
-                back={this.back}
-                urlParams={urlParams}
-                {...this.props}
-              />
-            )
-          }}
-        </GlobalContext.Consumer>
-      );
-    };
-  };
-};
 
 export default List;
