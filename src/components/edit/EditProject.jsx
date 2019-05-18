@@ -3,10 +3,13 @@ import { withRouter } from 'react-router-dom';
 
 import '../../styles/css/FormView.css';
 import PageNavigation from '../PageNavigation';
-import { GlobalContext } from '../App';
+import withGlobalContext from '../GlobalContextHOC';
 
 const EditProject = props => {
   const section = 'projects';
+  const { functions, urlParams } = props;
+  const { getSingle, updateSingle } = functions;
+  const currentItem = getSingle(section, urlParams.projects || urlParams.project) || {};
 
   const save = (item, update, event) => {
     event.preventDefault();
@@ -28,41 +31,32 @@ const EditProject = props => {
   const cancelLink = item => `/priority/${item.priority}/projects`;
 
   return (
-    <GlobalContext.Consumer>
-      {({ functions, urlParams }) => {
-        const { getSingle, updateSingle } = functions;
-        const currentItem = getSingle(section, urlParams.projects || urlParams.project) || {};
+    <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
+      <PageNavigation
+        back={['/priorities', 'Priorities']}
+        title='Edit Project'
+        add={[{ pathname: cancelLink(currentItem), state: { enter: 'enter-bottom' } }, '< Cancel >']}
 
-        return (
-          <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
-            <PageNavigation
-              back={['/priorities', 'Priorities']}
-              title='Edit Project'
-              add={[{ pathname: cancelLink(currentItem), state: { enter: 'enter-bottom' } }, '< Cancel >']}
-
-            />
-            <form
-              name='gform'
-              className='g-form'
-              onSubmit={save.bind(null, currentItem, updateSingle)}
-            >
-              <label htmlFor="title" className='center'>
-                What Project Will Contribute Most to this Priority?
+      />
+      <form
+        name='gform'
+        className='g-form'
+        onSubmit={save.bind(null, currentItem, updateSingle)}
+      >
+        <label htmlFor="title" className='center'>
+          What Project Will Contribute Most to this Priority?
           </label>
-              <input
-                type="text"
-                name="title"
-                autoComplete="off"
-                placeholder="Backyard BBQ/New Diet/Vacation..."
-                defaultValue={currentItem.title}
-              />
-              <input id='submit-button' type="submit" name="submit" value="Save" />
-            </form>
-          </div>
-        )
-      }}
-    </GlobalContext.Consumer>
-  );
+        <input
+          type="text"
+          name="title"
+          autoComplete="off"
+          placeholder="Backyard BBQ/New Diet/Vacation..."
+          defaultValue={currentItem.title}
+        />
+        <input id='submit-button' type="submit" name="submit" value="Save" />
+      </form>
+    </div>
+  )
 };
 
-export default withRouter(EditProject);
+export default withRouter(withGlobalContext(EditProject));

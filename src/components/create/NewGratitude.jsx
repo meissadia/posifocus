@@ -3,10 +3,12 @@ import { withRouter } from 'react-router-dom';
 
 import '../../styles/css/FormView.css';
 import { parseDate, dateInputDefault } from '../../lib/FormHelpers';
-import { GlobalContext } from '../App';
 import PageNavigation from '../PageNavigation';
+import withGlobalContext from '../GlobalContextHOC';
 
 const NewGratitude = props => {
+  const { functions } = props;
+
   const handleNewGratitude = (add, event) => {
     event.preventDefault();
     const date = new Date();
@@ -28,51 +30,45 @@ const NewGratitude = props => {
   const cancelLink = () => '/gratitudes';
 
   return (
-    <GlobalContext.Consumer>
-      {({ functions }) => {
-        return (
-          <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
-            <PageNavigation
-              back={['/', 'Dashboard']}
-              title='New Gratitude'
-              add={[{
-                pathname: cancelLink(),
-                state: { enter: 'enter-bottom' }
-              }, '< Cancel >']}
-            />
-            <form
-              name='gform'
-              className='g-form'
-              onSubmit={handleNewGratitude.bind(null, functions.addToStateArray)}
-            >
-              <label htmlFor="title" className='center'>
-                What Are You Grateful For Today?
+    <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
+      <PageNavigation
+        back={['/', 'Dashboard']}
+        title='New Gratitude'
+        add={[{
+          pathname: cancelLink(),
+          state: { enter: 'enter-bottom' }
+        }, '< Cancel >']}
+      />
+      <form
+        name='gform'
+        className='g-form'
+        onSubmit={handleNewGratitude.bind(null, functions.addToStateArray)}
+      >
+        <label htmlFor="title" className='center'>
+          What Are You Grateful For Today?
                 </label>
-              <input
-                type="text"
-                name="title"
-                autoComplete="off"
-                placeholder="Family / Clean Water / etc..."
-              />
-              <label htmlFor='content'>Notes:</label>
-              <textarea
-                name="content"
-                placeholder="My kids surprised me today by..."
-              />
-              <label htmlFor='date-input'>Date:</label>
-              <input
-                id='date-input'
-                type="date"
-                name="date"
-                defaultValue={dateInputDefault()}
-              />
-              <input id='submit-button' type="submit" name="submit" value="Save" />
-            </form>
-          </div>
-        );
-      }}
-    </GlobalContext.Consumer>
-  )
+        <input
+          type="text"
+          name="title"
+          autoComplete="off"
+          placeholder="Family / Clean Water / etc..."
+        />
+        <label htmlFor='content'>Notes:</label>
+        <textarea
+          name="content"
+          placeholder="My kids surprised me today by..."
+        />
+        <label htmlFor='date-input'>Date:</label>
+        <input
+          id='date-input'
+          type="date"
+          name="date"
+          defaultValue={dateInputDefault()}
+        />
+        <input id='submit-button' type="submit" name="submit" value="Save" />
+      </form>
+    </div>
+  );
 };
 
-export default withRouter(NewGratitude);
+export default withRouter(withGlobalContext(NewGratitude));

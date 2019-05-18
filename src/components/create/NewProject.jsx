@@ -2,10 +2,12 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 
 import '../../styles/css/FormView.css';
-import { GlobalContext } from '../App';
 import PageNavigation from '../PageNavigation';
+import withGlobalContext from '../GlobalContextHOC';
 
 const NewProject = props => {
+  const { functions, urlParams } = props;
+
   const handleNewProject = (add, event) => {
     event.preventDefault();
     const date = new Date();
@@ -30,38 +32,33 @@ const NewProject = props => {
   const cancelLink = url => url.slice(0, -4) || '/';
 
   return (
-    <GlobalContext.Consumer>
-      {({ functions, urlParams }) => (
-        <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
-          <PageNavigation
-            back={['/priorities', 'Priorities']}
-            title='New Project'
-            add={[{ pathname: cancelLink(urlParams.url), state: { enter: 'enter-left' } }, '< Cancel >']}
+    <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
+      <PageNavigation
+        back={['/priorities', 'Priorities']}
+        title='New Project'
+        add={[{ pathname: cancelLink(urlParams.url), state: { enter: 'enter-left' } }, '< Cancel >']}
 
-          />
-          <form
-            name='gform'
-            className='g-form'
-            onSubmit={handleNewProject.bind(null, functions.addToStateArray)}
-          >
-            <label htmlFor="title" className='center'>
-              What Project Will Contribute Most to this Priority?
+      />
+      <form
+        name='gform'
+        className='g-form'
+        onSubmit={handleNewProject.bind(null, functions.addToStateArray)}
+      >
+        <label htmlFor="title" className='center'>
+          What Project Will Contribute Most to this Priority?
               </label>
-            <input
-              type="text"
-              name="title"
-              autoComplete="off"
-              placeholder="Backyard BBQ/New Diet/Vacation..."
-            />
-            <input name="priority" value={urlParams.priority} hidden readOnly />
-            <input name="url" value={urlParams.url} hidden readOnly />
-            <input id='submit-button' type="submit" name="submit" value="Save" />
-          </form>
-        </div>
-      )
-      }
-    </GlobalContext.Consumer>
-  );
+        <input
+          type="text"
+          name="title"
+          autoComplete="off"
+          placeholder="Backyard BBQ/New Diet/Vacation..."
+        />
+        <input name="priority" value={urlParams.priority} hidden readOnly />
+        <input name="url" value={urlParams.url} hidden readOnly />
+        <input id='submit-button' type="submit" name="submit" value="Save" />
+      </form>
+    </div>
+  )
 };
 
-export default withRouter(NewProject);
+export default withRouter(withGlobalContext(NewProject));

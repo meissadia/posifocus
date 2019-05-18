@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../styles/css/StatBar.css';
-import { GlobalContext } from '../App';
+import withGlobalContext from '../GlobalContextHOC';
 
 const calcStats = state => {
   const gratitudeCount = state.gratitudes.length;
@@ -10,7 +10,7 @@ const calcStats = state => {
   return [gratitudeCount, doneTaskCount, lastContact];
 }
 
-const StatBlock = (props) => (
+const StatBlock = props => (
   <div>
     <ul className='stat-block'>
       <li className='stat-block-line'><span>{props.count}</span></li>
@@ -23,29 +23,25 @@ const StatBlock = (props) => (
 /**
  * Display User Statistics
  */
-const StatBar = () => (
-  <GlobalContext.Consumer>
-    {({ state }) => {
-      const [gratitudeCount, doneTaskCount, lastContact] = calcStats(state);
-      return (
-        <section className='stat-bar'>
-          <StatBlock
-            count={gratitudeCount}
-            line1='GRATITUDES'
-            line2='LISTED' />
-          <StatBlock
-            count={doneTaskCount}
-            line1='TASKS'
-            line2='COMPLETED' />
-          <StatBlock
-            count={lastContact}
-            line1='DAYS SINCE'
-            line2='LAST CONTACT' />
-        </section>
-      )
-    }}
-  </GlobalContext.Consumer>
-);
+const StatBar = props => {
+  const [gratitudeCount, doneTaskCount, lastContact] = calcStats(props.state);
+  return (
+    <section className='stat-bar'>
+      <StatBlock
+        count={gratitudeCount}
+        line1='GRATITUDES'
+        line2='LISTED' />
+      <StatBlock
+        count={doneTaskCount}
+        line1='TASKS'
+        line2='COMPLETED' />
+      <StatBlock
+        count={lastContact}
+        line1='DAYS SINCE'
+        line2='LAST CONTACT' />
+    </section>
+  )
+}
 
 /**
 /* Adapted from:
@@ -72,7 +68,4 @@ let daysSinceContact = (contacts) => {
   return diff;
 }
 
-
-StatBar.contextType = GlobalContext;
-
-export default StatBar;
+export default withGlobalContext(StatBar);

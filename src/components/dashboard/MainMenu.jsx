@@ -1,7 +1,6 @@
 import React from 'react';
 import MenuItem from './MenuItem';
 import Submenu from './MenuSubmenu';
-import { GlobalContext } from '../App';
 
 import '../../styles/css/MainMenu.css';
 import gratitudesIcon from '../../images/gratitudes@2x.png';
@@ -10,56 +9,52 @@ import tasksIcon from '../../images/tasks.svg';
 import relationshipsIcon from '../../images/relationships.svg';
 import settingsIcon from '../../images/settings.svg';
 
-const MainMenu = () => {
+import withGlobalContext from '../GlobalContextHOC';
 
-  return <GlobalContext.Consumer>
-    {({ state }) => {
-      const projectCount = state.projects.length;
-      const taskCount = state.tasks.length;
-      
-      return (
-        <div id='main-menu'>
-          <MenuItem
-            icon={gratitudesIcon}
-            title='Gratitudes'
-            tagline='Because Grateful People Are Happy'
-            link='/gratitudes'
-          />
-          <MenuItem
-            icon={prioritiesIcon}
-            title='Priorities'
-            tagline='The Most Important Aspects of Your Life'
-            link='/priorities'
-          >
-            <Submenu
-              projCount={projectCount}
-              taskCount={taskCount}
-            />
-          </MenuItem>
-          <MenuItem
-            icon={relationshipsIcon}
-            title='Relationships'
-            tagline='Forget Stocks. Invest in People.'
-            link='/relationships'
-          />
-          <MenuItem
-            icon={tasksIcon}
-            title="Today's Tasks"
-            tagline='Stay Focused, Make an Impact'
-            link='/tasks/today'
-          />
-          <MenuItem
-            icon={settingsIcon}
-            title="Settings"
-            tagline='Cloud Sync'
-            link='/settings'
-          />
-        </div>
-      )
-    }}
-  </GlobalContext.Consumer>
+const MainMenu = props => {
+  const { state } = props;
+  const projectCount = state.projects.length;
+  const taskCount = state.tasks.length;
 
+  return (
+    <div id='main-menu'>
+      <MenuItem
+        icon={gratitudesIcon}
+        title='Gratitudes'
+        tagline='Because Grateful People Are Happy'
+        link='/gratitudes'
+      />
+      <MenuItem
+        icon={prioritiesIcon}
+        title='Priorities'
+        tagline='The Most Important Aspects of Your Life'
+        link='/priorities'
+      >
+        <Submenu
+          projCount={projectCount}
+          taskCount={taskCount}
+        />
+      </MenuItem>
+      <MenuItem
+        icon={relationshipsIcon}
+        title='Relationships'
+        tagline='Forget Stocks. Invest in People.'
+        link='/relationships'
+      />
+      <MenuItem
+        icon={tasksIcon}
+        title="Today's Tasks"
+        tagline='Stay Focused, Make an Impact'
+        link='/tasks/today'
+      />
+      <MenuItem
+        icon={settingsIcon}
+        title="Settings"
+        tagline='Cloud Sync'
+        link='/settings'
+      />
+    </div>
+  );
 }
 
-MainMenu.contextType = GlobalContext;
-export default MainMenu;
+export default withGlobalContext(MainMenu);

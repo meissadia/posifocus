@@ -1,8 +1,9 @@
 import React from 'react';
 import blankUser from '../../images/blank-user.png';
-import { GlobalContext } from '../App';
+import withGlobalContext from '../GlobalContextHOC';
 
-const UserImage = () => {
+const UserImage = props => {
+  const { functions, state } = props;
   const fileReference = React.createRef();
 
   /**
@@ -35,36 +36,28 @@ const UserImage = () => {
     }
   }
 
-  return (
-    <GlobalContext.Consumer>
-      {({ state, functions }) => {
-        const { user_image } = state.userHeader;
-        const update = functions.updateUserHeader;
+  const { user_image } = state.userHeader;
+  const update = functions.updateUserHeader;
 
-        return (
-          <div className='flex column user-image-wrapper'>
-            <label htmlFor='fileInput'>
-              <img
-                id='userImage'
-                className='user-image'
-                src={user_image || blankUser}
-                alt="User Avatar" />
-            </label>
-            <input
-              id='fileInput'
-              type="file"
-              name="fileInput"
-              ref={fileReference}
-              onChange={handleFileChange.bind(null, update)}
-              accept='image/*'
-              hidden />
-          </div>
-        )
-      }
-      }
-    </GlobalContext.Consumer>
+  return (
+    <div className='flex column user-image-wrapper'>
+      <label htmlFor='fileInput'>
+        <img
+          id='userImage'
+          className='user-image'
+          src={user_image || blankUser}
+          alt="User Avatar" />
+      </label>
+      <input
+        id='fileInput'
+        type="file"
+        name="fileInput"
+        ref={fileReference}
+        onChange={handleFileChange.bind(null, update)}
+        accept='image/*'
+        hidden />
+    </div>
   )
 }
 
-UserImage.contextType = GlobalContext;
-export default UserImage;
+export default withGlobalContext(UserImage);
