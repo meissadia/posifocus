@@ -68,4 +68,7 @@ let daysSinceContact = (contacts) => {
   return diff;
 }
 
-export default withGlobalContext(StatBar);
+const ConnectedStatBar = withGlobalContext(StatBar);
+ConnectedStatBar.displayName = 'ConnectedStatBar';
+
+export default ConnectedStatBar;

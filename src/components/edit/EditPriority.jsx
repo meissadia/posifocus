@@ -8,7 +8,7 @@ import withGlobalContext from '../GlobalContextHOC';
 const EditPriority = props => {
   const section = 'priorities';
   const { getSingle, updateSingle } = props.functions;
-  const currentItem = getSingle('priorities', props.pid) || {};
+  const currentItem = getSingle('priorities', props.urlParams.priorities) || {};
 
   const save = (item, update, event) => {
     event.preventDefault();

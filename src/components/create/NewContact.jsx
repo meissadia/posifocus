@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import '../../styles/css/FormView.css';
 import { parseDate, dateInputDefault } from '../../lib/FormHelpers';
 import PageNavigation from '../PageNavigation';
-import withGlobalContext from '../GlobalContextHOC';
+import { withGlobalContext } from '../GlobalContextHOC';
 
 const NewContact = props => {
   const { functions, urlParams } = props;

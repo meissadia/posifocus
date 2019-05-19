@@ -4,62 +4,20 @@ import { mount } from 'enzyme';
 import { get } from 'lodash';
 import { JSDOM } from 'jsdom';
 
-import { InitTestState } from '../lib/InitTestState';
+import {
+  CustomMatchers, InitTestState,
+  navigateToUrl, readAppStateByKey, readPathVars,
+} from '../lib/TestHelpers';
+import { addVars } from '../lib/Helpers';
 import App from './App';
 
-/** Jest: Custom matcher to get more informative error message **/
-expect.extend({
-  toRender(wrapper, component) {
-    const pass = wrapper.find(component).length >= 1
-    if (pass) return { pass: true };
-    else {
-      return {
-        message: () => `Component { ${component} } was not rendered`,
-        pass: false,
-      };
-    }
-  },
-});
+expect.extend(CustomMatchers); // Add custom assertions
 
 /** Helper Methods **/
 const buildWrapper = ({ path }) => mount(
   <MemoryRouter initialEntries={[path || '/']}>
     <App />
   </MemoryRouter>
-);
-
-const navigateToUrl = (wrapper, url) => {
-  wrapper.find('Router').props().history.push(url);
-  wrapper.update();
-}
-const readAppStateByKey = (wrapper, key) => wrapper.find('App').state(key);
-const getAppState = wrapper => wrapper.find('App').state();
-const print = wrapper => console.log(wrapper.debug());
-const readWrapperPathVars = wrapper => {
-  const keys = ['gratitudes', 'priorities', 'projects', 'tasks', 'relationships', 'contacts'];
-  const vars = {}
-  keys.forEach(x => {
-    vars[x] = get(readAppStateByKey(wrapper, x)[0], 'id')
-  });
-  return vars;
-};
-const readPathVars = state => {
-  const keys = ['gratitudes', 'priorities', 'projects', 'tasks', 'relationships', 'contacts'];
-  const vars = {}
-  keys.forEach(x => {
-    vars[x] = state[x][0] && state[x][0].id
-  });
-  return vars;
-}
-
-/* Inject path with test-generated values */
-const addVars = (path, vars) => (
-  path.split('/')
-    .map(part => {
-      if (!part.includes(':')) return part;
-      return vars[part.replace(':', '')]
-    })
-    .join('/')
 );
 
 describe('App', () => {

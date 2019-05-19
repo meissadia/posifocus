@@ -3,28 +3,29 @@ import { withRouter } from 'react-router-dom';
 
 import '../../styles/css/ListViews.css'
 import PageNavigation from '../PageNavigation';
+import withGlobalContext from '../GlobalContextHOC';
 import List from './List';
 import ListHOC from './ListHOC';
-import withGlobalContext from '../GlobalContextHOC';
 
 import NewRelationship from '../../components/create/NewRelationship';
 import EditRelationship from '../../components/edit/EditRelationship';
 
 const Relationships = props => {
-  const getId = () => props.location.pathname.split('/')[2];
+  const { isNew, isEdit } = props;
 
-  if (props.isNew(props)) return <NewRelationship />
-  if (props.isEdit(props)) return <EditRelationship rid={getId()} />
+  if (isNew(props)) return <NewRelationship />
+  if (isEdit(props)) return <EditRelationship />
 
+  const { sectionTitle, data, destroy, showEditor, location, } = props;
   return (
-    <List section={props.sectionTitle}
+    <List section={sectionTitle}
       className='route-transition exit-right'
-      instructions={{ display: props.data.length === 0 }}
-      data={props.data}
-      delete={props.destroy}
-      edit={props.showEditor}
+      instructions={{ display: data.length === 0 }}
+      data={data}
+      delete={destroy}
+      edit={showEditor}
       makeLink={item => (`/relationship/${item.id}/contacts`)}
-      location={props.location}
+      location={location}
       itemType='deep'
     >
       <PageNavigation
@@ -36,8 +37,4 @@ const Relationships = props => {
   );
 };
 
-export default withRouter(
-  withGlobalContext(
-    ListHOC(Relationships, 'relationships')
-  )
-);
+export default withRouter(withGlobalContext(ListHOC(Relationships, 'relationships')));

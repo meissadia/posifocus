@@ -1,10 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import ListIcon from './ListIcon';
-import ToggleItem from './ToggleItem';
-import editIcon from '../../images/edit.svg';
+
 import deleteIcon from '../../images/delete.svg';
+import editIcon from '../../images/edit.svg';
 import Colors, { Color } from '../../lib/Colors'
+
+import ToggleItem from './ToggleItem';
+import ListIcon from './ListIcon';
 
 const ListItem = props => {
   const {
@@ -82,7 +84,7 @@ const ListItem = props => {
 
 const ItemField = props => {
   let value = props.item[props.target];
-  if (value === null) return null;
+  if (value === null) return value;
 
   // Boolean field?
   if (props.boolean) {

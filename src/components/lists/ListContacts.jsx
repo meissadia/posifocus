@@ -11,10 +11,10 @@ import ListHOC from './ListHOC';
 import withGlobalContext from '../GlobalContextHOC';
 
 const Contacts = props => {
-  const { urlParams } = props;
+  const { urlParams, isNew, isEdit } = props;
 
-  if (props.isNew(props)) return <NewContact />;
-  if (props.isEdit(props)) return <EditContact cid={urlParams.contacts} />;
+  if (isNew(props)) return <NewContact />;
+  if (isEdit(props)) return <EditContact />;
 
   const navTitle = parent => {
     if (parent) return parent.title + ' Contacts';
@@ -47,8 +47,4 @@ const Contacts = props => {
   );
 }
 
-export default withRouter(
-  withGlobalContext(
-    ListHOC(Contacts, 'contacts')
-  )
-);
+export default withRouter(withGlobalContext(ListHOC(Contacts, 'contacts')));

@@ -1,22 +1,31 @@
-import React  from 'react';
+import React from 'react';
 import Toggle from 'react-toggle';
 import '../../styles/css/ReactToggle.css';
 
-export default function ToggleItem(props) {
-  let value = props.item[props.target];
-  if(value == null) { return null };
-  let key = props.target + '_' + props.item.id;
-  return(
+const ToggleItem = props => {
+  const { item, target, toggle, label } = props;
+  const value = item[target];
+  const key = target + '_' + item.id;
+
+  /**
+   *  Check for `undefined`, instead of `!value` 
+   *  since value can equal `false`. 
+   **/
+  if (value === undefined) return null;
+
+  return (
     <div className='toggle-item'>
       <label htmlFor={key}>
-        {props.label}
+        {label}
       </label>
       <Toggle
         id={key}
-        name={props.item.id}
+        name={item.id}
         defaultChecked={value}
-        onChange={props.toggle}
-        />
+        onChange={toggle}
+      />
     </div>
-  )
-}
+  );
+};
+
+export default ToggleItem;

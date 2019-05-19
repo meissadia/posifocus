@@ -9,7 +9,7 @@ const EditProject = props => {
   const section = 'projects';
   const { functions, urlParams } = props;
   const { getSingle, updateSingle } = functions;
-  const currentItem = getSingle(section, urlParams.projects || urlParams.project) || {};
+  const currentItem = getSingle(section, urlParams.projects) || {};
 
   const save = (item, update, event) => {
     event.preventDefault();

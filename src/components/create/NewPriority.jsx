@@ -5,7 +5,7 @@ import '../../styles/css/FormView.css';
 import withGlobalContext from '../GlobalContextHOC';
 
 const NewPriority = props => {
-  const { functions, urlParams } = props;
+  const { functions } = props;
 
   const handleAddPriority = (add, event) => {
     event.preventDefault();

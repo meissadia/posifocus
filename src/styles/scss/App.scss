@@ -1,96 +1,106 @@
-@import 'Reset.sass';
-@import '_basics.sass';
+@import "Reset.sass";
+@import "_basics.sass";
 
 #App {
-  font-family: Helvetica, sans-serif;
-  font-size: calc(14px + 1 * ((100vw - 400px) / 800));
-  font-weight: lighter;
-  width: 100%;
-  min-height: 100vh;
-  color: white;
-  transition: background $transition-length;
-  &.gratitudes {
-    background: $gratitudes;
-  }
-  &.priorities {
-    background: $priorities;
-  }
-  &.relationships {
-    background: $relationships;
-  }
-  &.today {
-    background: $today;
-  }
-  &.projects {
-    background: $projects;
-  }
-  &.contacts {
-    background: $contacts;
-  }
-  &.tasks {
-    background: $tasks;
-  }
-  &.settings,
-  &.credits {
-    background: $settings;
-  }
-
-  header {
-    height: 47px;
-    // padding-top: 25px;
-    border-bottom: 1px solid rgba(0, 0, 0, .2);
-    text-align: center;
-    width: 100vw;
-  }
-
-  a {
-    text-decoration: none;
+    font-family: Helvetica, sans-serif;
+    font-size: calc(14px + 1 * ((100vw - 400px) / 800));
+    font-weight: lighter;
+    width: 100%;
+    min-height: 100vh;
     color: white;
-  }
+    transition: background $transition-length;
 
-  .app-logo {
-    width: 150px;
-  }
+    &.gratitudes {
+        background: $gratitudes;
+    }
+
+    &.priorities {
+        background: $priorities;
+    }
+
+    &.relationships {
+        background: $relationships;
+    }
+
+    &.today {
+        background: $today;
+    }
+
+    &.projects {
+        background: $projects;
+    }
+
+    &.contacts {
+        background: $contacts;
+    }
+
+    &.tasks {
+        background: $tasks;
+    }
+
+    &.settings,
+    &.credits {
+        background: $settings;
+    }
+
+    header {
+        // padding-top: 25px;
+        height: 47px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        text-align: center;
+        width: 100vw;
+    }
+
+    a {
+        text-decoration: none;
+        color: white;
+    }
+
+    .app-logo {
+        width: 150px;
+    }
 }
 
 #app-version {
-  color: white;
-  font-size: 14px;
-  width: 100%;
-  font-family: Times;
-  font-weight: lighter;
-  text-align: center;
-  padding: 10px 0;
+    color: white;
+    font-size: 14px;
+    width: 100%;
+    font-family: Times;
+    font-weight: lighter;
+    text-align: center;
+    padding: 10px 0;
 }
 
 .flex {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  &.column {
-    flex-flow: column wrap;
-  }
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+
+    &.column {
+        flex-flow: column wrap;
+    }
 }
 
 .invert {
-  filter: invert(1);
+    filter: invert(1);
 }
 
 .uninvert {
-  filter: invert(0);
+    filter: invert(0);
 }
 
 ::-webkit-input-placeholder { /* Chrome */
-  color: white;
+    color: white;
 }
 
 ::-moz-placeholder { /* Firefox 19+ */
-  color: white;
-  opacity: 1;
+    color: white;
+    opacity: 1;
 }
+
 :-moz-placeholder { /* Firefox 4 - 18 */
-  color: white;
-  opacity: 1;
+    color: white;
+    opacity: 1;
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -111,6 +121,14 @@
     opacity: 1;
 }
 
-:focus::-webkit-input-placeholder { color:transparent; }
-:focus:-moz-placeholder { color:transparent; }
-:focus::placeholder { color:transparent; }
+:focus::-webkit-input-placeholder {
+    color: transparent;
+}
+
+:focus:-moz-placeholder {
+    color: transparent;
+}
+
+:focus::placeholder {
+    color: transparent;
+}

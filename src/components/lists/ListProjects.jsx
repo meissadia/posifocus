@@ -10,14 +10,14 @@ import ListHOC from './ListHOC';
 import withGlobalContext from '../GlobalContextHOC';
 
 const Projects = props => {
-  const urlParams = props.urlParams;
+  const { isNew, isEdit, urlParams } = props;
 
-  if (props.isNew(props)) return <NewProject />;
-  if (props.isEdit(props)) return <EditProject cid={urlParams.project} />;
+  if (isNew(props)) return <NewProject />;
+  if (isEdit(props)) return <EditProject />;
 
   const navTitle = (parent) => {
-    if (parent) { return parent.title + ' Projects' }
-    return 'Projects'
+    if (!parent || !parent.title) return 'Projects';
+    return `${parent.title} Projects`;
   }
 
   const { deleteProject, getSingle, getProjects } = props.functions;
@@ -45,8 +45,4 @@ const Projects = props => {
   )
 }
 
-export default withRouter(
-  withGlobalContext(
-    ListHOC(Projects, 'projects')
-  )
-);
+export default withRouter(withGlobalContext(ListHOC(Projects, 'projects')));

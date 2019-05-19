@@ -2,78 +2,62 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 
 import '../../styles/css/ListViews.css'
-import PageNavigation from '../PageNavigation';
+import { parseUrl, addVars } from '../../lib/Helpers';
+import TodaysTasks from '../lists/ListTodaysTasks';
 import NewTask from '../create/NewTask';
 import EditTask from '../edit/EditTask';
-import List from './List';
-import ListHOC from './ListHOC';
 import withGlobalContext from '../GlobalContextHOC';
-import TodaysTasks from '../lists/ListTodaysTasks';
-
+import PageNavigation from '../PageNavigation';
+import ListHOC from './ListHOC';
+import List from './List';
 
 const Tasks = props => {
-  const { urlParams } = props;
 
-  if (props.isToday(props))
-    return <TodaysTasks />;
-  if (props.isNew(props))
-    return <NewTask />;
-  if (props.isEdit(props))
-    return <EditTask tid={urlParams.tasks} />;
+  const { isToday, isNew, isEdit } = props;
+  const params = parseUrl(props.location.pathname);
 
+  if (isToday(props)) return <TodaysTasks />;
+  if (isNew(props)) return <NewTask />;
+  if (isEdit(props)) return <EditTask />;
 
-  const navTitle = (project) => {
-    const val = 'Tasks';
-    if (project) { return project.title + ' Tasks' }
-    return val;
-  }
+  const navTitle = project => (project ? `${project.title} Tasks` : 'Tasks');
 
-  const navBackText = (priority) => {
-    if (priority) { return priority.title }
-    return 'Projects'
-  }
+  const navBackText = priority => (priority ? priority.title : 'Projects');
 
-  const navBackLink = location => {
-    return '/' + location.pathname.split('/').slice(2, 5).join('/')
-  }
+  const navBackLink = () => addVars(`/priority/:priority/projects`, params);
 
-  // Override props.showEditor
+  /* Override props.showEditor */
   function showEditor(event) {
     const id = event.target.attributes.jsvalue.value;
-    const parts = props.location.pathname.split('/');
-    const url = `/${parts[1]}/${id}/${parts.slice(2).join('/')}/edit`;
+    const url = addVars(`/tasks/${id}/priority/:priority/projects/:projects/edit`, params)
     props.history.push(url);
   };
 
+  const { sectionTitle, destroy, functions, location, urlParams } = props;
+  const { getTasks, getSingle, taskToggle, deleteFromStateArray } = functions;
 
-  const { getTasks, getSingle, taskToggle, deleteFromStateArray } = props.functions;
   const project = getSingle('projects', urlParams.projects);
   const priority = project && getSingle('priorities', project.priority)
   const tasks = getTasks(urlParams.projects);
 
   return (
-    <List section={props.sectionTitle}
+    <List section={sectionTitle}
       className='route-transition exit-right'
       data={tasks}
       instructions={{ display: tasks.length === 0 }}
-      delete={props.destroy.bind(deleteFromStateArray)}
+      delete={destroy.bind(deleteFromStateArray)}
       edit={showEditor}
       toggle={taskToggle.bind(null, getSingle)}
-      match={props.match}
-      location={props.location}
+      location={location}
       itemType='task'
     >
       <PageNavigation
-        back={[navBackLink(props.location), navBackText(priority)]}
+        back={[navBackLink(location), navBackText(priority)]}
         title={navTitle(project)}
-        add={[`${props.location.pathname}/new`]}
+        add={[`${location.pathname}/new`]}
       />
     </List>
   );
 }
 
-export default withRouter(
-  withGlobalContext(
-    ListHOC(Tasks, 'tasks')
-  )
-);
+export default withRouter(withGlobalContext(ListHOC(Tasks, 'tasks')));

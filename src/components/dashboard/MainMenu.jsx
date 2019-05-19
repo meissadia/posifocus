@@ -57,4 +57,7 @@ const MainMenu = props => {
   );
 }
 
-export default withGlobalContext(MainMenu);
+const ConnectedMainMenu = withGlobalContext(MainMenu);
+ConnectedMainMenu.displayName = 'ConnectedMainMenu';
+
+export default ConnectedMainMenu;

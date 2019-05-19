@@ -8,26 +8,26 @@ import ListHOC from './ListHOC';
 import withGlobalContext from '../GlobalContextHOC';
 
 const TodaysTasks = props => {
-
   if (props.isEdit(props)) return <EditTask todays={true} />
+
+  const { data, functions, location, sectionTitle, showEditor, } = props;
+  const { deleteFromStateArray, taskToggle, getSingle } = functions;
+  const tasks = data.filter(task => task.today);
 
   const deleteHandler = (deleter, event) => {
     event.preventDefault();
     deleter('tasks', event.target.attributes.jsvalue.value);
   }
 
-  const { deleteFromStateArray, taskToggle, getSingle } = props.functions;
-  const tasks = props.data.filter(task => task.today);
-
   return (
-    <List section={props.sectionTitle}
+    <List section={sectionTitle}
       className='route-transition exit-right'
       instructions={{ display: tasks.length === 0 }}
       data={tasks}
       delete={deleteHandler.bind(null, deleteFromStateArray)}
-      edit={props.showEditor}
+      edit={showEditor}
       toggle={taskToggle.bind(null, getSingle)}
-      location={props.location}
+      location={location}
       itemType='task'
     >
       <PageNavigation
@@ -38,8 +38,4 @@ const TodaysTasks = props => {
   );
 }
 
-export default withRouter(
-  withGlobalContext(
-    ListHOC(TodaysTasks, 'todays')
-  )
-);
+export default withRouter(withGlobalContext(ListHOC(TodaysTasks, 'todays')));

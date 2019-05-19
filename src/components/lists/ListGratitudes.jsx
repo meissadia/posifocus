@@ -11,10 +11,10 @@ import ListHOC from './ListHOC';
 import withGlobalContext from '../GlobalContextHOC';
 
 const Gratitudes = props => {
-  const getId = () => props.location.pathname.split('/')[2];
+  const { isNew, isEdit } = props;
 
-  if (props.isNew(props)) return <NewGratitude />;
-  if (props.isEdit(props)) return <EditGratitude gid={getId()} />;
+  if (isNew(props)) return <NewGratitude />;
+  if (isEdit(props)) return <EditGratitude />;
 
   return (
     <List section={props.sectionTitle}

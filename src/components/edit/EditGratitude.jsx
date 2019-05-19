@@ -12,7 +12,8 @@ import PageNavigation from '../PageNavigation';
  */
 const EditGratitude = props => {
   const { getSingle, updateSingle } = props.functions;
-  const currentItem = getSingle('gratitudes', props.gid) || {};
+  const currentItem = getSingle('gratitudes', props.urlParams.gratitudes) || {};
+
   /**
    * Update state with changes
    * @param {String} itemId 

@@ -30,3 +30,13 @@ export const parseUrl = str => {
 
   return result;
 };
+
+/* Inject path with test-generated values */
+export const addVars = (path, vars) => (
+  path.split('/')
+    .map(part => {
+      if (!part.includes(':')) return part;
+      return vars[part.replace(':', '')]
+    })
+    .join('/')
+);

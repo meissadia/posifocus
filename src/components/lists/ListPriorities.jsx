@@ -10,10 +10,10 @@ import NewPriority from '../../components/create/NewPriority';
 import EditPriority from '../../components/edit/EditPriority';
 
 const Priorities = props => {
-  const getId = () => props.location.pathname.split('/')[2];
+  const { isNew, isEdit } = props;
 
-  if (props.isNew(props)) return <NewPriority />
-  if (props.isEdit(props)) return <EditPriority pid={getId()} />
+  if (isNew(props)) return <NewPriority />
+  if (isEdit(props)) return <EditPriority />
 
   return (
     <List section={props.sectionTitle}
@@ -35,8 +35,4 @@ const Priorities = props => {
   );
 }
 
-export default withRouter(
-  withGlobalContext(
-    ListHOC(Priorities, 'priorities')
-  )
-);
+export default withRouter(withGlobalContext(ListHOC(Priorities, 'priorities')));

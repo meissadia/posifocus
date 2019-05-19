@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/css/OrderableList.css';
+import '../../styles/css/OrderableList.css';
 /**
  * 
  * Wow, took a lot of searching to find a way to get jQuery and jQuery-ui imported...
@@ -18,7 +18,7 @@ require('jquery-ui/ui/widgets/sortable');
 class OrderableList extends React.Component {
     constructor(props) {
         super(props);
-        this.defaultItems = [1,2,3];
+        this.defaultItems = [1, 2, 3];
         this.items = props.items || this.defaultItems;
     }
 

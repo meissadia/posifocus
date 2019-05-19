@@ -2,7 +2,7 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { shallow, mount } from 'enzyme';
 import Settings from './Settings';
-import { GlobalContext } from '../App';
+import { GlobalContext } from '../GlobalContextHOC';
 
 const providerValue = {
     state: {

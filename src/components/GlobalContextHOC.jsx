@@ -1,11 +1,15 @@
 import React from 'react';
-import { GlobalContext } from './App';
+
+export const GlobalContext = React.createContext({
+    state: {},
+    functions: {}
+});
 
 /**
  * Simplify tapping into GlobalContext
  * @param {Component} WrappedComponent
  */
-const withGlobalContext = WrappedComponent => {
+export const withGlobalContext = WrappedComponent => {
     return class extends React.Component {
         render = () => (
             <GlobalContext.Consumer>

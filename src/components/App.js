@@ -7,27 +7,23 @@ import * as State from '../lib/AppState';
 import '../lib/Helpers';
 import '../styles/css/App.css';
 import '../styles/css/RouteTransitions.css';
-
+import { parseUrl } from '../lib/Helpers';
 import { firebase } from './firebase';
 import { Path } from './Path';
+import { GlobalContext } from './GlobalContextHOC';
+
 import AppFrame from './AppFrame';
 import AppHeader from './AppHeader';
 import Contacts from './lists/ListContacts';
 import Dashboard from './dashboard/Dashboard';
 import Gratitudes from './lists/ListGratitudes';
 import NotificationBar from './notifications/NotificationBar';
-import OrderableList from './OrderableList';
+import OrderableList from './experiments/OrderableList';
 import Priorities from './lists/ListPriorities';
 import Projects from './lists/ListProjects';
 import Relationships from './lists/ListRelationships';
 import Settings from './settings/Settings';
 import Tasks from './lists/ListTasks';
-import { parseUrl } from '../lib/Helpers';
-
-export const GlobalContext = React.createContext({
-  state: {},
-  functions: {}
-});
 
 class App extends Component {
   constructor(props) {
@@ -125,20 +121,12 @@ class App extends Component {
               timeout={250}
             >
               <Switch location={location}>
-                <GlobalContext.Provider
-                  value={this.updatedGlobalContext({
+                <GlobalContext.Provider value={
+                  this.updatedGlobalContext({
                     location,
                     urlParams: parseUrl(location.pathname),
                   })}
                 >
-                  {/*************** Test OrderableList Route ***************/}
-                  <Route exact path={Path.OrderableList} component={OrderableList} />
-                  {/* Component design notes:
-                    • Create a Test<OrderableList|T> component that reads test data 
-                      from an external source but will utilize name matched prop data
-                      when present.
-                  */}
-
                   <Route exact path={Path.Dashboard} component={Dashboard} />
                   <Route path={Path.Settings} component={Settings} />
                   <Route path={Path.Gratitudes} component={Gratitudes} />
@@ -147,6 +135,14 @@ class App extends Component {
                   <Route path={Path.Tasks} component={Tasks} />
                   <Route path={Path.Projects} component={Projects} />
                   <Route path={Path.Contacts} component={Contacts} />
+
+                  {/*************** Test OrderableList Route ***************/}
+                  <Route exact path={Path.OrderableList} component={OrderableList} />
+                  {/* Component design notes:
+                    • Create a Test<OrderableList|T> component that reads test data 
+                      from an external source but will utilize name matched prop data
+                      when present.
+                  */}
                 </GlobalContext.Provider>
               </Switch>
             </CSSTransition>

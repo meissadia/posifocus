@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import UserHeader from './UserHeader';
-import { GlobalContext } from '../../components/App';
+import { GlobalContext } from '../GlobalContextHOC';
 
 
 const baseData = {
@@ -18,7 +18,7 @@ const userContext = {
 
 const providerValue = {
     state: {
-        userHeader: {...userContext},
+        userHeader: { ...userContext },
     },
     functions: {
         updateUserHeader: jest.fn()
@@ -27,16 +27,16 @@ const providerValue = {
 
 describe('UserHeader', () => {
     it('renders', () => {
-        shallow(<UserHeader data={baseData}/>);
+        shallow(<UserHeader data={baseData} />);
     });
 
     it('gets data from Context', () => {
         const wrapper = mount(
-                <GlobalContext.Provider value={providerValue}>
-                    <UserHeader />
-                </GlobalContext.Provider>
+            <GlobalContext.Provider value={providerValue}>
+                <UserHeader />
+            </GlobalContext.Provider>
         );
-        
+
         expect(wrapper.find('#userImage').prop('src')).toBe('context_user_image');
         expect(wrapper.find('#userText input').prop('value')).toBe('context_user_name');
         expect(wrapper.find('#userText textarea').prop('value')).toBe('context_user_tagline');
