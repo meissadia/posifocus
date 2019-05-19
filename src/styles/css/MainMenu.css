@@ -7,7 +7,7 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   padding: 5px 0; }
   .menu-item-link:hover {
-    transition: background 0.25s;
+    transition: background 0.35s;
     background: rgba(0, 0, 0, 0.2); }
   .menu-item-link .menu-item {
     justify-content: center;
@@ -63,5 +63,3 @@
     max-width: 25px;
     max-height: 25px;
     margin-right: 10px; }
-
-/*# sourceMappingURL=MainMenu.css.map */

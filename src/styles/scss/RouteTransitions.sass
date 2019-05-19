@@ -1,16 +1,16 @@
 @import basics
 
 .route-transition
-    width: 100vw
+    width: 100%
     transition-property: left, top, right, bottom, opacity
     transition-duration: $transition-length
-    transition-timing-function: ease-in-out
+    transition-timing-function: linear
     transform: translateZ(0)
 
 .enter-left
     &.route-transition-enter
         position: absolute
-        left: -100vw
+        left: -100%
         opacity: 0
 
     &.route-transition-enter-active
@@ -24,13 +24,13 @@
         opacity: 1
 
     &.route-transition-exit-active
-        left: -100vw
+        left: -100%
         opacity: 0
 
 .enter-right
     &.route-transition-enter
         position: absolute
-        right: -100vw
+        right: -100%
         opacity: 0
 
     &.route-transition-enter-active
@@ -48,7 +48,7 @@
 .enter-bottom
     &.route-transition-enter
         position: absolute
-        top: 100vw
+        top: 100%
         opacity: 0
 
     &.route-transition-enter-active
@@ -62,5 +62,5 @@
         opacity: 1
 
     &.route-transition-exit-active
-        top: 100vw
+        top: 100%
         opacity: 0

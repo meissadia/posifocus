@@ -43,12 +43,12 @@ table {
 
 #App {
   font-family: Helvetica, sans-serif;
-  font-size: calc(14px + 1 * ((100vw - 400px) / 800));
+  font-size: calc(14px + 1 * ((100% - 400px) / 800));
   font-weight: lighter;
   width: 100%;
   min-height: 100vh;
   color: white;
-  transition: background 0.25s; }
+  transition: background 0.35s; }
   #App.gratitudes {
     background: rgba(0, 150, 235, 0.6); }
   #App.priorities {
@@ -68,8 +68,7 @@ table {
   #App header {
     height: 47px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-    text-align: center;
-    width: 100vw; }
+    text-align: center; }
   #App a {
     text-decoration: none;
     color: white; }
@@ -116,18 +115,18 @@ table {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: white;
   opacity: 1;
-  transition: color 0.25s; }
+  transition: color 0.35s; }
 
 :-ms-input-placeholder {
   /* Internet Explorer 10-11 */
   color: white;
-  transition: color 0.25s;
+  transition: color 0.35s;
   opacity: 1; }
 
 ::-ms-input-placeholder {
   /* Microsoft Edge */
   color: white;
-  transition: color 0.25s;
+  transition: color 0.35s;
   opacity: 1; }
 
 :focus::-webkit-input-placeholder {
@@ -138,5 +137,3 @@ table {
 
 :focus::placeholder {
   color: transparent; }
-
-/*# sourceMappingURL=App.css.map */

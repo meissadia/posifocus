@@ -1,5 +1,5 @@
 .notification {
-  transition: 0.25s;
+  transition: 0.35s;
   background: rgba(0, 150, 255, 0.8);
   color: rgba(0, 150, 255, 0.8);
   text-align: center;
@@ -20,5 +20,3 @@
     background-color: rgba(47, 115, 51, 0.6); }
   .notification.offline {
     background-color: rgba(60, 26, 4, 0.7); }
-
-/*# sourceMappingURL=Notifications.css.map */

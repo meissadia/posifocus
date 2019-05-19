@@ -3,7 +3,7 @@
 
 #App {
     font-family: Helvetica, sans-serif;
-    font-size: calc(14px + 1 * ((100vw - 400px) / 800));
+    font-size: calc(14px + 1 * ((100% - 400px) / 800));
     font-weight: lighter;
     width: 100%;
     min-height: 100vh;
@@ -44,11 +44,9 @@
     }
 
     header {
-        // padding-top: 25px;
         height: 47px;
         border-bottom: 1px solid rgba(0, 0, 0, 0.2);
         text-align: center;
-        width: 100vw;
     }
 
     a {

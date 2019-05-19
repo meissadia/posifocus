@@ -113,20 +113,21 @@ class App extends Component {
         />
 
         {/************ Route Transition Animation Wrapper ************/}
-        <Route render={({ location }) => (
+        <Route render={args => (
           <TransitionGroup>
             <CSSTransition
-              key={location.key}
+              key={args.location.key}
               classNames='route-transition'
               timeout={250}
             >
-              <Switch location={location}>
-                <GlobalContext.Provider value={
-                  this.updatedGlobalContext({
-                    location,
-                    urlParams: parseUrl(location.pathname),
-                  })}
-                >
+              <GlobalContext.Provider value={
+                this.updatedGlobalContext({
+                  location: args.location,
+                  urlParams: parseUrl(args.location.pathname),
+                  args
+                })}
+              >
+                <Switch location={args.location}>
                   <Route exact path={Path.Dashboard} component={Dashboard} />
                   <Route path={Path.Settings} component={Settings} />
                   <Route path={Path.Gratitudes} component={Gratitudes} />
@@ -143,8 +144,8 @@ class App extends Component {
                       from an external source but will utilize name matched prop data
                       when present.
                   */}
-                </GlobalContext.Provider>
-              </Switch>
+                </Switch>
+              </GlobalContext.Provider>
             </CSSTransition>
           </TransitionGroup>
         )}

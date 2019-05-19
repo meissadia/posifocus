@@ -1,13 +1,13 @@
 .route-transition {
-  width: 100vw;
+  width: 100%;
   transition-property: left, top, right, bottom, opacity;
-  transition-duration: 0.25s;
-  transition-timing-function: ease-in-out;
+  transition-duration: 0.35s;
+  transition-timing-function: linear;
   transform: translateZ(0); }
 
 .enter-left.route-transition-enter {
   position: absolute;
-  left: -100vw;
+  left: -100%;
   opacity: 0; }
 
 .enter-left.route-transition-enter-active {
@@ -20,12 +20,12 @@
   opacity: 1; }
 
 .exit-left.route-transition-exit-active {
-  left: -100vw;
+  left: -100%;
   opacity: 0; }
 
 .enter-right.route-transition-enter {
   position: absolute;
-  right: -100vw;
+  right: -100%;
   opacity: 0; }
 
 .enter-right.route-transition-enter-active {
@@ -41,7 +41,7 @@
 
 .enter-bottom.route-transition-enter {
   position: absolute;
-  top: 100vw;
+  top: 100%;
   opacity: 0; }
 
 .enter-bottom.route-transition-enter-active {
@@ -54,7 +54,5 @@
   opacity: 1; }
 
 .exit-bottom.route-transition-exit-active {
-  top: 100vw;
+  top: 100%;
   opacity: 0; }
-
-/*# sourceMappingURL=RouteTransitions.css.map */

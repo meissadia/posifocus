@@ -1,54 +1,57 @@
 @import basics
 
 .new-input-wrapper
-  min-height: calc(100vh - 73px)
-  background: rgba(0, 0, 0, 0.8)
-  .controls
-    background: rgba(0, 0, 0, .1)
+    min-height: calc(100vh - 73px)
+    background: rgba(0, 0, 0, 0.8)
 
+    .controls
+        background: rgba(0, 0, 0, 0.1)
 
 .g-form
-  display: flex
-  flex-flow: column wrap
-  justify-content: center
-  text-align: center
-  font-family: $font-family
-  label
-    text-align: left
-    padding: 20px 0 20px 30px
-    &.center
-      text-align: center
-  input,
-  textarea
-    border: 0
-    color: white
+    display: flex
+    flex-flow: column wrap
+    justify-content: center
     text-align: center
-    font-weight: 200
-    font-size: 25px
-    width: 90%
-    margin: 0 auto
-    background: $transparent
-  input
-    line-height: 25px
+    font-family: $font-family
 
+    label
+        text-align: left
+        padding: 20px 0 20px 30px
+
+        &.center
+            text-align: center
+
+    input,
+    textarea
+        border: 0
+        color: white
+        text-align: center
+        font-weight: 200
+        font-size: 25px
+        width: 90%
+        margin: 0 auto
+        background: $transparent
+
+    input
+        line-height: 25px
 
 #submit-button
-  height: 75px
-  background: rgba(255, 255, 255, .4)
-  margin: 30px
-  cursor: pointer
-  border-radius: 0
-  align-self: center
+    height: 75px
+    background: rgba(255, 255, 255, 0.4)
+    margin: 30px
+    cursor: pointer
+    border-radius: 0
+    align-self: center
 
 #date-input
-  text-align: center
-  align-self: center
-  width: auto
-
+    text-align: center
+    align-self: center
+    width: auto
 
 .form-toggle
-  justify-content: center
-  align-items: center
-  span
-    width: 150px
-    margin-left: 10px
+    justify-content: center
+    align-items: center
+
+    span
+        width: 150px
+        margin-left: 10px

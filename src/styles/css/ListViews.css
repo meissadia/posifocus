@@ -16,7 +16,7 @@
   display: flex;
   flex-flow: column nowrap;
   list-style: none;
-  transition: background 0.25s; }
+  transition: background 0.35s; }
   .list-item .list-item-content {
     flex-grow: 1; }
   .list-item .list-item-actions {
@@ -94,14 +94,14 @@
 
 /* Animate List Items */
 .list-item {
-  transition: 0.25s ease-in-out;
+  transition: 0.35s ease-in-out;
   position: relative;
   transform: translateZ(0);
   background: rgba(0, 0, 0, 0); }
 
 .list-item-enter {
   position: relative;
-  left: -100vh;
+  left: -100%;
   background: green;
   opacity: 0; }
   .list-item-enter .list-item-enter-active {
@@ -124,5 +124,3 @@
     height: 0;
     border: none;
     background: rgba(0, 0, 0, 0); }
-
-/*# sourceMappingURL=ListViews.css.map */

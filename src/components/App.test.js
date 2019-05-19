@@ -125,14 +125,6 @@ describe('App', () => {
 
       navigateToUrl(wrapper, addVars(path, idCache));
 
-      /**
-       * FIXME
-       *  Why are we getting double component rendering?
-       *  - TransitionGroups?
-       *  - Poorly implemented route nesting?
-       */
-      // console.log(wrapper.find(component).debug());
-      // wrapper.find('form[name="gform"]').simulate('submit');
       wrapper.find('form[name="gform"]').first().simulate('submit');
       wrapper.update();
 

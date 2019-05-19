@@ -1,140 +1,158 @@
 @import basics
 
 .instructions
-  text-align: center
-  margin: 0 auto
-  .instruction-image
-    width: 90%
+    text-align: center
+    margin: 0 auto
 
+    .instruction-image
+        width: 90%
 
 .item-list
-  width: 100%
-  margin: 0
-  padding: 0
-  transform: translateZ(0)
-  &.shallow,
-  &.task
-    padding: 10px 0
+    width: 100%
+    margin: 0
+    padding: 0
+    transform: translateZ(0)
 
+    &.shallow,
+    &.task
+        padding: 10px 0
 
 .list-item
-  display: flex
-  flex-flow: column nowrap
-  list-style: none
-  transition: background $transition-length
-  .list-item-content
-    flex-grow: 1
-  .list-item-actions
     display: flex
-    flex-flow: row wrap
-    justify-content: flex-end
-    margin: 10px 0 0 0
-  .date
-    text-align: right
-  &.shallow,
-  &.task
-    margin: 0 10px 10px 10px
-    padding: 10px
-    border: 1px solid rgba(0, 0, 0, .2)
-  &.task
-    .title
-      padding: 0 0 10px 0
-  &.shallow
-    .title
-      margin-bottom: 10px
-  &.deep
-    flex-flow: row nowrap
-    margin: 0px
-    justify-content: space-between
-    align-items: center
+    flex-flow: column nowrap
+    list-style: none
+    transition: background $transition-length
+
     .list-item-content
-      padding: 10px 20px
-    .date
-      display: none
+        flex-grow: 1
+
     .list-item-actions
-      margin: 0
-    .title
-      padding: 5px 0
-      font-size: 16px
-      line-height: 20px
-      .link
         display: flex
+        flex-flow: row wrap
+        justify-content: flex-end
+        margin: 10px 0 0 0
+
+    .date
+        text-align: right
+
+    &.shallow,
+    &.task
+        margin: 0 10px 10px 10px
+        padding: 10px
+        border: 1px solid rgba(0, 0, 0, 0.2)
+
+    &.task
+        .title
+            padding: 0 0 10px 0
+
+    &.shallow
+        .title
+            margin-bottom: 10px
+
+    &.deep
         flex-flow: row nowrap
-        .arrow
-          margin-left: 20px
-          font-size: 20px
-  &.done
-    background: rgba(100, 100, 100, 1) !important
-    .title
-      text-decoration: line-through
+        margin: 0px
+        justify-content: space-between
+        align-items: center
+
+        .list-item-content
+            padding: 10px 20px
+
+        .date
+            display: none
+
+        .list-item-actions
+            margin: 0
+
+        .title
+            padding: 5px 0
+            font-size: 16px
+            line-height: 20px
+
+            .link
+                display: flex
+                flex-flow: row nowrap
+
+                .arrow
+                    margin-left: 20px
+                    font-size: 20px
+
+    &.done
+        background: rgba(100, 100, 100, 1) !important
+
+        .title
+            text-decoration: line-through
 
 .list-icon
-  align-self: flex-end
-  width: 20px
-  height: 20px
-  padding-right: 10px
-  img
-    height: 100%
-    width: 100%
-    cursor: pointer
+    align-self: flex-end
+    width: 20px
+    height: 20px
+    padding-right: 10px
+
+    img
+        height: 100%
+        width: 100%
+        cursor: pointer
 
 .title
-  font-size: 18px
-  width: 100%
+    font-size: 18px
+    width: 100%
 
 .content
-  font-size: 16px
-  margin-bottom: 10px
-  padding: 5px 0 0 5px
+    font-size: 16px
+    margin-bottom: 10px
+    padding: 5px 0 0 5px
 
 .date
-  align-self: flex-end
+    align-self: flex-end
 
-
-/* Toggle Switches */
+/* Toggle Switches
 
 .toggle-item
-  display: flex
-  align-items: center
-  justify-content: center
-  padding: 2px 0
-  label
-    margin-left: 10px
-    min-width: 100px
+    display: flex
+    align-items: center
+    justify-content: center
+    padding: 2px 0
 
+    label
+        margin-left: 10px
+        min-width: 100px
 
-/* Animate List Items */
+/* Animate List Items
 
 .list-item
-  transition: $transition-length $transition-timing-function
-  position: relative
-  transform: translateZ(0)
-  background: $transparent
-
+    transition: $transition-length $transition-timing-function
+    position: relative
+    transform: translateZ(0)
+    background: $transparent
 
 .list-item-enter
-  position: relative
-  left: -100vh
-  background: green
-  opacity: 0
-  .list-item-enter-active
-    left: 0
-    opacity: 1
-    background: inherit
+    position: relative
+    left: -100%
+    background: green
+    opacity: 0
 
+    .list-item-enter-active
+        left: 0
+        opacity: 1
+        background: inherit
 
 .list-item-exit
-  position: relative
-  left: 0
-  background: white !important
-  &.shallow
-    height: 103px
-  &.deep
-    height: 50px
-  &.task
-    height: 120px
-  &.list-item-exit-active
-    opacity: 0
-    height: 0
-    border: none
-    background: $transparent
+    position: relative
+    left: 0
+    background: white !important
+
+    &.shallow
+        height: 103px
+
+    &.deep
+        height: 50px
+
+    &.task
+        height: 120px
+
+    &.list-item-exit-active
+        opacity: 0
+        height: 0
+        border: none
+        background: $transparent
