@@ -1,35 +1,35 @@
 .route-transition {
   width: 100%;
-  transition-property: left, top, right, bottom, opacity;
-  transition-duration: 0.35s;
+  height: 100%;
+  transition-property: left, top, right, bottom, opacity, transform;
+  transition-duration: 0.25s;
   transition-timing-function: linear;
-  transform: translateZ(0); }
+  transform: translateZ(0);
+  will-change: transform; }
 
 .enter-left.route-transition-enter {
   position: absolute;
-  left: -100%;
+  transform: translateX(-100%);
   opacity: 0; }
 
 .enter-left.route-transition-enter-active {
-  left: 0;
+  transform: translateX(0);
   opacity: 1; }
 
 .exit-left.route-transition-exit {
   position: absolute;
-  left: 0;
   opacity: 1; }
 
 .exit-left.route-transition-exit-active {
-  left: -100%;
   opacity: 0; }
 
 .enter-right.route-transition-enter {
   position: absolute;
-  right: -100%;
+  transform: translateX(100%);
   opacity: 0; }
 
 .enter-right.route-transition-enter-active {
-  right: 0;
+  transform: translateX(0);
   opacity: 1; }
 
 .exit-right.route-transition-exit {
@@ -41,18 +41,18 @@
 
 .enter-bottom.route-transition-enter {
   position: absolute;
-  top: 100%;
+  transform: translateY(100%);
   opacity: 0; }
 
 .enter-bottom.route-transition-enter-active {
-  top: 75px;
+  transform: translateY(75px);
   opacity: 1; }
 
 .exit-bottom.route-transition-exit {
   position: absolute;
-  top: 75px;
+  transform: translateY(75px);
   opacity: 1; }
 
 .exit-bottom.route-transition-exit-active {
-  top: 100%;
+  transform: translateY(100%);
   opacity: 0; }

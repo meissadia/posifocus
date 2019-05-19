@@ -42,7 +42,7 @@ let offlineBackground = (image) => {
   if (html) {
     html.style.background =
       `linear-gradient(rgba(0, 150, 255, 0.8), rgba(62, 187, 154, 0.8)), url(${fieldRows})`;
-    html.style.backgroundPosition = 'center';
+    html.style.backgroundPosition = 'top';
     html.style.backgroundSize = 'cover';
   }
 }

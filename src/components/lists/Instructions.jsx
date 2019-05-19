@@ -1,15 +1,132 @@
 import React from 'react';
-import gratitudesIcon from '../../images/gratitudes-instructions-tableview.png';
-import contactsIcon from '../../images/contacts-instructions-tableview.png';
-import relationshipsIcon from '../../images/relationships-instructions-tableview.png';
-import tasksIcon from '../../images/tasks-instructions-tableview.png';
-import prioritiesIcon from '../../images/priorities-instructions-tableview.png';
-import projectsIcon from '../../images/projects-instructions-tableview.png';
-import Colors from '../../lib/Colors'
+import Colors from '../../lib/Colors';
+import relationshipsIcon from '../../images/relationships.svg';
+import gratitudesIcon from '../../images/gratitudes@2x.png';
+import prioritiesIcon from '../../images/priorities@2x.png';
+import tasksIcon from '../../images/tasks.svg';
+import projectsIcon from '../../images/projects.svg';
+import contactsIcon from '../../images/chat.svg';
 
+const GratitudesInstructions = () => (
+  <div id='instructions' className='instructions'  >
+    <img src={gratitudesIcon} alt='' />
+    <p className='description'>
+      Gratitudes are specific things in your life that you are grateful for, along with details that will remind you of how blessed you are.
+      </p>
+    <h3 className='title'>
+      Sample Gratitudes
+    </h3>
+    <ul className='examples'>
+      <li>My Beautiful Wife</li>
+      <li>Clean Air</li>
+      <li>Great Coworkers</li>
+      <li>Strong Back</li>
+      <li>New Shoes</li>
+    </ul>
+  </div>
+);
+
+const PrioritiesInstructions = () => (
+  <div id='instructions' className='instructions'  >
+    <img src={prioritiesIcon} alt='' />
+    <p className='description'>
+      Priorities are the major aspects of your life that deserve the overwhelming majority of your focus and energy.
+      </p>
+    <h3 className='title'>
+      Sample Priorities
+    </h3>
+    <ul className='examples'>
+      <li>Spirituality / Faith</li>
+      <li>Family</li>
+      <li>Friends</li>
+      <li>Health</li>
+      <li>Business / Work</li>
+    </ul>
+  </div>
+);
+
+const ProjectsInstructions = () => (
+  <div id='instructions' className='instructions'  >
+    <img src={projectsIcon} alt='' />
+    <p className='description'>
+      Projects are collections of tasks that are directly related to this priority.
+      </p>
+    <h3 className='title'>
+      Sample Projects
+    </h3>
+    <ul className='examples'>
+      <li>Sunday Dinner</li>
+      <li>Camping Trip</li>
+      <li>Build Swingset</li>
+      <li>Movie Night</li>
+      <li>10-Mile Hike</li>
+    </ul>
+  </div>
+);
+
+const TasksInstructions = () => (
+  <div id='instructions' className='instructions'  >
+    <img src={tasksIcon} alt='' />
+    <p className='description'>
+      Tasks are specific actions that will move you towards completing this project.
+      </p>
+    <h3 className='title'>
+      Sample Tasks
+    </h3>
+    <ul className='examples'>
+      <li>Marinate Flank Steak</li>
+      <li>Reserve Campground</li>
+      <li>Purchase Lumber</li>
+      <li>Order Concert Tickets</li>
+      <li>Don't Forget the Trailmix!</li>
+    </ul>
+  </div>
+);
+
+const RelationshipsInstructions = () => (
+  <div id='instructions' className='instructions'  >
+    <img src={relationshipsIcon} alt='' />
+    <p className='description'>
+      Relationships are specific people who you want to be in closer contact with and build stronger bonds with.
+      </p>
+    <h3 className='title'>
+      Sample Relationships
+    </h3>
+    <ul className='examples'>
+      <li>Parents</li>
+      <li>Siblings</li>
+      <li>Old Friends</li>
+      <li>Mentor / Mentee</li>
+      <li>Business Associates</li>
+    </ul>
+  </div>
+);
+
+const ContactsInstructions = () => (
+  <div id='instructions' className='instructions'  >
+    <img src={contactsIcon} className='invert' alt='' />
+    <p className='description'>
+      Contacts are specific actions you took, or encounters you had, that moved your relationship forward.
+      </p>
+    <h3 className='title'>
+      Sample Contacts
+    </h3>
+    <ul className='examples'>
+      <li>Sent Mom Flowers</li>
+      <li>Texted Brother</li>
+      <li>Called Old Friend</li>
+      <li>Lunch with Cousin</li>
+      <li>Drinks with Coworker</li>
+    </ul>
+  </div>
+);
 
 const Instructions = props => {
   if (!props.display) return null;
+
+  const thatThingWeWant = sectionIcon(props.section);
+  if (!(typeof thatThingWeWant === 'string'))
+    return thatThingWeWant
 
   return (
     <li
@@ -17,7 +134,7 @@ const Instructions = props => {
       style={{ background: props.bgColor }}>
       <img
         className='instruction-image'
-        src={sectionIcon(props.section)}
+        src={thatThingWeWant}
         alt={`${props.section} instructions`}
       />
     </li>
@@ -31,18 +148,18 @@ Instructions.defaultProps = {
 const sectionIcon = section => {
   switch (section) {
     case 'gratitudes':
-      return gratitudesIcon;
+      return <GratitudesInstructions />;
     case 'contacts':
-      return contactsIcon;
+      return <ContactsInstructions />;
     case 'relationships':
-      return relationshipsIcon;
+      return <RelationshipsInstructions />;
     case 'tasks':
     case 'todays':
-      return tasksIcon;
+      return <TasksInstructions />;
     case 'priorities':
-      return prioritiesIcon;
+      return <PrioritiesInstructions />;
     case 'projects':
-      return projectsIcon;
+      return <ProjectsInstructions />;
     default:
   }
 }

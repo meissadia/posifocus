@@ -48,7 +48,7 @@ table {
   width: 100%;
   min-height: 100vh;
   color: white;
-  transition: background 0.35s; }
+  transition: background 0.25s; }
   #App.gratitudes {
     background: rgba(0, 150, 235, 0.6); }
   #App.priorities {
@@ -115,18 +115,18 @@ table {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: white;
   opacity: 1;
-  transition: color 0.35s; }
+  transition: color 0.25s; }
 
 :-ms-input-placeholder {
   /* Internet Explorer 10-11 */
   color: white;
-  transition: color 0.35s;
+  transition: color 0.25s;
   opacity: 1; }
 
 ::-ms-input-placeholder {
   /* Microsoft Edge */
   color: white;
-  transition: color 0.35s;
+  transition: color 0.25s;
   opacity: 1; }
 
 :focus::-webkit-input-placeholder {

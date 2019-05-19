@@ -31,7 +31,7 @@
       padding: 10px;
       position: relative;
       bottom: 0;
-      transition: 0.35s;
+      transition: 0.25s;
       color: white; }
   .cloud-sync .sync-button,
   .cloud-sync .option-link,
@@ -46,7 +46,7 @@
     cursor: pointer;
     width: 30%;
     flex-grow: 1;
-    transition: 0.35s ease-in-out;
+    transition: 0.25s ease-in-out;
     border: 1px solid rgba(0, 0, 0, 0.1);
     background: rgba(0, 0, 0, 0.5); }
     .cloud-sync .sync-button:hover .icon,
