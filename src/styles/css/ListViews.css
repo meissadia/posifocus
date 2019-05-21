@@ -3,15 +3,12 @@
   text-align: justify;
   margin: 0 auto;
   padding: 0 2%;
-  transform: translateZ(0);
+  transform: translateX(0);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif; }
   .instructions img {
     width: 75px;
     display: block;
-    margin: 20px auto;
-    filter: drop-shadow(1px -1px 1px rgba(0, 0, 0, 0.9)); }
-    .instructions img.invert {
-      filter: invert(1) drop-shadow(1px -1px 1px rgba(0, 0, 0, 0.9)); }
+    margin: 20px auto; }
   .instructions .description {
     text-align: center;
     font-size: 2.2em;
@@ -21,7 +18,8 @@
     text-transform: uppercase;
     background: rgba(0, 0, 0, 0.2);
     padding: 20px 10px;
-    border-radius: 20px; }
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.2); }
   .instructions .title {
     margin: 0 auto;
     font-weight: 300;
@@ -42,7 +40,8 @@
     border-radius: 20px;
     background: rgba(0, 0, 0, 0.6);
     width: 80%;
-    border: 2px solid rgba(255, 255, 255, 0.3); }
+    margin-bottom: 50px;
+    padding: 10px 0; }
     .instructions ul.examples li {
       padding: 10px;
       font-size: 1.5em;
@@ -147,18 +146,19 @@
 
 .list-item-enter {
   position: relative;
-  left: -100%;
   background: green;
-  opacity: 0; }
+  transform: translateX(-100%);
+  opacity: 0;
+  font-size: 1em; }
   .list-item-enter .list-item-enter-active {
-    left: 0;
-    opacity: 1;
-    background: inherit; }
+    transform: translateX(0);
+    background: inherit;
+    opacity: 1; }
 
 .list-item-exit {
   position: relative;
-  left: 0;
-  background: white !important; }
+  transform: translateX(0);
+  background: red !important; }
   .list-item-exit.shallow {
     height: 103px; }
   .list-item-exit.deep {
@@ -166,7 +166,10 @@
   .list-item-exit.task {
     height: 120px; }
   .list-item-exit.list-item-exit-active {
+    transform-delay: 0.25s;
+    transform: translateX(-100%);
     opacity: 0;
-    height: 0;
-    border: none;
-    background: rgba(0, 0, 0, 0); }
+    height: 30px;
+    border: none; }
+
+/*# sourceMappingURL=ListViews.css.map */

@@ -41,10 +41,14 @@ class App extends Component {
     // Offline Notification
     window.addEventListener('online', () => this.setOnlineStatus(true));
     window.addEventListener('offline', () => this.setOnlineStatus(false));
-    // Update Available
-    this.onServiceWorkerUpdate();
-    // Firebase Log-in/out
-    this.onAuthUserChange();
+
+    this.onServiceWorkerUpdate(); // Update Available
+    this.onAuthUserChange();      // Firebase Log-in/out
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('online');
+    window.removeEventListener('offline');
   }
 
   /**
@@ -53,7 +57,7 @@ class App extends Component {
    * @param updateState.functions Callbacks to manage App state 
    */
   updatedGlobalContext = (updateState = {}) => {
-    this.contextState = {
+    return {
       state: this.state,
       functions: {
         addToStateArray: State.addToStateArray.bind(this),
@@ -73,8 +77,6 @@ class App extends Component {
       },
       ...updateState
     }
-
-    return this.contextState;
   }
 
   onAuthUserChange() {
@@ -91,11 +93,6 @@ class App extends Component {
       console.log('ServiceWorker, update available?: ' + (isAvailable ? 'Yes.' : 'No.'));
       this.setState({ update: isAvailable });
     });
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('online');
-    window.removeEventListener('offline');
   }
 
   setOnlineStatus = isOnline => this.setState({ online: isOnline });

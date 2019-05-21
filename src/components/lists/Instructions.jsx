@@ -7,8 +7,19 @@ import tasksIcon from '../../images/tasks.svg';
 import projectsIcon from '../../images/projects.svg';
 import contactsIcon from '../../images/chat.svg';
 
-const GratitudesInstructions = () => (
-  <div id='instructions' className='instructions'  >
+// const thingMap = {
+//   relationships: {},
+//   gratitudes: {},
+//   priorities: {},
+//   tasks: {},
+//   projects: {},
+//   contacts: {},
+// };
+
+
+
+const GratitudesInstructions = props => (
+  <div id='instructions' className={`instructions ${props.section}`}  >
     <img src={gratitudesIcon} alt='' />
     <p className='description'>
       Gratitudes are specific things in your life that you are grateful for, along with details that will remind you of how blessed you are.
@@ -26,8 +37,8 @@ const GratitudesInstructions = () => (
   </div>
 );
 
-const PrioritiesInstructions = () => (
-  <div id='instructions' className='instructions'  >
+const PrioritiesInstructions = props => (
+  <div id='instructions' className={`instructions ${props.section}`}  >
     <img src={prioritiesIcon} alt='' />
     <p className='description'>
       Priorities are the major aspects of your life that deserve the overwhelming majority of your focus and energy.
@@ -45,8 +56,8 @@ const PrioritiesInstructions = () => (
   </div>
 );
 
-const ProjectsInstructions = () => (
-  <div id='instructions' className='instructions'  >
+const ProjectsInstructions = props => (
+  <div id='instructions' className={`instructions ${props.section}`}  >
     <img src={projectsIcon} alt='' />
     <p className='description'>
       Projects are collections of tasks that are directly related to this priority.
@@ -64,8 +75,8 @@ const ProjectsInstructions = () => (
   </div>
 );
 
-const TasksInstructions = () => (
-  <div id='instructions' className='instructions'  >
+const TasksInstructions = props => (
+  <div id='instructions' className={`instructions ${props.section}`}  >
     <img src={tasksIcon} alt='' />
     <p className='description'>
       Tasks are specific actions that will move you towards completing this project.
@@ -83,8 +94,8 @@ const TasksInstructions = () => (
   </div>
 );
 
-const RelationshipsInstructions = () => (
-  <div id='instructions' className='instructions'  >
+const RelationshipsInstructions = props => (
+  <div id='instructions' className={`instructions ${props.section}`}  >
     <img src={relationshipsIcon} alt='' />
     <p className='description'>
       Relationships are specific people who you want to be in closer contact with and build stronger bonds with.
@@ -102,8 +113,8 @@ const RelationshipsInstructions = () => (
   </div>
 );
 
-const ContactsInstructions = () => (
-  <div id='instructions' className='instructions'  >
+const ContactsInstructions = props => (
+  <div id='instructions' className={`instructions ${props.section}`}  >
     <img src={contactsIcon} className='invert' alt='' />
     <p className='description'>
       Contacts are specific actions you took, or encounters you had, that moved your relationship forward.
@@ -130,7 +141,7 @@ const Instructions = props => {
 
   return (
     <li
-      className='instructions'
+      className={`instructions ${props.section}`}
       style={{ background: props.bgColor }}>
       <img
         className='instruction-image'
@@ -148,20 +159,38 @@ Instructions.defaultProps = {
 const sectionIcon = section => {
   switch (section) {
     case 'gratitudes':
-      return <GratitudesInstructions />;
+      return <GratitudesInstructions section={section} />;
     case 'contacts':
-      return <ContactsInstructions />;
+      return <ContactsInstructions section={section} />;
     case 'relationships':
-      return <RelationshipsInstructions />;
+      return <RelationshipsInstructions section={section} />;
     case 'tasks':
     case 'todays':
-      return <TasksInstructions />;
+      return <TasksInstructions section={section} />;
     case 'priorities':
-      return <PrioritiesInstructions />;
+      return <PrioritiesInstructions section={section} />;
     case 'projects':
-      return <ProjectsInstructions />;
+      return <ProjectsInstructions section={section} />;
     default:
   }
 }
 
 export default Instructions;
+
+
+// switch (section) {
+//   case 'gratitudes':
+//     return <GratitudesInstructions section={section} />;
+//   case 'contacts':
+//     return <ContactsInstructions section={section} />;
+//   case 'relationships':
+//     return <RelationshipsInstructions section={section} />;
+//   case 'tasks':
+//   case 'todays':
+//     return <TasksInstructions section={section} />;
+//   case 'priorities':
+//     return <PrioritiesInstructions section={section} />;
+//   case 'projects':
+//     return <ProjectsInstructions section={section} />;
+//   default:
+// }
