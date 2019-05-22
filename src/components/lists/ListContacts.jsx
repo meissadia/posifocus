@@ -36,6 +36,7 @@ const Contacts = props => {
       edit={props.showEditor}
       match={props.match}
       location={props.location}
+      update={props.update}
       itemType='shallow'
     >
       <PageNavigation

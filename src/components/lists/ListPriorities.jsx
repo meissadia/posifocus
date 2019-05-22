@@ -24,6 +24,7 @@ const Priorities = props => {
       edit={props.showEditor}
       makeLink={item => `/priority/${item.id}/projects`}
       location={props.location}
+      update={props.update}
       itemType='deep'
     >
       <PageNavigation

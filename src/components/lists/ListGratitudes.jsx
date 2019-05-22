@@ -25,6 +25,7 @@ const Gratitudes = props => {
       edit={props.showEditor}
       location={props.location}
       background={Colors[props.sectionTitle]}
+      update={props.update}
       itemType='shallow'
     >
       <PageNavigation

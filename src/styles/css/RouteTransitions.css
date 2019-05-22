@@ -1,7 +1,7 @@
 .route-transition {
   width: 100%;
   height: 100%;
-  transition-property: left, top, right, bottom, opacity, transform;
+  transition-property: transform, opacity, left, top, right, bottom;
   transition-duration: 0.25s;
   transition-timing-function: linear;
   transform: translateZ(0);
@@ -18,25 +18,41 @@
 
 .exit-left.route-transition-exit {
   position: absolute;
+  transform: translateX(0);
   opacity: 1; }
 
 .exit-left.route-transition-exit-active {
+  transform: translateX(-100%);
   opacity: 0; }
 
-.enter-right.route-transition-enter {
+.enter-right.route-transition-enter:not(.projects):not(.tasks):not(.contacts) {
   position: absolute;
   transform: translateX(100%);
   opacity: 0; }
 
-.enter-right.route-transition-enter-active {
-  transform: translateX(0);
+.enter-right.route-transition-enter-active:not(.projects):not(.tasks):not(.contacts) {
+  transform: translateX(0%);
   opacity: 1; }
+
+.enter-right.projects, .enter-right.tasks, .enter-right.contacts {
+  position: absolute; }
+  .enter-right.projects.route-transition-enter, .enter-right.tasks.route-transition-enter, .enter-right.contacts.route-transition-enter {
+    visibility: hidden; }
+  .enter-right.projects.route-transition-enter-active, .enter-right.tasks.route-transition-enter-active, .enter-right.contacts.route-transition-enter-active {
+    transform: translateX(100%);
+    opacity: 0; }
+  .enter-right.projects.route-transition-enter-done, .enter-right.tasks.route-transition-enter-done, .enter-right.contacts.route-transition-enter-done {
+    transform: translateX(0%);
+    opacity: 1;
+    visibility: visible; }
 
 .exit-right.route-transition-exit {
   position: absolute;
+  transform: translateX(0);
   opacity: 1; }
 
 .exit-right.route-transition-exit-active {
+  transform: translateX(100%);
   opacity: 0; }
 
 .enter-bottom.route-transition-enter {
@@ -55,6 +71,14 @@
 
 .exit-bottom.route-transition-exit-active {
   transform: translateY(100%);
+  opacity: 0; }
+
+.fade-away.route-transition-exit {
+  position: absolute;
+  transform: translateX(0);
+  opacity: 1; }
+
+.fade-away.route-transition-exit-active {
   opacity: 0; }
 
 /*# sourceMappingURL=RouteTransitions.css.map */

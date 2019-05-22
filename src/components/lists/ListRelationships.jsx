@@ -26,6 +26,7 @@ const Relationships = props => {
       edit={showEditor}
       makeLink={item => (`/relationship/${item.id}/contacts`)}
       location={location}
+      update={props.update}
       itemType='deep'
     >
       <PageNavigation

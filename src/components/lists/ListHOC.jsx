@@ -50,6 +50,7 @@ const ListHOC = (WrappedComponent, sectionTitle) => {
                 isToday={props => props.location.pathname.includes('today')}
                 back={this.back}
                 urlParams={this.props.urlParams}
+                update={this.props.functions.updateStateHandler}
                 {...this.props}
             />
         );

@@ -34,6 +34,7 @@ const Projects = props => {
       makeLink={(item, location) => `/tasks${location.pathname}/${item.id}`}
       match={props.match}
       location={props.location}
+      update={props.update}
       itemType='deep'
     >
       <PageNavigation

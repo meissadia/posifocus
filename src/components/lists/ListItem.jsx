@@ -8,9 +8,11 @@ import Colors, { Color } from '../../lib/Colors'
 import ToggleItem from './ToggleItem';
 import ListIcon from './ListIcon';
 
+import $ from 'jquery';
+
 const ListItem = props => {
   const {
-    edit, itemType, link, location, index,
+    edit, itemType, link, location, index, section,
     makeLink, toggle, destroyer, item, totalCount
   } = props;
 
@@ -44,7 +46,7 @@ const ListItem = props => {
   return (
     <li className={enhancedClassName()} style={style()}>
       <div className='list-item-content'>
-        <ItemField target={'title'} item={item} link={itemLink()} />
+        <ItemField target={'title'} item={item} link={itemLink()} section={section} />
         <ItemField target={'content'} item={item} />
         <ToggleItem
           target={'today'}
@@ -95,8 +97,16 @@ const ItemField = props => {
   if (!props.link)
     return <div className={props.target}>{value}</div>
 
+  const animateExitLeft = () => {
+    const el = $(`.${props.section}.route-transition`);
+    el.removeClass('exit-right');
+    el.addClass('exit-left');
+  }
+
   return (
-    <NavLink to={props.link} prefetch='true'>
+    <NavLink
+      onClick={animateExitLeft}
+      to={props.link} prefetch='true'>
       <div className={props.target}>
         <div className='link'>
           <div className='value'>{value}</div>

@@ -46,7 +46,7 @@
     cursor: pointer;
     width: 30%;
     flex-grow: 1;
-    transition: 0.25s ease-in-out;
+    transition: 0.25s linear;
     border: 1px solid rgba(0, 0, 0, 0.1);
     background: rgba(0, 0, 0, 0.5); }
     .cloud-sync .sync-button:hover .icon,

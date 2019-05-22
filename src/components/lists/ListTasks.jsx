@@ -49,6 +49,7 @@ const Tasks = props => {
       edit={showEditor}
       toggle={taskToggle.bind(null, getSingle)}
       location={location}
+      update={props.update}
       itemType='task'
     >
       <PageNavigation
