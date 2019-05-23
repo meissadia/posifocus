@@ -1,3 +1,9 @@
+# v0.1.0
+- Already at the end of major overhaul.  
+- withGlobalContext, ListHOC
+- Lists are sortable (on mobile too)
+- Animations need a thorough examination/refactoring
+
 # v0.0.10
 - Added editing for all item types (Gratitudes, Tasks, ...)
 - Fixed dates being off by one day

@@ -5,30 +5,15 @@
 ## Motivation  
 [Posifocus](https://posifocus.com/) is a mentality supported by an iOS app.  
 
-[Posifocus Web](https://posifocus.surge.sh) is a Progressive Web Application implemented with React, aiming to expand the reach of Posifocus to non-iOS devices. 
+[Posifocus Web](https://posifocus.surge.sh) \(this repo) is a Progressive Web Application implemented with React, aiming to expand the reach of Posifocus beyond iOS devices. 
 
-## Todo  
-
-Global  
-  - [ ] Establish shared Object formats so that we can share Cloud storage across web/ios.  
-
-Registration  
-  - [ ] Enable Password Forgot
-  - [ ] Enable Password Change
-
-List  
-  - [ ] Enable list-item edit  
-  - [ ] Enable create/edit without route change (should help fix item animations)  
-
-UI  
-  - [ ] Find appropriate colors  
-  - [ ] Switch all icons to SVG  
-  - [ ] Revisit background graphic implementation
-  - [ ] Finish animating Settings
+## Progress  
+- [Retrospective #1](./artifacts/retrospective_01.md)  
 
 ## Development  
 
 Create a .env file in your project root with the following variables configured with your Firebase configuration values.  
+`Sorry, these are poorly named variables.  I'll update these soon to make the mapping obvious.`
 ```
 # /.env
 REACT_APP_FIREBASE_KEY = "YOUR_VALUE_HERE"
