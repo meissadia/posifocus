@@ -84,8 +84,10 @@
     flex-flow: row nowrap;
     margin: 0px;
     justify-content: space-between;
-    align-items: center; }
+    align-items: center;
+    cursor: pointer; }
     .list-item.deep .list-item-content {
+      cursor: grab;
       padding: 10px 20px; }
     .list-item.deep .date {
       display: none; }
@@ -176,10 +178,8 @@
 .sortable-helper {
   transition: all .2s;
   background: rgba(255, 255, 255, 0.2) !important;
-  color: white !important; }
+  color: white !important;
+  cursor: grabbing !important; }
   .sortable-helper a {
     color: white;
-    text-decoration: none;
-    cursor: move; }
-
-/*# sourceMappingURL=ListViews.css.map */
+    text-decoration: none; }

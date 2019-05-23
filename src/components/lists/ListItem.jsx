@@ -44,7 +44,7 @@ const ListItem = props => {
   const itemLink = () => link || makeLink(item, location);
 
   return (
-    <li className={enhancedClassName()} style={style()}>
+    <li id={`${section}-${item.id}`} className={enhancedClassName()} style={style()}>
       <div className='list-item-content'>
         <ItemField target={'title'} item={item} link={itemLink()} section={section} />
         <ItemField target={'content'} item={item} />

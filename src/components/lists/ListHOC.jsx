@@ -1,4 +1,5 @@
 import React from 'react';
+import $ from 'jquery';
 
 /**
  * HOC to reuse List logic
@@ -10,10 +11,58 @@ import React from 'react';
  */
 const ListHOC = (WrappedComponent, sectionTitle) => {
     return class extends React.Component {
+        constructor(props) {
+            super(props);
+            this.deleteOnUnmount = [];
+        }
+
+        componentWillUpdate() {
+            this.runDeletion();
+        }
+
+        componentWillUnmount() {
+            this.runDeletion();
+        }
+
+        runDeletion() {
+            this.deleteOnUnmount.forEach(x => x());
+            this.deleteOnUnmount = [];
+        }
+
         destroy = (destroyer, event) => {
             event.preventDefault();
-            destroyer(event.target.attributes.jsvalue.value);
+            const targetValue = event.target.attributes.jsvalue.value;
+            const confirm = window && window.confirm;
+            const doDestroy = confirm && confirm(`Delete from ${sectionTitle}?`);
+            const targetSelector = `#${sectionTitle}-${targetValue}`;
+            const animationDuration = 1000;
+
+            if (doDestroy) {
+                $(targetSelector).animate({
+                    opacity: 0,
+                    height: '0px',
+                },
+                    {
+                        duration: animationDuration,
+                        complete: () => {
+                            console.log($(targetSelector));
+                            $(targetSelector).remove();
+                            return true;
+                        }
+                    }
+                );
+
+                this.deleteOnUnmount.push(destroyer.bind(null, targetValue));
+                if (this.deleteOnUnmount.length === parseInt($('#list')[0].attributes.jsvalue.value)) {
+                    console.log('Hit Delete Threshold');
+                    setTimeout(() => this.runDeletion(), animationDuration * 2);
+                }
+            };
         };
+
+        animateItemOut = e => {
+
+        }
 
         destroyerMap = {
             priorities: 'deletePriority',

@@ -1,8 +1,8 @@
 import React from 'react';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { SortableContainer, SortableElement } from 'react-sortable-hoc';
-import { get } from 'lodash';
-import arrayMove from 'array-move';
+
+import { dummy, withEnterDirection, updateSortedCollection, } from './list-services';
 
 import Instructions from './Instructions';
 import ListItem from './ListItem';
@@ -17,17 +17,6 @@ const List = props => {
 
   const typedItemList = 'item-list ' + itemType;
   const totalCount = data.length;
-
-  const dummy = () => false; // Simplifies makeLink functionality
-
-  /**
-  * Transition Animation Direction can be controlled through Location's state.
-  * `props.location.state.enter`
-  */
-  const withEnterDirection = classname => {
-    const direction = get(props, 'location.state.enter', 'enter-right');
-    return [section, props.className, classname, direction].join(' ');
-  }
 
   const SortableItem = SortableElement(({ item, index }) => (
     <CSSTransition
@@ -52,7 +41,7 @@ const List = props => {
   ));
 
   const SortableList = SortableContainer(({ data }) => (
-    <ul id='list' className={typedItemList} >
+    <ul id='list' className={typedItemList} jsvalue={totalCount}>
       <TransitionGroup>
         {data.map((item, index) => (
           <SortableItem key={item.id} item={item} index={index} />
@@ -61,6 +50,7 @@ const List = props => {
           timeout={250}
           classNames='list-item'
           key='instructions'
+          in={instructions.display}
         >
           <Instructions
             section={section}
@@ -73,21 +63,14 @@ const List = props => {
 
   ));
 
-  const sortEnd = ({ oldIndex, newIndex }) => {
-    const mappedSection = section === 'todays' ? 'tasks' : section;
-
-    props.update({
-      [mappedSection]: arrayMove(data, oldIndex, newIndex),
-    })
-  }
 
   return (
-    <div className={withEnterDirection('list-wrapper')}>
+    <div className={withEnterDirection(props, 'list-wrapper')}>
       {props.children} {/* Page Navigation */}
       < SortableList
         data={data}
-        onSortEnd={sortEnd}
-        pressDelay={100}
+        onSortEnd={updateSortedCollection.bind(null, props)}
+        pressDelay={200}
         lockAxis='y'
         helperClass='sortable-helper'
       />
@@ -95,7 +78,7 @@ const List = props => {
   )
 
   // return (
-  //   <div className={withEnterDirection('list-wrapper')}>
+  //   <div className={withEnterDirection(props, 'list-wrapper')}>
   //     {props.children} {/* Page Navigation */}
   //     <ul id='list' className={typedItemList} >
   //       <TransitionGroup>
