@@ -1,5 +1,5 @@
 import { get } from 'lodash';
-import arrayMove from 'array-move';
+import { arrayMove } from '../../lib/arrayMove';
 
 /* Simplifies makeLink functionality */
 export const dummy = () => false;

@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
+import { get } from 'lodash';
 
 /**
  * HOC to reuse List logic
@@ -45,7 +46,6 @@ const ListHOC = (WrappedComponent, sectionTitle) => {
                     {
                         duration: animationDuration,
                         complete: () => {
-                            console.log($(targetSelector));
                             $(targetSelector).remove();
                             return true;
                         }
@@ -53,8 +53,9 @@ const ListHOC = (WrappedComponent, sectionTitle) => {
                 );
 
                 this.deleteOnUnmount.push(destroyer.bind(null, targetValue));
-                if (this.deleteOnUnmount.length === parseInt($('#list')[0].attributes.jsvalue.value)) {
-                    console.log('Hit Delete Threshold');
+                const jsValue = get($('#list')[0], 'attributes.jsvalue.value', '');
+                if (this.deleteOnUnmount.length === parseInt(jsValue, 10)) {
+                    // console.log('Hit Delete Threshold');
                     setTimeout(() => this.runDeletion(), animationDuration * 2);
                 }
             };

@@ -240,6 +240,8 @@ describe('App', () => {
       ['Contact', '/relationship/:relationships/contacts/', 'contacts', ['contacts']],
     ];
 
+    window.confirm = jest.fn(() => true);
+
     routes.forEach(route => {
       const [, path, stateKey, shouldBeEmpty] = route;
       const wrapper = buildWrapper({});
