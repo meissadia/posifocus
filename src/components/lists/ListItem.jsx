@@ -43,6 +43,32 @@ const ListItem = props => {
 
   const itemLink = () => link || makeLink(item, location);
 
+  const doneAnimateHack = e => {
+    e.persist();
+    $(`#${section}-${item.id}`).toggleClass('done');
+    setTimeout(() => toggle(e), 250);
+  }
+
+  const todayAnimateHack = e => {
+    e.persist();
+    const target = $(`#${section}-${item.id}`);
+    if (section === 'todays') {
+      target.animate({
+        opacity: 0,
+        height: 0
+      },
+        {
+          duration: 250,
+          complete: () => toggle(e),
+        }
+      );
+    }
+    else {
+      target.toggleClass('today');
+      setTimeout(() => toggle(e), 250);
+    }
+  }
+
   return (
     <li id={`${section}-${item.id}`} className={enhancedClassName()} style={style()}>
       <div className='list-item-content'>
@@ -52,13 +78,13 @@ const ListItem = props => {
           target={'today'}
           item={item}
           label='Due Today?'
-          toggle={toggle}
+          toggle={todayAnimateHack}
         />
         <ToggleItem
           target={'done'}
           item={item}
           label='Done?'
-          toggle={toggle}
+          toggle={doneAnimateHack}
         />
         <DateField date={item.date} />
       </div>

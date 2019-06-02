@@ -3,8 +3,9 @@
   text-align: justify;
   margin: 0 auto;
   padding: 0 2%;
-  transform: translateZ(0);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif; }
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  opacity: 0;
+  transition: all 0.25s linear; }
   .instructions img {
     width: 75px;
     display: block;
@@ -53,7 +54,7 @@
 .item-list {
   margin: 0;
   padding: 0;
-  transform: translateZ(0); }
+  transform: translateX(0); }
   .item-list.shallow, .item-list.task {
     padding: 10px 0; }
 
@@ -62,7 +63,8 @@
   flex-flow: column nowrap;
   list-style: none;
   transition: background 0.25s;
-  user-select: none; }
+  user-select: none;
+  transform: translateX(0); }
   .list-item .list-item-content {
     flex-grow: 1; }
   .list-item .list-item-actions {
@@ -141,40 +143,6 @@
     min-width: 100px; }
 
 /* Animate List Items */
-.list-item {
-  transition: 0.25s linear;
-  position: relative;
-  transform: translateZ(0);
-  background: rgba(0, 0, 0, 0); }
-
-.list-item-enter {
-  position: relative;
-  background: green;
-  transform: translateX(-100%);
-  opacity: 0;
-  font-size: 1em; }
-  .list-item-enter .list-item-enter-active {
-    transform: translateX(0);
-    background: inherit;
-    opacity: 1; }
-
-.list-item-exit {
-  position: relative;
-  transform: translateX(0);
-  background: red !important; }
-  .list-item-exit.shallow {
-    height: 103px; }
-  .list-item-exit.deep {
-    height: 50px; }
-  .list-item-exit.task {
-    height: 120px; }
-  .list-item-exit.list-item-exit-active {
-    transform-delay: 0.25s;
-    transform: translateX(-100%);
-    opacity: 0;
-    height: 30px;
-    border: none; }
-
 .sortable-helper {
   transition: all .2s;
   background: rgba(255, 255, 255, 0.2) !important;

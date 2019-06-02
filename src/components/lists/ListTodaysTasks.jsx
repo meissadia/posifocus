@@ -10,21 +10,16 @@ import withGlobalContext from '../GlobalContextHOC';
 const TodaysTasks = props => {
   if (props.isEdit(props)) return <EditTask todays={true} />
 
-  const { data, functions, location, sectionTitle, showEditor, } = props;
+  const { data, functions, location, sectionTitle, showEditor, destroy, } = props;
   const { deleteFromStateArray, taskToggle, getSingle } = functions;
   const tasks = data.filter(task => task.today);
-
-  const deleteHandler = (deleter, event) => {
-    event.preventDefault();
-    deleter('tasks', event.target.attributes.jsvalue.value);
-  }
 
   return (
     <List section={sectionTitle}
       className='route-transition exit-right'
       instructions={{ display: tasks.length === 0 }}
       data={tasks}
-      delete={deleteHandler.bind(null, deleteFromStateArray)}
+      delete={destroy.bind(deleteFromStateArray)}
       edit={showEditor}
       toggle={taskToggle.bind(null, getSingle)}
       location={location}

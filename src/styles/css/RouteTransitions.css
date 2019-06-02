@@ -1,6 +1,6 @@
 .route-transition {
   width: 100%;
-  height: 100%;
+  height: calc(100% - 47px);
   transition-property: transform, opacity, left, top, right, bottom;
   transition-duration: 0.25s;
   transition-timing-function: linear;
@@ -85,3 +85,5 @@
 
 .fade-away.route-transition-exit-active {
   opacity: 0; }
+
+/*# sourceMappingURL=RouteTransitions.css.map */

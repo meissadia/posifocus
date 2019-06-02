@@ -1,6 +1,5 @@
 import React from 'react';
 import $ from 'jquery';
-import { get } from 'lodash';
 
 /**
  * HOC to reuse List logic
@@ -12,23 +11,6 @@ import { get } from 'lodash';
  */
 const ListHOC = (WrappedComponent, sectionTitle) => {
     return class extends React.Component {
-        constructor(props) {
-            super(props);
-            this.deleteOnUnmount = [];
-        }
-
-        componentWillUpdate() {
-            this.runDeletion();
-        }
-
-        componentWillUnmount() {
-            this.runDeletion();
-        }
-
-        runDeletion() {
-            this.deleteOnUnmount.forEach(x => x());
-            this.deleteOnUnmount = [];
-        }
 
         destroy = (destroyer, event) => {
             event.preventDefault();
@@ -38,32 +20,32 @@ const ListHOC = (WrappedComponent, sectionTitle) => {
             const targetSelector = `#${sectionTitle}-${targetValue}`;
             const animationDuration = 1000;
 
+            /**
+             * FIXME?...works pretty well. 
+             * 
+             * This is a workaround due to TransitionGroups not attaching
+             * animation classes now that we've incorporated the SortableList/Element
+             * components.  
+             */
             if (doDestroy) {
                 $(targetSelector).animate({
                     opacity: 0,
-                    height: '0px',
+                    height: 0,
+                    border: 0,
+                    padding: '0 10px',
+                    margin: '0 10px'
                 },
                     {
                         duration: animationDuration,
                         complete: () => {
                             $(targetSelector).remove();
+                            destroyer(targetValue);
                             return true;
                         }
                     }
                 );
-
-                this.deleteOnUnmount.push(destroyer.bind(null, targetValue));
-                const jsValue = get($('#list')[0], 'attributes.jsvalue.value', '');
-                if (this.deleteOnUnmount.length === parseInt(jsValue, 10)) {
-                    // console.log('Hit Delete Threshold');
-                    setTimeout(() => this.runDeletion(), animationDuration * 2);
-                }
             };
         };
-
-        animateItemOut = e => {
-
-        }
 
         destroyerMap = {
             priorities: 'deletePriority',
@@ -73,9 +55,11 @@ const ListHOC = (WrappedComponent, sectionTitle) => {
 
         getDestroyer = (functions) => {
             const mapped = this.destroyerMap[sectionTitle];
-            if (mapped)
-                return functions[mapped];
-            return functions.deleteFromStateArray.bind(null, sectionTitle);
+            if (mapped) return functions[mapped];
+
+            const section = sectionTitle === 'todays' ? 'tasks' : sectionTitle;
+
+            return functions.deleteFromStateArray.bind(null, section);
         };
 
         showEditor = (event) => {

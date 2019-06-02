@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Colors from '../../lib/Colors';
 import relationshipsIcon from '../../images/relationships.svg';
 import gratitudesIcon from '../../images/gratitudes@2x.png';
@@ -7,16 +7,7 @@ import tasksIcon from '../../images/tasks.svg';
 import projectsIcon from '../../images/projects.svg';
 import contactsIcon from '../../images/chat.svg';
 
-// const thingMap = {
-//   relationships: {},
-//   gratitudes: {},
-//   priorities: {},
-//   tasks: {},
-//   projects: {},
-//   contacts: {},
-// };
-
-
+import $ from 'jquery';
 
 const GratitudesInstructions = props => (
   <div id='instructions' className={`instructions ${props.section}`}  >
@@ -133,20 +124,30 @@ const ContactsInstructions = props => (
 );
 
 const Instructions = props => {
-  if (!props.display) return null;
+  const { section, display, bgColor } = props;
 
-  const thatThingWeWant = sectionIcon(props.section);
+  // FIXME: Workaround to animate Instruction on-enter
+  useEffect(() => {
+    $('#instructions').animate({
+      opacity: 1,
+      height: '100%'
+    })
+  })
+
+  if (!display) return null;
+
+  const thatThingWeWant = sectionIcon(section);
   if (!(typeof thatThingWeWant === 'string'))
     return thatThingWeWant
 
   return (
     <li
-      className={`instructions ${props.section}`}
-      style={{ background: props.bgColor }}>
+      className={`instructions ${section}`}
+      style={{ background: bgColor }}>
       <img
         className='instruction-image'
         src={thatThingWeWant}
-        alt={`${props.section} instructions`}
+        alt={`${section} instructions`}
       />
     </li>
   )
@@ -176,21 +177,3 @@ const sectionIcon = section => {
 }
 
 export default Instructions;
-
-
-// switch (section) {
-//   case 'gratitudes':
-//     return <GratitudesInstructions section={section} />;
-//   case 'contacts':
-//     return <ContactsInstructions section={section} />;
-//   case 'relationships':
-//     return <RelationshipsInstructions section={section} />;
-//   case 'tasks':
-//   case 'todays':
-//     return <TasksInstructions section={section} />;
-//   case 'priorities':
-//     return <PrioritiesInstructions section={section} />;
-//   case 'projects':
-//     return <ProjectsInstructions section={section} />;
-//   default:
-// }
