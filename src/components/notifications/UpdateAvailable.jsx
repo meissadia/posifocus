@@ -5,20 +5,20 @@ let UpdateAvailable = (props) => {
   let base = 'notification';
 
   let cssClasses = () => {
-    if(yes) { return base + ' show update'; };
+    if (yes) { return base + ' show update'; };
     return base;
   }
 
-  let applyUpdate = (timeout=5000) => {
-    if(yes && props.autoUpdate){
-      setTimeout( ()=> { window.location.reload(); }, timeout );
+  let applyUpdate = (timeout = 5000) => {
+    if (yes && props.autoUpdate) {
+      setTimeout(() => { window.location.reload(); }, timeout);
     }
   }
 
   return (
-    <p className={ cssClasses() }>
-      Update Available: Restart the app to install!
-      { applyUpdate(props.timeout) }
+    <p className={cssClasses()}>
+      Update Available: Restarting...
+      {applyUpdate(props.timeout)}
     </p>
   )
 }

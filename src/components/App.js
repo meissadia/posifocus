@@ -106,7 +106,7 @@ class App extends Component {
         <NotificationBar
           online={this.state.online}
           update={this.state.update}
-          autoUpdate={false}
+          autoUpdate={true}
         />
 
         {/************ Route Transition Animation Wrapper ************/}
