@@ -4,74 +4,79 @@
   transition-property: transform, opacity, left, top, right, bottom;
   transition-duration: 0.25s;
   transition-timing-function: linear;
-  transform: translateZ(0);
   will-change: transform; }
 
-.enter-left.route-transition-enter {
-  position: absolute;
-  transform: translateX(-100%);
-  opacity: 0; }
-
-.enter-left.route-transition-enter-active {
-  transform: translateX(0);
-  opacity: 1; }
-
-.exit-left.route-transition-exit {
-  position: absolute;
-  transform: translateX(0);
-  opacity: 1; }
-
-.exit-left.route-transition-exit-active {
-  transform: translateX(-100%);
-  opacity: 0; }
-
-.enter-right.route-transition-enter:not(.projects):not(.tasks):not(.contacts) {
-  position: absolute;
-  transform: translateX(100%);
-  opacity: 0; }
-
-.enter-right.route-transition-enter-active:not(.projects):not(.tasks):not(.contacts) {
-  transform: translateX(0%);
-  opacity: 1; }
-
-.enter-right.projects, .enter-right.tasks, .enter-right.contacts {
+.enter-left {
   position: absolute; }
-  .enter-right.projects.route-transition-enter, .enter-right.tasks.route-transition-enter, .enter-right.contacts.route-transition-enter {
+  .enter-left.route-transition-enter {
     visibility: hidden; }
-  .enter-right.projects.route-transition-enter-active, .enter-right.tasks.route-transition-enter-active, .enter-right.contacts.route-transition-enter-active {
-    transform: translateX(100%);
+  .enter-left.route-transition-enter-active {
+    transform: translateX(-100%);
     opacity: 0; }
-  .enter-right.projects.route-transition-enter-done, .enter-right.tasks.route-transition-enter-done, .enter-right.contacts.route-transition-enter-done {
+  .enter-left.route-transition-enter-done {
     transform: translateX(0%);
     opacity: 1;
     visibility: visible; }
 
-.exit-right.route-transition-exit {
-  position: absolute;
-  transform: translateX(0);
-  opacity: 1; }
+.exit-left {
+  position: absolute; }
+  .exit-left.route-transition-exit {
+    visibility: visible;
+    opacity: 1; }
+  .exit-left.route-transition-exit-active {
+    transform: translateX(0);
+    opacity: 0;
+    transform: translateX(-100%); }
+  .exit-left.route-transition-exit-done {
+    visibility: hidden; }
 
-.exit-right.route-transition-exit-active {
-  transform: translateX(100%);
-  opacity: 0; }
+.enter-right {
+  position: absolute; }
+  .enter-right.route-transition-enter {
+    visibility: hidden; }
+  .enter-right.route-transition-enter-active {
+    transform: translateX(100%);
+    opacity: 0; }
+  .enter-right.route-transition-enter-done {
+    transform: translateX(0%);
+    opacity: 1;
+    visibility: visible; }
 
-.enter-bottom.route-transition-enter {
-  position: absolute;
-  transform: translateY(100%);
-  opacity: 0; }
+.exit-right {
+  position: absolute; }
+  .exit-right.route-transition-exit {
+    visibility: visible;
+    opacity: 1; }
+  .exit-right.route-transition-exit-active {
+    transform: translateX(0);
+    opacity: 0;
+    transform: translateX(100%); }
+  .exit-right.route-transition-exit-done {
+    visibility: hidden; }
 
-.enter-bottom.route-transition-enter-active {
-  transform: translateY(75px);
-  opacity: 1; }
+.enter-bottom {
+  position: absolute; }
+  .enter-bottom.route-transition-enter {
+    visibility: hidden; }
+  .enter-bottom.route-transition-enter-active {
+    transform: translateY(100%);
+    opacity: 0; }
+  .enter-bottom.route-transition-enter-done {
+    transform: translateY(0%);
+    opacity: 1;
+    visibility: visible; }
 
-.exit-bottom.route-transition-exit {
-  position: absolute;
-  transform: translateY(75px);
-  opacity: 1; }
-
-.exit-bottom.route-transition-exit-active {
-  transform: translateY(100%);
-  opacity: 0; }
+.exit-bottom {
+  position: absolute; }
+  .exit-bottom.route-transition-exit {
+    visibility: visible;
+    opacity: 1; }
+  .exit-bottom.route-transition-exit-active {
+    transform: translateY(0);
+    opacity: 0;
+    transform: translateY(100%); }
+  .exit-bottom.route-transition-exit-done {
+    visibility: hidden; }
 
 .fade-away.route-transition-exit {
   position: absolute;
@@ -80,5 +85,3 @@
 
 .fade-away.route-transition-exit-active {
   opacity: 0; }
-
-/*# sourceMappingURL=RouteTransitions.css.map */

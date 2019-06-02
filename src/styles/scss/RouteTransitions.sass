@@ -6,93 +6,95 @@
     transition-property: transform, opacity, left, top, right, bottom
     transition-duration: $transition-length
     transition-timing-function: $transition-timing-function
-    transform: translateZ(0)
     will-change: transform
 
 .enter-left
+    position: absolute
     &.route-transition-enter
-        position: absolute
-        transform: translateX(-100%)
-        opacity: 0
+        visibility: hidden
 
     &.route-transition-enter-active
-        transform: translateX(0)
-        opacity: 1
-
-.exit-left
-    &.route-transition-exit
-        position: absolute
-        transform: translateX(0)
-        opacity: 1
-
-    &.route-transition-exit-active
         transform: translateX(-100%)
         opacity: 0
 
-// FIXME: 
-//   Figure out why Projects, Tasks, and Contacts refuse to enter-right.
-//   Without hidding visibility, the newly entered list don't seem to transition
-//     properly between enter and enter-active, or some other CSS is setting the 
-//     transform/position properties on top.
-//   If I manually add the transition classes, the animation works as expected.
-//   Dunno...this hacky workaround will have to do for now...
-.enter-right
-    &.route-transition-enter:not(.projects):not(.tasks):not(.contacts)
-        position: absolute
-        transform: translateX(100%)
-        opacity: 0
-
-    &.route-transition-enter-active:not(.projects):not(.tasks):not(.contacts)
+    &.route-transition-enter-done
         transform: translateX(0%)
         opacity: 1
-    
-    &.projects,
-    &.tasks,
-    &.contacts
-        position: absolute
-        &.route-transition-enter
-            visibility: hidden
+        visibility: visible
 
-        &.route-transition-enter-active
-            transform: translateX(100%)
-            opacity: 0
-            
 
-        &.route-transition-enter-done
-            transform: translateX(0%)
-            opacity: 1
-            visibility: visible
-// End FIXME
-    
-.exit-right
+.exit-left
+    position: absolute
     &.route-transition-exit
-        position: absolute
-        transform: translateX(0)
+        visibility: visible
         opacity: 1
 
     &.route-transition-exit-active
-        transform: translateX(100%)
+        transform: translateX(0)
         opacity: 0
+        transform: translateX(-100%)
 
-.enter-bottom
+    &.route-transition-exit-done
+        visibility: hidden
+
+
+// Pattern to prevent transition 'bounce' and smooth out animations
+.enter-right
+    position: absolute
     &.route-transition-enter
-        position: absolute
-        transform: translateY(100%)
-        opacity: 0
+        visibility: hidden
 
     &.route-transition-enter-active
-        transform: translateY(75px)
-        opacity: 1
+        transform: translateX(100%)
+        opacity: 0
+        
 
-.exit-bottom
+    &.route-transition-enter-done
+        transform: translateX(0%)
+        opacity: 1
+        visibility: visible
+    
+.exit-right
+    position: absolute
     &.route-transition-exit
-        position: absolute
-        transform: translateY(75px)
+        visibility: visible
         opacity: 1
 
     &.route-transition-exit-active
+        transform: translateX(0)
+        opacity: 0
+        transform: translateX(100%)
+
+    &.route-transition-exit-done
+        visibility: hidden
+
+.enter-bottom
+    position: absolute
+    &.route-transition-enter
+        visibility: hidden
+
+    &.route-transition-enter-active
         transform: translateY(100%)
         opacity: 0
+
+    &.route-transition-enter-done
+        transform: translateY(0%)
+        opacity: 1
+        visibility: visible
+
+.exit-bottom
+    position: absolute
+    &.route-transition-exit
+        visibility: visible
+        opacity: 1
+
+    &.route-transition-exit-active
+        transform: translateY(0)
+        opacity: 0
+        transform: translateY(100%)
+
+    &.route-transition-exit-done
+        visibility: hidden
 
 .fade-away
     &.route-transition-exit
