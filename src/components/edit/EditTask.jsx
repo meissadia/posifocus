@@ -43,23 +43,17 @@ const EditTask = props => {
     }
   }
 
-  const backLink = item => {
-    if (props.todays) {
-      return '/';
-    } else {
-      const { priority } = item;
-      return `/priority/${priority}/projects`;
-    }
-  }
-
-  const backTitle = () => props.todays ? 'Dashboard' : 'Projects';
-
   return (
     <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
       <PageNavigation
-        back={[backLink(currentItem), backTitle()]}
+        back={[{
+          pathname: cancelLink(currentItem),
+          state: { enter: 'enter-bottom' },
+          showIcon: 'no'
+        },
+          '< Cancel >'
+        ]}
         title='Edit Task'
-        add={[{ pathname: cancelLink(currentItem), state: { enter: 'enter-bottom' } }, '< Cancel >']}
       />
       <form
         name='gform'
@@ -68,7 +62,7 @@ const EditTask = props => {
       >
         <label htmlFor="title" className='center'>
           What Task Must Be Done to Complete this Project?
-              </label>
+        </label>
         <input
           type="text"
           name="title"

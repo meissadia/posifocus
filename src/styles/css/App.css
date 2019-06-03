@@ -48,7 +48,8 @@ table {
   width: 100%;
   min-height: 100vh;
   color: white;
-  transition: background 0.25s; }
+  transition: background 0.25s;
+  overflow: hidden; }
   #App.gratitudes {
     background: rgba(0, 150, 235, 0.6); }
   #App.priorities {
@@ -66,9 +67,12 @@ table {
   #App.settings, #App.credits {
     background: rgba(46, 171, 174, 0.8); }
   #App header {
-    height: 47px;
+    height: 70px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-    text-align: center; }
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; }
   #App a {
     text-decoration: none;
     color: white; }
@@ -137,5 +141,3 @@ table {
 
 :focus::placeholder {
   color: transparent; }
-
-/*# sourceMappingURL=App.css.map */

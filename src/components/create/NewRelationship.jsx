@@ -26,9 +26,14 @@ const NewRelationship = props => {
   return (
     <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
       <PageNavigation
-        back={['/', 'Dashboard']}
+        back={[{
+          pathname: cancelLink(),
+          state: { enter: 'enter-bottom' },
+          showIcon: 'no'
+        },
+          '< Cancel >'
+        ]}
         title='New Relationship'
-        add={[{ pathname: cancelLink(), state: { enter: 'enter-left' } }, '< Cancel >']}
       />
       <form
         name='gform'

@@ -12,7 +12,6 @@ import { firebase } from './firebase';
 import { Path } from './Path';
 import { GlobalContext } from './GlobalContextHOC';
 import AppFrame from './AppFrame';
-import AppHeader from './AppHeader';
 import Contacts from './lists/ListContacts';
 import Dashboard from './dashboard/Dashboard';
 import Gratitudes from './lists/ListGratitudes';
@@ -104,7 +103,6 @@ class App extends Component {
       <AppFrame background={this.state.style.background}>
         {/* Sync State with localStorage */}
         <SimpleStorage parent={this} blacklist={['update']} />
-        <AppHeader />
         <NotificationBar
           online={this.state.online}
           update={this.state.update}

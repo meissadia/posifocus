@@ -3,12 +3,18 @@ import { NavLink } from 'react-router-dom';
 import '../styles/css/PageNavigation.css';
 import backIcon from '../images/back.svg';
 import plusIcon from '../images/plus.svg';
+import homeIcon from '../images/home2.svg';
 
-const NonLink = (props) => (
-  <a className={'non-link ' + props.className}>
-    {props.text}
-  </a>
-)
+const back = 'Back';
+
+const NonLink = props => {
+  if (!props.text || props.text === '-') return null;
+  return (
+    <a className={'non-link ' + props.className}>
+      {props.text}
+    </a>
+  )
+}
 
 const linkState = (dest) => {
   if (dest.pathname) { return dest };
@@ -21,33 +27,70 @@ const linkState = (dest) => {
   }
 }
 
+const ActionsLeft = props => {
+  if (props.back) {
+    const showIcon = props.back[0].showIcon !== 'no';
+
+    return (
+      <NavLink
+        to={linkState(props.back[0])}
+        prefetch='true'
+        className='left'
+      >
+        {showIcon &&
+          <img className='icon invert' src={backIcon} alt='Back arrow' />
+        }
+        {props.back[1] || back}
+      </NavLink>
+    )
+  }
+
+  return <NonLink text={props.backNonLink} className='left' />
+}
+
+const HomeAction = () => (
+  <NavLink
+    to={'/'}
+    prefetch='true'
+    className='right'
+  >
+    {<img className='icon invert home' alt='Home' src={homeIcon} />}
+  </NavLink>
+)
+
+const ActionsRight = props => (
+  <div className='right'>
+    {!props.hideHome && <HomeAction />}
+    {
+      props.add &&
+      <NavLink
+        to={linkState(props.add[0])}
+        prefetch='true'
+      >
+        {props.add[1] || <img className='icon' alt='Plus' src={plusIcon} />}
+      </NavLink>
+    }
+    {
+      !props.add &&
+      <NonLink text={props.addNonLink} className='right' />
+    }
+
+  </div>
+)
+
+const ActionBar = props => (
+  <div className="flex row controls">
+    <ActionsLeft {...props} />
+    {props.middle}
+    <ActionsRight {...props} />
+  </div>
+);
+
 const PageNavigation = (props) => {
-  const back = 'Back';
   return (
-    <div className="flex row controls">
-      {
-        props.back ?
-          <NavLink
-            to={linkState(props.back[0])}
-            prefetch='true'
-            className='left'
-          >
-            <img className='icon invert' src={backIcon} alt='Back arrow' /> {props.back[1] || back}
-          </NavLink> :
-          <NonLink text={props.backNonLink} className='left' />
-      }
-      <NonLink text={props.title} className='middle' />
-      {
-        props.add ?
-          <NavLink
-            to={linkState(props.add[0])}
-            prefetch='true'
-            className='right'
-          >
-            {props.add[1] || <img className='icon' alt='Plus' src={plusIcon} />}
-          </NavLink> :
-          <NonLink text={props.addNonLink} className='right' />
-      }
+    <div className='page-nav'>
+      <ActionBar {...props} />
+      <NonLink text={props.title} className='title' />
     </div>
   )
 }

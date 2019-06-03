@@ -32,14 +32,17 @@ const NewTask = props => {
 
   const cancelLink = url => url.split('/').slice(0, -1).join('/') || '/';;
 
-  const backLink = url => url.split('/').slice(0, -3).join('/') + 's';
-
   return (
     <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
       <PageNavigation
-        back={[backLink(urlParams.url), 'Projects']}
+        back={[{
+          pathname: cancelLink(urlParams.url),
+          state: { enter: 'enter-left' },
+          showIcon: 'no'
+        },
+          '< Cancel >'
+        ]}
         title='New Task'
-        add={[{ pathname: cancelLink(urlParams.url), state: { enter: 'enter-left' } }, '< Cancel >']}
       />
       <form
         name='gform'

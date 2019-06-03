@@ -1,53 +1,82 @@
 @import basics
+.new-input-wrapper .non-link.title
+    text-align: center
 
-.controls
-    justify-content: space-between
-    align-items: center
-    background: transparent
-    height: 50px
-    border-bottom: 1px solid $shade20
-    font-weight: 500
-    transform: translateZ(0)
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif
+.page-nav
+    box-sizing: border-box
+    display: flex
+    flex-flow: column nowrap
 
-    a
-        text-align: center
-        cursor: pointer
-        color: white
-        overflow: hidden
-        text-overflow: ellipsis
-        padding: 5px 0
-        display: flex
-        flex-flow: row nowrap
+    .non-link.title
+        padding: 5px 15px 10px 20px
+        box-sizing: border-box
+        background: inherit
+        font-size: 2em
+        user-select: none
+        border-bottom: 1px solid $shade20
+        font-weight: 700
+
+    .controls
+        justify-content: space-evenly
         align-items: center
+        background: transparent
+        height: 50px
+        font-weight: 500
+        transform: translateZ(0)
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif
 
-        &.non-link
-            cursor: inherit
-            text-decoration: none
-            overflow: hidden
-
-        .icon
-            width: 20px
-            height: 20px
-
-        &.middle
-            flex-basis: 33%
-            flex-grow: 2
-
-        &.middle
-            align-items: center
-            justify-content: center
-
-        &.right
+        .right
+            display: flex
+            flex-flow: row nowrap
             padding-right: 10px
+            align-content: flex-end
             justify-content: flex-end
-            flex-basis: 20%
             flex-grow: 1
+            a
+                padding: 0 10px
+        .middle
+            position: absolute
+            // top: 55px
+            left: calc(50vw - 25px)
 
-        &.left
-            padding-left: 10px
-            flex-basis: 20%
-            flex-grow: 1
+        a
+            text-align: center
+            cursor: pointer
+            color: white
+            overflow: hidden
+            text-overflow: ellipsis
+            padding: 5px 0
+            display: flex
+            flex-flow: row nowrap
+            align-items: center
 
-            img
-                margin-right: 5px
+            &.non-link
+                cursor: inherit
+                text-decoration: none
+                overflow: hidden
+
+            .icon
+                width: 20px
+                height: 20px
+
+            &.middle
+                flex-basis: 33%
+                flex-grow: 2
+
+            &.middle
+                align-items: center
+                justify-content: center
+
+            &.right
+                padding-right: 10px
+                justify-content: flex-end
+                // flex-basis: 20%
+                flex-grow: 1
+
+            &.left
+                padding-left: 10px
+                // flex-basis: 20%
+                flex-grow: 1
+
+                img
+                    margin-right: 5px

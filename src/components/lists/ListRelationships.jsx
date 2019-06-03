@@ -33,6 +33,7 @@ const Relationships = props => {
         back={['/', 'Dashboard']}
         title='Relationships'
         add={['/relationships/new']}
+        hideHome={true}
       />
     </List>
   );

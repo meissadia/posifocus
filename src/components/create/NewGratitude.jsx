@@ -32,12 +32,15 @@ const NewGratitude = props => {
   return (
     <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
       <PageNavigation
-        back={['/', 'Dashboard']}
+        back={[
+          {
+            pathname: cancelLink(),
+            state: { enter: 'enter-bottom' },
+            showIcon: 'no',
+          },
+          '< Cancel >'
+        ]}
         title='New Gratitude'
-        add={[{
-          pathname: cancelLink(),
-          state: { enter: 'enter-bottom' }
-        }, '< Cancel >']}
       />
       <form
         name='gform'
@@ -46,7 +49,7 @@ const NewGratitude = props => {
       >
         <label htmlFor="title" className='center'>
           What Are You Grateful For Today?
-                </label>
+        </label>
         <input
           type="text"
           name="title"

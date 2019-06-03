@@ -26,9 +26,14 @@ const NewPriority = props => {
   return (
     <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
       <PageNavigation
-        back={['/', 'Dashboard']}
+        back={[{
+          pathname: cancelLink(),
+          state: { enter: 'enter-bottom' },
+          showIcon: 'no'
+        },
+          '< Cancel >'
+        ]}
         title='New Priority'
-        add={[{ pathname: cancelLink(), state: { enter: 'enter-left' } }, '< Cancel >']}
       />
       <form
         name='gform'

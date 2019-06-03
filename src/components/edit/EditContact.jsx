@@ -29,14 +29,15 @@ const EditContact = props => {
 
   const cancelLink = item => `/relationship/${item.relationship}/contacts`;
 
-  const backLink = () => '/relationships';
-
   return (
     <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
       <PageNavigation
-        back={[backLink(), 'Relationships']}
+        back={[{
+          pathname: cancelLink(currentItem),
+          state: { enter: 'enter-left' },
+          showIcon: 'no',
+        }, '< Cancel >']}
         title='Edit Contact'
-        add={[{ pathname: cancelLink(currentItem), state: { enter: 'enter-left' } }, '< Cancel >']}
       />
       <form
         name='gform'
@@ -45,7 +46,7 @@ const EditContact = props => {
       >
         <label htmlFor="title" className='center'>
           What was the Last Contact you had with this Person?
-              </label>
+        </label>
         <input
           type="text"
           name="title"

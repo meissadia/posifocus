@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 
 import { dummy, withEnterDirection, updateSortedCollection, } from './list-services';
@@ -16,6 +16,10 @@ const List = props => {
 
   const typedItemList = 'item-list ' + itemType;
   const totalCount = data.length;
+
+  useEffect(() => {
+    window && window.scrollTo(0, 0);
+  })
 
   const SortableItem = SortableElement(({ item, index }) => (
     <ListItem

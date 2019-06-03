@@ -34,9 +34,14 @@ const NewProject = props => {
   return (
     <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
       <PageNavigation
-        back={['/priorities', 'Priorities']}
+        back={[{
+          pathname: cancelLink(urlParams.url),
+          state: { enter: 'enter-bottom' },
+          showIcon: 'no'
+        },
+          '< Cancel >'
+        ]}
         title='New Project'
-        add={[{ pathname: cancelLink(urlParams.url), state: { enter: 'enter-left' } }, '< Cancel >']}
 
       />
       <form

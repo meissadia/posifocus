@@ -31,6 +31,7 @@ const Priorities = props => {
         back={['/', 'Dashboard']}
         title='Priorities'
         add={[`/${props.sectionTitle}/new`]}
+        hideHome={true}
       />
     </List>
   );

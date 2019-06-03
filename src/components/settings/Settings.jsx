@@ -10,6 +10,7 @@ import withGlobalContext from '../GlobalContextHOC';
 import PageNavigation from '../PageNavigation';
 import CloudSync from './CloudSync';
 import Credits from './Credits';
+import { DashHeader } from '../DashHeader';
 
 const enterDirection = (props) => {
   const direction = props.location
@@ -85,12 +86,15 @@ class Settings extends React.Component {
 
     return (
       <div className={"settings route-transition exit-right " + enterDirection(this.props)}>
+        <DashHeader />
         <Result msg={error} type='error' />
         <Result msg={result} type='success' />
+        {/* FIXME: need more fitting nav here */}
         <PageNavigation
           back={['/', 'Dashboard']}
-          title='Settings'
+          middle={<div className='middle'>Settings</div>}
           addNonLink={authUser && authUser.email}
+          hideHome={true}
         />
         <CloudSync
           state={state}

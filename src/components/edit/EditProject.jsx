@@ -33,10 +33,14 @@ const EditProject = props => {
   return (
     <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
       <PageNavigation
-        back={['/priorities', 'Priorities']}
+        back={[{
+          pathname: cancelLink(currentItem),
+          state: { enter: 'enter-bottom' },
+          showIcon: 'no'
+        },
+          '< Cancel >'
+        ]}
         title='Edit Project'
-        add={[{ pathname: cancelLink(currentItem), state: { enter: 'enter-bottom' } }, '< Cancel >']}
-
       />
       <form
         name='gform'

@@ -32,6 +32,7 @@ const Gratitudes = props => {
         back={['/', 'Dashboard']}
         title='Gratitudes'
         add={['/gratitudes/new']}
+        hideHome={true}
       />
     </List>
   );
