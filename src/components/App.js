@@ -11,14 +11,13 @@ import { parseUrl } from '../lib/Helpers';
 import { firebase } from './firebase';
 import { Path } from './Path';
 import { GlobalContext } from './GlobalContextHOC';
-
 import AppFrame from './AppFrame';
 import AppHeader from './AppHeader';
 import Contacts from './lists/ListContacts';
 import Dashboard from './dashboard/Dashboard';
 import Gratitudes from './lists/ListGratitudes';
 import NotificationBar from './notifications/NotificationBar';
-import OrderableList from './experiments/OrderableList';
+import OrderableList from './experiments/OrderableList'
 import Priorities from './lists/ListPriorities';
 import Projects from './lists/ListProjects';
 import Relationships from './lists/ListRelationships';
@@ -30,6 +29,7 @@ class App extends Component {
     super(props);
     this.state = State.initState();
     this.saveStateToStorage = State.saveStateToStorage.bind(this);
+    this.removeAuthListener = null;  // Firebase Log-in/out
   }
 
   componentDidUpdate() {
@@ -43,12 +43,14 @@ class App extends Component {
     window.addEventListener('offline', () => this.setOnlineStatus(false));
 
     this.onServiceWorkerUpdate(); // Update Available
-    this.onAuthUserChange();      // Firebase Log-in/out
+    this.removeAuthListener = this.onAuthUserChange();
   }
 
   componentWillUnmount() {
     window.removeEventListener('online');
     window.removeEventListener('offline');
+    window.removeEventListener('isUpdateAvailable');
+    this.removeAuthListener();
   }
 
   /**
@@ -133,14 +135,9 @@ class App extends Component {
                   <Route path={Path.Tasks} component={Tasks} />
                   <Route path={Path.Projects} component={Projects} />
                   <Route path={Path.Contacts} component={Contacts} />
-
                   {/*************** Test OrderableList Route ***************/}
                   <Route exact path={Path.OrderableList} component={OrderableList} />
-                  {/* Component design notes:
-                    • Create a Test<OrderableList|T> component that reads test data 
-                      from an external source but will utilize name matched prop data
-                      when present.
-                  */}
+
                 </Switch>
               </GlobalContext.Provider>
             </CSSTransition>
