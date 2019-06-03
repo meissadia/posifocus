@@ -4,8 +4,8 @@ import Toggle from 'react-toggle';
 
 import '../../styles/css/FormView.css';
 import '../../styles/css/ReactToggle.css';
-import PageNavigation from '../PageNavigation';
 import withGlobalContext from '../GlobalContextHOC';
+import { InputFormPageNav } from '../InputFormPageNav';
 
 const NewTask = props => {
   const { functions, urlParams } = props;
@@ -34,16 +34,7 @@ const NewTask = props => {
 
   return (
     <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
-      <PageNavigation
-        back={[{
-          pathname: cancelLink(urlParams.url),
-          state: { enter: 'enter-left' },
-          showIcon: 'no'
-        },
-          '< Cancel >'
-        ]}
-        title='New Task'
-      />
+      <InputFormPageNav pathname={cancelLink(urlParams.url)} />
       <form
         name='gform'
         className='g-form'

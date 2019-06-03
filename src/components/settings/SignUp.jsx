@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { auth, db }         from '../firebase/index';
+import { auth, db } from '../firebase/index';
 import '../../styles/css/Settings.css'
 
 const INITIAL_STATE = {
@@ -23,13 +23,13 @@ class SignUpForm extends Component {
     const { email, passwordOne } = this.state;
 
     auth.doCreateUserWithEmailAndPassword(email, passwordOne)
-    .then(authUser => {
-      // Create a user in your own accessible Firebase Database too
-      db.doCreateUser(authUser.user.uid, email)
-      .then(() => this.setState({ ...INITIAL_STATE }))
+      .then(authUser => {
+        // Create a user in your own accessible Firebase Database too
+        db.doCreateUser(authUser.user.uid, email)
+          .then(() => this.setState({ ...INITIAL_STATE }))
+          .catch(error => this.setState(byPropKey('error', error)));
+      })
       .catch(error => this.setState(byPropKey('error', error)));
-    })
-    .catch(error => this.setState(byPropKey('error', error)));
 
     event.preventDefault();
   }
@@ -39,9 +39,9 @@ class SignUpForm extends Component {
     const { byKey } = this.props;
 
     const isInvalid =
-    passwordOne !== passwordTwo ||
-    passwordOne === '' ||
-    email === '';
+      passwordOne !== passwordTwo ||
+      passwordOne === '' ||
+      email === '';
 
     return (
       <div className='form' key='signup-form'>
@@ -50,28 +50,28 @@ class SignUpForm extends Component {
           <input
             value={email}
             onChange={event => this.setState(byPropKey('email', event.target.value))}
-            type="text"
+            type="email"
             placeholder="Email Address"
-            />
+          />
           <input
             value={passwordOne}
             onChange={event => this.setState(byPropKey('passwordOne', event.target.value))}
             type="password"
             placeholder="Password"
-            />
+          />
           <input
             value={passwordTwo}
             onChange={event => this.setState(byPropKey('passwordTwo', event.target.value))}
             type="password"
             placeholder="Confirm Password"
-            />
+          />
           <button disabled={isInvalid} type="submit">
             Sign Up
           </button>
 
-          { error && <p>{error.message}</p> }
+          {error && <p>{error.message}</p>}
         </form>
-        <div className="signin"  onClick={byKey}>
+        <div className="signin" onClick={byKey}>
           Already have an account?
           <span>Sign In</span>
         </div>

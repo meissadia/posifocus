@@ -2,8 +2,8 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 
 import '../../styles/css/FormView.css';
-import PageNavigation from '../PageNavigation';
 import withGlobalContext from '../GlobalContextHOC';
+import { InputFormPageNav } from '../InputFormPageNav';
 
 const EditPriority = props => {
   const section = 'priorities';
@@ -30,16 +30,7 @@ const EditPriority = props => {
 
   return (
     <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
-      <PageNavigation
-        back={[{
-          pathname: cancelLink(),
-          state: { enter: 'enter-bottom' },
-          showIcon: 'no'
-        },
-          '< Cancel >'
-        ]}
-        title='Edit Priority'
-      />
+      <InputFormPageNav pathname={cancelLink()} />
       <form
         name='gform'
         className='g-form'

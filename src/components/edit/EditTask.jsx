@@ -1,11 +1,11 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import Toggle from 'react-toggle';
-import PageNavigation from '../PageNavigation';
 import { parseDate, dateInputDefault } from '../../lib/FormHelpers';
 import '../../styles/css/FormView.css';
 import '../../styles/css/ReactToggle.css';
 import withGlobalContext from '../GlobalContextHOC';
+import { InputFormPageNav } from '../InputFormPageNav';
 
 const EditTask = props => {
   const section = 'tasks';
@@ -45,16 +45,7 @@ const EditTask = props => {
 
   return (
     <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
-      <PageNavigation
-        back={[{
-          pathname: cancelLink(currentItem),
-          state: { enter: 'enter-bottom' },
-          showIcon: 'no'
-        },
-          '< Cancel >'
-        ]}
-        title='Edit Task'
-      />
+      <InputFormPageNav pathname={cancelLink(currentItem)} />
       <form
         name='gform'
         className='g-form'

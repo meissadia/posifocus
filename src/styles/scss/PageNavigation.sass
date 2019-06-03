@@ -1,11 +1,19 @@
 @import basics
-.new-input-wrapper .non-link.title
-    text-align: center
+.new-input-wrapper 
+    .non-link.title
+        text-align: center
+    .controls .right .home.icon
+        width: 30px
+        height: 30px
 
 .page-nav
     box-sizing: border-box
     display: flex
     flex-flow: column nowrap
+
+    .cancel-icon
+        font-size: 2.5em
+        padding-left: 10px
 
     .non-link.title
         padding: 5px 15px 10px 20px
@@ -34,6 +42,7 @@
             flex-grow: 1
             a
                 padding: 0 10px
+
         .middle
             position: absolute
             // top: 55px

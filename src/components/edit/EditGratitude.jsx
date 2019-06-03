@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import '../../styles/css/FormView.css';
 import { parseDate, dateInputDefault } from '../../lib/FormHelpers';
 import withGlobalContext from '../GlobalContextHOC';
-import PageNavigation from '../PageNavigation';
+import { InputFormPageNav } from '../InputFormPageNav';
 
 /**
  * Dialog to update a Gratitude
@@ -41,16 +41,7 @@ const EditGratitude = props => {
 
   return (
     <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
-      <PageNavigation
-        back={[{
-          pathname: cancelLink(),
-          state: { enter: 'enter-bottom' },
-          showIcon: 'no'
-        },
-          '< Cancel >'
-        ]}
-        title='Edit Gratitude'
-      />
+      <InputFormPageNav pathname={cancelLink()} />
       <form
         name='gform'
         className='g-form'

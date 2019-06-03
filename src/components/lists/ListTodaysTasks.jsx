@@ -29,6 +29,7 @@ const TodaysTasks = props => {
       <PageNavigation
         back={['/', 'Dashboard']}
         title="Today's Tasks"
+        hideHome={true}
       />
     </List>
   );

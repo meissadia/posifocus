@@ -1,9 +1,9 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import PageNavigation from '../PageNavigation';
-import { parseDate, dateInputDefault } from '../../lib/FormHelpers';
 import '../../styles/css/FormView.css';
+import { parseDate, dateInputDefault } from '../../lib/FormHelpers';
 import withGlobalContext from '../GlobalContextHOC';
+import { InputFormPageNav } from '../InputFormPageNav';
 
 const EditContact = props => {
   const section = 'contacts';
@@ -31,14 +31,7 @@ const EditContact = props => {
 
   return (
     <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
-      <PageNavigation
-        back={[{
-          pathname: cancelLink(currentItem),
-          state: { enter: 'enter-left' },
-          showIcon: 'no',
-        }, '< Cancel >']}
-        title='Edit Contact'
-      />
+      <InputFormPageNav pathname={cancelLink(currentItem)} />
       <form
         name='gform'
         className='g-form'

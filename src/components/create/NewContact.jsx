@@ -3,8 +3,8 @@ import { withRouter } from 'react-router-dom';
 
 import '../../styles/css/FormView.css';
 import { parseDate, dateInputDefault } from '../../lib/FormHelpers';
-import PageNavigation from '../PageNavigation';
 import { withGlobalContext } from '../GlobalContextHOC';
+import { InputFormPageNav } from '../InputFormPageNav';
 
 const NewContact = props => {
   const { functions, urlParams } = props;
@@ -29,16 +29,7 @@ const NewContact = props => {
 
   return (
     <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
-      <PageNavigation
-        back={[{
-          pathname: cancelLink(urlParams.url),
-          state: { enter: 'enter-left' },
-          showIcon: 'no',
-        },
-          '< Cancel >'
-        ]}
-        title='New Contact'
-      />
+      <InputFormPageNav pathname={cancelLink(urlParams.url)} />
       <form
         name='gform'
         className='g-form'
