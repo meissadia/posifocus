@@ -23,13 +23,15 @@ const NewPriority = props => {
 
   const cancelLink = () => '/priorities';
 
+  const onSubmitHandler = handleAddPriority.bind(null, functions.addToStateArray);
+
   return (
     <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
       <InputFormPageNav pathname={cancelLink()} />
       <form
         name='gform'
         className='g-form'
-        onSubmit={handleAddPriority.bind(null, functions.addToStateArray)}
+        onSubmit={onSubmitHandler}
       >
         <label htmlFor="title" className='center'>
           What's Most Important to You?
@@ -40,7 +42,7 @@ const NewPriority = props => {
           autoComplete="off"
           placeholder="Family, Friends, Faith"
         />
-        <input id='submit-button' type="submit" name="submit" value="Save" />
+        <div id='submit-button' onClick={onSubmitHandler}>Save</div>
       </form>
     </div>
   );

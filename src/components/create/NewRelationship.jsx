@@ -23,13 +23,15 @@ const NewRelationship = props => {
 
   const cancelLink = () => '/relationships';
 
+  const onSubmitHandler = handleAddRelationship.bind(null, functions.addToStateArray);
+
   return (
     <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
       <InputFormPageNav pathname={cancelLink()} />
       <form
         name='gform'
         className='g-form'
-        onSubmit={handleAddRelationship.bind(null, functions.addToStateArray)}
+        onSubmit={onSubmitHandler}
       >
         <label htmlFor="title" className='center'>
           Who Do You Want To Build A Better Relationship With?
@@ -40,7 +42,7 @@ const NewRelationship = props => {
           autoComplete="off"
           placeholder="My Brother"
         />
-        <input id='submit-button' type="submit" name="submit" value="Save" />
+        <div id='submit-button' onClick={onSubmitHandler}>Save</div>
       </form>
     </div>
   );

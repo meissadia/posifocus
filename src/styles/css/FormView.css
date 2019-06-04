@@ -1,5 +1,5 @@
 .new-input-wrapper {
-  min-height: calc(100vh - 47px);
+  height: 100vh;
   background: rgba(0, 0, 0, 0.8); }
   .new-input-wrapper .controls {
     background: rgba(0, 0, 0, 0.1); }
@@ -10,9 +10,15 @@
   justify-content: center;
   text-align: center;
   font-family: Helvetica, sans-serif; }
+  .g-form label[for=title] {
+    width: 70%;
+    margin: 0 auto; }
+  .g-form label[for=date-input] {
+    text-align: center; }
   .g-form label {
     text-align: left;
-    padding: 20px 0 20px 30px; }
+    padding: 20px 0 20px 30px;
+    font-size: 1.5em; }
     .g-form label.center {
       text-align: center; }
   .g-form input,
@@ -25,21 +31,56 @@
     width: 90%;
     margin: 0 auto;
     background: rgba(0, 0, 0, 0); }
+    .g-form input::placeholder,
+    .g-form textarea::placeholder {
+      color: grey; }
+  .g-form textarea.content {
+    height: 35vh;
+    text-align: left;
+    padding: 15px; }
   .g-form input {
     line-height: 25px; }
 
 #submit-button {
-  height: 75px;
-  background: rgba(255, 255, 255, 0.4);
-  margin: 30px;
+  width: 85%;
+  font-size: 1.4em;
+  padding: 30px 0;
+  background: rgba(31, 117, 191, 0.4);
+  margin: 30px 0;
   cursor: pointer;
   border-radius: 0;
-  align-self: center; }
+  align-self: center;
+  text-transform: uppercase;
+  transition: background 0.25s;
+  position: absolute;
+  bottom: 25px; }
+  #submit-button:hover {
+    background: rgba(60, 164, 253, 0.4); }
 
 #date-input {
   text-align: center;
   align-self: center;
-  width: auto; }
+  width: 0;
+  height: 0;
+  opacity: 0;
+  font-size: 0;
+  transition: all 0.25s; }
+  #date-input:focus {
+    width: 80%;
+    height: 30px;
+    opacity: 1;
+    font-size: 1.2em; }
+
+#calIcon {
+  width: 35px;
+  height: 35px;
+  margin-right: 20px; }
+
+#notes-date-bar {
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row nowrap;
+  margin-top: 20px; }
 
 .form-toggle {
   justify-content: center;

@@ -26,13 +26,15 @@ const EditRelationship = props => {
 
   const cancelLink = () => `/${section}`;
 
+  const onSubmitHandler = save.bind(null, currentItem, updateSingle);
+
   return (
     <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
       <InputFormPageNav pathname={cancelLink(urlParams.url)} />
       <form
         name='gform'
         className='g-form'
-        onSubmit={save.bind(null, currentItem, updateSingle)}
+        onSubmit={onSubmitHandler}
       >
         <label htmlFor="title" className='center'>
           Who Do You Want To Build A Better Relationship With?
@@ -44,7 +46,7 @@ const EditRelationship = props => {
           placeholder="My Brother"
           defaultValue={currentItem.title}
         />
-        <input id='submit-button' type="submit" name="submit" value="Save" />
+        <div id='submit-button' onClick={onSubmitHandler}>Save</div>
       </form>
     </div>
   );

@@ -5,6 +5,7 @@ import '../../styles/css/FormView.css';
 import { parseDate, dateInputDefault } from '../../lib/FormHelpers';
 import withGlobalContext from '../GlobalContextHOC';
 import { InputFormPageNav } from '../InputFormPageNav';
+import calIcon from '../../images/calendar-icon.png';
 
 /**
  * Dialog to update a Gratitude
@@ -39,13 +40,15 @@ const EditGratitude = props => {
 
   const cancelLink = () => '/gratitudes';
 
+  const onSubmitHandler = save.bind(null, currentItem.id, updateSingle);
+
   return (
     <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
       <InputFormPageNav pathname={cancelLink()} />
       <form
         name='gform'
         className='g-form'
-        onSubmit={save.bind(null, currentItem.id, updateSingle)}
+        onSubmit={onSubmitHandler}
       >
         <label htmlFor="title" className='center'>
           What Are You Grateful For Today?
@@ -57,20 +60,23 @@ const EditGratitude = props => {
           placeholder="Family / Clean Water / etc..."
           defaultValue={currentItem.title}
         />
-        <label htmlFor='content'>Notes:</label>
-        <textarea
-          name="content"
-          placeholder="My kids surprised me today by..."
-          defaultValue={currentItem.content}
-        />
-        <label htmlFor='date-input'>Date:</label>
+        <div id='notes-date-bar'>
+          <label htmlFor='content'>Notes:</label>
+          <label htmlFor='date-input'><img id='calIcon' src={calIcon} alt='date picker' /></label>
+        </div>
         <input
           id='date-input'
           type="date"
           name="date"
           defaultValue={dateInputDefault(currentItem.date)}
         />
-        <input id='submit-button' type="submit" name="submit" value="Save" />
+        <textarea
+          name="content"
+          className="content"
+          placeholder="My kids surprised me today by..."
+          defaultValue={currentItem.content}
+        />
+        <div id='submit-button' onClick={onSubmitHandler}>Save</div>
       </form>
     </div>
   );

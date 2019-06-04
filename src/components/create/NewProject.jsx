@@ -31,13 +31,15 @@ const NewProject = props => {
 
   const cancelLink = url => url.slice(0, -4) || '/';
 
+  const onSubmitHandler = handleNewProject.bind(null, functions.addToStateArray);
+
   return (
     <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
       <InputFormPageNav pathname={cancelLink(urlParams.url)} />
       <form
         name='gform'
         className='g-form'
-        onSubmit={handleNewProject.bind(null, functions.addToStateArray)}
+        onSubmit={onSubmitHandler}
       >
         <label htmlFor="title" className='center'>
           What Project Will Contribute Most to this Priority?
@@ -50,7 +52,7 @@ const NewProject = props => {
         />
         <input name="priority" value={urlParams.priority} hidden readOnly />
         <input name="url" value={urlParams.url} hidden readOnly />
-        <input id='submit-button' type="submit" name="submit" value="Save" />
+        <div id='submit-button' onClick={onSubmitHandler}>Save</div>
       </form>
     </div>
   )

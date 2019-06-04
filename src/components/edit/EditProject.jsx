@@ -30,13 +30,15 @@ const EditProject = props => {
 
   const cancelLink = item => `/priority/${item.priority}/projects`;
 
+  const onSubmitHandler = save.bind(null, currentItem, updateSingle);
+
   return (
     <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
       <InputFormPageNav pathname={cancelLink(currentItem)} />
       <form
         name='gform'
         className='g-form'
-        onSubmit={save.bind(null, currentItem, updateSingle)}
+        onSubmit={onSubmitHandler}
       >
         <label htmlFor="title" className='center'>
           What Project Will Contribute Most to this Priority?
@@ -48,7 +50,8 @@ const EditProject = props => {
           placeholder="Backyard BBQ/New Diet/Vacation..."
           defaultValue={currentItem.title}
         />
-        <input id='submit-button' type="submit" name="submit" value="Save" />
+
+        <div id='submit-button' onClick={onSubmitHandler}>Save</div>
       </form>
     </div>
   )

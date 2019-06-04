@@ -6,6 +6,7 @@ import '../../styles/css/FormView.css';
 import '../../styles/css/ReactToggle.css';
 import withGlobalContext from '../GlobalContextHOC';
 import { InputFormPageNav } from '../InputFormPageNav';
+import calIcon from '../../images/calendar-icon.png';
 
 const EditTask = props => {
   const section = 'tasks';
@@ -43,13 +44,14 @@ const EditTask = props => {
     }
   }
 
+  const onSubmitHandler = save.bind(null, currentItem, updateSingle);
   return (
     <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
       <InputFormPageNav pathname={cancelLink(currentItem)} />
       <form
         name='gform'
         className='g-form'
-        onSubmit={save.bind(null, currentItem, updateSingle)}
+        onSubmit={onSubmitHandler}
       >
         <label htmlFor="title" className='center'>
           What Task Must Be Done to Complete this Project?
@@ -73,14 +75,14 @@ const EditTask = props => {
             defaultChecked={currentItem.done} />
           <span>Done?</span>
         </label>
-        <label htmlFor='date-input'>Date:</label>
+        <label htmlFor='date-input'><img id='calIcon' src={calIcon} alt='date picker' /></label>
         <input
           id='date-input'
           type="date"
           name="date"
           defaultValue={dateInputDefault(currentItem.date)}
         />
-        <input id='submit-button' type="submit" name="submit" value="Save" />
+        <div id='submit-button' onClick={onSubmitHandler}>Save</div>
       </form>
     </div>
   );

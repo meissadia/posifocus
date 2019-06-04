@@ -32,13 +32,15 @@ const NewTask = props => {
 
   const cancelLink = url => url.split('/').slice(0, -1).join('/') || '/';;
 
+  const onSubmitHandler = handleAddTask.bind(null, functions.addToStateArray);
+
   return (
     <div className='new-input-wrapper route-transition enter-bottom exit-bottom'>
       <InputFormPageNav pathname={cancelLink(urlParams.url)} />
       <form
         name='gform'
         className='g-form'
-        onSubmit={handleAddTask.bind(null, functions.addToStateArray)}
+        onSubmit={onSubmitHandler}
       >
         <label htmlFor="title" className='center'>
           What Task Must Be Done to Complete this Project?
@@ -58,7 +60,7 @@ const NewTask = props => {
         <input name="priority" value={urlParams.priority} hidden readOnly />
         <input name="project" value={urlParams.projects} hidden readOnly />
         <input name="url" value={urlParams.url} hidden readOnly />
-        <input id='submit-button' type="submit" name="submit" value="Save" />
+        <div id='submit-button' onClick={onSubmitHandler}>Save</div>
       </form>
     </div>
   );
