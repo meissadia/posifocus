@@ -8,6 +8,12 @@ class AppFrame extends React.Component {
     this.state = { background: this.newBackground(window.location.pathname), level: 0 };
   }
 
+  componentDidUpdate(_prevProps, prevState) {
+    if (prevState.background !== this.state.background) {
+      document.getElementById('App').scrollIntoView();
+    }
+  }
+
   newBackground = pathname => {
     if (pathname.includes('today')) return 'today';
     if (pathname.includes('tasks')) return 'tasks';
