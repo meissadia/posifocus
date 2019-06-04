@@ -60,14 +60,29 @@ $option_c: rgba(29, 116, 129, 1)
       background: $shade50
       input
         background: transparent
-        padding: 10px 0
+        padding: 10px
         margin: 5px auto
         border: 0
         font-size: 16px
         color: white
+        box-sizing: border-box
+        &::placeholder
+          color: lightgrey
       button
+        transition: background $transition-length
+        border: 0
         margin: 0 auto
         padding: 10px
+        color: white
+        background: green
+        border-radius: 5px
+        cursor: pointer
+        text-transform: uppercase
+        &:hover
+          background: #5f951c
+        &:disabled
+          background: grey
+          cursor: not-allowed
       & + .signup,
       & + .signin
         display: flex

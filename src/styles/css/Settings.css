@@ -71,15 +71,33 @@
       .cloud-sync .form .login input,
       .local-options .form .login input {
         background: transparent;
-        padding: 10px 0;
+        padding: 10px;
         margin: 5px auto;
         border: 0;
         font-size: 16px;
-        color: white; }
+        color: white;
+        box-sizing: border-box; }
+        .cloud-sync .form .login input::placeholder,
+        .local-options .form .login input::placeholder {
+          color: lightgrey; }
       .cloud-sync .form .login button,
       .local-options .form .login button {
+        transition: background 0.25s;
+        border: 0;
         margin: 0 auto;
-        padding: 10px; }
+        padding: 10px;
+        color: white;
+        background: green;
+        border-radius: 5px;
+        cursor: pointer;
+        text-transform: uppercase; }
+        .cloud-sync .form .login button:hover,
+        .local-options .form .login button:hover {
+          background: #5f951c; }
+        .cloud-sync .form .login button:disabled,
+        .local-options .form .login button:disabled {
+          background: grey;
+          cursor: not-allowed; }
       .cloud-sync .form .login + .signup,
       .cloud-sync .form .login + .signin,
       .local-options .form .login + .signup,
@@ -110,5 +128,3 @@
 
 .settings .success {
   background: rgba(50, 120, 50, 0.7); }
-
-/*# sourceMappingURL=Settings.css.map */
