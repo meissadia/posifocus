@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Colors from '../../lib/Colors';
 import relationshipsIcon from '../../images/relationships.svg';
 import gratitudesIcon from '../../images/gratitudes@2x.png';
@@ -123,34 +123,36 @@ const ContactsInstructions = props => (
   </div>
 );
 
-const Instructions = props => {
-  const { section, display, bgColor } = props;
-
-  // FIXME: Workaround to animate Instruction on-enter
-  useEffect(() => {
+class Instructions extends React.Component {
+  componentDidMount() {
+    // FIXME: Workaround to animate Instruction on-enter
     $('#instructions').animate({
       opacity: 1,
       height: '100%'
     })
-  })
+  }
 
-  if (!display) return null;
+  render() {
+    const { section, display, bgColor } = this.props;
 
-  const thatThingWeWant = sectionIcon(section);
-  if (!(typeof thatThingWeWant === 'string'))
-    return thatThingWeWant
+    if (!display) return null;
 
-  return (
-    <li
-      className={`instructions ${section}`}
-      style={{ background: bgColor }}>
-      <img
-        className='instruction-image'
-        src={thatThingWeWant}
-        alt={`${section} instructions`}
-      />
-    </li>
-  )
+    const thatThingWeWant = sectionIcon(section);
+    if (!(typeof thatThingWeWant === 'string'))
+      return thatThingWeWant
+
+    return (
+      <li
+        className={`instructions ${section}`}
+        style={{ background: bgColor }}>
+        <img
+          className='instruction-image'
+          src={thatThingWeWant}
+          alt={`${section} instructions`}
+        />
+      </li>
+    )
+  }
 }
 
 Instructions.defaultProps = {

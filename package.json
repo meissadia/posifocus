@@ -26,11 +26,13 @@
     "sass:watch": "node-sass -w src/styles/scss -o src/styles/css",
     "sass:build": "node-sass src/styles/scss -o src/styles/css --source-map true",
     "serve": "serve -s build",
-    "coverage": "npm test -- --coverage"
+    "coverage": "npm test -- --coverage",
+    "ftp": "node deploy"
   },
   "devDependencies": {
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
+    "ftp-deploy": "^2.3.3",
     "jsdom": "^15.1.0",
     "node-sass": "^4.9.3",
     "serve": "^11.0.0",
