@@ -21,7 +21,7 @@
     "start": "npm run sass:build && react-scripts start",
     "build": "npm run sass:build && react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "deploy": "npm run build && surge ./build 'https://posifocus.surge.sh'",
+    "deploy": "surge ./build 'https://posifocus.surge.sh'",
     "deploy:test": "npm run build && serve -s build",
     "sass:watch": "node-sass -w src/styles/scss -o src/styles/css",
     "sass:build": "node-sass src/styles/scss -o src/styles/css --source-map true",
