@@ -1,0 +1,8 @@
+- Slide-from-right menu for ListItem actions, activated on click of "..." icon
+    • Refactor action bar & deep links
+    • Find a ... icon
+    • Styling for actions
+    • Animations for actions
+
+- Set heights for stuff or use grid or add a div with flex: 1 to fill empty space (probably the last one)
+- fix save button on forms for landscape, might get fixed by setting heights for stuff or using grid
