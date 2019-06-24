@@ -2,136 +2,141 @@
 @import "_basics.sass";
 
 #App {
-    font-family: Helvetica, sans-serif;
-    font-size: calc(14px + 1 * ((100% - 400px) / 800));
-    font-weight: lighter;
-    width: 100%;
-    min-height: 100vh;
+  font-family: Helvetica, sans-serif;
+  font-size: calc(14px + 1 * ((100% - 400px) / 800));
+  font-weight: lighter;
+  width: 100%;
+  min-height: 100vh;
+  color: white;
+  transition: background $transition-length;
+  overflow: hidden;
+
+  &.gratitudes {
+    background: $gratitudes;
+  }
+
+  &.priorities {
+    background: $priorities;
+  }
+
+  &.relationships {
+    background: $relationships;
+  }
+
+  &.today {
+    background: $today;
+  }
+
+  &.projects {
+    background: $projects;
+  }
+
+  &.contacts {
+    background: $contacts;
+  }
+
+  &.tasks {
+    background: $tasks;
+  }
+
+  &.settings,
+  &.credits {
+    background: $settings;
+  }
+
+  header {
+    height: 70px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  a {
+    text-decoration: none;
     color: white;
-    transition: background $transition-length;
-    overflow: hidden;
+  }
 
-    &.gratitudes {
-        background: $gratitudes;
-    }
-
-    &.priorities {
-        background: $priorities;
-    }
-
-    &.relationships {
-        background: $relationships;
-    }
-
-    &.today {
-        background: $today;
-    }
-
-    &.projects {
-        background: $projects;
-    }
-
-    &.contacts {
-        background: $contacts;
-    }
-
-    &.tasks {
-        background: $tasks;
-    }
-
-    &.settings,
-    &.credits {
-        background: $settings;
-    }
-
-    header {
-        height: 70px;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: flex-end;
-    }
-
-    a {
-        text-decoration: none;
-        color: white;
-    }
-
-    .app-logo {
-        width: 150px;
-
-    }
+  .app-logo {
+    width: 150px;
+  }
 }
 
 #app-version {
-    color: white;
-    font-size: 14px;
-    width: 100%;
-    font-family: Times;
-    font-weight: lighter;
-    text-align: center;
-    padding: 10px 0;
+  color: white;
+  font-size: 14px;
+  width: 100%;
+  font-family: Times;
+  font-weight: lighter;
+  text-align: center;
+  padding: 10px 0;
 }
 
 .flex {
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
 
-    &.column {
-        flex-flow: column wrap;
-    }
+  &.column {
+    flex-flow: column wrap;
+  }
 }
 
 .invert {
-    filter: invert(1);
+  filter: invert(1);
 }
 
 .uninvert {
-    filter: invert(0);
+  filter: invert(0);
 }
 
-::-webkit-input-placeholder { /* Chrome */
-    color: white;
+::-webkit-input-placeholder {
+  /* Chrome */
+  color: white;
 }
 
-::-moz-placeholder { /* Firefox 19+ */
-    color: white;
-    opacity: 1;
+::-moz-placeholder {
+  /* Firefox 19+ */
+  color: white;
+  opacity: 1;
 }
 
-:-moz-placeholder { /* Firefox 4 - 18 */
-    color: white;
-    opacity: 1;
+:-moz-placeholder {
+  /* Firefox 4 - 18 */
+  color: white;
+  opacity: 1;
 }
 
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: white;
-    opacity: 1;
-    transition: color $transition-length;
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 1;
+  transition: color $transition-length;
 }
 
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: white;
-    transition: color $transition-length;
-    opacity: 1;
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: white;
+  transition: color $transition-length;
+  opacity: 1;
 }
 
-::-ms-input-placeholder { /* Microsoft Edge */
-    color: white;
-    transition: color $transition-length;
-    opacity: 1;
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: white;
+  transition: color $transition-length;
+  opacity: 1;
 }
 
 :focus::-webkit-input-placeholder {
-    color: transparent;
+  color: transparent;
 }
 
 :focus:-moz-placeholder {
-    color: transparent;
+  color: transparent;
 }
 
 :focus::placeholder {
-    color: transparent;
+  color: transparent;
 }
