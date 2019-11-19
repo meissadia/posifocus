@@ -1,3 +1,8 @@
+# v0.1.7
+- Fix insane zooming when editing dates on mobile
+- Switch to Yarn
+- Update dev instructions
+
 # v0.1.0
 - Already at the end of major overhaul.  
 - withGlobalContext, ListHOC
