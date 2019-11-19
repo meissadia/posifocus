@@ -13,7 +13,7 @@
 ## Development  
 
 Create a .env file in your project root with the following variables configured with your Firebase configuration values.  
-`Sorry, these are poorly named variables.  I'll update these soon to make the mapping obvious.`
+
 ```
 # /.env
 REACT_APP_FIREBASE_KEY = "YOUR_VALUE_HERE"
@@ -24,9 +24,25 @@ REACT_APP_FIREBASE_STORAGE_BUCKET = "YOUR_VALUE_HERE"
 REACT_APP_FIREBASE_SENDER_ID = "YOUR_VALUE_HERE"
 ```  
 
-Install dependecies
+
+### Dev Dependencies
+[nvm](https://github.com/nvm-sh/nvm)  
+[yarn](https://yarnpkg.com/lang/en/docs/cli/install/)  
+[homebrew](https://brew.sh/)
+
+### Install dependecies
 ```
 nvm use
-npm install
+yarn install
 brew update && brew bundle
+```
+
+### Run Locally
+```
+yarn start
+```
+
+In a separate terminal
+```
+yarn sass:watch
 ```

@@ -1,5 +1,5 @@
 import React from "react";
 
-const Version = props => <div id="app-version">Version 0.1.6</div>;
+const Version = () => <div id="app-version">Version 0.1.7</div>;
 
 export default Version;
