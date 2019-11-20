@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { auth } from '../firebase/index';
-import '../../styles/css/Settings.css'
+import '../../styles/scss/Settings.sass';
 
 const byPropKey = (propertyName, value) => () => ({
   [propertyName]: value,

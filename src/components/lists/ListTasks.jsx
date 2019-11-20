@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
-import '../../styles/css/ListViews.css'
+import '../../styles/scss/ListViews.sass'
 import { parseUrl, addVars } from '../../lib/Helpers';
 import TodaysTasks from '../lists/ListTodaysTasks';
 import NewTask from '../create/NewTask';

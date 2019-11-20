@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../styles/css/OrderableList.css';
+import '../../styles/scss/OrderableList.sass';
 /**
  * 
  * Wow, took a lot of searching to find a way to get jQuery and jQuery-ui imported...

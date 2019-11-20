@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { get } from 'lodash';
 
-import '../../styles/css/ListViews.css'
+import '../../styles/scss/ListViews.sass'
 import PageNavigation from '../PageNavigation';
 import NewContact from '../create/NewContact';
 import EditContact from '../edit/EditContact';

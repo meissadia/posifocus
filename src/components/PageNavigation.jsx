@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import '../styles/css/PageNavigation.css';
+import '../styles/scss/PageNavigation.sass';
 import backIcon from '../images/back.svg';
 import plusIcon from '../images/plus.svg';
 import homeIcon from '../images/home2.svg';
@@ -10,9 +10,9 @@ const back = 'Back';
 const NonLink = props => {
   if (!props.text || props.text === '-') return null;
   return (
-    <a className={'non-link ' + props.className}>
+    <button className={'non-link ' + props.className}>
       {props.text}
-    </a>
+    </button>
   )
 }
 

@@ -6,35 +6,26 @@ class AppFrame extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      background: this.newBackground(window.location.pathname),
+      background: newBackground(window.location.pathname),
       level: 0
     };
   }
 
-  componentDidUpdate(_prevProps, prevState) {
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.location !== this.props.location) {
+      this.setState({
+        background: newBackground(this.props.location.pathname)
+      })
+    }
+
     if (prevState.background !== this.state.background) {
-      document.getElementById("App").scrollIntoView();
+      const app = document.getElementById('App')
+      app && app.scrollIntoView();
     }
   }
-
-  newBackground = pathname => {
-    if (pathname.includes("today")) return "today";
-    if (pathname.includes("tasks")) return "tasks";
-    let bg = pathname.split("/").slice(-1)[0];
-    return bg || "base";
-  };
 
   componentDidMount() {
     offlineBackground(fieldRows);
-  }
-
-  // Change background on Navigation
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.location !== this.props.location) {
-      this.setState({
-        background: this.newBackground(nextProps.location.pathname)
-      });
-    }
   }
 
   render() {
@@ -44,6 +35,13 @@ class AppFrame extends React.Component {
       </div>
     );
   }
+}
+
+const newBackground = pathname => {
+  if (pathname.includes('today')) return 'today'
+  if (pathname.includes('tasks')) return 'tasks'
+  let bg = pathname.split('/').slice(-1)[0]
+  return bg || 'base'
 }
 
 // Fallback for app background

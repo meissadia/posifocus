@@ -1,7 +1,7 @@
 import React        from 'react';
 import { NavLink }  from 'react-router-dom';
 import MenuItemIcon from './MenuItemIcon';
-import '../../styles/css/MainMenu.css';
+import '../../styles/scss/MainMenu.sass';
 
 let MenuItem = (props) => {
   return (

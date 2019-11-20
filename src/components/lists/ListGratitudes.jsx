@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
-import '../../styles/css/ListViews.css'
+import '../../styles/scss/ListViews.sass'
 import Colors from '../../lib/Colors';
 import NewGratitude from '../create/NewGratitude';
 import EditGratitude from '../edit/EditGratitude';

@@ -2,8 +2,8 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import Toggle from 'react-toggle';
 
-import '../../styles/css/FormView.css';
-import '../../styles/css/ReactToggle.css';
+import '../../styles/scss/FormView.sass';
+import '../../styles/scss/ReactToggle.sass';
 import withGlobalContext from '../GlobalContextHOC';
 import { InputFormPageNav } from '../InputFormPageNav';
 

@@ -27,6 +27,5 @@ describe('Settings', () => {
                 </MemoryRouter>
             </GlobalContext.Provider>
         )
-        // console.log(wrapper.debug())
     });
 });

@@ -5,8 +5,8 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import * as State from '../lib/AppState';
 
 import '../lib/Helpers';
-import '../styles/css/App.css';
-import '../styles/css/RouteTransitions.css';
+import '../styles/scss/App.scss';
+import '../styles/scss/RouteTransitions.sass';
 import { parseUrl } from '../lib/Helpers';
 import { firebase } from './firebase';
 import { Path } from './Path';
@@ -46,10 +46,10 @@ class App extends Component {
   }
 
   componentWillUnmount() {
-    window.removeEventListener('online');
-    window.removeEventListener('offline');
-    window.removeEventListener('isUpdateAvailable');
-    this.removeAuthListener();
+    // window.removeEventListener('online');
+    // window.removeEventListener('offline');
+    // window.removeEventListener('isUpdateAvailable');
+    this.removeAuthListener && this.removeAuthListener();
   }
 
   /**

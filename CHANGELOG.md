@@ -1,3 +1,13 @@
+# v0.2.0
+- Update to React/React DOM 16.12.0
+- Update to React Router DOM 5.1.2
+- Update to react-scripts": 3.2.0,
+- Update to react-simple-storage: 1.4.1,
+- Update to react-sortable-hoc: 1.10.1,
+- Update to react-toggle: 4.1.1,
+- Update to react-transition-group: 4.3.0
+- Remove sass build/watch scripts
+
 # v0.1.7
 - Fix insane zooming when editing dates on mobile
 - Switch to Yarn

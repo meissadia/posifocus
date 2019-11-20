@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
-import '../../styles/css/ListViews.css'
+import '../../styles/scss/ListViews.sass'
 import PageNavigation from '../PageNavigation';
 import NewProject from '../create/NewProject';
 import EditProject from '../edit/EditProject';

@@ -1,6 +1,6 @@
 import React from 'react';
 import Toggle from 'react-toggle';
-import '../../styles/css/ReactToggle.css';
+import '../../styles/scss/ReactToggle.sass';
 
 const ToggleItem = props => {
   const { item, target, toggle, label } = props;

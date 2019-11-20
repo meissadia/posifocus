@@ -2,7 +2,7 @@ import React from 'react';
 import MenuItem from './MenuItem';
 import Submenu from './MenuSubmenu';
 
-import '../../styles/css/MainMenu.css';
+import '../../styles/scss/MainMenu.sass';
 import gratitudesIcon from '../../images/gratitudes@2x.png';
 import prioritiesIcon from '../../images/priorities@2x.png';
 import tasksIcon from '../../images/tasks.svg';

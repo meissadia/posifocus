@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../styles/css/UserHeader.css';
+import '../../styles/scss/UserHeader.sass';
 import UserImage from './UserImage';
 import UserText from './UserText';
 

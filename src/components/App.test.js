@@ -14,11 +14,14 @@ import App from './App';
 expect.extend(CustomMatchers); // Add custom assertions
 
 /** Helper Methods **/
-const buildWrapper = ({ path }) => mount(
-  <MemoryRouter initialEntries={[path || '/']}>
-    <App />
-  </MemoryRouter>
-);
+const buildWrapper = ({ path }) => {
+  window.localStorage.clear()
+  return mount(
+    <MemoryRouter initialEntries={[path || '/']}>
+      <App />
+    </MemoryRouter>
+  )
+}
 
 describe('App', () => {
   it('renders Section routes', () => {
@@ -97,8 +100,6 @@ describe('App', () => {
       ['NewContact', '/relationship/:relationships/contacts/new', 'contacts'],
     ];
 
-    const wrapper = buildWrapper({});
-
     const idCache = {}; // Track a the latest live id for each Model
     const unverifiedFields = ['id', 'date']; // FIXME: Test properly
 
@@ -108,6 +109,8 @@ describe('App', () => {
 
     routes.forEach(route => {
       const [, path, stateKey] = route;
+      const wrapper = buildWrapper({});
+
       global.document.gform = {
         content: { value: 'content' },
         date: { value: 'date' },
@@ -144,9 +147,6 @@ describe('App', () => {
 
       idCache[stateKey] = currentItem.id; // Save latest IDs
     }); // end routes
-
-    // console.log('Test Data: App State');
-    // console.log(JSON.stringify(getAppState(wrapper)));
   });
 
   it('renders Edit routes', () => {
@@ -256,14 +256,22 @@ describe('App', () => {
       expect(collection.length).toBe(1);  // Verify there's data to delete
 
       wrapper.find(`ListIcon[name="delete"] img`).first().simulate('click');
-      wrapper.update(); // Click delete icon
 
-      // Verify all related collections have been updated
-      shouldBeEmpty.forEach(x => {
-        const collection = readAppStateByKey(wrapper, x);
-        expect(collection.length).toBe(0);
-      });
+      // Wait for animation delay
+      sleep(1000).then(() => {
+        wrapper.update(); // Click delete icon
+  
+        // Verify all related collections have been updated
+        shouldBeEmpty.forEach(x => {
+          const collection = readAppStateByKey(wrapper, x);
+          expect(collection.length).toBe(0);
+        });
 
+      })
     });
   });
 })
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms))
+}

@@ -4,7 +4,7 @@ import { auth, db } from '../firebase/index';
 
 import refreshIcon from '../../images/reload.svg';
 import creditsIcon from '../../images/credits.svg';
-import '../../styles/css/Settings.css';
+import '../../styles/scss/Settings.sass';
 
 import withGlobalContext from '../GlobalContextHOC';
 import PageNavigation from '../PageNavigation';

@@ -1,6 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import "../../styles/css/FormView.css";
+import '../../styles/scss/FormView.sass';
 import { parseDate, dateInputDefault } from "../../lib/FormHelpers";
 import withGlobalContext from "../GlobalContextHOC";
 import { InputFormPageNav } from "../InputFormPageNav";

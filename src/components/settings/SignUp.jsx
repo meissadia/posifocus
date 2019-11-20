@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { auth, db } from '../firebase/index';
-import '../../styles/css/Settings.css'
+import '../../styles/scss/Settings.sass';
 
 const INITIAL_STATE = {
   email: '',

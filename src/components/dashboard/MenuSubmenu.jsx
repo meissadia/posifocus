@@ -2,7 +2,7 @@ import React          from 'react';
 import projectsIcon   from '../../images/projects.svg';
 import tasksIcon      from '../../images/tasks.svg';
 
-import '../../styles/css/MainMenu.css';
+import '../../styles/scss/MainMenu.sass';
 
 let MenuSubmenu = (props) => (
   <div className="priorities-submenu flex row" >

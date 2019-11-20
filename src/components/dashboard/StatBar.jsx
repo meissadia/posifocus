@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../styles/css/StatBar.css';
+import '../../styles/scss/StatBar.sass';
 import withGlobalContext from '../GlobalContextHOC';
 
 const calcStats = state => {

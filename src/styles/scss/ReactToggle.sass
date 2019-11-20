@@ -1,7 +1,7 @@
 @import basics
 
 $track_color: #4D4D4D
-$track_checked: rgba(255, 255, 255, .2)
+$track_checked: #19AB27
 $track_hover: $shade30
 $track_disabled: #000000
 $border_checked: #19AB27
@@ -42,14 +42,19 @@ $switch_color: #FAFAFA
   background-color: $track_color
   transition: all $transition-length $transition-timing-function
 
-.react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track
-  background-color: $track_disabled
+.react-toggle:hover:not(.react-toggle--disabled), 
+.react-toggle:focus:not(.react-toggle--disabled) 
+  .react-toggle-track-x svg path
+    fill: $track_checked
+  .react-toggle-thumb
+    border-color: $track_checked
 
-.react-toggle--checked .react-toggle-track
-  background-color: $track_checked
-
-.react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track
-  background-color: $track_hover
+.react-toggle--checked 
+  .react-toggle-track
+    background-color: $track_checked
+  &:hover:not(.react-toggle--disabled) .react-toggle-track,
+  &:focus:not(.react-toggle--disabled) .react-toggle-track
+    background-color: $track_checked
 
 .react-toggle-track-check
   position: absolute
@@ -63,6 +68,7 @@ $switch_color: #FAFAFA
   left: 8px
   opacity: 0
   transition: opacity $transition-length $transition-timing-function
+  // background-color: $border_checked
 
 .react-toggle--checked
   .react-toggle-track-check
