@@ -33,7 +33,7 @@
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
     "ftp-deploy": "^2.3.3",
-    "jsdom": "^15.1.0",
+    "jsdom": "^16.5.0",
     "node-sass": "^4.9.3",
     "serve": "^11.0.0",
     "surge": "^0.20.5"
